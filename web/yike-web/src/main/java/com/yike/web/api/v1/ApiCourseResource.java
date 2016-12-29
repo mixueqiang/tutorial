@@ -110,7 +110,7 @@ public class ApiCourseResource extends BaseResource {
                     .set(Course.SQL_TITLE, title)
                     .set(Course.SQL_PRICE, price)
                     .set(Course.SQL_TEACHING_TYPE, teachingType)
-                    .set(Course.SQL_LEARNER_COUNT, maximumLearnerCount)
+                    .set(Course.SQL_COUNT_MAX, maximumLearnerCount)
                     .set(Course.SQL_CONTENT, content)
                     .set(Course.SQL_DESCRIPTION, description)
                     .set(Course.SQL_CREATE_TIME, createTime)
@@ -206,7 +206,7 @@ public class ApiCourseResource extends BaseResource {
         updateValues.put(Course.SQL_TEACHING_TYPE, teachingType);
         updateValues.put(Course.SQL_CONTENT, content);
         updateValues.put(Course.SQL_DESCRIPTION, description);
-        updateValues.put(Course.SQL_LEARNER_COUNT, maximumLearnerCount);
+        updateValues.put(Course.SQL_COUNT_MAX, maximumLearnerCount);
         updateValues.put(Course.SQL_FREE, free);
         updateValues.put(Course.SQL_PRICE, price);
         updateValues.put(Course.SQL_STATUS, Constants.STATUS_NOT_READY);

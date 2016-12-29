@@ -78,7 +78,7 @@ public class InstructorResource extends BaseResource {
     } else {
       if (course.getAppliable() == Course.APPLIABLE_FALSE) {
         StringBuilder sb = new StringBuilder();
-        sb.append("已结束  ").append("共").append(course.getTotalLearnerCount()).append("人  ");
+        sb.append("已结束  ").append("共").append(course.getCount()).append("人  ");
         if (StringUtils.isNotEmpty(course.getSubscript())) {
           sb.append(course.getSubscript());
         }

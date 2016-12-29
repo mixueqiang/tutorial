@@ -251,15 +251,15 @@ public class CourseResource extends BaseResource {
     } else {
       if (course.getAppliable() == Course.APPLIABLE_FALSE) {
         sb.append("已结束  ");
-        if (1 == course.getShowTotalLearnerCount()) {
-          sb.append("共").append(course.getTotalLearnerCount()).append("人  ");
+        if (course.isCountShow()) {
+          sb.append("共").append(course.getCount()).append("人  ");
         }
         if (StringUtils.isNotEmpty(course.getSubscript())) {
           sb.append(course.getSubscript());
         }
       } else {
-        if (1 == course.getShowTotalLearnerCount()) {
-          sb.append("共").append(course.getTotalLearnerCount()).append("人  ");
+        if (1 == course.getCount()) {
+          sb.append("共").append(course.getCount()).append("人  ");
         }
       }
     }

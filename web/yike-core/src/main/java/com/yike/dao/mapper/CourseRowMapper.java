@@ -40,10 +40,15 @@ public class CourseRowMapper implements RowMapper<Course> {
         entity.setInstructorId(rs.getLong(Course.SQL_INSTRUCTOR_ID));
         entity.setPrice(rs.getFloat(Course.SQL_PRICE));
         entity.setTeachingType(rs.getString(Course.SQL_TEACHING_TYPE));
-        entity.setMaximumLearnerCount(rs.getInt(Course.SQL_LEARNER_COUNT));
-        entity.setCurrentLearnerCount(rs.getInt(Course.SQL_CURRENT_LEARNER_COUNT));
-        entity.setOtherLearnerCount(rs.getInt(Course.SQL_OTHER_LEARNER_COUNT));
-        entity.setShowTotalLearnerCount(rs.getInt(Course.SQL_SHOW_TOTAL_LEARNER_COUNT));
+//        entity.setMaximumLearnerCount(rs.getInt(Course.SQL_LEARNER_COUNT));
+//        entity.setCurrentLearnerCount(rs.getInt(Course.SQL_CURRENT_LEARNER_COUNT));
+//        entity.setOtherLearnerCount(rs.getInt(Course.SQL_OTHER_LEARNER_COUNT));
+//        entity.setShowTotalLearnerCount(rs.getInt(Course.SQL_SHOW_TOTAL_LEARNER_COUNT));
+        entity.setCountMax(rs.getInt(Course.SQL_COUNT_MAX));
+        entity.setCountThis(rs.getInt(Course.SQL_COUNT_THIS));
+        entity.setCountOther(rs.getInt(Course.SQL_COUNT_OTHER));
+        entity.setCountShow(rs.getBoolean(Course.SQL_COUNT_SHOW));
+
 
         entity.setAppliable(rs.getInt(Course.SQL_APPLIABLE));
         entity.setFree(rs.getInt(Course.SQL_FREE));

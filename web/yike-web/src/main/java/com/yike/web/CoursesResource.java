@@ -71,11 +71,12 @@ public class CoursesResource extends BaseResource {
                 CourseRowMapper.getInstance());
 
         for (Course course : courses) {
-            if (0 == course.getCurrentLearnerCount()) {
+            int countInYiKe = course.getCountThis();
+            if (0 == countInYiKe) {
                 continue;
             }
             StringBuilder sb = new StringBuilder();
-            sb.append("共").append(course.getCurrentLearnerCount()).append("人");
+            sb.append("共").append(countInYiKe).append("人");
             course.setSubscript(sb.toString());
         }
 

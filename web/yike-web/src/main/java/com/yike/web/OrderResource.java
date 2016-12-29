@@ -235,7 +235,7 @@ public class OrderResource extends BaseResource {
           int count = entityDao.count(CourseApplication.SQL_TABLE_NAME, courseCountCondition);
           Map<String, Object> courseUpdateCondition = new HashMap<String, Object>();
           courseUpdateCondition.put(Course.SQL_ID, courseApplication.getCourseId());
-          entityDao.update(Course.SQL_TABLE_NAME, courseUpdateCondition, Course.SQL_CURRENT_LEARNER_COUNT, count);
+          entityDao.update(Course.SQL_TABLE_NAME, courseUpdateCondition, Course.SQL_COUNT_THIS, count);
         }
 
         return "success";

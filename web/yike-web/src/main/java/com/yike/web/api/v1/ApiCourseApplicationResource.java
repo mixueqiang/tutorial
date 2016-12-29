@@ -84,7 +84,7 @@ public class ApiCourseApplicationResource extends BaseResource {
       int count = entityDao.count(CourseApplication.SQL_TABLE_NAME, courseCountCondition);
       Map<String, Object> courseUpdateCondition = new HashMap<String, Object>();
       courseUpdateCondition.put(Course.SQL_ID, courseId);
-      entityDao.update(Course.SQL_TABLE_NAME, courseUpdateCondition, Course.SQL_CURRENT_LEARNER_COUNT, count);
+      entityDao.update(Course.SQL_TABLE_NAME, courseUpdateCondition, Course.SQL_COUNT_THIS, count);
 
       return ResponseBuilder.OK;
 
@@ -136,7 +136,7 @@ public class ApiCourseApplicationResource extends BaseResource {
       int count = entityDao.count(CourseApplication.SQL_TABLE_NAME, courseCountCondition);
       Map<String, Object> courseUpdateCondition = new HashMap<String, Object>();
       courseUpdateCondition.put(Course.SQL_ID, courseId);
-      entityDao.update(Course.SQL_TABLE_NAME, courseUpdateCondition, Course.SQL_CURRENT_LEARNER_COUNT, count);
+      entityDao.update(Course.SQL_TABLE_NAME, courseUpdateCondition, Course.SQL_COUNT_THIS, count);
 
       return ResponseBuilder.ok(entity);
 
@@ -195,7 +195,7 @@ public class ApiCourseApplicationResource extends BaseResource {
       int count = entityDao.count(CourseApplication.SQL_TABLE_NAME, courseCountCondition);
       Map<String, Object> courseUpdateCondition = new HashMap<String, Object>();
       courseUpdateCondition.put(Course.SQL_ID, courseId);
-      entityDao.update(Course.SQL_TABLE_NAME, courseUpdateCondition, Course.SQL_CURRENT_LEARNER_COUNT, count);
+      entityDao.update(Course.SQL_TABLE_NAME, courseUpdateCondition, Course.SQL_COUNT_THIS, count);
 
       return ResponseBuilder.OK;
 

@@ -28,7 +28,6 @@ import com.yike.model.Instructor;
 /**
  * @author xiaolou
  * @since 2016年12月21日
- *
  */
 @Path("/instructor")
 @Component
@@ -71,23 +70,23 @@ public class InstructorResource extends BaseResource {
   }
 
   private void setSubscripts(Course course) {
+    StringBuilder sb = new StringBuilder();
     if (course.getStatus() == Constants.STATUS_NOT_READY) {
-      course.setSubscript("正在审核");
+      sb.append("正在审核");
     } else if (course.getStatus() < Constants.STATUS_NOT_READY) {
-      course.setSubscript("已删除");
+      sb.append("已删除");
     } else {
       if (course.getAppliable() == Course.APPLIABLE_FALSE) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("已结束  ").append("共").append(course.getCount()).append("人  ");
-        if (StringUtils.isNotEmpty(course.getSubscript())) {
-          sb.append(course.getSubscript());
-        }
-        course.setSubscript(sb.toString());
-      } else {
-        course.setSubscript("");
+        sb.append("已结束  ");
+      }
+      if (course.isCountShow()) {
+        sb.append("共").append(course.getCount()).append("人  ");
+      }
+      if (StringUtils.isNotEmpty(course.getSubscript())) {
+        sb.append(course.getSubscript());
       }
     }
-
+    course.setSubscript(sb.toString());
     String superScript = course.getSuperscript();
     course.setSuperscript("");
   }

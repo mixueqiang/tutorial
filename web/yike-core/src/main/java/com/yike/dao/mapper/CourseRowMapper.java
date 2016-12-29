@@ -14,55 +14,52 @@ import com.yike.model.Course;
  * @since May 28, 2015
  */
 public class CourseRowMapper implements RowMapper<Course> {
-    private static CourseRowMapper instance;
+  private static CourseRowMapper instance;
 
-    public static CourseRowMapper getInstance() {
-        if (instance == null) {
-            instance = new CourseRowMapper();
-        }
-
-        return instance;
+  public static CourseRowMapper getInstance() {
+    if (instance == null) {
+      instance = new CourseRowMapper();
     }
 
-    @Override
-    public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Course entity = new Course();
+    return instance;
+  }
 
-        entity.setId(rs.getLong(Course.SQL_ID));
-        entity.setUserId(rs.getLong(Course.SQL_USER_ID));
-        entity.setName(rs.getString(Course.SQL_TITLE));
-        entity.setDescription(rs.getString(Course.SQL_DESCRIPTION));
-        entity.setContent(rs.getString(Course.SQL_CONTENT));
-        entity.setStatus(rs.getInt(Course.SQL_STATUS));
-        entity.setCreateTime(rs.getLong(Course.SQL_CREATE_TIME));
-        entity.setUpdateTime(rs.getLong(Course.SQL_UPDATE_TIME));
+  @Override
+  public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
+    Course entity = new Course();
 
-        entity.setInstructorId(rs.getLong(Course.SQL_INSTRUCTOR_ID));
-        entity.setPrice(rs.getFloat(Course.SQL_PRICE));
-        entity.setTeachingType(rs.getString(Course.SQL_TEACHING_TYPE));
-//        entity.setMaximumLearnerCount(rs.getInt(Course.SQL_LEARNER_COUNT));
-//        entity.setCurrentLearnerCount(rs.getInt(Course.SQL_CURRENT_LEARNER_COUNT));
-//        entity.setOtherLearnerCount(rs.getInt(Course.SQL_OTHER_LEARNER_COUNT));
-//        entity.setShowTotalLearnerCount(rs.getInt(Course.SQL_SHOW_TOTAL_LEARNER_COUNT));
-        entity.setCountMax(rs.getInt(Course.SQL_COUNT_MAX));
-        entity.setCountThis(rs.getInt(Course.SQL_COUNT_THIS));
-        entity.setCountOther(rs.getInt(Course.SQL_COUNT_OTHER));
-        entity.setCountShow(rs.getBoolean(Course.SQL_COUNT_SHOW));
+    entity.setId(rs.getLong(Course.SQL_ID));
+    entity.setUserId(rs.getLong(Course.SQL_USER_ID));
+    entity.setName(rs.getString(Course.SQL_TITLE));
+    entity.setDescription(rs.getString(Course.SQL_DESCRIPTION));
+    entity.setContent(rs.getString(Course.SQL_CONTENT));
+    entity.setStatus(rs.getInt(Course.SQL_STATUS));
+    entity.setCreateTime(rs.getLong(Course.SQL_CREATE_TIME));
+    entity.setUpdateTime(rs.getLong(Course.SQL_UPDATE_TIME));
 
+    entity.setInstructorId(rs.getLong(Course.SQL_INSTRUCTOR_ID));
+    entity.setPrice(rs.getFloat(Course.SQL_PRICE));
+    entity.setTeachingType(rs.getString(Course.SQL_TEACHING_TYPE));
 
-        entity.setAppliable(rs.getInt(Course.SQL_APPLIABLE));
-        entity.setFree(rs.getInt(Course.SQL_FREE));
-        entity.setSuperscript(rs.getString(Course.SQL_SUPERSCRIPT));
-        entity.setSubscript(rs.getString(Course.SQL_SUBSCRIPT));
-        String image = rs.getString(Course.SQL_IMAGE);
-
-        if (StringUtils.isNotEmpty(image)) {
-            entity.setImage(image);
-            entity.getProperties().put("imageUrl", ImageUtils.getImageUrl(image));
-        }
+    entity.setCountMax(rs.getInt(Course.SQL_COUNT_MAX));
+    entity.setCountThis(rs.getInt(Course.SQL_COUNT_THIS));
+    entity.setCountOther(rs.getInt(Course.SQL_COUNT_OTHER));
+    entity.setCountShow(rs.getBoolean(Course.SQL_COUNT_SHOW));
 
 
-        return entity;
+    entity.setAppliable(rs.getInt(Course.SQL_APPLIABLE));
+    entity.setFree(rs.getInt(Course.SQL_FREE));
+    entity.setSuperscript(rs.getString(Course.SQL_SUPERSCRIPT));
+    entity.setSubscript(rs.getString(Course.SQL_SUBSCRIPT));
+    String image = rs.getString(Course.SQL_IMAGE);
+
+    if (StringUtils.isNotEmpty(image)) {
+      entity.setImage(image);
+      entity.getProperties().put("imageUrl", ImageUtils.getImageUrl(image));
     }
+
+
+    return entity;
+  }
 
 }

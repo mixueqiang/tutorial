@@ -245,22 +245,18 @@ public class CourseResource extends BaseResource {
   private void setSubscripts(Course course) {
     StringBuilder sb = new StringBuilder();
     if (course.getStatus() == Constants.STATUS_NOT_READY) {
-      course.setSubscript("正在审核");
+      sb.append("正在审核");
     } else if (course.getStatus() < Constants.STATUS_NOT_READY) {
-      course.setSubscript("已删除");
+      sb.append("已删除");
     } else {
       if (course.getAppliable() == Course.APPLIABLE_FALSE) {
         sb.append("已结束  ");
-        if (course.isCountShow()) {
-          sb.append("共").append(course.getCount()).append("人  ");
-        }
-        if (StringUtils.isNotEmpty(course.getSubscript())) {
-          sb.append(course.getSubscript());
-        }
-      } else {
-        if (1 == course.getCount()) {
-          sb.append("共").append(course.getCount()).append("人  ");
-        }
+      }
+      if (course.isCountShow()) {
+        sb.append("共").append(course.getCount()).append("人  ");
+      }
+      if (StringUtils.isNotEmpty(course.getSubscript())) {
+        sb.append(course.getSubscript());
       }
     }
     course.setSubscript(sb.toString());

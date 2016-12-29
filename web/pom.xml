@@ -139,8 +139,13 @@
       </dependency>
       <dependency>
         <groupId>com.sun.jersey.contribs</groupId>
+        <artifactId>jersey-multipart</artifactId>
+        <version>1.19.3</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.jersey.contribs</groupId>
         <artifactId>jersey-spring</artifactId>
-        <version>1.18</version>
+        <version>1.19.3</version>
         <exclusions>
           <exclusion>
             <artifactId>spring-core</artifactId>
@@ -163,11 +168,6 @@
             <groupId>org.springframework</groupId>
           </exclusion>
         </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.jersey.contribs</groupId>
-        <artifactId>jersey-multipart</artifactId>
-        <version>1.18</version>
       </dependency>
       <dependency>
         <groupId>org.jsoup</groupId>

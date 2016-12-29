@@ -7,7 +7,7 @@
     <param-value>/WEB-INF/logback.xml</param-value>
   </context-param>
   <listener>
-    <listener-class>com.dabllo.util.LogbackConfigListener</listener-class>
+    <listener-class>com.yike.util.LogbackConfigListener</listener-class>
   </listener>
   <context-param>
     <param-name>contextConfigLocation</param-name>

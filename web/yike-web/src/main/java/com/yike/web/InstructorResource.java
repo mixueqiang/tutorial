@@ -11,6 +11,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.yike.dao.mapper.CategoryRowMapper;
+import com.yike.model.Category;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -67,6 +69,13 @@ public class InstructorResource extends BaseResource {
   private void setCourseProperties(Course course) {
     course.setDescription(StringUtil.replaceNewLine(course.getDescription()));
     course.setContent(StringUtil.replaceNewLine(course.getContent()));
+
+    if (course.getCategoryId() > 0) {
+      Category category = entityDao.get(Category.SQL_TABLE_NAME, course.getCategoryId(), CategoryRowMapper.getInstance());
+      if (null != category) {
+        course.getProperties().put("category", category);
+      }
+    }
   }
 
   private void setSubscripts(Course course) {

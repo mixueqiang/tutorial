@@ -25,14 +25,14 @@ public class CategoryRowMapper implements RowMapper<Category> {
   @Override
   public Category mapRow(ResultSet rs, int rowNum) throws SQLException {
     Category entity = new Category();
-    entity.setId(rs.getLong("id"));
-    entity.setParentId(rs.getLong("parentId"));
-    entity.setSlug(rs.getString("slug"));
-    entity.setName(rs.getString("name"));
-    entity.setImage(rs.getString("image"));
-    entity.setStatus(rs.getInt("status"));
-    entity.setCreateTime(rs.getLong("createTime"));
-    entity.setUpdateTime(rs.getLong("updateTime"));
+    entity.setId(rs.getLong(Category.SQL_ID));
+    entity.setParentId(rs.getLong(Category.SQL_PARENT_ID));
+    entity.setSlug(rs.getString(Category.SQL_SLUG));
+    entity.setName(rs.getString(Category.SQL_NAME));
+    entity.setImage(rs.getString(Category.SQL_IMAGE));
+    entity.setStatus(rs.getInt(Category.SQL_STATUS));
+    entity.setCreateTime(rs.getLong(Category.SQL_CREATE_TIME));
+    entity.setUpdateTime(rs.getLong(Category.SQL_UPDATE_TIME));
 
     return entity;
   }

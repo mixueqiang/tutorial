@@ -14,6 +14,7 @@ public class Course extends BaseModel {
   public static final String SQL_ID = "id";
   public static final String SQL_USER_ID = "userId";
   public static final String SQL_INSTRUCTOR_ID = "instructorId";
+  public static final String SQL_CATEGORY_ID = "categoryId";
   public static final String SQL_TITLE = "name";
   public static final String SQL_IMAGE = "image";
   public static final String SQL_FREE = "free";
@@ -32,17 +33,18 @@ public class Course extends BaseModel {
   public static final String SQL_SUPERSCRIPT = "superscript";
   public static final String SQL_SUBSCRIPT = "subscript";
 
-
   public static final int APPLIABLE_TRUE = 1;
   public static final int APPLIABLE_FALSE = -1;
 
-  private long userId;   // 用户ID
-  private long instructorId;// 讲师ID
-
-  private float price;        // 价格         <100000
-  private int free;           // 是否免费      1 = Y
-  private String teachingType;// 上课方式及时间  2000 字
-
+  private long userId;
+  private long instructorId;
+  private long categoryId;
+  // 价格
+  private float price;
+  // 是否免费
+  private int free;
+  // 上课方式及时间
+  private String teachingType;
   // 总人数
   private int countMax;
   // 一课人数
@@ -53,14 +55,13 @@ public class Course extends BaseModel {
   private boolean countShow;
   // 总人数
   private int count;
-
-  private String description; // 详细介绍         3000 字
-  private String content;     // 课程亮点/核心内容 150  字
-
-  private int appliable;      // 招生状态 (可申请/已停止招生)
-
+  // 招生状态
+  private int appliable;
+  // 课程亮点
+  private String content;
+  // 详细介绍
+  private String description;
   private String image;
-
   private String subscript; // 下角标
   private String superscript; // 上角标
 
@@ -72,6 +73,10 @@ public class Course extends BaseModel {
 
   public long getInstructorId() {
     return instructorId;
+  }
+
+  public long getCategoryId() {
+    return categoryId;
   }
 
   public float getPrice() {
@@ -144,6 +149,10 @@ public class Course extends BaseModel {
 
   public void setInstructorId(long instructorId) {
     this.instructorId = instructorId;
+  }
+
+  public void setCategoryId(long categoryId) {
+    this.categoryId = categoryId;
   }
 
   public void setPrice(float price) {

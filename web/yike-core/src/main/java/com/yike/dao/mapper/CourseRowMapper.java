@@ -30,14 +30,15 @@ public class CourseRowMapper implements RowMapper<Course> {
 
     entity.setId(rs.getLong(Course.SQL_ID));
     entity.setUserId(rs.getLong(Course.SQL_USER_ID));
+    entity.setInstructorId(rs.getLong(Course.SQL_INSTRUCTOR_ID));
+    entity.setCategoryId(rs.getLong(Course.SQL_CATEGORY_ID));
+
     entity.setName(rs.getString(Course.SQL_TITLE));
     entity.setDescription(rs.getString(Course.SQL_DESCRIPTION));
     entity.setContent(rs.getString(Course.SQL_CONTENT));
     entity.setStatus(rs.getInt(Course.SQL_STATUS));
     entity.setCreateTime(rs.getLong(Course.SQL_CREATE_TIME));
     entity.setUpdateTime(rs.getLong(Course.SQL_UPDATE_TIME));
-
-    entity.setInstructorId(rs.getLong(Course.SQL_INSTRUCTOR_ID));
     entity.setPrice(rs.getFloat(Course.SQL_PRICE));
     entity.setTeachingType(rs.getString(Course.SQL_TEACHING_TYPE));
 

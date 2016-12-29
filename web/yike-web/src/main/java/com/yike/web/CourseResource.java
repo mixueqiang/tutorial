@@ -15,12 +15,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.yike.dao.BaseDao;
-import com.yike.dao.mapper.UserRowMapper;
-import com.yike.model.Entity;
-import com.yike.model.User;
-import com.yike.dao.mapper.CourseApplicationRowMapper;
-import com.yike.model.CourseApplication;
-import com.yike.model.Student;
+import com.yike.dao.mapper.*;
+import com.yike.model.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -31,10 +27,6 @@ import com.yike.util.Pair;
 import com.yike.util.StringUtil;
 import com.sun.jersey.api.view.Viewable;
 import com.yike.Constants;
-import com.yike.dao.mapper.CourseRowMapper;
-import com.yike.dao.mapper.InstructorRowMapper;
-import com.yike.model.Course;
-import com.yike.model.Instructor;
 
 /**
  * @author xueqiangmi
@@ -197,8 +189,14 @@ public class CourseResource extends BaseResource {
 
     if (course.getInstructorId() > 0) {
       Instructor instructor = entityDao.get(Instructor.SQL_TABLE_NAME, course.getInstructorId(), InstructorRowMapper.getInstance());
-      if (instructor != null) {
+      if (null != instructor) {
         course.getProperties().put("instructor", instructor);
+      }
+    }
+    if (course.getCategoryId() > 0) {
+      Category category = entityDao.get(Category.SQL_TABLE_NAME, course.getCategoryId(), CategoryRowMapper.getInstance());
+      if (null != category) {
+        course.getProperties().put("category", category);
       }
     }
   }

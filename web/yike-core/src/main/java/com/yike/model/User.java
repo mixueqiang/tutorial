@@ -91,8 +91,13 @@ public class User extends BaseModel implements Serializable {
     return StringUtils.contains(roles, "company");
   }
 
-  public boolean isWorker() {
-    return StringUtils.contains(roles, "worker");
+  // TODO 修改isAdmin
+  public boolean isAdmin() {
+    return StringUtils.endsWith(email, "@transkip.com");
+  }
+
+  public boolean isInstructor() {
+    return StringUtils.contains(roles, "instructor");
   }
 
   public void setAvatar(String avatar) {

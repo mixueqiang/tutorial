@@ -93,6 +93,22 @@ public class BaseModel implements Serializable {
     return getStatus() > Constants.STATUS_DISABLED;
   }
 
+  public boolean isDeleted() {
+    return status == -2;
+  }
+
+  public boolean isDisabled() {
+    return status < 1;
+  }
+
+  public boolean isFinished() {
+    return status == 100;
+  }
+
+  public boolean isHidden() {
+    return status == -1;
+  }
+
   public void setCreateTime(long createTime) {
     this.createTime = createTime;
   }

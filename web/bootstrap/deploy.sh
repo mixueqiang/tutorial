@@ -4,11 +4,11 @@ project=$1
 
 # Update and build.
 echo 'Update and build it...'
-cd /home/source/yike
+cd /home/source/yike/web
 git pull
 mvn clean install -Dmaven.test.skip
 
-cd /home/source/yike/$project
+cd /home/source/yike/web/$project
 mvn clean package -Dmaven.test.skip -Ponline
 
 
@@ -22,7 +22,7 @@ sleep 3
 
 echo 'Deploy and start the application...'
 rm -rf /home/server/$project/webapps/*
-cp /home/source/yike/$project/target/ROOT.war /home/server/$project/webapps/
+cp /home/source/yike/web/$project/target/ROOT.war /home/server/$project/webapps/
 setsid sh /home/server/$project/bin/startup.sh
 
 echo 'Deploy completed!'

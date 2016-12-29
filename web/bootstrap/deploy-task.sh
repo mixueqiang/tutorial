@@ -4,11 +4,11 @@ project=yike-task
 
 # Update and build.
 echo 'Update and build it...'
-cd /home/source/yike
+cd /home/source/yike/web
 git pull
 mvn clean install -Dmaven.test.skip
 
-cd /home/source/yike/$project
+cd /home/source/yike/web/$project
 mvn clean package -Dmaven.test.skip -Ponline
 
 
@@ -22,7 +22,7 @@ sleep 3
 
 echo 'Deploy and start the application...'
 rm -rf /home/deploy/$project/*
-cp /home/source/yike/$project/target/$project-standalone.tar.gz /home/deploy/$project/
+cp /home/source/yike/web/$project/target/$project-standalone.tar.gz /home/deploy/$project/
 cd /home/deploy/$project
 tar zxf $project-standalone.tar.gz
 sh /home/deploy/$project/startup.sh

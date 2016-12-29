@@ -12,6 +12,10 @@
     <pattern>/*</pattern>
   </decorator>
 
+  <decorator name="template_simple" page="template_simple.jsp">
+    <pattern>/</pattern>
+  </decorator>
+
   <decorator name="template_admin" page="template_admin.jsp">
     <pattern>/admin*</pattern>
   </decorator>

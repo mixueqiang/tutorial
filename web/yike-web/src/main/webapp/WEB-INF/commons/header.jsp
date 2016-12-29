@@ -3,12 +3,6 @@
     <span class="skiplink-text">Skip to main content</span>
   </div></a>
 <header class="navbar navbar-static-top bs-docs-nav" id="header" role="banner">
-  <div class="rainbow">
-    <div class="rainbow-item rainbow-1"></div>
-    <div class="rainbow-item rainbow-2"></div>
-    <div class="rainbow-item rainbow-3"></div>
-    <div class="rainbow-item rainbow-4"></div>
-  </div>
   <div class="container">
     <div class="row">
       <div class="col-md-12">

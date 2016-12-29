@@ -1,5 +1,11 @@
 body {
-  
+  background-color: #fff; color: #353535; font-family: "Gotham SSm", "Open Sans", -apple-system, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.4; margin-left: 0; position: relative;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong,
+  sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption,
+  footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0; padding: 0; border: 0; vertical-align: baseline;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
@@ -60,6 +66,34 @@ input, select, textarea, .btn, .form-control, .panel {
 
 #main {
   min-height: 300px; padding: 20px 0;
+}
+
+.lg {
+  font-size: 30px;
+}
+
+.sm {
+  font-size: 12px;
+}
+
+.col-top, .col-middle, .col-bottom {
+  float: none; display: table-cell
+}
+
+.col-top {
+  vertical-align: top
+}
+
+.col-middle {
+  vertical-align: middle
+}
+
+.col-bottom {
+  vertical-align: bottom
+}
+
+.col-center {
+  float: none; margin-left: auto; margin-right: auto
 }
 
 .col-space-1 {
@@ -178,6 +212,199 @@ input, select, textarea, .btn, .form-control, .panel {
   margin-bottom: 96px
 }
 
+.btn {
+  display: inline-block; border: none; border-bottom: 1px solid; text-align: center; -webkit-font-smoothing: antialiased; -webkit-appearance: none; outline: none; font-weight: 700; color: #fff;
+  padding: 0 25px; line-height: 1; white-space: nowrap; border-radius: 3px
+}
+
+.btn:hover {
+  cursor: pointer; color: #fff
+}
+
+.btn.blue, .btn.primary {
+  background: #398fd1; border-bottom-color: #1d75aa
+}
+
+.btn.blue:hover, .btn.primary:hover {
+  background: #1d75aa
+}
+
+.btn.orange {
+  background: #ee7c4a; border-bottom-color: #df714b
+}
+
+.btn.orange:hover {
+  background: #df714b
+}
+
+.btn.grey, .btn.btn-follow.orange.active {
+  background: #dadfe1; border-bottom-color: #cdd1d3; color: #494d55
+}
+
+.btn.grey:hover, .btn.btn-follow.orange.active:hover {
+  background: #cdd1d3
+}
+
+.btn.green, a.btn.btn-vote.voted {
+  background: #57ca8e; border-bottom-color: #39b574
+}
+
+.btn.green:hover, a.btn.btn-vote.voted:hover {
+  background: #39b574
+}
+
+.btn.red {
+  background: #e46f61; border-bottom-color: #dd4b39
+}
+
+.btn.red:hover {
+  background: #dd4b39
+}
+
+.btn.black {
+  background: #000; border-color: #000
+}
+
+.btn.no-background {
+  color: #494d55; border-bottom: none
+}
+
+.btn.transparent {
+  background: none; border: 1px solid #fff; opacity: 0.8
+}
+
+.btn.transparent:hover {
+  background: none; opacity: 0.9
+}
+
+.btn.transparent.small {
+  padding: 7px 13px 6px
+}
+
+.btn.transparent.small.with-icon {
+  padding-top: 6px
+}
+
+.btn.transparent.icon {
+  padding: 6px 6px 7px 6px
+}
+
+.btn.transparent.large-icon {
+  padding: 4px 5px 6px 5px
+}
+
+.btn.transparent.with-icon:before {
+  margin-right: 5px
+}
+
+.btn.transparent.gray {
+  border: 1px solid #494d55
+}
+
+.btn.transparent.gray.active, .btn.transparent.gray.deactivate, .btn.transparent.gray.open {
+  background: #000; border-color: #000; color: #fff
+}
+
+.btn.transparent.black {
+  background-color: rgba(0, 0, 0, 0.5); border: none; color: #fff; opacity: 1
+}
+
+.btn.transparent.black:hover {
+  background-color: rgba(0, 0, 0, 0.7); opacity: 1
+}
+
+.btn.bordered {
+  color: #494d55; background-color: #fff; border: 2px solid #cdd1d3
+}
+
+.btn.bordered.small {
+  padding: 6px 13px 7px 13px
+}
+
+.btn.bordered.small.iconed-btn {
+  padding-top: 6px; padding-bottom: 6px
+}
+
+.btn.bordered.large, .btn.bordered.large-wide {
+  padding: 8px 23px 7px
+}
+
+.btn.bordered.full-width {
+  box-sizing: border-box
+}
+
+.btn.bordered.rainbow {
+  animation: rainbow 3s ease-in infinite
+}
+
+.btn.bordered.rainbow:hover {
+  animation-play-state: paused
+}
+
+.btn.icon.bordered {
+  padding: 7px 7px 6px 7px
+}
+
+.btn.large-icon {
+  padding: 6px 7px 7px 7px
+}
+
+.btn.extra-small {
+  padding: 5px 7px 4px 7px
+}
+
+.btn.small {
+  min-width: 65px; padding: 8px 15px
+}
+
+.btn.medium {
+  font-size: 14px; padding: 5px 20px
+}
+
+.btn.large, .btn.large-wide {
+  min-width: 36px; padding: 10px 25px
+}
+
+.btn.large-wide {
+  min-width: 140px;
+}
+
+.btn.transparent.large, .btn.transparent.large-wide {
+  padding-top: 8px; padding-bottom: 7px
+}
+
+.btn.disabled {
+  background: #dadfe1 !important; color: #99a2a2 !important; cursor: default; border-bottom-width: 0; padding-bottom: 9px
+}
+
+.btn.disabled.bordered {
+  background: #fff !important; border-bottom-width: 2px; border-color: #dadfe1
+}
+
+.btn.disabled.bordered:hover {
+  border-color: #dadfe1
+}
+
+.btn.centered {
+  margin-left: auto; margin-right: auto
+}
+
+.btn.full-width {
+  padding-left: 0; padding-right: 0; width: 100%
+}
+
+.btn.iconed-btn.small {
+  padding-top: 8px; padding-bottom: 7px
+}
+
+.btn.iconed-btn:before {
+  margin-right: 7px; font-weight: normal; vertical-align: middle
+}
+
+.btn.icon-only:before {
+  margin-right: 0
+}
+
 .rainbow {
   display: block; width: 100%;
 }
@@ -200,4 +427,52 @@ input, select, textarea, .btn, .form-control, .panel {
 
 .rainbow-4 {
   background-color: #ecbf63;
+}
+
+.marketing-banner {
+  background-position: center center; background-repeat: no-repeat; background-size: cover; color: #fff; text-align: center; margin-bottom: 80px; height: 420px;
+}
+
+.hero-header {
+  position: absolute; width: 100%; z-index: 4; border-color: transparent; padding: 9px 0;
+}
+
+.hero-header, .hero-header a {
+  color: #fff;
+}
+
+.hero-header .hero-brand {
+  float: left;
+}
+
+.hero-top {
+  margin-bottom: 50px; overflow: hidden; position: relative;
+}
+
+.hero-top .hero-placeholder, .hero-top .hero-overlay {
+  position: absolute; top: 0; right: 0; left: 0; bottom: 0;
+}
+
+.hero-top .hero-placeholder {
+  z-index: 0;
+}
+
+.hero-top .hero-overlay {
+  background-color: rgba(0, 0, 0, 0.5); z-index: 2;
+}
+
+.hero-top .intro-area {
+  z-index: 3;
+}
+
+.intro-area {
+  width: 100%; height: 100%; position: relative; display: table; table-layout: fixed;
+}
+
+.intro-area .content {
+  max-width: 930px; width: 85%;
+}
+
+.hero-bottom {
+  background-image: url(/images/b2.jpg);
 }

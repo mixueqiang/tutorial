@@ -2,7 +2,7 @@
 <header class="navbar" id="header" role="banner">
   <div class="navbar-header">
     <div class="container">
-      <a class="navbar-brand lg" href="/">一课</a>
+      <a class="navbar-brand xl" href="/">一课</a>
       <ul class="nav pull-right">
         <li class="pull-left"><a class="btn green" href="/">发布一门实践课程</a></li>
         <c:choose>

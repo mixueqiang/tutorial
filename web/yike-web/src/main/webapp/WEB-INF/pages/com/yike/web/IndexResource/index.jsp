@@ -35,7 +35,7 @@
               <div class="section-cover">
                 <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
               </div>
-              <div class="section-title">英文原版阅读</div>
+              <div class="section-title"><a href="/course/121" target="_blank">英文原版阅读</a></div>
               <div class="section-user">翻译与翻译研究</div>
               <div class="section-content">阅读20本近二十年英美人文社科类书籍</div>
               <div class="section-footer">10人报名</div>

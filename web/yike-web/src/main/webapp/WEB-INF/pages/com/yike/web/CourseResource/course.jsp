@@ -111,8 +111,8 @@
           <p>${course.description}</p>
           <h4>课程亮点</h4>
           <p>${course.content}</p>
-          <c:if test="${course.maximumLearnerCount gt 0}">
-            <h4>招收学员数量：${course.maximumLearnerCount} 人</h4>
+          <c:if test="${course.countMax gt 0}">
+            <h4>招收学员数量：${course.countMax} 人</h4>
           </c:if>
           <h4>购买支持</h4>
           <p>翻译资源网对课程的报名及购买提供支持。如对课程或者课程的购买有疑问，请加QQ群：475581666，或者发送邮件到：service@transkip.com 进行咨询。</p>

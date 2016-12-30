@@ -1,10 +1,10 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>实践课程 - 一课</title>
 
 <div class="container">
   <div class="row row-space-top-4">
     <div class="col-md-9 col-sm-9 col-xs-12" id="courses">
-      <div class="section row-space-top-3">
+      <div class="section">
+        <div class="title lg">实践课列表</div>
         <c:forEach var="item" items="${courses}">
           <div class="panel panel-default section-course" data-id="${item.id}">
             <div class="panel-body">
@@ -12,10 +12,10 @@
                 <div class="col-md-4 col-sm-5 col-sx-6">
                   <c:choose>
                     <c:when test="${not empty item.image}">
-                      <img alt="翻译资源网-课程" src="http://transkip.b0.upaiyun.com/${item.image}!M">
+                      <img alt="翻译资源网-实践课图片" src="http://transkip.b0.upaiyun.com/${item.image}!M">
                     </c:when>
                     <c:otherwise>
-                      <img alt="翻译资源网-课程" src="http://transkip.b0.upaiyun.com/201612/course-cover.png!M">
+                      <img alt="翻译资源网-实践课图片" src="http://transkip.b0.upaiyun.com/201612/course-cover.png!M">
                     </c:otherwise>
                   </c:choose>
                 </div>

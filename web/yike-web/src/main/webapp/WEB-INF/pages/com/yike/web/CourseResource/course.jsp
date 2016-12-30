@@ -10,14 +10,15 @@
   <div class="container">
     <div class="row row-space-top-4 section">
       <div class="col-md-9 col-sm-9" data-purpose="introduction">
+
         <div class="row section">
           <div class="col-md-6 col-sm-6">
             <c:choose>
               <c:when test="${not empty course.image}">
-                <img alt="翻译资源网-课程图片" src="http://transkip.b0.upaiyun.com/${course.image}!L">
+                <img alt="翻译资源网-实践课图片" src="http://transkip.b0.upaiyun.com/${course.image}!L">
               </c:when>
               <c:otherwise>
-                <img alt="翻译资源网-课程图片" src="http://transkip.b0.upaiyun.com/201612/course-cover.png!L">
+                <img alt="翻译资源网-实践课图片" src="http://transkip.b0.upaiyun.com/201612/course-cover.png!L">
               </c:otherwise>
             </c:choose>
           </div>
@@ -56,12 +57,13 @@
               </div>
             </div>
           </div>
-
         </div>
+
       </div>
 
       <div class="col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-xs-9">
         <div class="section">
+
           <div class="row row-space-top-2">
             <div class="img-responsive">
               <a href="/instructor/${instructor.id}"><c:choose>

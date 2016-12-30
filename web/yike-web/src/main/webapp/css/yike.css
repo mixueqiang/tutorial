@@ -1,5 +1,5 @@
 body {
-  background-color: #fff; color: #353535; font-family: "Gotham SSm", "Open Sans", -apple-system, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.4; margin-left: 0; position: relative;
+  background-color: #fff; color: #666; font-family: "Gotham SSm", "Open Sans", -apple-system, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.4; margin-left: 0; position: relative;
 }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong,
@@ -60,8 +60,16 @@ input, select, textarea, .btn, .form-control, .panel {
   min-height: 300px; padding: 20px 0;
 }
 
-.lg {
+.xl {
   font-size: 30px;
+}
+
+.lg {
+  font-size: 20px;
+}
+
+.md {
+  font-size: 16px;
 }
 
 .sm {
@@ -458,11 +466,11 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .hero-top .hero-placeholder {
-  z-index: 0;
+  z-index: 0; margin-top: -160px;
 }
 
 .hero-top .hero-overlay {
-  background-color: rgba(0, 0, 0, 0.5); z-index: 2;
+  background-color: rgba(0, 0, 0, 0.3); z-index: 2;
 }
 
 .hero-top .intro-area {
@@ -478,7 +486,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .hero-bottom {
-  background-image: url(/images/b2.jpg);
+  background-image: url(/images/b1.jpg);
 }
 
 .footer-links {
@@ -491,4 +499,52 @@ input, select, textarea, .btn, .form-control, .panel {
 
 .footer-links li {
   display: inline; padding: 0 2px;
+}
+
+.section {
+  
+}
+
+.section-header {
+  
+}
+
+.section-cover {
+  
+}
+
+.section-title, .section-title a {
+  color: #333; font-size: 20px; line-height: 20px; padding-top: 4px;
+}
+
+.section-caption, .section-caption a {
+  color: #777;
+}
+
+.section-content {
+  
+}
+
+.section-content, .section-content a, .section-content a:hover, .section-content a:visited {
+  color: #666;
+}
+
+.section-content.fixed {
+  height: 60px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+}
+
+.section-left {
+  
+}
+
+.section-right {
+  
+}
+
+.section-footer {
+  
+}
+
+.course-price {
+  color: #333; font-size: 20px;
 }

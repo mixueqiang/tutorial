@@ -9,7 +9,7 @@
       </ul>
     </div>
   </div>
-  <img src="/images/b1.jpg" class="hero-placeholder">
+  <img src="/images/b2.jpg" class="hero-placeholder">
   <div class="hero-overlay"></div>
   <div class="intro-area text-center">
     <div class="col-middle content">
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="row row-space-top-1">
-          <div class="col-md-3 col-sm-3 col-xs-6">
+          <div class="col-md-3 col-sm-6">
             <div class="section">
               <div class="section-cover">
                 <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
@@ -46,7 +46,7 @@
               <div class="section-footer">10人报名</div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-6">
+          <div class="col-md-3 col-sm-6">
             <div class="section">
               <div class="section-cover">
                 <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
@@ -57,7 +57,7 @@
               <div class="section-footer">10人报名</div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-6">
+          <div class="col-md-3 col-sm-6">
             <div class="section">
               <div class="section-cover">
                 <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
@@ -68,7 +68,7 @@
               <div class="section-footer">10人报名</div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-6">
+          <div class="col-md-3 col-sm-6">
             <div class="section">
               <div class="section-cover">
                 <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
@@ -89,7 +89,7 @@
           </div>
         </div>
         <div class="row row-space-top-1">
-          <div class="col-md-3 col-sm-3 col-xs-6">
+          <div class="col-md-3 col-sm-6">
             <div class="section">
               <div class="section-cover">
                 <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
@@ -100,7 +100,7 @@
               <div class="section-footer">10人报名</div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-6">
+          <div class="col-md-3 col-sm-6">
             <div class="section">
               <div class="section-cover">
                 <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
@@ -111,7 +111,7 @@
               <div class="section-footer">10人报名</div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-6">
+          <div class="col-md-3 col-sm-6">
             <div class="section">
               <div class="section-cover">
                 <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
@@ -122,7 +122,7 @@
               <div class="section-footer">10人报名</div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-6">
+          <div class="col-md-3 col-sm-6">
             <div class="section">
               <div class="section-cover">
                 <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">

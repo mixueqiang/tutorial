@@ -1,4 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
+<title>实践课程 - 一课</title>
+
 <div class="container">
   <div class="row row-space-top-4">
     <div class="col-md-9 col-sm-9 col-xs-12" id="courses">
@@ -60,44 +62,43 @@
 
     <div class="col-md-3 col-sm-3 col-xs-6">
       <div class="section row-space-top-3">
-        <a class="btn btn-warning btn-block" href="/courses" target="_blank">我的课程</a>
+        <a class="btn orange" href="/courses" target="_blank">我的课程</a>
       </div>
     </div>
 
   </div>
 </div>
 
-<script src="/js/article.js?v=20161021001"></script>
 <script>
-	var constr = document.getElementById('contentStr');
-	var str = constr.innerHTML;
-	/**  
-	 * js截取字符串，中英文都能用  
-	 * @param str：需要截取的字符串  
-	 * @param len: 需要截取的长度  
-	 */
-	function cutStr(str, len) {
-		var str_length = 0;
-		var str_len = 0;
-		str_cut = new String();
-		str_len = str.length;
-		for (var i = 0; i < str_len; i++) {
-			a = str.charAt(i);
-			str_length++;
-			if (escape(a).length > 4) {
-				//中文字符的长度经编码之后大于4    
-				str_length++;
-			}
-			str_cut = str_cut.concat(a);
-			if (str_length >= len) {
-				str_cut = str_cut.concat("...");
-				return str_cut;
-			}
-		}
-		if (str_length < len) {
-			return str;
-		}
-	}
+  var constr = document.getElementById('contentStr');
+  var str = constr.innerHTML;
+  /**  
+   * js截取字符串，中英文都能用  
+   * @param str：需要截取的字符串  
+   * @param len: 需要截取的长度  
+   */
+  function cutStr(str, len) {
+    var str_length = 0;
+    var str_len = 0;
+    str_cut = new String();
+    str_len = str.length;
+    for (var i = 0; i < str_len; i++) {
+      a = str.charAt(i);
+      str_length++;
+      if (escape(a).length > 4) {
+        //中文字符的长度经编码之后大于4    
+        str_length++;
+      }
+      str_cut = str_cut.concat(a);
+      if (str_length >= len) {
+        str_cut = str_cut.concat("...");
+        return str_cut;
+      }
+    }
+    if (str_length < len) {
+      return str;
+    }
+  }
 
-	constr.innerHTML = cutStr(str, 190);
+  constr.innerHTML = cutStr(str, 190);
 </script>

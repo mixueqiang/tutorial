@@ -29,7 +29,7 @@ a:link, a:visited {
 }
 
 a:focus, a:hover {
-  color: #343434;
+  text-decoration: none;
 }
 
 p {
@@ -41,7 +41,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 #header {
-  
+  -webkit-box-shadow: 0 1px 2px #cbcbcb; box-shadow: 0 1px 2px #cbcbcb;
 }
 
 #footer {
@@ -206,7 +206,11 @@ input, select, textarea, .btn, .form-control, .panel {
 
 .btn {
   display: inline-block; border: none; border-bottom: 1px solid; text-align: center; -webkit-font-smoothing: antialiased; -webkit-appearance: none; outline: none; font-weight: 700; color: #fff;
-  padding: 0 25px; line-height: 1; white-space: nowrap; border-radius: 3px
+  padding: 6px 12px; white-space: nowrap; border-radius: 3px
+}
+
+.btn:link, .btn:visited {
+  cursor: pointer; color: #fff
 }
 
 .btn:hover {
@@ -425,16 +429,24 @@ input, select, textarea, .btn, .form-control, .panel {
   background-position: center center; background-repeat: no-repeat; background-size: cover; color: #fff; text-align: center; height: 420px;
 }
 
-.hero-header {
-  position: absolute; width: 100%; z-index: 4; border-color: transparent; padding: 9px 0;
+.navbar-header, .hero-header {
+  position: absolute; width: 100%; z-index: 4; border-color: transparent; padding: 0;
 }
 
 .hero-header, .hero-header a {
   color: #fff;
 }
 
-.hero-header .hero-brand {
-  float: left;
+.navbar-brand, .hero-brand {
+  color: #57ca8e; float: left; height: 50px; line-height: 50px; padding: 0;
+}
+
+.navbar-brand:hover, .navbar-brand:focus {
+  color: #39b574;
+}
+
+.nav>li>a {
+  padding: 6px 12px; margin-top: 9px;
 }
 
 .hero-top {

@@ -27,9 +27,11 @@
 
         <div class="row">
           <div class="col-md-12">
-            <div class="section-title pull-left">翻译</div>
-            <div class="pull-right">
-              <a href="/course">更多课程</a>
+            <div class="title">
+              <div class="lg pull-left">翻译</div>
+              <div class="md pull-right">
+                <a href="/course">更多课程</a>
+              </div>
             </div>
           </div>
         </div>
@@ -99,9 +101,11 @@
 
         <div class="row row-space-top-6">
           <div class="col-md-12">
-            <div class="section-title pull-left">计算机技术</div>
-            <div class="pull-right">
-              <a href="/course">更多课程</a>
+            <div class="title">
+              <div class="lg pull-left">计算机技术</div>
+              <div class="md pull-right">
+                <a href="/course">更多课程</a>
+              </div>
             </div>
           </div>
         </div>

@@ -61,23 +61,23 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .xl {
-  font-size: 30px;
+  font-size: 30px; line-height: 52px
 }
 
 .lg {
-  font-size: 20px;
+  font-size: 20px; line-height: 28px
 }
 
 .md {
-  font-size: 16px;
+  font-size: 16px; line-height: 24px
 }
 
 .sm {
-  font-size: 12px;
+  font-size: 12px; line-height: 18px
 }
 
 .xs {
-  font-size: 10px;
+  font-size: 10px; line-height: 14px
 }
 
 .col-top, .col-middle, .col-bottom {

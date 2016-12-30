@@ -9,5 +9,6 @@
   <c:if test="${not _blank}">
     <d:body />
   </c:if>
+  <%@ include file="/WEB-INF/commons/footer.jsp"%>
 </body>
 </html>

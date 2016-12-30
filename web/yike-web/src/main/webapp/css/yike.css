@@ -45,23 +45,15 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 #footer {
-  
+  padding: 50px 0; margin-top: 100px; text-align: center; background-color: #ecf1f1; border-top: 1px solid #e5e5e5;
 }
 
 #footer a {
-  color: #efefef;
+  color: #777;
 }
 
-#footer a:hover {
-  color: #fff;
-}
-
-#footer dt {
-  font-weight: normal;
-}
-
-#footer dd {
-  font-size: 16px;
+#footer a:hover, #footer a:focus {
+  color: #666;
 }
 
 #main {
@@ -430,7 +422,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .marketing-banner {
-  background-position: center center; background-repeat: no-repeat; background-size: cover; color: #fff; text-align: center; margin-bottom: 80px; height: 420px;
+  background-position: center center; background-repeat: no-repeat; background-size: cover; color: #fff; text-align: center; height: 420px;
 }
 
 .hero-header {
@@ -475,4 +467,16 @@ input, select, textarea, .btn, .form-control, .panel {
 
 .hero-bottom {
   background-image: url(/images/b2.jpg);
+}
+
+.footer-links {
+  margin-top: 20px; padding-left: 0;
+}
+
+.footer-links li:first-child {
+  padding-left: 0;
+}
+
+.footer-links li {
+  display: inline; padding: 0 2px;
 }

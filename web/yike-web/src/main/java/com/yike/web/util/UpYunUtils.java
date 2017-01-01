@@ -1,4 +1,4 @@
-package com.yike.util;
+package com.yike.web.util;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -20,7 +20,7 @@ import com.yike.util.RandomUtil;
 public final class UpYunUtils {
   private static final Log LOG = LogFactory.getLog(UpYunUtils.class);
 
-  public static final String BUCKET_NAME = "yikeyun";
+  public static final String BUCKET_NAME = "transkip";
   public static final String URL = "http://" + BUCKET_NAME + ".b0.upaiyun.com";
   private static final String USER_NAME = "mixueqiang";
   private static final String USER_PWD = "Tb034780";

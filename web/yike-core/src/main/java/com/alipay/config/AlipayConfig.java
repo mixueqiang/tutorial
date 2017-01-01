@@ -22,7 +22,7 @@ public class AlipayConfig {
 	public static String seller_id = partner;
 
 	// MD5密钥，安全检验码，由数字和字母组成的32位字符串，查看地址：https://b.alipay.com/order/pidAndKey.htm
-    public static String key = "78x2f2rq87jlpa0ibd40vrcdv8qb1exj";
+  public static String key = "78x2f2rq87jlpa0ibd40vrcdv8qb1exj";
 
 	// 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
 	public static String notify_url = "http://www.transkip.cn/order/pay/notify";

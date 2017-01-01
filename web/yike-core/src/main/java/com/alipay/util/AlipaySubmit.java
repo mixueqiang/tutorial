@@ -107,7 +107,8 @@ public class AlipaySubmit {
      * @throws DocumentException
      * @throws MalformedURLException
      */
-	public static String query_timestamp() throws MalformedURLException,
+	@SuppressWarnings("unchecked")
+  public static String query_timestamp() throws MalformedURLException,
                                                         DocumentException, IOException {
 
         //构造访问query_timestamp接口的URL串

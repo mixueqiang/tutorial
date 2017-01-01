@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>支付遇到问题 | 翻译资源网</title>
+<title>支付遇到问题 | 一课</title>
 
 <div class="container">
   <div class="row row-space-top-4">

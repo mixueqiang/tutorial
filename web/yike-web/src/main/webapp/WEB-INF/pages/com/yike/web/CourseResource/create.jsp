@@ -1,9 +1,9 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>发布课程|翻译资源网</title>
+<title>发布实践&nbsp;|&nbsp;一课</title>
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-      <h2>发布课程</h2>
+      <h2>发布实践</h2>
       <form id="courseForm" name="course-form" action="/api/v1/course" method="post" class="form-horizontal" role="form">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -66,43 +66,43 @@
 </div>
 <script src="/js/course.js?v=20161202001"></script>
 <script>
-	/* 免费/收费-隐藏显示事件 */
-	function fee() {
-		if ($("#free").val() == 1) {
-			$("#charge").hide();
-		} else {
-			$("#charge").show();
-		}
-	}
-	fee();
-	$("#free").change(function() {
-		fee();
-	});
+  /* 免费/收费-隐藏显示事件 */
+  function fee() {
+    if ($("#free").val() == 1) {
+      $("#charge").hide();
+    } else {
+      $("#charge").show();
+    }
+  }
+  fee();
+  $("#free").change(function() {
+    fee();
+  });
 
-	/*字数控制事件*/
-	function numChange(conId, numId, maxNum) {
-		var time = null;
-		conId.onfocus = function() {
-			time = setInterval(function() {
-				var maxLen = maxNum;
-				var txtLen = conId.value.length;
-				maxLen = maxLen - txtLen;
-				if (maxLen < 0) {
-					numId.style.color = 'red';
-				} else {
-					numId.style.color = '#999999';
-					contentNum.style.bottom = '1px';
-				}
-				numId.innerHTML = maxLen;
-			}, 30)
-		}
-		conId.onblur = function() {
-			clearInterval(time);
-			numId.innerHTML = '';
-		}
-	}
-	numChange(title, titleNum, 30);
-	numChange(content, contentNum, 150);
-	numChange(teachingType, teachingTypeNum, 2000);
-	numChange(description, descriptionNum, 3000);
+  /*字数控制事件*/
+  function numChange(conId, numId, maxNum) {
+    var time = null;
+    conId.onfocus = function() {
+      time = setInterval(function() {
+        var maxLen = maxNum;
+        var txtLen = conId.value.length;
+        maxLen = maxLen - txtLen;
+        if (maxLen < 0) {
+          numId.style.color = 'red';
+        } else {
+          numId.style.color = '#999999';
+          contentNum.style.bottom = '1px';
+        }
+        numId.innerHTML = maxLen;
+      }, 30)
+    }
+    conId.onblur = function() {
+      clearInterval(time);
+      numId.innerHTML = '';
+    }
+  }
+  numChange(title, titleNum, 30);
+  numChange(content, contentNum, 150);
+  numChange(teachingType, teachingTypeNum, 2000);
+  numChange(description, descriptionNum, 3000);
 </script>

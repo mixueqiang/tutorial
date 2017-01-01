@@ -12,10 +12,10 @@
                 <div class="col-md-4 col-sm-5 col-sx-6">
                   <c:choose>
                     <c:when test="${not empty item.image}">
-                      <img alt="翻译资源网-实践课图片" src="http://transkip.b0.upaiyun.com/${item.image}!M">
+                      <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/${item.image}!M">
                     </c:when>
                     <c:otherwise>
-                      <img alt="翻译资源网-实践课图片" src="http://transkip.b0.upaiyun.com/201612/course-cover.png!M">
+                      <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/static/course-cover.png!M">
                     </c:otherwise>
                   </c:choose>
                 </div>

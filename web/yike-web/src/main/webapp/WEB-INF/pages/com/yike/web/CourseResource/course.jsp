@@ -1,15 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>${course.name}|翻译资源网</title>
-<style>
-.course-content {
-  line-height: 28px; color: #666;
-}
-</style>
-<div class="course" data-course-id="${course.id}">
+<title>${course.name}&nbsp;|&nbsp;一课</title>
+
+<div class="course" data-id="${course.id}">
   <input type="hidden" id="courseId" value="${course.id}">
   <div class="container">
-    <div class="row row-space-top-4 section">
-      <div class="col-md-9 col-sm-9" data-purpose="introduction">
+    <div class="row row-space-top-2 section">
+      <div class="col-md-9 col-sm-12" data-purpose="introduction">
 
         <div class="row section">
           <div class="col-md-6 col-sm-6">
@@ -22,32 +18,31 @@
               </c:otherwise>
             </c:choose>
           </div>
-
           <div class="col-md-6 col-sm-6">
-            <h3>${course.name}</h3>
-            <p class="course-content">${course.content}</p>
+            <div class="section-title xl">${course.name}</div>
+            <div class="section-content lh-lg row-space-top-2">${course.content}</div>
             <div class="row row-space-top-3 section">
               <div class="col-md-9 col-md-offset-3 col-sm-10 col-xs-offset-2 col-xs-6 col-xs-offset-6">
                 <div class="section">
                   <div class="actions row-space-top-2">
-                    <span class="course-price"><c:choose>
+                    <span class="course-price lg"><c:choose>
                         <c:when test="${course.free eq 1}">免费</c:when>
                         <c:otherwise>¥${course.price}</c:otherwise>
                       </c:choose></span>
                     <c:choose>
-                      <c:when test="${hasApply}">
-                        <button class="btn btn-success btn-lg btn-get-course" disabled="disabled">已报名</button>
+                      <c:when test="${hasApplied}">
+                        <button class="btn green large" disabled="disabled">已报名</button>
                       </c:when>
                       <c:otherwise>
                         <c:choose>
                           <c:when test="${course.status eq 0}">
-                            <button class="btn btn-success btn-lg btn-get-course" disabled="disabled">审核中</button>
+                            <button class="btn gray large" disabled="disabled">审核中</button>
                           </c:when>
                           <c:when test="${course.status eq 1 and course.appliable lt 1}">
-                            <button class="btn btn-danger btn-lg btn-get-course" disabled="disabled">已结束招生</button>
+                            <button class="btn red large" disabled="disabled">已结束招生</button>
                           </c:when>
                           <c:when test="${course.status eq 1 and course.appliable eq 1}">
-                            <a class="btn btn-success btn-lg btn-get-course" data-toggle="modal" data-target="#applicationModal" href="#">报名</a>
+                            <a class="btn green large" data-toggle="modal" data-target="#applicationModal" href="#">报名</a>
                           </c:when>
                         </c:choose>
                       </c:otherwise>
@@ -61,26 +56,23 @@
 
       </div>
 
-      <div class="col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-xs-9">
+      <div class="col-md-2 col-md-offset-1 col-sm-6 col-xs-6">
         <div class="section">
-
-          <div class="row row-space-top-2">
-            <div class="img-responsive">
-              <a href="/instructor/${instructor.id}"><c:choose>
-                  <c:when test="${not empty instructor.avatar}">
-                    <img alt="翻译资源网-用户头像" src="http://transkip.b0.upaiyun.com/${instructor.avatar}!M">
-                  </c:when>
-                  <c:otherwise>
-                    <img alt="翻译资源网-用户头像" src="http://transkip.b0.upaiyun.com/201612/user-avatar.png!M">
-                  </c:otherwise>
-                </c:choose></a>
+          <div class="img-responsive">
+            <a href="/instructor/${instructor.id}"><c:choose>
+                <c:when test="${not empty instructor.avatar}">
+                  <img alt="翻译资源网-用户头像" src="http://transkip.b0.upaiyun.com/${instructor.avatar}!M">
+                </c:when>
+                <c:otherwise>
+                  <img alt="翻译资源网-用户头像" src="http://transkip.b0.upaiyun.com/201612/user-avatar.png!M">
+                </c:otherwise>
+              </c:choose></a>
+          </div>
+          <div class="column-content">
+            <div class="section-title lg">
+              <a href="/instructor/${instructor.id}">${instructor.name}</a>
             </div>
-            <div class="column-content">
-              <h4>
-                <a href="/instructor/${instructor.id}">${instructor.name}</a>
-              </h4>
-              <p style="line-height: 21px; color: #666">${instructor.profile}</p>
-            </div>
+            <div class="section-content row-space-top-1">${instructor.profile}</div>
           </div>
         </div>
       </div>
@@ -90,7 +82,7 @@
 
   <div class="container course-navbar row-space-top-4">
     <div class="row row-space-top-3">
-      <div class="col-md-8 col-sm-12">
+      <div class="col-md-12">
         <ul class="nav course-nav">
           <li><a href="#about-the-course">关于此课程</a></li>
           <li><a href="#course-list">课程安排</a></li>
@@ -104,26 +96,26 @@
 
   <div class="course-details">
     <div class="container">
-      <div id="about-the-course">
+      <div class="row-space-top-3" id="about-the-course">
         <h2>关于此课程</h2>
       </div>
       <div class="row row-space-top-2 section">
         <div class="col-md-8">
-          <h4>课程介绍</h4>
+          <h4 class="row-space-2">课程介绍</h4>
           <p>${course.description}</p>
-          <h4>课程亮点</h4>
+          <h4 class="row-space-top-2 row-space-2">课程亮点</h4>
           <p>${course.content}</p>
           <c:if test="${course.countMax gt 0}">
-            <h4>招收学员数量：${course.countMax} 人</h4>
+            <h4 class="row-space-top-2 row-space-2">招收学员数量：${course.countMax} 人</h4>
           </c:if>
-          <h4>购买支持</h4>
+          <h4 class="row-space-top-2 row-space-2">购买支持</h4>
           <p>翻译资源网对课程的报名及购买提供支持。如对课程或者课程的购买有疑问，请加QQ群：475581666，或者发送邮件到：service@transkip.com 进行咨询。</p>
         </div>
         <div class="col-md-4"></div>
       </div>
     </div>
     <div class="container">
-      <div id="course-list">
+      <div class="row-space-top-3" id="course-list">
         <h2>课程安排</h2>
       </div>
       <div class="row row-space-top-2 section">
@@ -133,7 +125,7 @@
     </div>
     <c:if test="${not empty achievements}">
       <div class="container">
-        <div id="course-achievements">
+        <div class="row-space-top-3" id="course-achievements">
           <h2>课程成果</h2>
         </div>
         <div class="row row-space-top-2 section">

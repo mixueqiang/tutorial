@@ -88,7 +88,7 @@ public class CourseResource extends BaseResource {
     request.setAttribute("course", course);
     request.setAttribute("instructor", course.getProperties().get("instructor"));
 
-    request.setAttribute("hasApply", checkApplication(course.getId()));
+    request.setAttribute("hasApplied", checkApplication(course.getId()));
 
     return Response.ok(new Viewable("course")).build();
   }

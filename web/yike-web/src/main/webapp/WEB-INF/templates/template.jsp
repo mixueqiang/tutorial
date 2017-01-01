@@ -7,11 +7,9 @@
 <body>
   <%@ include file="/WEB-INF/commons/header.jsp"%>
   <%@ include file="/WEB-INF/commons/message.jsp"%>
-  <div class="container" id="main">
-    <c:if test="${not _blank}">
-      <d:body />
-    </c:if>
-  </div>
+  <c:if test="${not _blank}">
+    <d:body />
+  </c:if>
   <%@ include file="/WEB-INF/commons/footer.jsp"%>
 </body>
 </html>

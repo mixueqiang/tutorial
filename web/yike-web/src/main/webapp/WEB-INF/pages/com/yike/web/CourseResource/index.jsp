@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
 
 <div class="container">
-  <div class="row row-space-top-4">
+  <div class="row row-space-top-2">
     <div class="col-md-9 col-sm-9 col-xs-12" id="courses">
       <div class="section">
         <div class="title lg">实践课列表</div>

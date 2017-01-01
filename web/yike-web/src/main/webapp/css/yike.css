@@ -478,6 +478,10 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .hero-top {
+  background-image: url(/images/b2.jpg);
+}
+
+.hero-top {
   margin-bottom: 50px; overflow: hidden; position: relative;
 }
 

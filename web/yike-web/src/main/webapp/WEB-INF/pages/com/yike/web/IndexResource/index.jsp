@@ -9,7 +9,6 @@
       </ul>
     </div>
   </div>
-  <img src="/images/b2.jpg" class="hero-placeholder">
   <div class="hero-overlay"></div>
   <div class="intro-area text-center">
     <div class="col-middle content">

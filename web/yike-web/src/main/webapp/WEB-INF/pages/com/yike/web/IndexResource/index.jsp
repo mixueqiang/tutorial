@@ -2,7 +2,7 @@
 <div class="marketing-banner hero-top">
   <div class="hero-header">
     <div class="container">
-      <a class="hero-brand xl" href="/">一课</a>
+      <a class="hero-brand xxl" href="/">一课</a>
       <ul class="nav pull-right">
         <li class="pull-left"><a class="btn green" href="/">发布一门实践课程</a></li>
         <li class="pull-left col-space-2"><a class="btn red" href="/signin">登录</a></li>

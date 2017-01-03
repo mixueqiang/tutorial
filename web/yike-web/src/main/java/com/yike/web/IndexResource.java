@@ -70,7 +70,7 @@ public class IndexResource extends BaseResource {
   @Path("signup")
   @Produces(MediaType.TEXT_HTML)
   public Response signup() throws Throwable {
-    return signupWithEmail();
+    return signupWithMobile();
   }
 
 

@@ -107,12 +107,6 @@ public class ApiUserResource extends BaseResource {
       return ResponseBuilder.error(10107, "昵称不能少于2个字，支持中文、字母、数字和下划线。");
     }
     String roles = "user";
-    if (StringUtils.isNotEmpty(role)) {
-      if (!StringUtils.equals("worker", role) && !StringUtils.equals("company", role) && !StringUtils.equals("client", role)) {
-        return ResponseBuilder.error(10108, "请选择用户类型。");
-      }
-      roles += "," + role;
-    }
 
     try {
       if (StringUtils.isNotEmpty(email)) {

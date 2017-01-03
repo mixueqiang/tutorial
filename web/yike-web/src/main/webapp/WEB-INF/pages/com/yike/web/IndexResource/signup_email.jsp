@@ -36,7 +36,7 @@
                 <input type="text" id="username" name="username" tabindex="4" class="form-control" />
               </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="password" class="col-sm-3 control-label">我是</label>
               <div class="col-sm-4">
                 <select class="form-control" id="role" name="role" tabindex="5">
@@ -46,7 +46,7 @@
                   <option value="client">客户</option>
                 </select>
               </div>
-            </div>
+            </div> -->
 
             <div class="form-group">
               <div class="col-sm-offset-3 col-sm-6">

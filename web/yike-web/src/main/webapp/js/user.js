@@ -145,24 +145,8 @@ $(function() {
           if (resp && resp.e == 0) {
             var role = $('#role').val();
             var message = '注册成功，';
-            var location = '/';
-            if (role == 'worker') {
-              message += '请继续完善译员简历信息。3秒后将自动跳转到译员简历编辑页面。';
-              location = '/professional/edit';
-
-            } else if (role == 'company') {
-              message += '请继续完善翻译公司信息。3秒后将自动跳转到公司信息编辑页面。';
-              location = '/company/edit';
-
-            } else {
-              message += '3秒后将自动跳转到发布招聘信息页面。';
-              location = '/job/post';
-            }
 
             Message.info(message, false, $('.form-group:last', $(form)));
-            setTimeout(function() {
-              window.location.href = location;
-            }, 3000);
 
           } else {
             /*$('#password').val('');*/

@@ -165,7 +165,7 @@ $(function() {
             }, 3000);
 
           } else {
-            $('#password').val('');
+            /*$('#password').val('');*/
             Message.error('注册失败：' + resp.m, false, $('.form-group:last', $(form)));
           }
         },

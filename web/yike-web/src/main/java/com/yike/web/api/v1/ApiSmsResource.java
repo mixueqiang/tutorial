@@ -7,7 +7,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
-import com.yike.web.util.SmsUtilsYunpian;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,6 +17,7 @@ import org.springframework.stereotype.Component;
 import com.yike.model.Entity;
 import com.yike.util.RandomUtil;
 import com.yike.util.ResponseBuilder;
+import com.yike.util.SmsUtilsYunpian;
 import com.yike.web.BaseResource;
 
 /**

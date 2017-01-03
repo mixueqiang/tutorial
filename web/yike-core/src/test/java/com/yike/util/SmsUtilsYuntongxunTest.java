@@ -1,14 +1,14 @@
-package com.dabllo.web.util;
+package com.yike.util;
 
 import org.junit.Test;
 
-import com.yike.web.util.SmsUtilsYuntongxun;
+import com.yike.util.SmsUtilsYuntongxun;
 
 /**
  * @author mixueqiang
  * @since Jul 30, 2016
  */
-public class SmsYuntongxunTest {
+public class SmsUtilsYuntongxunTest {
 
   @Test
   public void testSend() throws Throwable {

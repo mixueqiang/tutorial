@@ -1,14 +1,13 @@
-package com.dabllo.web.util;
+package com.yike.util;
 
 import org.junit.Test;
 
-import com.yike.web.util.SmsUtilsYunpian;
-
 /**
  * @author mixueqiang
- * @since Jul 30, 2016
+ * @since Jan 3, 2017
+ *
  */
-public class SmsYunpianTest {
+public class SmsUtilsYunpianTest {
 
   @Test
   public void testSend() throws Throwable {

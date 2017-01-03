@@ -1,4 +1,4 @@
-package com.dabllo.web.util;
+package com.yike.util;
 
 import java.util.ArrayList;
 import java.util.List;

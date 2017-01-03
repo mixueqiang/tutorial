@@ -12,7 +12,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.yike.web.util.SmsUtilsYunpian;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,6 +24,7 @@ import com.yike.model.Entity;
 import com.yike.model.User;
 import com.yike.util.RandomUtil;
 import com.yike.util.ResponseBuilder;
+import com.yike.util.SmsUtilsYunpian;
 import com.sun.jersey.api.view.Viewable;
 
 

@@ -87,9 +87,6 @@ public class User extends BaseModel implements Serializable {
     return username;
   }
 
-  public boolean isCompany() {
-    return StringUtils.contains(roles, "company");
-  }
 
   // TODO 修改isAdmin
   public boolean isAdmin() {

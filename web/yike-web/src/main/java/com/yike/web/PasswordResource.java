@@ -26,7 +26,6 @@ import com.yike.model.User;
 import com.yike.util.RandomUtil;
 import com.yike.util.ResponseBuilder;
 import com.sun.jersey.api.view.Viewable;
-//import com.yike.util.SmsUtilsYunpian;
 
 
 /**

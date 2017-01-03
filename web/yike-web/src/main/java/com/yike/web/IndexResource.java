@@ -69,8 +69,23 @@ public class IndexResource extends BaseResource {
   @GET
   @Path("signup")
   @Produces(MediaType.TEXT_HTML)
-  public Response signup() {
-    return Response.ok(new Viewable("signup")).build();
+  public Response signup() throws Throwable {
+    return signupWithEmail();
+  }
+
+
+  @GET
+  @Path("signup/email")
+  @Produces(MediaType.TEXT_HTML)
+  public Response signupWithEmail() throws Throwable {
+    return Response.ok(new Viewable("signup_email")).build();
+  }
+
+  @GET
+  @Path("signup/mobile")
+  @Produces(MediaType.TEXT_HTML)
+  public Response signupWithMobile() throws Throwable {
+    return Response.ok(new Viewable("signup_mobile")).build();
   }
 
 }

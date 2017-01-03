@@ -14,11 +14,13 @@
 */.classpath
 */.project
 */.settings/
+*/.idea/
 */target/
 */.iml
 */*/.classpath
 */*/.project
 */*/.settings/
+*/*/.idea/
 */*/target/
 */*/.iml
 

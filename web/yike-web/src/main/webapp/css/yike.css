@@ -470,7 +470,7 @@ input, select, textarea, .btn, .form-control, .panel {
 
 /*subnav-start*/
 .subnav {
-  position: relative; background-color: #6f5499; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+  position: relative; background-color: #4ca99f; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
 }
 
 .subnav-list {
@@ -478,7 +478,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .subnav-item, a.subnav-item {
-  position: relative; float: left; padding: 10px 14px; color: #cacccd;
+  position: relative; float: left; padding: 10px 14px; color: #edf1f3;
 }
 
 .subnav-item:hover, .subnav-item:focus, .subnav-item[aria-selected="true"] {

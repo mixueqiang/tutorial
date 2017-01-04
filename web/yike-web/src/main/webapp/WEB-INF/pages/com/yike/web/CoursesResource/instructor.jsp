@@ -66,10 +66,10 @@
                       <c:when test="${item.status eq 0}">
                         <span>审核中</span>
                         <c:choose>
-                          <c:when test="${empty item.currentLearnerCount}">
+                          <c:when test="${empty item.countThis}">
                             <a class="btn-link col-space-2 students-list" href=""></a>
                           </c:when>
-                          <c:when test="${item.currentLearnerCount eq 0}">
+                          <c:when test="${item.countThis eq 0}">
                             <a class="btn-link col-space-2 students-list" href=""></a>
                           </c:when>
                           <c:otherwise>

@@ -455,3 +455,14 @@ input, select, textarea, .btn, .form-control, .panel {
 .alert-gray {
   background-color: #ccc; border-color: #ccc;
 }
+#titleContainer, #contentContainer, #teachingTypeContainer, #descriptionContainer, charge {
+  position: relative;
+}
+
+#titleNum, #contentNum, #teachingTypeNum, #descriptionNum {
+  position: absolute; bottom: 1px; right: 25px; z-index: 10; height: 18px; margin: 0; text-align: right; background: rgba(255, 255, 255, 1); font-size: 14px; line-height: 18px; color: #999999;
+}
+
+.rmb {
+  position: absolute; top: 10px; right: 25px; font-size: 14px; height: 18px; line-height: 18px; z-index: 10;
+}

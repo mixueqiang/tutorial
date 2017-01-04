@@ -516,4 +516,20 @@ input, select, textarea, .btn, .form-control, .panel {
 .sidenav-item[aria-selected="true"] {
   text-decoration: none; color: #353535; font-weight: bold;
 }
+
+.glyphicon {
+  
+}
+
+.glyphicon-ok-circle {
+  color: #3fb34f;
+}
+
+.glyphicon-remove-circle {
+  color: #d03747;
+}
+
+.glyphicon-lg {
+  margin: 0 15px 0 0; font-size: 27px; line-height: inherit;
+}
 /*subnav-end*/

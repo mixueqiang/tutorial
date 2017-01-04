@@ -34,6 +34,11 @@ $(function() {
     }
 
     var captchaCode = $('input[name=captchaCode]', $('#signup-form')).val();
+    if (captchaCode == null || captchaCode.length == '') {
+      $btn.removeAttr('disabled');
+      showFormFieldError('captchaCode', '请输入图形验证码。');
+      return false;
+    }
 
     $.getJSON('/api/v1/sms/send', {
       phone : phone,

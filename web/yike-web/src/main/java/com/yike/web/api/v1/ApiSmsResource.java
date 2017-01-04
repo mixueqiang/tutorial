@@ -41,17 +41,17 @@ public class ApiSmsResource extends BaseResource {
   @Produces(APPLICATION_JSON)
   public Map<String, Object> send(@QueryParam("captchaCode") String captchaCode, @QueryParam("phone") String phone, @QueryParam("type") String type) {
     if (StringUtils.isEmpty(captchaCode)) {
-      return ResponseBuilder.error(10600, "请输入验证码。");
+      return ResponseBuilder.error(10600, "请输入图形验证码。");
     }
 
     String sessionId = WebUtils.getSessionId(request);
     try {
       if (!captchaService.validateResponseForID(sessionId, captchaCode)) {
-        return ResponseBuilder.error(50000, "验证码不正确。");
+        return ResponseBuilder.error(50000, "图形验证码不正确。");
       }
     } catch (Throwable t) {
       LOG.error("Failed to validate captcha code.", t);
-      return ResponseBuilder.error(50000, "验证码不正确。");
+      return ResponseBuilder.error(50000, "图形验证码不正确。");
     }
 
     if (StringUtils.isEmpty(phone)) {
@@ -59,13 +59,13 @@ public class ApiSmsResource extends BaseResource {
     }
 
     if (StringUtils.equals(type, "register") && entityDao.exists("user", "phone", phone)) {
-      return ResponseBuilder.error(10602, "你输入的手机号码已经注册过。");
+      return ResponseBuilder.error(10602, "手机号码已经注册过。");
 
     } else if (StringUtils.equals(type, "reset_password") && !entityDao.exists("user", "phone", phone)) {
-      return ResponseBuilder.error(10603, "你输入的手机号码尚未注册。");
+      return ResponseBuilder.error(10603, "手机号码尚未注册。");
 
     } else if (StringUtils.equals(type, "security") && !entityDao.exists("user", "phone", phone)) {
-      return ResponseBuilder.error(10604, "你输入的手机号码尚未注册。");
+      return ResponseBuilder.error(10604, "手机号码尚未注册。");
     }
 
     long time = System.currentTimeMillis();

@@ -56,6 +56,14 @@ input, select, textarea, .btn, .form-control, .panel {
   color: #666;
 }
 
+.error {
+  color: #dd4b39;
+}
+
+.success {
+  color: #39b574;
+}
+
 .xxl {
   font-size: 30px; line-height: 45px
 }

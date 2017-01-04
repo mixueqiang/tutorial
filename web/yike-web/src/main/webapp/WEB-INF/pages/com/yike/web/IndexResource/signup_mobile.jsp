@@ -16,7 +16,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 control-label" for="captchaCode">图片验证码</label>
+              <label class="col-sm-3 control-label" for="captchaCode">图形验证码</label>
               <div class="col-sm-3">
                 <input class="form-control" id="captchaCode" name="captchaCode" tabindex="2" type="text" />
               </div>
@@ -30,7 +30,7 @@
                 <input type="text" id="securityCode" name="securityCode" tabindex="3" class="form-control" />
               </div>
               <div class="col-sm-2">
-                <a class="btn btn-warning btn-send-sms" href="#">获取验证码</a>
+                <a class="btn orange btn-send-sms" href="#">获取验证码</a>
               </div>
             </div>
             <div class="form-group">

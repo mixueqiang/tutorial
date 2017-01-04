@@ -2,6 +2,7 @@ package com.yike.web.api.v1;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -13,7 +14,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.WebUtils;
 
+import com.octo.captcha.service.multitype.GenericManageableCaptchaService;
 import com.yike.model.Entity;
 import com.yike.util.RandomUtil;
 import com.yike.util.ResponseBuilder;
@@ -30,6 +33,9 @@ import com.yike.web.BaseResource;
 public class ApiSmsResource extends BaseResource {
   private static final Log LOG = LogFactory.getLog(ApiSmsResource.class);
 
+  @Resource
+  protected GenericManageableCaptchaService captchaService;
+
   @GET
   @Path("send")
   @Produces(APPLICATION_JSON)
@@ -37,6 +43,17 @@ public class ApiSmsResource extends BaseResource {
     if (StringUtils.isEmpty(captchaCode)) {
       return ResponseBuilder.error(10600, "请输入验证码。");
     }
+
+    String sessionId = WebUtils.getSessionId(request);
+    try {
+      if (!captchaService.validateResponseForID(sessionId, captchaCode)) {
+        return ResponseBuilder.error(50000, "验证码不正确。");
+      }
+    } catch (Throwable t) {
+      LOG.error("Failed to validate captcha code.", t);
+      return ResponseBuilder.error(50000, "验证码不正确。");
+    }
+
     if (StringUtils.isEmpty(phone)) {
       return ResponseBuilder.error(10601, "请输入手机号码。");
     }

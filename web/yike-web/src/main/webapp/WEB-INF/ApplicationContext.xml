@@ -28,4 +28,19 @@
   <aop:aspectj-autoproxy proxy-target-class="true" />
   <tx:annotation-driven transaction-manager="txManager" />
 
+  <bean id="captchaService" class="com.octo.captcha.service.multitype.GenericManageableCaptchaService">
+    <constructor-arg index="0">
+      <ref bean="simpleCaptchaEngine" />
+    </constructor-arg>
+    <constructor-arg index="1">
+      <value>300</value>
+    </constructor-arg>
+    <constructor-arg index="2">
+      <value>20000</value>
+    </constructor-arg>
+    <constructor-arg index="3">
+      <value>20000</value>
+    </constructor-arg>
+  </bean>
+
 </beans>

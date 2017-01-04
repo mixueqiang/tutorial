@@ -16,9 +16,18 @@
               </div>
             </div>
             <div class="form-group">
+              <label class="col-sm-3 control-label" for="captchaCode">图片验证码</label>
+              <div class="col-sm-3">
+                <input class="form-control" id="captchaCode" name="captchaCode" tabindex="2" type="text" />
+              </div>
+              <div class="col-sm-2">
+                <img src="/api/v1/captcha" onclick="this.src='/api/v1/captcha?v='+new Date()*1">
+              </div>
+            </div>
+            <div class="form-group">
               <label for="securityCode" class="col-sm-3 control-label">验证码</label>
-              <div class="col-sm-4">
-                <input type="text" id="securityCode" name="securityCode" tabindex="2" class="form-control" />
+              <div class="col-sm-3">
+                <input type="text" id="securityCode" name="securityCode" tabindex="3" class="form-control" />
               </div>
               <div class="col-sm-2">
                 <a class="btn btn-warning btn-send-sms" href="#">获取验证码</a>
@@ -27,26 +36,15 @@
             <div class="form-group">
               <label for="password" class="col-sm-3 control-label">密码</label>
               <div class="col-sm-4">
-                <input type="password" id="password" name="password" tabindex="3" class="form-control" />
+                <input type="password" id="password" name="password" tabindex="4" class="form-control" />
               </div>
             </div>
             <div class="form-group">
               <label for="username" class="col-sm-3 control-label">昵称</label>
               <div class="col-sm-4">
-                <input type="text" id="username" name="username" tabindex="4" class="form-control" />
+                <input type="text" id="username" name="username" tabindex="5" class="form-control" />
               </div>
             </div>
-            <!-- <div class="form-group">
-              <label for="password" class="col-sm-3 control-label">我是</label>
-              <div class="col-sm-4">
-                <select class="form-control" id="role" name="role" tabindex="5">
-                  <option value="-1">请选择用户类型</option>
-                  <option value="worker" selected="selected">译员</option>
-                  <option value="company">翻译公司／工作室</option>
-                  <option value="client">客户</option>
-                </select>
-              </div>
-            </div> -->
 
             <div class="form-group">
               <div class="col-sm-offset-3 col-sm-6">

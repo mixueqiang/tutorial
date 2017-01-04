@@ -37,9 +37,9 @@
           <ul class="sidenav-list">
             <li><a href="/settings/profile" aria-selected="true" class="sidenav-item">基本资料修改</a></li>
             <li><a href="/settings/password" aria-selected="false" class="sidenav-item">密码修改</a></li>
-            <c:if test="${sessionScope._user.worker}">
+           <%--  <c:if test="${sessionScope._user.worker}">
               <li><a href="/settings/notification" aria-selected="false" class="sidenav-item">消息通知设置</a></li>
-            </c:if>
+            </c:if> --%>
             <!-- <li><a href="/settings/privacy_options" aria-selected="false" class="sidenav-item">隐私设置</a></li> -->
           </ul>
         </div>

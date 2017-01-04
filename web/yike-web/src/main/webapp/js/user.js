@@ -53,6 +53,7 @@ $(function() {
 
       } else {
         $btn.removeAttr('disabled');
+        $('input[name=password]', $('#signup-form')).val('');
         showFormFieldError('securityCode', resp.m);
       }
     });
@@ -85,6 +86,7 @@ $(function() {
 
       } else {
         $btn.removeAttr('disabled');
+        $('input[name=password]', $('#signup-form')).val('');
         showFormFieldError('securityCode', resp.m);
       }
     });
@@ -156,12 +158,12 @@ $(function() {
             Message.info(message, false, $('.form-group:last', $(form)));
 
           } else {
-            /* $('#password').val(''); */
+            $('input[name=password]', $('#signup-form')).val('');
             Message.error('注册失败：' + resp.m, false, $('.form-group:last', $(form)));
           }
         },
         error : function() {
-          $('#password').val('');
+          $('input[name=password]', $('#signup-form')).val('');
           Message.error('注册失败！', false, $('.form-group:last', $(form)));
         }
       });

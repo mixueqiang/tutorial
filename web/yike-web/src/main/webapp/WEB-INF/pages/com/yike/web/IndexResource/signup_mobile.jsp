@@ -11,7 +11,7 @@
               <div class="col-sm-4">
                 <input type="text" id="phone" name="phone" tabindex="1" class="form-control" />
               </div>
-              <div class="col-sm-4 control-txt">
+              <div class="col-sm-4 control-txt hide">
                 或<a href="/signup/email">使用邮箱注册</a>
               </div>
             </div>

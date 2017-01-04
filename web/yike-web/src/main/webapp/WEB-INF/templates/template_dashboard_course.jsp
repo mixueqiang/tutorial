@@ -18,24 +18,7 @@
 </head>
 <body>
   <a class="sr-only" href="#content">Skip to main content</a>
-  <header class="navbar navbar-static-top bs-docs-nav" role="banner">
-    <div class="container">
-      <div class="navbar-header">
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-        </button>
-        <a href="/dashboard" class="navbar-brand">翻译资源网</a>
-      </div>
-      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><span>首页</span></a></li>
-          <li><a href="/notification"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span><span>通知</span></a></li>
-          <li><a href="/dashboard"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span>${sessionScope._user.username}</span></a></li>
-          <li><a href="/signout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span><span>退出</span></a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <%@ include file="/WEB-INF/commons/header.jsp"%>
   <div class="subnav">
     <div class="container">
       <ul class="subnav-list">

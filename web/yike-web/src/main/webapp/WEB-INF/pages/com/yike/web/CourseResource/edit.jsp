@@ -36,9 +36,19 @@
         <div class="form-group">
           <label for="maximumLearnerCount" class="col-md-2 col-sm-2 control-label">招生人数</label>
           <div class="col-md-2 col-sm-2">
-            <input id="maximumLearnerCount" name="maximumLearnerCount" class="form-control" value="${course.maximumLearnerCount}">
+            <input id="countThis" name="countThis" class="form-control" value="${course.countThis}">
           </div>
         </div>
+        <div class="form-group">
+           <p>${categories}</p>
+           <label for="categoryId" class="col-md-2 col-sm-2 col-xs-3 control-label">课程分类</label>
+           <div class="col-md-2 col-sm-2 col-xs-4">
+             <select id="categoryId" name="categoryId" class="form-control">
+               <option value="102" <c:if test="${categories.categoryId eq 102}">selected="selected"</c:if>>计算机技术</option>
+               <option value="101" <c:if test="${categories.categoryId eq 101}">selected="selected"</c:if>>外语翻译</option>
+              </select>
+           </div>
+         </div>
         <div class="form-group">
           <label for="teachingType" class="col-md-2 col-sm-2 control-label">上课时间及方式</label>
           <div id="teachingTypeContainer" class="col-md-8 col-sm-8">

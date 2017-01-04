@@ -83,7 +83,7 @@ public class ApiSmsResource extends BaseResource {
       setSessionAttribute("smsLastSentTime", time);
 
       if (StringUtils.equals(type, "reset_password") || StringUtils.equals(type, "security")) {
-        entityDao.update("user", "phone", phone, "authCode", securityCode);
+        entityDao.update("user", "phone", phone, "securityCode", securityCode);
       }
 
       int businessType = StringUtils.equals(type, "register") ? 1 : 4;

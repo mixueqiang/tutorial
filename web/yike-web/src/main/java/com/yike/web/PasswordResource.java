@@ -27,7 +27,6 @@ import com.yike.util.ResponseBuilder;
 import com.yike.util.SmsUtilsYunpian;
 import com.sun.jersey.api.view.Viewable;
 
-
 /**
  * @author mixueqiang
  * @since Jun 2, 2014
@@ -72,19 +71,19 @@ public class PasswordResource extends BaseResource {
       LOG.info("User " + email + " submited a password remind request.");
       User user = entityDao.findOne("user", "email", email, UserRowMapper.getInstance());
       if (user == null) {
-        return ResponseBuilder.error(10703, "您输入的邮箱尚未注册。");
+        return ResponseBuilder.error(10703, "邮箱尚未注册。");
       }
 
       if (user.isDisabled()) {
         return ResponseBuilder.error(10304, "帐号尚未激活，请先去注册邮箱激活你的帐号，然后再进行登录。");
       }
 
-      String authCode = RandomUtil.randomString(16);
-      entityDao.update("user", "email", email, "authCode", authCode);
+      String securityCode = RandomUtil.randomString(16);
+      entityDao.update("user", "email", email, "securityCode", securityCode);
 
       Entity entity = new Entity("email");
       entity.set("type", "4").set("email", email).set("toEmail", email);
-      entity.set("message", authCode).set("status", 0).set("createTime", time);
+      entity.set("message", securityCode).set("status", 0).set("createTime", time);
       entityDao.save(entity);
 
       return ResponseBuilder.ok("email");
@@ -93,12 +92,12 @@ public class PasswordResource extends BaseResource {
       LOG.info("User " + phone + " submited a password remind request.");
       User user = entityDao.findOne("user", "phone", phone, UserRowMapper.getInstance());
       if (user == null) {
-        return ResponseBuilder.error(10704, "您输入的手机号尚未注册。");
+        return ResponseBuilder.error(10704, "手机号码尚未注册。");
       }
 
       Long smsLastSendTime = (Long) getSessionAttribute("smsLastSendTime");
       if (smsLastSendTime != null && System.currentTimeMillis() - smsLastSendTime <= 60 * 1000) {
-        return ResponseBuilder.error(201, "60秒内不可以重复发送验证码！");
+        return ResponseBuilder.error(50000, "60秒内不可以重复发送验证码！");
       }
 
       String securityCode = RandomUtil.randomNumber(6);
@@ -107,7 +106,7 @@ public class PasswordResource extends BaseResource {
         LOG.info("Send reset_password sms to phone: " + phone);
         setSessionAttribute("smsLastSendTime", time);
 
-        entityDao.update("user", "phone", phone, "authCode", securityCode);
+        entityDao.update("user", "phone", phone, "securityCode", securityCode);
 
         Entity entity = new Entity("sms");
         entity.set("type", "reset_password").set("phone", phone);
@@ -125,7 +124,7 @@ public class PasswordResource extends BaseResource {
   @GET
   @Path("reset")
   @Produces(MediaType.TEXT_HTML)
-  public Response reset(@QueryParam("email") String email, @QueryParam("phone") String phone, @QueryParam("authCode") String authCode) {
+  public Response reset(@QueryParam("email") String email, @QueryParam("phone") String phone, @QueryParam("securityCode") String securityCode) {
     return Response.ok(new Viewable("reset")).build();
   }
 

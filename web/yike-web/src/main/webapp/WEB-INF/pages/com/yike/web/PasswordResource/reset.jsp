@@ -17,7 +17,7 @@
             <div class="form-group row-space-top-2">
               <label for="securityCode" class="col-sm-3 control-label">验证码</label>
               <div class="col-sm-4">
-                <input type="text" id="securityCode" name="securityCode" tabindex="2" class="form-control" value="${param.authCode}" placeholder="请输入验证码" />
+                <input type="text" id="securityCode" name="securityCode" tabindex="2" class="form-control" value="${param.securityCode}" placeholder="请输入验证码" />
               </div>
             </div>
             <div class="form-group row-space-top-2">

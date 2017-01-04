@@ -50,7 +50,7 @@ public class ApiPasswordResource extends BaseResource {
       user = entityDao.findOne("user", "phone", id);
     }
 
-    if (user == null || !StringUtils.equals(securityCode, user.getString("authCode"))) {
+    if (user == null || !StringUtils.equals(securityCode, user.getString("securityCode"))) {
       return ResponseBuilder.error(10711, "无效的验证码，请重新找回密码。");
     }
 
@@ -58,7 +58,7 @@ public class ApiPasswordResource extends BaseResource {
       // Reset user password.
       Map<String, Object> updateValues = new HashMap<String, Object>();
       updateValues.put("password", password);
-      updateValues.put("authCode", "");
+      updateValues.put("securityCode", "");
       entityDao.update("user", "id", user.getId(), updateValues);
 
       LOG.info("User " + id + " reset the password.");

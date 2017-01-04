@@ -21,7 +21,7 @@ img {
 }
 
 a {
-  text-decoration: none;
+  color: #777; text-decoration: none;
 }
 
 a:link, a:visited {
@@ -29,7 +29,7 @@ a:link, a:visited {
 }
 
 a:focus, a:hover {
-  text-decoration: none;
+  color: #353535; text-decoration: none;
 }
 
 p {
@@ -455,6 +455,7 @@ input, select, textarea, .btn, .form-control, .panel {
 .alert-gray {
   background-color: #ccc; border-color: #ccc;
 }
+
 #titleContainer, #contentContainer, #teachingTypeContainer, #descriptionContainer, charge {
   position: relative;
 }

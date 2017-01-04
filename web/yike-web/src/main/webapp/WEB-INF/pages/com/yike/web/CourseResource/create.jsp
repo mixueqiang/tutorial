@@ -38,6 +38,16 @@
           </div>
         </div>
         <div class="form-group">
+          <%-- <p>${categories}</p> --%>
+          <label for="categoryId" class="col-md-2 col-sm-2 col-xs-3 control-label">课程类别</label>
+          <div class="col-md-2 col-sm-2 col-xs-4">
+            <select id="categoryId" name="categoryId" class="form-control">
+              <option value="102">计算机技术</option>
+              <option value="101">外语翻译</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
           <label for="teachingType" class="col-md-2 col-sm-2 control-label">上课时间及方式</label>
           <div id="teachingTypeContainer" class="col-md-8 col-sm-8">
             <p id="teachingTypeNum"></p>

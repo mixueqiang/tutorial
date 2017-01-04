@@ -41,6 +41,8 @@ public class CourseResource extends BaseResource {
   @Path("create")
   @Produces(MediaType.TEXT_HTML)
   public Response create() {
+    List<Category> categories = entityDao.find(Category.SQL_TABLE_NAME, Category.SQL_STATUS, Constants.STATUS_OK, CategoryRowMapper.getInstance());
+    request.setAttribute("categories", categories);
     return Response.ok(new Viewable("create")).build();
   }
 
@@ -87,7 +89,6 @@ public class CourseResource extends BaseResource {
     setCourseProperties(course);
     request.setAttribute("course", course);
     request.setAttribute("instructor", course.getProperties().get("instructor"));
-
     request.setAttribute("hasApplied", checkApplication(course.getId()));
 
     return Response.ok(new Viewable("course")).build();
@@ -195,7 +196,7 @@ public class CourseResource extends BaseResource {
     }
     if (course.getCategoryId() > 0) {
       Category category = entityDao.get(Category.SQL_TABLE_NAME, course.getCategoryId(), CategoryRowMapper.getInstance());
-      if (null != category) {
+      if (null != category && category.getStatus() == Constants.STATUS_OK) {
         course.getProperties().put("category", category);
       }
     }

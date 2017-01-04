@@ -32,9 +32,9 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="maximumLearnerCount" class="col-md-2 col-sm-2 control-label">招生人数</label>
+          <label for="countThis" class="col-md-2 col-sm-2 control-label">招生人数</label>
           <div class="col-md-2 col-sm-2">
-            <input id="maximumLearnerCount" name="maximumLearnerCount" class="form-control">
+            <input id="countThis" name="countThis" class="form-control">
           </div>
         </div>
         <div class="form-group">
@@ -43,7 +43,7 @@
           <div class="col-md-2 col-sm-2 col-xs-4">
             <select id="categoryId" name="categoryId" class="form-control">
               <option value="102">计算机技术</option>
-              <option value="101">外语翻译</option>
+              <option value="101">外文翻译</option>
             </select>
           </div>
         </div>

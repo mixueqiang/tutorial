@@ -13,7 +13,7 @@ $('#courseForm').validate({
       maxlength : 5,
       number : true
     },
-    maximumLearnerCount : {
+    countThis : {
       required : true,
       maxlength : 4,
       digits : true
@@ -41,7 +41,7 @@ $('#courseForm').validate({
       maxlength : $.format("课程价格最多可以输入 {0} 个字符。"),
       number : "请输入有效的数字。",
     },
-    maximumLearnerCount : {
+    countThis : {
       required : '请输入招生人数。',
       maxlength : $.format("招生人数不能超过 {0} 个字。"),
       digits : "只能输入数字",

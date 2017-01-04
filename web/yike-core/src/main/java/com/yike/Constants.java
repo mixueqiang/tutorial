@@ -41,6 +41,20 @@ public class Constants {
 
   public static final Map<Integer, String> REVIEW_REASONS = new HashMap<Integer, String>();
 
+  // project status.
+  public static final int PROJECT_STATUS_POSTED = 0;
+  public static final int PROJECT_STATUS_OPEN = 1;
+  public static final int PROJECT_STATUS_START = 2;
+  public static final int PROJECT_STATUS_MILESTONE = 3;
+  public static final int PROJECT_STATUS_PROBLEM = 4;
+  public static final int PROJECT_STATUS_COMPLETED = 100;
+  public static final int PROJECT_STATUS_CANCELLED = -1;
+
+  // bid status.
+  public static final int BID_STATUS_POSTED = 0;
+  public static final int BID_STATUS_HIT = 1;
+  public static final int BID_STATUS_CANCELLED = -1;
+
   static {
     REVIEW_REASONS.put(0, "已过时或者已存在的资讯。感谢你的投稿。");
     REVIEW_REASONS.put(1, "已有类似的资讯。感谢你的投稿。");

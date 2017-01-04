@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
+import com.yike.dao.BidDao;
+import com.yike.dao.ProjectDao;
+import com.yike.dao.UserDao;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -40,6 +43,12 @@ public abstract class BaseResource {
 
   @Resource
   protected EntityDao entityDao;
+  @Resource
+  protected BidDao bidDao;
+  @Resource
+  protected ProjectDao projectDao;
+  @Resource
+  protected UserDao userDao;
   @Resource
   protected SessionService sessionService;
 

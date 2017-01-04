@@ -4,8 +4,8 @@
     <div class="container">
       <a class="hero-brand xxl" href="/">一课</a>
       <ul class="nav pull-right">
-        <li class="pull-left"><a class="btn green" href="/">发布一门实践课程</a></li>
-        <li class="pull-left col-space-2"><a class="btn red" href="/signin">登录</a></li>
+        <li class="pull-left"><a class="btn btn-success" href="/">发布一门实践课程</a></li>
+        <li class="pull-left col-space-2"><a href="/signin">登录</a></li>
       </ul>
     </div>
   </div>
@@ -14,7 +14,7 @@
     <div class="col-middle content">
       <h1>学习，并且实战</h1>
       <h2 class="subtitle"></h2>
-      <a class="btn green large row-space-top-6" href="/signup" target="_blank">注册</a>
+      <a class="btn btn-success row-space-top-6" href="/signup" target="_blank">注册</a>
     </div>
   </div>
 </div>
@@ -182,7 +182,7 @@
     <div class="col-middle content">
       <h1>每位有工作经验的人都是老师</h1>
       <h2 class="subtitle"></h2>
-      <a class="btn green large row-space-top-6" href="/">发布一门实践课程</a>
+      <a class="btn btn-success row-space-top-6" href="/">发布一门实践课程</a>
     </div>
   </div>
 </div>

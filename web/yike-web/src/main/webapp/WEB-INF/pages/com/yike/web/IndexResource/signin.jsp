@@ -21,7 +21,7 @@
             <div class="form-group">
               <div class="col-sm-offset-3 col-sm-9">
                 <input type="hidden" id="to" name="to" value="${param.to}" />
-                <button type="submit" tabindex="3" class="btn red">登录</button>
+                <button type="submit" tabindex="3" class="btn btn-danger">登录</button>
                 <a class="col-space-2" href="/password/remind">忘记密码？</a><a class="col-space-2" href="/signup">注册</a>
               </div>
             </div>

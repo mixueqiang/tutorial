@@ -39,7 +39,7 @@
 
             <div class="form-group">
               <div class="col-sm-offset-3 col-sm-6">
-                <button type="submit" tabindex="6" class="btn red">注册</button>
+                <button type="submit" tabindex="6" class="btn btn-danger">注册</button>
                 <a class="col-space-2" href="/signin">返回登录</a>
               </div>
             </div>

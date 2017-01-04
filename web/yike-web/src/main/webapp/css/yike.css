@@ -456,6 +456,7 @@ input, select, textarea, .btn, .form-control, .panel {
   background-color: #ccc; border-color: #ccc;
 }
 
+
 #titleContainer, #contentContainer, #teachingTypeContainer, #descriptionContainer, charge {
   position: relative;
 }
@@ -467,3 +468,53 @@ input, select, textarea, .btn, .form-control, .panel {
 .rmb {
   position: absolute; top: 10px; right: 25px; font-size: 14px; height: 18px; line-height: 18px; z-index: 10;
 }
+
+/*subnav-start*/
+.subnav {
+  position: relative; background-color: #6f5499; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+}
+
+.subnav-list {
+  padding-left: 0;
+}
+
+.subnav-item, a.subnav-item {
+  position: relative; float: left; padding: 10px 14px; color: #cacccd;
+}
+
+.subnav-item:hover, .subnav-item:focus, .subnav-item[aria-selected="true"] {
+  color: #fff; text-decoration: none;
+}
+
+.subnav-item[aria-selected="true"]:before {
+  position: absolute; content: ''; bottom: 0; left: 14px; right: 14px; height: 4px; background: #cacccd;
+}
+
+.sidenav {
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+}
+
+.sidenav:before, .sidenav:after {
+  content: ""; display: table;
+}
+
+.sidenav:after {
+  clear: both
+}
+
+.sidenav-text, .sidenav-item {
+  display: block; padding: 6px 0; font-size: 16px; color: #82888a;
+}
+
+.sidenav-item {
+  display: block; padding: 6px 0; font-size: 16px; color: #82888a;
+}
+
+.sidenav-item:hover, .sidenav-item:focus {
+  text-decoration: none; color: #cacccd
+}
+
+.sidenav-item[aria-selected="true"] {
+  text-decoration: none; color: #353535; font-weight: bold;
+}
+/*subnav-end*/

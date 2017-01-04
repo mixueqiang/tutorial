@@ -15,12 +15,12 @@ import com.yike.util.CalendarUtils;
 public class BaseModel implements Serializable {
   private static final long serialVersionUID = -6363055536956583470L;
 
-  private Map<String, Object> properties;
-  protected long createTime;
   protected long id;
   protected String name;
   protected int status;
+  protected long createTime;
   protected long updateTime;
+  private Map<String, Object> properties;
 
   @Override
   public boolean equals(Object obj) {
@@ -89,16 +89,16 @@ public class BaseModel implements Serializable {
     return result;
   }
 
-  public boolean isEnabled() {
-    return getStatus() > Constants.STATUS_DISABLED;
-  }
-
   public boolean isDeleted() {
     return status == -2;
   }
 
   public boolean isDisabled() {
     return status < 1;
+  }
+
+  public boolean isEnabled() {
+    return getStatus() > Constants.STATUS_DISABLED;
   }
 
   public boolean isFinished() {

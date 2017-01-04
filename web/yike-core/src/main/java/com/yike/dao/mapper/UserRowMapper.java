@@ -38,11 +38,11 @@ public class UserRowMapper implements RowMapper<User> {
     entity.setLocale(rs.getString("locale"));
     entity.setRoles(rs.getString("roles"));
     entity.setSecurityCode(rs.getString("securityCode"));
-    entity.setBindStatus(rs.getInt("bindStatus"));
     entity.setStatus(rs.getInt("status"));
     entity.setCreateTime(rs.getLong("createTime"));
     entity.setUpdateTime(rs.getLong("updateTime"));
 
     return entity;
   }
+
 }

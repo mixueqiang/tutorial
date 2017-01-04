@@ -11,27 +11,22 @@ import org.apache.commons.lang.StringUtils;
 public class User extends BaseModel implements Serializable {
   private static final long serialVersionUID = -8028956919647703012L;
 
-  private String avatar;
-  private int bindStatus;
-  private String birthday;
   private String email;
-  private String firstName;
-  private String gender;
-  private String lastName;
-  private String locale;
-  private String password;
   private String phone;
+  private String password;
+  private String username;
+  private String firstName;
+  private String lastName;
+  private String avatar;
+  private String gender;
+  private String birthday;
   private String profile;
+  private String locale;
   private String roles;
   private String securityCode;
-  private String username;
 
   public String getAvatar() {
     return avatar;
-  }
-
-  public int getBindStatus() {
-    return bindStatus;
   }
 
   public String getBirthday() {
@@ -82,7 +77,6 @@ public class User extends BaseModel implements Serializable {
     return username;
   }
 
-
   // TODO 修改isAdmin
   public boolean isAdmin() {
     return StringUtils.endsWith(email, "@transkip.com");
@@ -94,10 +88,6 @@ public class User extends BaseModel implements Serializable {
 
   public void setAvatar(String avatar) {
     this.avatar = avatar;
-  }
-
-  public void setBindStatus(int bindStatus) {
-    this.bindStatus = bindStatus;
   }
 
   public void setBirthday(String birthday) {

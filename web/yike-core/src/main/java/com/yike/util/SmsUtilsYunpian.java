@@ -32,7 +32,7 @@ public final class SmsUtilsYunpian {
   private static final Map<String, String> TEMPLATES = new HashMap<String, String>();
 
   static {
-    TEMPLATES.put("all", "【大菠萝】验证码：{0}。您正在大菠萝进行绑定手机操作。如非本人操作，请忽略本条短信。");
+    TEMPLATES.put("all", "【一课上手】您的验证码是{0}。如非本人操作，请忽略本短信。");
   }
 
   public static boolean send(String phone, String type, String[] datas) {

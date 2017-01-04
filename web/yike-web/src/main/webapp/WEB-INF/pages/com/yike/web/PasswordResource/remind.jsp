@@ -4,7 +4,7 @@
     <div class="col-md-8 col-md-offset-1">
       <h2>找回密码</h2>
       <span class="ext-text">请提供注册时使用的邮箱或手机号码。</span>
-      <form id="password-remind-form" name="password-remind-form" action="/password/remind" method="post" class="form-horizontal row-space-top-2">
+      <form id="password-remind-form" name="password-remind-form" action="/password/remind" method="post" class="form-horizontal row-space-top-4">
         <div class="form-group row-space-top-2">
           <label for="email" class="col-md-2 col-sm-2 control-label">邮箱</label>
           <div class="col-md-4 col-sm-4">

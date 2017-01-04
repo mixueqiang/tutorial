@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
       <h2>登录</h2>
-      <form id="signin-form" name="signin-form" action="/api/v1/user/signin" method="post" class="form-horizontal row-space-top-2">
+      <form id="signin-form" name="signin-form" action="/api/v1/user/signin" method="post" class="form-horizontal row-space-top-4">
         <div class="form-group row-space-top-2">
           <label for="id" class="col-sm-3 control-label">帐号</label>
           <div class="col-sm-4">

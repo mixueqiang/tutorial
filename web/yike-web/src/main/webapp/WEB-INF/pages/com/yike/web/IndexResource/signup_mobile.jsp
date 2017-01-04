@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
       <h2>新用户注册</h2>
-      <form id="signup-form" name="signup-form" action="/api/v1/user" method="post" class="form-horizontal row-space-top-2">
+      <form id="signup-form" name="signup-form" action="/api/v1/user" method="post" class="form-horizontal row-space-top-4">
         <div class="form-group row-space-top-2">
           <label for="phone" class="col-sm-3 control-label">手机号码</label>
           <div class="col-sm-4">

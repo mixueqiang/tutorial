@@ -41,19 +41,6 @@
       <ul class="subnav-list">
         <li><a href="/dashboard" data-class="dashboard" aria-selected="false" class="subnav-item">控制面板</a></li>
         <li><a href="/courses" data-class="course" aria-selected="false" class="subnav-item">我的课程</a></li>
-        <c:if test="${sessionScope._user.worker}">
-          <li><a href="/professional/edit" data-class="professional" aria-selected="false" class="subnav-item">译员信息</a></li>
-          <!-- <li><a href="/tasks" data-class="task" aria-selected="false" class="subnav-item">翻译任务</a></li> -->
-        </c:if>
-        <c:if test="${sessionScope._user.company}">
-          <li><a href="/company/edit" data-class="company" aria-selected="false" class="subnav-item">公司信息</a></li>
-        </c:if>
-        <li><a href="/jobs" data-class="job" aria-selected="false" class="subnav-item">招聘职位</a></li>
-        <c:if test="${sessionScope._user.worker}">
-          <li><a href="/termbases" data-class="termbase" aria-selected="false" class="subnav-item">术语库</a></li>
-        </c:if>
-        <!-- <li><a href="/project" data-class="project" aria-selected="false" class="subnav-item">翻译项目</a></li> -->
-        <li><a href="/account" data-class="account" aria-selected="false" class="subnav-item">账户</a></li>
         <li><a href="/settings/profile" data-class="settings/profile" aria-selected="false" class="subnav-item">设置</a></li>
       </ul>
     </div>

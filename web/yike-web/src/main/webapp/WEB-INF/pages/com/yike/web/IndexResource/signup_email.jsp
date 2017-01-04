@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
       <h2>新用户注册</h2>
-      <form id="signup-form" name="signup-form" action="/api/v1/user" method="post" class="form-horizontal">
+      <form id="signup-form" name="signup-form" action="/api/v1/user" method="post" class="form-horizontal row-space-top-1">
         <div class="panel panel-default">
           <div class="panel-body">
             <div class="form-group row-space-top-2">
@@ -39,7 +39,7 @@
 
             <div class="form-group">
               <div class="col-sm-offset-3 col-sm-6">
-                <button type="submit" tabindex="6" class="btn btn-danger">注册</button>
+                <button type="submit" tabindex="6" class="btn red">注册</button>
                 <a class="col-space-2" href="/signin">返回登录</a>
               </div>
             </div>
@@ -51,4 +51,4 @@
 </div>
 
 <script src="/libs/jquery/jquery.md5.js"></script>
-<script src="/js/user.js?v=20161125001"></script>
+<script src="/js/user.js?v=20170104001"></script>

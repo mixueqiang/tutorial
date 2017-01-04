@@ -14,7 +14,6 @@ public class User extends BaseModel implements Serializable {
   private String avatar;
   private int bindStatus;
   private String birthday;
-  private String city;
   private String email;
   private String firstName;
   private String gender;
@@ -37,10 +36,6 @@ public class User extends BaseModel implements Serializable {
 
   public String getBirthday() {
     return birthday;
-  }
-
-  public String getCity() {
-    return city;
   }
 
   public String getEmail() {
@@ -107,10 +102,6 @@ public class User extends BaseModel implements Serializable {
 
   public void setBirthday(String birthday) {
     this.birthday = birthday;
-  }
-
-  public void setCity(String city) {
-    this.city = city;
   }
 
   public void setEmail(String email) {

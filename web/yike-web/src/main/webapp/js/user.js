@@ -33,9 +33,11 @@ $(function() {
       return false;
     }
 
+    var captchaCode = $('input[name=captchaCode]', $('#signup-form')).val();
+
     $.getJSON('/api/v1/sms/send', {
       phone : phone,
-      captchaCode : 'D@Bll$',
+      captchaCode : captchaCode,
       type : 'register'
     }, function(resp) {
       if (resp && resp.e == 0) {
@@ -149,7 +151,7 @@ $(function() {
             Message.info(message, false, $('.form-group:last', $(form)));
 
           } else {
-            /*$('#password').val('');*/
+            /* $('#password').val(''); */
             Message.error('注册失败：' + resp.m, false, $('.form-group:last', $(form)));
           }
         },

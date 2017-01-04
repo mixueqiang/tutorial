@@ -34,7 +34,6 @@ public class UserRowMapper implements RowMapper<User> {
     entity.setAvatar(rs.getString("avatar"));
     entity.setGender(rs.getString("gender"));
     entity.setBirthday(rs.getString("birthday"));
-    entity.setCity(rs.getString("city"));
     entity.setProfile(rs.getString("profile"));
     entity.setLocale(rs.getString("locale"));
     entity.setRoles(rs.getString("roles"));

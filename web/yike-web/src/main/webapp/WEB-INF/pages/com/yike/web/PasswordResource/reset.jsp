@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
       <h2>重置密码</h2>
-      <form id="password-reset-form" name="password-reset-form" action="/api/v1/password/reset" method="post" class="form-horizontal">
+      <form id="password-reset-form" name="password-reset-form" action="/api/v1/password/reset" method="post" class="form-horizontal row-space-top-1">
         <div class="panel panel-default ">
           <div class="panel-body">
             <div class="form-group row-space-top-2">

@@ -54,6 +54,62 @@
           </div>
         </div>
 
+        <div class="course-navbar row-space-top-4">
+          <div class="row row-space-top-3">
+            <div class="col-md-12">
+              <ul class="nav course-nav">
+                <li><a href="#about-the-course">关于此课程</a></li>
+                <li><a href="#course-list">课程安排</a></li>
+                <c:if test="${not empty achievements}">
+                  <li><a href="#course-achievements">课程成果</a></li>
+                </c:if>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-details">
+          <div>
+            <div class="row-space-top-3" id="about-the-course">
+              <h2>关于此课程</h2>
+            </div>
+            <div class=" row-space-top-2 section">
+              <div>
+                <h4 class="row-space-2">课程介绍</h4>
+                <p>${course.description}</p>
+                <h4 class="row-space-top-2 row-space-2">课程亮点</h4>
+                <p>${course.content}</p>
+                <c:if test="${course.countMax gt 0}">
+                  <h4 class="row-space-top-2 row-space-2">招收学员数量：${course.countMax} 人</h4>
+                </c:if>
+                <h4 class="row-space-top-2 row-space-2">购买支持</h4>
+                <p>一课对课程的报名及购买提供支持。如对课程或者课程的购买有疑问，请加QQ群：475581666，或者发送邮件到：service@yikeshangshou.com 进行咨询。</p>
+              </div>
+              <div class="col-md-4"></div>
+            </div>
+          </div>
+          <div>
+            <div class="row-space-top-3" id="course-list">
+              <h2>课程安排</h2>
+            </div>
+            <div class="row row-space-top-2 section">
+              <div class="col-md-8">${course.teachingType}</div>
+              <div class="col-md-4"></div>
+            </div>
+          </div>
+          <c:if test="${not empty achievements}">
+            <div class="container">
+              <div class="row-space-top-3" id="course-achievements">
+                <h2>课程成果</h2>
+              </div>
+              <div class="row row-space-top-2 section">
+                <div class="col-md-8"></div>
+                <div class="col-md-4"></div>
+              </div>
+            </div>
+          </c:if>
+        </div>
+
       </div>
 
       <div class="col-md-2 col-md-offset-1 col-sm-6 col-xs-6">
@@ -79,63 +135,10 @@
 
     </div>
   </div>
-
-  <div class="container course-navbar row-space-top-4">
-    <div class="row row-space-top-3">
-      <div class="col-md-12">
-        <ul class="nav course-nav">
-          <li><a href="#about-the-course">关于此课程</a></li>
-          <li><a href="#course-list">课程安排</a></li>
-          <c:if test="${not empty achievements}">
-            <li><a href="#course-achievements">课程成果</a></li>
-          </c:if>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="course-details">
-    <div class="container">
-      <div class="row-space-top-3" id="about-the-course">
-        <h2>关于此课程</h2>
-      </div>
-      <div class="row row-space-top-2 section">
-        <div class="col-md-8">
-          <h4 class="row-space-2">课程介绍</h4>
-          <p>${course.description}</p>
-          <h4 class="row-space-top-2 row-space-2">课程亮点</h4>
-          <p>${course.content}</p>
-          <c:if test="${course.countMax gt 0}">
-            <h4 class="row-space-top-2 row-space-2">招收学员数量：${course.countMax} 人</h4>
-          </c:if>
-          <h4 class="row-space-top-2 row-space-2">购买支持</h4>
-          <p>一课对课程的报名及购买提供支持。如对课程或者课程的购买有疑问，请加QQ群：475581666，或者发送邮件到：service@yikeshangshou.com 进行咨询。</p>
-        </div>
-        <div class="col-md-4"></div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row-space-top-3" id="course-list">
-        <h2>课程安排</h2>
-      </div>
-      <div class="row row-space-top-2 section">
-        <div class="col-md-8">${course.teachingType}</div>
-        <div class="col-md-4"></div>
-      </div>
-    </div>
-    <c:if test="${not empty achievements}">
-      <div class="container">
-        <div class="row-space-top-3" id="course-achievements">
-          <h2>课程成果</h2>
-        </div>
-        <div class="row row-space-top-2 section">
-          <div class="col-md-8"></div>
-          <div class="col-md-4"></div>
-        </div>
-      </div>
-    </c:if>
-  </div>
 </div>
+
+
+
 
 <div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel" aria-hidden="true">
   <div class="modal-dialog">

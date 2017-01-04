@@ -28,7 +28,7 @@
             </select>
           </div>
           <div id="charge" class="col-md-2 col-sm-2 col-xs-4">
-            <span class="rmb">元</span> <input id="price" name="price" class="form-control" maxlength="10">
+            <span class="rmb">元</span> <input id="price" name="price" class="form-control">
           </div>
         </div>
         <div class="form-group">

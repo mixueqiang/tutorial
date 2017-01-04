@@ -6,8 +6,8 @@
       <ul class="nav pull-right">
         <li class="pull-left"><a class="btn btn-success" href="/">发布一门实践课程</a></li>
         <c:choose>
-          <c:when test="${not empty sessionScope._user}">
-            <li class="pull-left col-space-2"><a href="">${_user.phone}</a></li>
+          <c:when test="${not empty _user}">
+            <li class="pull-left col-space-2"><a href="/dashboard">${_user.phone}</a></li>
             <li class="pull-left col-space-2"><a href="/signout">退出</a></li>
           </c:when>
           <c:otherwise>

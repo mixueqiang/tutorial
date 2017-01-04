@@ -4,7 +4,7 @@
     <div class="container">
       <a class="hero-brand xxl" href="/">一课</a>
       <ul class="nav pull-right">
-        <li class="pull-left"><a class="btn btn-success" href="/">发布一门实践课程</a></li>
+        <li class="pull-left"><a class="btn btn-success" href="/course/create">发布一门实践课程</a></li>
         <c:choose>
           <c:when test="${not empty _user}">
             <li class="pull-left col-space-2"><a href="/dashboard">${_user.phone}</a></li>

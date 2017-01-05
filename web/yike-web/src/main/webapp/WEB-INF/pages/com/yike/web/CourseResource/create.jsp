@@ -38,12 +38,12 @@
           </div>
         </div>
         <div class="form-group">
-          <%-- <p>${categories}</p> --%>
           <label for="categoryId" class="col-md-2 col-sm-2 col-xs-3 control-label">课程类别</label>
           <div class="col-md-2 col-sm-2 col-xs-4">
             <select id="categoryId" name="categoryId" class="form-control">
-              <option value="102">计算机技术</option>
-              <option value="101">外文翻译</option>
+              <c:forEach var="item" items="${categories}">
+                <option value="${item.id}">${item.name}</option>
+              </c:forEach>
             </select>
           </div>
         </div>

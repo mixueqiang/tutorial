@@ -172,7 +172,6 @@ public class CourseResource extends BaseResource {
       setCourseProperties(course);
       setSubscripts(course);
     }
-
     // pagination.
     long count = result.left;
     Pair<List<Integer>, Integer> pages = PageNumberUtils.generate(page, count, 10);

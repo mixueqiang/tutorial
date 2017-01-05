@@ -8,7 +8,6 @@ import com.yike.dao.mapper.InstructorRowMapper;
 import com.yike.model.Category;
 import com.yike.model.Course;
 import com.yike.model.Instructor;
-import com.yike.model.User;
 import com.yike.service.SessionService;
 import com.yike.util.StringUtil;
 import org.apache.commons.lang.StringUtils;
@@ -26,6 +25,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,28 +46,47 @@ public class IndexResource extends BaseResource {
   @GET
   @Produces(MediaType.TEXT_HTML)
   public Response index() {
-    List<Category> categories = entityDao.find(Category.SQL_TABLE_NAME, Category.SQL_STATUS, Constants.STATUS_OK, CategoryRowMapper.getInstance());
+    List<Category> allCategories = entityDao.find(Category.SQL_TABLE_NAME, Category.SQL_STATUS, Constants.STATUS_OK, CategoryRowMapper.getInstance());
 
     Map<Long, List<Course>> courseMap = new HashMap<Long, List<Course>>();
+    List<Category> categories = new ArrayList<Category>();
 
-    for (Category category : categories) {
-      long id = category.getId();
-      Map<String, Object> condition = new HashMap<String, Object>();
-      condition.put(Course.SQL_STATUS, Constants.STATUS_READY);
-      condition.put(Course.SQL_APPLIABLE, Course.APPLIABLE_TRUE);
-      condition.put(Course.SQL_CATEGORY_ID, id);
-      List<Course> courses = entityDao.find(Course.SQL_TABLE_NAME, condition, 0, 4, CourseRowMapper.getInstance());
-      for (Course course : courses) {
-        setCourseProperties(course);
-        setSubscripts(course);
+    for (Category category : allCategories) {
+
+      long categoryId = category.getId();
+
+      Map<String, Object> courseFindCondition = new HashMap<String, Object>();
+      courseFindCondition.put(Course.SQL_STATUS, Constants.STATUS_READY);
+      courseFindCondition.put(Course.SQL_APPLIABLE, Course.APPLIABLE_TRUE);
+      courseFindCondition.put(Course.SQL_CATEGORY_ID, categoryId);
+
+      List<Course> courses = entityDao.find(
+              Course.SQL_TABLE_NAME,
+              courseFindCondition,
+              0,
+              4,
+              CourseRowMapper.getInstance());
+
+      if (!courses.isEmpty()) {
+
+        categories.add(category);
+
+        for (Course course : courses) {
+          setCourseProperties(course);
+          setSubscripts(course);
+        }
+
+        courseMap.put(categoryId, courses);
       }
-      courseMap.put(id, courses);
+
     }
-    request.setAttribute("categories", categories);
-    request.setAttribute("courses", courseMap);
+
     if (null != getSessionUser()) {
       request.setAttribute("isLogin", true);
     }
+    request.setAttribute("categories", categories);
+    request.setAttribute("courses", courseMap);
+
     return Response.ok(new Viewable("index")).build();
   }
 

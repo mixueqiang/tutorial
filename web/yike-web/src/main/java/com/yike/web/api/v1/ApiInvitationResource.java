@@ -44,7 +44,7 @@ public class ApiInvitationResource extends BaseResource {
       return ResponseBuilder.error(100102, "请输入你的联系方式。");
     }
     if (StringUtils.isEmpty(content)) {
-      return ResponseBuilder.error(100103, "请简要介绍一下你想象中的课程。");
+      return ResponseBuilder.error(100103, "请写下想要对我们说的话。");
     }
 
     long time = System.currentTimeMillis();

@@ -81,9 +81,7 @@ public class IndexResource extends BaseResource {
 
     }
 
-    if (null != getSessionUser()) {
-      request.setAttribute("isLogin", true);
-    }
+    request.setAttribute("isLogin", getSessionUser() != null);
     request.setAttribute("categories", categories);
     request.setAttribute("courses", courseMap);
 

@@ -17,15 +17,15 @@
 }
 
 .course-nav-item.on a {
-  background: #f01400; color: #fff;
+  background: #337ab7; color: #fff;
 }
 
 .course-nav-item a {
-  display: block; line-height: 14px; margin-bottom: 10px; padding: 9px 12px; font-size: 14px;
+  display: block; line-height: 14px; margin-bottom: 10px; padding: 9px 12px; font-size: 14px; border-radius: 2px;
 }
 
 .course-nav-item a:active, .course-nav-item a:hover {
-  background: #ec1500; color: #fff;
+  background: #236aa7; color: #fff;
 }
 </style>
 <div class="container">

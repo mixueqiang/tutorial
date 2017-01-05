@@ -157,10 +157,17 @@ public class CourseResource extends BaseResource {
 
   @GET
   @Produces(MediaType.TEXT_HTML)
-  public Response index(@QueryParam("p") @DefaultValue("1") int page) {
+  public Response index(
+          @QueryParam("c") @DefaultValue("0") long categoryId,
+          @QueryParam("p") @DefaultValue("1") int page) {
     Map<String, Object> condition = new HashMap<String, Object>();
-    condition = new HashMap<String, Object>();
     condition.put("status", Constants.STATUS_ENABLED);
+    if (categoryId != 0) {
+      if (entityDao.exists(Category.SQL_TABLE_NAME, Category.SQL_ID, categoryId)) {
+        request.setAttribute("currentCategoryId", categoryId);
+        condition.put(Course.SQL_CATEGORY_ID, categoryId);
+      }
+    }
     Pair<Integer, List<Course>> result = entityDao.findAndCount("course", condition, page, PageNumberUtils.PAGE_SIZE_SMALL, CourseRowMapper.getInstance());
     List<Course> courses = result.right;
     request.setAttribute("courses", courses);
@@ -172,13 +179,20 @@ public class CourseResource extends BaseResource {
       setCourseProperties(course);
       setSubscripts(course);
     }
+
+    List<Category> categories = entityDao.find(
+            Category.SQL_TABLE_NAME,
+            Category.SQL_STATUS,
+            Constants.STATUS_OK,
+            CategoryRowMapper.getInstance());
+
     // pagination.
     long count = result.left;
     Pair<List<Integer>, Integer> pages = PageNumberUtils.generate(page, count, 10);
+    request.setAttribute("categories", categories);
     request.setAttribute("currentPage", page);
     request.setAttribute("pages", pages.left);
     request.setAttribute("lastPage", pages.right);
-
     return Response.ok(new Viewable("index")).build();
   }
 

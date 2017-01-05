@@ -8,6 +8,7 @@ import com.yike.dao.mapper.InstructorRowMapper;
 import com.yike.model.Category;
 import com.yike.model.Course;
 import com.yike.model.Instructor;
+import com.yike.model.User;
 import com.yike.service.SessionService;
 import com.yike.util.StringUtil;
 import org.apache.commons.lang.StringUtils;
@@ -64,6 +65,9 @@ public class IndexResource extends BaseResource {
     }
     request.setAttribute("categories", categories);
     request.setAttribute("courses", courseMap);
+    if (null != getSessionUser()) {
+      request.setAttribute("isLogin", true);
+    }
     return Response.ok(new Viewable("index")).build();
   }
 

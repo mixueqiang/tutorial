@@ -57,7 +57,7 @@
                     </c:choose>
                   </div>
                   <div class="section-title md">
-                    <a href="/course/121" target="_blank">${item.name}</a>
+                    <a href="/course/${item.id}" target="_blank">${item.name}</a>
                   </div>
                   <div class="section-caption row-space sm">${item.properties.instructor.name}</div>
                   <div class="section-content row-space ln-1">${item.content}</div>

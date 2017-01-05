@@ -58,6 +58,7 @@ public class IndexResource extends BaseResource {
       List<Course> courses = entityDao.find(Course.SQL_TABLE_NAME, condition, 0, 4, CourseRowMapper.getInstance());
       for (Course course : courses) {
         setCourseProperties(course);
+        setSubscripts(course);
       }
       courseMap.put(id, courses);
     }
@@ -126,6 +127,28 @@ public class IndexResource extends BaseResource {
         course.getProperties().put("instructor", instructor);
       }
     }
+  }
+
+  private void setSubscripts(Course course) {
+    StringBuilder sb = new StringBuilder();
+    if (course.getStatus() == Constants.STATUS_NOT_READY) {
+      sb.append("正在审核");
+    } else if (course.getStatus() < Constants.STATUS_NOT_READY) {
+      sb.append("已删除");
+    } else {
+      if (course.getAppliable() == Course.APPLIABLE_FALSE) {
+        sb.append("已结束  ");
+      }
+      if (course.isCountShow()) {
+        sb.append("共").append(course.getCount()).append("人  ");
+      }
+      if (StringUtils.isNotEmpty(course.getSubscript())) {
+        sb.append(course.getSubscript());
+      }
+    }
+    course.setSubscript(sb.toString());
+    String superScript = course.getSuperscript();
+    course.setSuperscript("");
   }
 
 }

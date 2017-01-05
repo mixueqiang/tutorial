@@ -4,7 +4,7 @@
     <div class="container">
       <a class="hero-brand xxl" href="/">一课</a>
       <ul class="nav pull-right">
-        <li class="pull-left"><a class="btn btn-success" href="/course/create">发布一门实践课程</a></li>
+        <li class="pull-left"><a id="publishTop" class="btn btn-success" href="/course/create">发布一门实践课程</a></li>
         <c:choose>
           <c:when test="${not empty _user}">
             <li class="pull-left col-space-2"><a href="/dashboard">${_user.phone}</a></li>
@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<div class="marketing-courses row-space-top-10">
+<div class="marketing-courses row-space-top-5">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -44,25 +44,27 @@
           </div>
           <div class="row row-space-top-1">
             <c:forEach var="item" items="${courses[item.id]}">
-              <div class="col-md-3 col-sm-6">
-                <div class="section">
-                  <div class="section-cover">
-                    <c:choose>
-                      <c:when test="${not empty item.image}">
-                        <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/${item.image}!M">
-                      </c:when>
-                      <c:otherwise>
-                        <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/static/course-cover.png!M">
-                      </c:otherwise>
-                    </c:choose>
-                  </div>
-                  <div class="section-title md">
-                    <a href="/course/${item.id}" target="_blank">${item.name}</a>
-                  </div>
-                  <div class="section-caption row-space sm">${item.properties.instructor.name}</div>
-                  <div class="section-content row-space ln-1">${item.content}</div>
-                  <div class="section-footer">
-                    <span class="text-muted">${item.superscript}</span><span class="course-price pull-right">¥${item.price}</span>
+              <div class="col-md-3 col-sm-6 panel">
+                <div class="panel-body">
+                  <div class="section">
+                    <div class="section-cover">
+                      <c:choose>
+                        <c:when test="${not empty item.image}">
+                          <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/${item.image}!M">
+                        </c:when>
+                        <c:otherwise>
+                          <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/static/course-cover.png!M">
+                        </c:otherwise>
+                      </c:choose>
+                    </div>
+                    <div class="section-title md">
+                      <a href="/course/${item.id}" target="_blank">${item.name}</a>
+                    </div>
+                    <div class="section-caption row-space sm">${item.properties.instructor.name}</div>
+                    <div class="section-content row-space ln-1">${item.content}</div>
+                    <div class="section-footer">
+                      <span class="text-muted">${item.superscript}</span><span class="course-price pull-right">¥${item.price}</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -79,7 +81,127 @@
     <div class="col-middle content">
       <h1>每位有工作经验的人都是老师</h1>
       <h2 class="subtitle"></h2>
-      <a class="btn btn-success row-space-top-6" href="/">发布一门实践课程</a>
+      <a id="publishBottom" class="btn btn-success row-space-top-6" href="/course/create">发布一门实践课程</a>
     </div>
   </div>
 </div>
+<div id="aboutUs" class="container">
+  <div class="row">
+    <div class="about col-xs-12 col-sm-12 col-md-5 col-lg-5">
+      <h1>About Us</h1>
+      <p>一课是一个专注实践类课程的平台。在一课，你可以通过实践课程参与到真实的项目中，收获到真实的动手经验。一课致力于把真实的经验和实战带给学员，也希望学员能通过老师分享的经验和实战把学到的东西快速上手。术业专攻，一课上手。</p>
+      <p>在一课，经验和实战是最大的老师。每一位有经验和实战的人都是一课在寻找的好老师。如果你在某一专业上有实战经验，联系我们，让我们一起让经验和实战发挥更大的作用。我们诚挚的邀请各位有行业经验的老师来发挥你的才智。</p>
+    </div>
+    <div class="contact col-xs-12 col-sm-12 col-md-5 col-md-offset-2 col-lg-5 col-lg-offset-2">
+      <h1>Contact Us</h1>
+      <p>每一个有工作经验的人都可以讲课，告诉我们你的工作经历，让我们和你 一起设计一门实践课程。</p>
+      <form class="text-left" id="contact_form" action="/api/v1/invitation" method="post" class="form-inline" role="form">
+        <div class="form-group">
+          <label for="name">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label> <input id="name" type="text" name="name" placeholder="请输入姓名">
+        </div>
+        <div class="form-group">
+          <label for="contacts">联系方式：</label> <input id="contacts" type="text" name="contacts" placeholder="请输入联系方式">
+        </div>
+        <div class="form-group">
+          <label for="content">工作经历：</label> <input id="content" type="text" name="content" placeholder="请输入工作经历">
+        </div>
+        <button id="btn" type="submit" class="btn btn-danger">Let's talk</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">反馈</h4>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">好的</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+	$('#contact_form').validate({
+		rules : {
+			name : {
+				required : true,
+			},
+			contacts : {
+				required : true,
+			},
+			content : {
+				required : true,
+			},
+
+		},
+		messages : {
+			name : {
+				required : '请输入你的名字',
+			},
+			contacts : {
+				required : '请输入联系方式',
+			},
+			content : {
+				required : '请输入你的工作经历',
+			},
+
+		},
+		submitHandler : function(form) {
+			var $btn = $('button[type=submit]', $(form));
+			$btn.attr('disabled', 'disabled').addClass('disabled');
+			if (!$(form).valid()) {
+				$('.error').eq(0).focus();
+				$btn.removeAttr('disabled').removeClass('disabled');
+				return false;
+			}
+			$(form).ajaxSubmit({
+				success : function(resp) {
+					if (resp && resp.e == 0) {
+						$('input,textarea', $(form)).val('');
+						$btn.removeAttr('disabled').removeClass('disabled');
+						var id = resp.r;
+             $('.modal-body').html('感谢你的提交，我们会很快和你取得联系。');
+            $('#myModal').modal('show');
+						/*alert('感谢你的提交，我们会很快和你取得联系。');*/
+					} else {
+						$btn.removeAttr('disabled').removeClass('disabled');
+            $('.modal-body').html('信息提交失败:' + resp.m);
+            $('#myModal').modal('show');
+						/*alert('信息提交失败:' + resp.m);*/
+					}
+				},
+				error : function() {
+					$btn.removeAttr('disabled').removeClass('disabled');
+          $('.modal-body').html('信息提交失败:' + resp.m);
+          $('#myModal').modal('show');
+					/*alert('信息提交失败:' + resp.m);*/
+				}
+			});
+		}
+	});
+	/* 不登陆状态，发布课程跳到底部 */
+	$('#publishTop').click(function(){
+		if(${isLogin}==false){/* 不登陆 */
+		    $("html,body").animate({scrollTop:$('#aboutUs').get(0).offsetTop}, 500);
+		    $('#publishTop').attr("href","#");
+		  }else{
+		    $('#publishTop').attr("href","/course/create");
+		  }
+	})
+	$('#publishBottom').click(function(){
+    if(${isLogin}==false){/* 没登陆 */
+        console.log($('#aboutUs').get(0).offsetTop);
+        $("html,body").animate({scrollTop:$('#aboutUs').get(0).offsetTop}, 500);
+        $('#publishBottom').attr("href","#");
+      }else{
+        $('#publishBottom').attr("href","/course/create");
+      }
+  })
+</script>

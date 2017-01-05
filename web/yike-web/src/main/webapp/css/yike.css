@@ -56,6 +56,10 @@ input, select, textarea, .btn, .form-control, .panel {
   color: #666;
 }
 
+#aboutUs {
+  padding-top: 50px; text-align: center; background-color: #fff;
+}
+
 .error {
   color: #dd4b39;
 }
@@ -360,6 +364,10 @@ input, select, textarea, .btn, .form-control, .panel {
   display: inline; padding: 0 2px;
 }
 
+
+.panel-body{
+  padding:15px; border:1px solid #ddd; min-height: 280px; position: relative;
+}
 .section {
   
 }
@@ -409,9 +417,13 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-footer {
-  
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
 }
+.contact_form input{
 
+}
 .course-price {
   color: #333;
 }
@@ -533,3 +545,15 @@ input, select, textarea, .btn, .form-control, .panel {
   margin: 0 15px 0 0; font-size: 27px; line-height: inherit;
 }
 /*subnav-end*/
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+  margin: 2px 0 0 -18px;
+}
+
+.file-input-container {
+  position: relative; overflow: hidden;
+}
+
+.file-input-container input[type=file] {
+  cursor: pointer; position: absolute; font-size: 200px; top: 0; bottom: 0; right: 0; opacity: 0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}

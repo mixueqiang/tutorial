@@ -56,6 +56,7 @@ public class ApiInvitationResource extends BaseResource {
               .set(Invitation.SQL_CONTENT, content)
               .set(Invitation.SQL_CREATE_TIME, time)
               .set(Invitation.SQL_STATUS, Constants.STATUS_NOT_READY);
+
       entityDao.save(entity);
 
       return ResponseBuilder.OK;

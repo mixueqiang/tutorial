@@ -45,11 +45,13 @@ public class IndexResource extends BaseResource {
     List<Category> categories = entityDao.find(Category.SQL_TABLE_NAME, Category.SQL_STATUS, Constants.STATUS_OK, CategoryRowMapper.getInstance());
 
     Map<Long, List<Course>> courseMap = new HashMap<Long, List<Course>>();
-    Map<String, Object> condition = new HashMap<String, Object>();
-    condition.put(Course.SQL_STATUS, Constants.STATUS_READY);
-    condition.put(Course.SQL_APPLIABLE, Course.APPLIABLE_TRUE);
+
     for (Category category : categories) {
       long id = category.getId();
+      Map<String, Object> condition = new HashMap<String, Object>();
+      condition.put(Course.SQL_STATUS, Constants.STATUS_READY);
+      condition.put(Course.SQL_APPLIABLE, Course.APPLIABLE_TRUE);
+      condition.put(Course.SQL_CATEGORY_ID, id);
       List<Course> courses = entityDao.find(Course.SQL_TABLE_NAME, condition, 0, 4, CourseRowMapper.getInstance());
       courseMap.put(id, courses);
     }

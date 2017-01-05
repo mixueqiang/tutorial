@@ -172,19 +172,23 @@ public class CourseResource extends BaseResource {
     List<Course> courses = result.right;
     request.setAttribute("courses", courses);
 
-    for (Course course : courses) {
-      if (course == null || course.isDisabled()) {
-        continue;
-      }
-      setCourseProperties(course);
-      setSubscripts(course);
-    }
-
     List<Category> categories = entityDao.find(
             Category.SQL_TABLE_NAME,
             Category.SQL_STATUS,
             Constants.STATUS_OK,
             CategoryRowMapper.getInstance());
+
+    for (Course course : courses) {
+      if (course == null || course.isDisabled()) {
+        continue;
+      }
+      setCourseProperties(course);
+      String categoryForSubscript = null;
+      if (categoryId == 0) {
+        categoryForSubscript = ((Category)course.getProperties().get("category")).getName();
+      }
+      setSubscripts(course, categoryForSubscript);
+    }
 
     // pagination.
     long count = result.left;
@@ -254,8 +258,11 @@ public class CourseResource extends BaseResource {
     return instructor.getId();
   }
 
-  private void setSubscripts(Course course) {
+  private void setSubscripts(Course course, String category) {
     StringBuilder sb = new StringBuilder();
+    if (StringUtils.isNotEmpty(category)) {
+      sb.append(category).append("  ");
+    }
     if (course.getStatus() == Constants.STATUS_NOT_READY) {
       sb.append("正在审核");
     } else if (course.getStatus() < Constants.STATUS_NOT_READY) {

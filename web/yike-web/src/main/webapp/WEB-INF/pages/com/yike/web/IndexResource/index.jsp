@@ -31,155 +31,44 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title">
-              <div class="lg pull-left">翻译</div>
-              <div class="md pull-right">
-                <a href="/course">更多课程</a>
+        <c:forEach var="item" items="${categories}">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="title">
+                <div class="lg pull-left">${item.name}</div>
+                <div class="md pull-right">
+                  <a href="/course?c=${item.id}">更多课程</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="row row-space-top-1">
-          <div class="col-md-3 col-sm-6">
-            <div class="section">
-              <div class="section-cover">
-                <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
+          <div class="row row-space-top-1">
+            <c:forEach var="item" items="${courses[item.id]}">
+              <div class="col-md-3 col-sm-6">
+                <div class="section">
+                  <div class="section-cover">
+                    <c:choose>
+                      <c:when test="${not empty item.image}">
+                        <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/${item.image}!M">
+                      </c:when>
+                      <c:otherwise>
+                        <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/static/course-cover.png!M">
+                      </c:otherwise>
+                    </c:choose>
+                  </div>
+                  <div class="section-title md">
+                    <a href="/course/121" target="_blank">${item.name}</a>
+                  </div>
+                  <div class="section-caption row-space sm">${item.properties.instructor.name}</div>
+                  <div class="section-content row-space ln-1">${item.content}</div>
+                  <div class="section-footer">
+                    <span class="text-muted">${item.superscript}</span><span class="course-price pull-right">¥${item.price}</span>
+                  </div>
+                </div>
               </div>
-              <div class="section-title md">
-                <a href="/course/121" target="_blank">英文原版阅读</a>
-              </div>
-              <div class="section-caption row-space sm">翻译与翻译研究</div>
-              <div class="section-content row-space ln-1">阅读20本近二十年英美人文社科类书籍</div>
-              <div class="section-footer">
-                <span class="text-muted">10人报名</span><span class="course-price pull-right">¥100</span>
-              </div>
-            </div>
+            </c:forEach>
           </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="section">
-              <div class="section-cover">
-                <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
-              </div>
-              <div class="section-title md">
-                <a href="/course/171" target="_blank">翻译搜索公开课：以医学翻译为例（录播）</a>
-              </div>
-              <div class="section-caption row-space sm">译匠</div>
-              <div class="section-content row-space ln-1">我们推出原版阅读实验项目，至今已有两年，参加并坚持下来的同学，可谓收获多多。计划在一年（12个月）的时间里，细读（close reading）10-12本英美近20年出版的原版精品，每月细读1本，每周分享一次，每周讲评一次；同时提供原版的音频，以便大家充分利用碎片时间。</div>
-              <div class="section-footer">
-                <span class="text-muted">300人报名</span><span class="course-price pull-right">¥2983</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="section">
-              <div class="section-cover">
-                <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
-              </div>
-              <div class="section-title md">
-                <a href="/course/171" target="_blank">翻译搜索公开课：以医学翻译为例（录播）</a>
-              </div>
-              <div class="section-caption row-space sm">译匠</div>
-              <div class="section-content row-space ln-1">我们推出原版阅读实验项目，至今已有两年，参加并坚持下来的同学，可谓收获多多。计划在一年（12个月）的时间里，细读（close reading）10-12本英美近20年出版的原版精品，每月细读1本，每周分享一次，每周讲评一次；同时提供原版的音频，以便大家充分利用碎片时间。</div>
-              <div class="section-footer">
-                <span class="text-muted">300人报名</span><span class="course-price pull-right">¥2983</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="section">
-              <div class="section-cover">
-                <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
-              </div>
-              <div class="section-title md">
-                <a href="/course/171" target="_blank">翻译搜索公开课：以医学翻译为例（录播）</a>
-              </div>
-              <div class="section-caption row-space sm">译匠</div>
-              <div class="section-content row-space ln-1">我们推出原版阅读实验项目，至今已有两年，参加并坚持下来的同学，可谓收获多多。计划在一年（12个月）的时间里，细读（close reading）10-12本英美近20年出版的原版精品，每月细读1本，每周分享一次，每周讲评一次；同时提供原版的音频，以便大家充分利用碎片时间。</div>
-              <div class="section-footer">
-                <span class="text-muted">300人报名</span><span class="course-price pull-right">¥2983</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row row-space-top-6">
-          <div class="col-md-12">
-            <div class="title">
-              <div class="lg pull-left">计算机技术</div>
-              <div class="md pull-right">
-                <a href="/course">更多课程</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row row-space-top-1">
-          <div class="col-md-3 col-sm-6">
-            <div class="section">
-              <div class="section-cover">
-                <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
-              </div>
-              <div class="section-title md">
-                <a href="/course/171" target="_blank">翻译搜索公开课：以医学翻译为例（录播）</a>
-              </div>
-              <div class="section-caption row-space sm">译匠</div>
-              <div class="section-content row-space ln-1">我们推出原版阅读实验项目，至今已有两年，参加并坚持下来的同学，可谓收获多多。计划在一年（12个月）的时间里，细读（close reading）10-12本英美近20年出版的原版精品，每月细读1本，每周分享一次，每周讲评一次；同时提供原版的音频，以便大家充分利用碎片时间。</div>
-              <div class="section-footer">
-                <span class="text-muted">300人报名</span><span class="course-price pull-right">¥2983</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="section">
-              <div class="section-cover">
-                <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
-              </div>
-              <div class="section-title md">
-                <a href="/course/171" target="_blank">翻译搜索公开课：以医学翻译为例（录播）</a>
-              </div>
-              <div class="section-caption row-space sm">译匠</div>
-              <div class="section-content row-space ln-1">我们推出原版阅读实验项目，至今已有两年，参加并坚持下来的同学，可谓收获多多。计划在一年（12个月）的时间里，细读（close reading）10-12本英美近20年出版的原版精品，每月细读1本，每周分享一次，每周讲评一次；同时提供原版的音频，以便大家充分利用碎片时间。</div>
-              <div class="section-footer">
-                <span class="text-muted">300人报名</span><span class="course-price pull-right">¥2983</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="section">
-              <div class="section-cover">
-                <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
-              </div>
-              <div class="section-title md">
-                <a href="/course/171" target="_blank">翻译搜索公开课：以医学翻译为例（录播）</a>
-              </div>
-              <div class="section-caption row-space sm">译匠</div>
-              <div class="section-content row-space ln-1">我们推出原版阅读实验项目，至今已有两年，参加并坚持下来的同学，可谓收获多多。计划在一年（12个月）的时间里，细读（close reading）10-12本英美近20年出版的原版精品，每月细读1本，每周分享一次，每周讲评一次；同时提供原版的音频，以便大家充分利用碎片时间。</div>
-              <div class="section-footer">
-                <span class="text-muted">300人报名</span><span class="course-price pull-right">¥2983</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="section">
-              <div class="section-cover">
-                <img src="http://transkip.b0.upaiyun.com/201612/20161224001001.jpg!M">
-              </div>
-              <div class="section-title md">
-                <a href="/course/171" target="_blank">翻译搜索公开课：以医学翻译为例（录播）</a>
-              </div>
-              <div class="section-caption row-space sm">译匠</div>
-              <div class="section-content row-space ln-1">我们推出原版阅读实验项目，至今已有两年，参加并坚持下来的同学，可谓收获多多。计划在一年（12个月）的时间里，细读（close reading）10-12本英美近20年出版的原版精品，每月细读1本，每周分享一次，每周讲评一次；同时提供原版的音频，以便大家充分利用碎片时间。</div>
-              <div class="section-footer">
-                <span class="text-muted">300人报名</span><span class="course-price pull-right">¥2983</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        </c:forEach>
       </div>
     </div>
   </div>

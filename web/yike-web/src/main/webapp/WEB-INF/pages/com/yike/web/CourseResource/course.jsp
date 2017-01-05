@@ -31,18 +31,18 @@
                       </c:choose></span>
                     <c:choose>
                       <c:when test="${hasApplied}">
-                        <button class="btn green large" disabled="disabled">已报名</button>
+                        <button class="btn btn-success large" disabled="disabled">已报名</button>
                       </c:when>
                       <c:otherwise>
                         <c:choose>
                           <c:when test="${course.status eq 0}">
-                            <button class="btn gray large" disabled="disabled">审核中</button>
+                            <button class="btn btn-danger large" disabled="disabled">审核中</button>
                           </c:when>
                           <c:when test="${course.status eq 1 and course.appliable lt 1}">
-                            <button class="btn red large" disabled="disabled">已结束招生</button>
+                            <button class="btn btn-danger large" disabled="disabled">已结束招生</button>
                           </c:when>
                           <c:when test="${course.status eq 1 and course.appliable eq 1}">
-                            <a class="btn green large" data-toggle="modal" data-target="#applicationModal" href="#">报名</a>
+                            <a class="btn btn-success large" data-toggle="modal" data-target="#applicationModal" href="#">报名</a>
                           </c:when>
                         </c:choose>
                       </c:otherwise>

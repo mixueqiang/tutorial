@@ -86,10 +86,10 @@ public class InstructorResource extends BaseResource {
       sb.append("已删除");
     } else {
       if (course.getAppliable() == Course.APPLIABLE_FALSE) {
-        sb.append("已结束  ");
+        sb.append("已结束   ");
       }
       if (course.isCountShow()) {
-        sb.append("共").append(course.getCount()).append("人  ");
+        sb.append("共").append(course.getCount()).append("人   ");
       }
       if (StringUtils.isNotEmpty(course.getSubscript())) {
         sb.append(course.getSubscript());

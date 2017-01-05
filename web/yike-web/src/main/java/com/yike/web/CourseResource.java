@@ -261,7 +261,7 @@ public class CourseResource extends BaseResource {
   private void setSubscripts(Course course, String category) {
     StringBuilder sb = new StringBuilder();
     if (StringUtils.isNotEmpty(category)) {
-      sb.append(category).append("  ");
+      sb.append(category).append("   ");
     }
     if (course.getStatus() == Constants.STATUS_NOT_READY) {
       sb.append("正在审核");
@@ -269,10 +269,10 @@ public class CourseResource extends BaseResource {
       sb.append("已删除");
     } else {
       if (course.getAppliable() == Course.APPLIABLE_FALSE) {
-        sb.append("已结束  ");
+        sb.append("已结束   ");
       }
       if (course.isCountShow()) {
-        sb.append("共").append(course.getCount()).append("人  ");
+        sb.append("共").append(course.getCount()).append("人   ");
       }
       if (StringUtils.isNotEmpty(course.getSubscript())) {
         sb.append(course.getSubscript());

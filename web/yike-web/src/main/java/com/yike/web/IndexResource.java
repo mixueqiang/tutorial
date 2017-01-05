@@ -4,9 +4,12 @@ import com.sun.jersey.api.view.Viewable;
 import com.yike.Constants;
 import com.yike.dao.mapper.CategoryRowMapper;
 import com.yike.dao.mapper.CourseRowMapper;
+import com.yike.dao.mapper.InstructorRowMapper;
 import com.yike.model.Category;
 import com.yike.model.Course;
+import com.yike.model.Instructor;
 import com.yike.service.SessionService;
+import com.yike.util.StringUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -53,6 +56,9 @@ public class IndexResource extends BaseResource {
       condition.put(Course.SQL_APPLIABLE, Course.APPLIABLE_TRUE);
       condition.put(Course.SQL_CATEGORY_ID, id);
       List<Course> courses = entityDao.find(Course.SQL_TABLE_NAME, condition, 0, 4, CourseRowMapper.getInstance());
+      for (Course course : courses) {
+        setCourseProperties(course);
+      }
       courseMap.put(id, courses);
     }
     request.setAttribute("categories", categories);
@@ -107,6 +113,19 @@ public class IndexResource extends BaseResource {
   @Produces(MediaType.TEXT_HTML)
   public Response signupWithMobile() throws Throwable {
     return Response.ok(new Viewable("signup_mobile")).build();
+  }
+
+  private void setCourseProperties(Course course) {
+    course.setTeachingType(StringUtil.replaceNewLine(course.getTeachingType()));
+    course.setDescription(StringUtil.replaceNewLine(course.getDescription()));
+    course.setContent(StringUtil.replaceNewLine(course.getContent()));
+
+    if (course.getInstructorId() > 0) {
+      Instructor instructor = entityDao.get(Instructor.SQL_TABLE_NAME, course.getInstructorId(), InstructorRowMapper.getInstance());
+      if (null != instructor) {
+        course.getProperties().put("instructor", instructor);
+      }
+    }
   }
 
 }

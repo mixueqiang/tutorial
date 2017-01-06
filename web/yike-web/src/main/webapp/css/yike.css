@@ -569,13 +569,22 @@ input, select, textarea, .btn, .form-control, .panel {
   font-weight: 300; font-size: 18px; line-height: 38px; color: #16364f; line-height: 1.2; margin: 0; letter-spacing: .5px; text-align: left;
 }
 
-#contact_form{
-  margin-top:25px;
+#contact_form {
+  margin-top: 25px;
 }
-#contact_form input, #contact_form textarea{
-  outline: none;
-  border: 
+
+#contact_form .form-group {
+  position: relative;
 }
+
+#contact_form .control-label-show {
+  position: absolute; top: -12px; left: 0; display: none; color: rgba(195, 204, 210, 1);
+}
+
+#contact_form input, #contact_form textarea {
+  outline: none; border: 0;
+}
+
 #contact_form input[type=text], #contact_form textarea {
   -moz-appearance: none; -webkit-appearance: none; appearance: none; border: none; border-bottom: 1px solid #DBE1EC; margin: 0; padding: 12px 0; display: block; box-sizing: border-box; width: 100%;
   max-width: 100%; min-width: 100%; resize: none; transition: all 200ms ease-in-out; color: #16364f;

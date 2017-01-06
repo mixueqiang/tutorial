@@ -97,13 +97,14 @@
       <p>每一个有工作经验的人都可以讲课，告诉我们你的工作经历，让我们和你一起设计一门实践课程。</p>
       <form class="text-left" id="contact_form" action="/api/v1/invitation" method="post" class="form-inline" role="form">
         <div class="form-group">
-          <input id="name" type="text" name="name" placeholder="请输入姓名">
+          <label id="nameLable" for="name" class="control-label-show">姓名</label> <input id="name" type="text" name="name" placeholder="姓名">
         </div>
         <div class="form-group">
-          <input id="contacts" type="text" name="contacts" placeholder="请输入联系方式">
+          <label id="contactsLable" for="contacts" class="control-label-show">联系方式</label> <input id="contacts" type="text" name="contacts" placeholder="联系方式">
         </div>
         <div class="form-group">
-          <textarea id="content" name="content" class="form-control" rows="3" placeholder="请输入工作经历"></textarea>
+          <label id="contentLable" for="content" class="control-label-show">工作经历</label>
+          <textarea id="content" name="content" class="form-control" rows="3" placeholder="工作经历"></textarea>
         </div>
         <button id="btn" type="submit" class="btn btn-danger">取得联系</button>
       </form>
@@ -128,6 +129,33 @@
   </div>
 </div>
 <script>
+$(function(){
+   /*输入文本显示文字出现*/
+   $('#name').focus(function(){
+        $('#nameLable').css('display','block');
+    });
+   $('#contacts').focus(function(){
+        $('#contactsLable').css('display','block');
+    });
+   $('#content').focus(function(){
+        $('#contentLable').css('display','block');
+    });
+   $('#name').blur(function(){
+      if($('#name').val()==''){
+        $('#nameLable').css('display','none');
+      }
+    });
+   $('#contacts').blur(function(){
+      if($('#contacts').val()==''){
+        $('#contactsLable').css('display','none');
+      }
+    });
+   $('#content').blur(function(){
+      if($('#content').val()==''){
+        $('#contentLable').css('display','none');
+      }
+    });
+})
 	$('#contact_form').validate({
 		rules : {
 			name : {

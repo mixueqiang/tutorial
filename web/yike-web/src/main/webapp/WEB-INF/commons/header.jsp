@@ -7,7 +7,7 @@
         <!--<li class="pull-left"><a class="btn btn-success" href="/course/create">发布一门实践课程</a></li>-->
         <c:choose>
           <c:when test="${not empty _user}">
-            <li class="pull-left col-space-2"><a href="/dashboard">${_user.phone}</a></li>
+            <li class="pull-left col-space-2"><a href="/dashboard">${_user.username}</a></li>
             <li class="pull-left col-space-2"><a href="/courses">我的课程</a></li>
             <li class="pull-left col-space-2"><a href="/signout">退出</a></li>
           </c:when>

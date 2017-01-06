@@ -83,7 +83,7 @@ public class IndexResource extends BaseResource {
     }
     User user = getSessionUser();
     if (null != user) {
-      request.setAttribute("username", user.getName());
+      request.setAttribute("username", user.getUsername());
     }
     request.setAttribute("isLogin", null != user);
     request.setAttribute("categories", categories);

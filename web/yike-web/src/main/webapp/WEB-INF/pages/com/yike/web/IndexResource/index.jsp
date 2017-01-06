@@ -45,7 +45,7 @@
           <div class="row row-space-top-1">
             <c:forEach var="item" items="${courses[item.id]}">
               <div class="col-md-3 col-sm-6 panel">
-                <div class="panel-body">
+                <div class="index-panel-body">
                   <div class="section">
                     <div class="section-cover">
                       <c:choose>

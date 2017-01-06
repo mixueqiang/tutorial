@@ -7,7 +7,7 @@
         <li class="pull-left"><a id="publishTop" class="btn btn-success" href="/course/create">发布一门实践课程</a></li>
         <c:choose>
           <c:when test="${not empty _user}">
-            <li class="pull-left col-space-2"><a href="/dashboard">${_user.phone}</a></li>
+            <li class="pull-left col-space-2"><a href="/dashboard">${_user.username}</a></li>
             <li class="pull-left col-space-2"><a href="/signout">退出</a></li>
           </c:when>
           <c:otherwise>
@@ -22,7 +22,7 @@
     <div class="col-middle content">
       <h1>学习，并且实战</h1>
       <h2 class="subtitle"></h2>
-      <a class="btn btn-success row-space-top-6" href="/signup" target="_blank">注册</a>
+      <a id="signup" class="btn btn-success row-space-top-6" href="/signup" target="_blank">注册</a>
     </div>
   </div>
 </div>
@@ -234,4 +234,10 @@ $(function(){
         $('#publishBottom').attr("href","/course/create");
       }
   })
+  
+  /* 对于不登录状态 注册显示 */
+  if(${isLogin}==true){
+    $('#signup').attr("href","/course");
+    $('#signup').html('全部课程');
+  }
 </script>

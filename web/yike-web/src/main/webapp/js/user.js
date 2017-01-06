@@ -156,7 +156,7 @@ $(function() {
             var message = '注册成功，';
 
             Message.info(message, false, $('.form-group:last', $(form)));
-
+            window.history.go(-1);
           } else {
             $('input[name=password]', $('#signup-form')).val('');
             Message.error('注册失败：' + resp.m, false, $('.form-group:last', $(form)));

@@ -103,8 +103,8 @@
           <label id="contactsLable" for="contacts" class="control-label-show">联系方式</label> <input id="contacts" type="text" name="contacts" placeholder="联系方式">
         </div>
         <div class="form-group">
-          <label id="contentLable" for="content" class="control-label-show">工作经历</label>
-          <textarea id="content" name="content" class="form-control" rows="3" placeholder="工作经历" style='overflow: auto; outline:0; border-style:none;border-color:#FFFFFF'>是分段函数返回的时间咖啡接口是否的时间发科世达福快的说法回家看电视阿富汗看电视剧分迪斯科解放倒萨</textarea>
+          <label id="contentLable" for="content" class="control-label-show ">工作经历</label>
+          <textarea id="content" name="content" rows="3" placeholder="工作经历" ></textarea>
         </div>
         <button id="btn" type="submit" class="btn btn-danger">取得联系</button>
       </form>

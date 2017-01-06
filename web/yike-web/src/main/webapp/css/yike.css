@@ -554,7 +554,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 /* index.jsp */
 #aboutUs {
-   text-align: center; background-color: #fff; min-height: 516px;
+  text-align: center; background-color: #fff; min-height: 516px;
 }
 
 #aboutUs h1 {
@@ -577,18 +577,23 @@ input, select, textarea, .btn, .form-control, .panel {
   position: relative;
 }
 
+#contact_form .form-group:nth-child(3) {
+  margin-top: 30px;
+}
+
 #contact_form .control-label-show {
   position: absolute; top: -12px; left: 0; display: none; color: rgba(195, 204, 210, 1);
 }
 
-#contact_form input, #contact_form textarea {
-  outline: none; border: 0;
+#contact_form #contentLable {
+  top: -22px;
 }
 
 #contact_form input[type=text], #contact_form textarea {
-  border: none; border-bottom: 1px solid #DBE1EC; margin: 0; padding: 12px 0; display: block; box-sizing: border-box; width: 100%; max-width: 100%; min-width: 100%; resize: none; color: #16364f;
+  outline: none; border: none; border-bottom: 1px solid #DBE1EC; margin: 0; padding: 12px 0; display: block; box-sizing: border-box; width: 100%; max-width: 100%; min-width: 100%; resize: none;
+  color: #16364f;
 }
-.index-panel{
-  margin-bottom: 20px;
-  background-color: #fff;
+
+.index-panel {
+  margin-bottom: 20px; background-color: #fff;
 }

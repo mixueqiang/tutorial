@@ -56,10 +56,6 @@ input, select, textarea, .btn, .form-control, .panel {
   color: #666;
 }
 
-#aboutUs {
-  padding-top: 50px; text-align: center; background-color: #fff;
-}
-
 .error {
   color: #dd4b39;
 }
@@ -557,8 +553,12 @@ input, select, textarea, .btn, .form-control, .panel {
   cursor: pointer; position: absolute; font-size: 200px; top: 0; bottom: 0; right: 0; opacity: 0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 }
 /* index.jsp */
+#aboutUs {
+   text-align: center; background-color: #fff; min-height: 516px;
+}
+
 #aboutUs h1 {
-  font-size: 24px; font-weight: 600; text-transform: uppercase; color: #b7c2c9; margin: 0 0 35px 0; letter-spacing: 1px; line-height: 16px; text-align: left;
+  padding-top: 60px; font-size: 24px; font-weight: 600; text-transform: uppercase; color: #b7c2c9; margin: 0 0 35px 0; letter-spacing: 1px; line-height: 16px; text-align: left;
 }
 
 #aboutUs .about p {
@@ -586,6 +586,5 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 #contact_form input[type=text], #contact_form textarea {
-  -moz-appearance: none; -webkit-appearance: none; appearance: none; border: none; border-bottom: 1px solid #DBE1EC; margin: 0; padding: 12px 0; display: block; box-sizing: border-box; width: 100%;
-  max-width: 100%; min-width: 100%; resize: none; transition: all 200ms ease-in-out; color: #16364f;
+  border: none; border-bottom: 1px solid #DBE1EC; margin: 0; padding: 12px 0; display: block; box-sizing: border-box; width: 100%; max-width: 100%; min-width: 100%; resize: none; color: #16364f;
 }

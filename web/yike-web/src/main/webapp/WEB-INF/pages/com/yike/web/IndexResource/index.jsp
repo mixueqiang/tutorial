@@ -92,7 +92,7 @@
       <p>一课是一个专注实践类课程的平台。在一课，你可以通过实践课程参与到真实的项目中，收获到真实的动手经验。一课致力于把真实的经验和实战带给学员，也希望学员能通过老师分享的经验和实战把学到的东西快速上手。术业专攻，一课上手。</p>
       <p>在一课，经验和实战是最大的老师。每一位有经验和实战的人都是一课在寻找的好老师。如果你在某一专业上有实战经验，联系我们，让我们一起让经验和实战发挥更大的作用。我们诚挚的邀请各位有行业经验的老师来发挥你的才智。</p>
     </div>
-    <div class="contact col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div id="contact" class="contact col-xs-12 col-sm-12 col-md-6 col-lg-6">
       <h1>为你设计</h1>
       <p>每一个有工作经验的人都可以讲课，告诉我们你的工作经历，让我们和你一起设计一门实践课程。</p>
       <form class="text-left" id="contact_form" action="/api/v1/invitation" method="post" class="form-inline" role="form">
@@ -104,7 +104,7 @@
         </div>
         <div class="form-group">
           <label id="contentLable" for="content" class="control-label-show">工作经历</label>
-          <textarea id="content" name="content" class="form-control" rows="3" placeholder="工作经历"></textarea>
+          <textarea id="content" name="content" class="form-control" rows="3" placeholder="工作经历" style='overflow: auto; outline:0; border-style:none;border-color:#FFFFFF'>是分段函数返回的时间咖啡接口是否的时间发科世达福快的说法回家看电视阿富汗看电视剧分迪斯科解放倒萨</textarea>
         </div>
         <button id="btn" type="submit" class="btn btn-danger">取得联系</button>
       </form>
@@ -130,7 +130,7 @@
 </div>
 <script>
 $(function(){
-   /*输入文本显示文字出现*/
+   /*输入文本placeholder消失时，替代文字出现*/
    $('#name').focus(function(){
         $('#nameLable').css('display','block');
     });
@@ -140,6 +140,7 @@ $(function(){
    $('#content').focus(function(){
         $('#contentLable').css('display','block');
     });
+   /*输入文本placeholder出现时，替代文字消失*/
    $('#name').blur(function(){
       if($('#name').val()==''){
         $('#nameLable').css('display','none');
@@ -156,6 +157,7 @@ $(function(){
       }
     });
 })
+/*表单验证事件*/
 	$('#contact_form').validate({
 		rules : {
 			name : {
@@ -214,10 +216,11 @@ $(function(){
 			});
 		}
 	});
-	/* 不登陆状态，发布课程跳到底部 */
+
+	/* 不登陆状态，发布课程跳到底部 ;登陆状态 跳转道发布课程页*/
 	$('#publishTop').click(function(){
-		if(${isLogin}==false){/* 不登陆 */
-		    $("html,body").animate({scrollTop:$('#aboutUs').get(0).offsetTop}, 500);
+		if(${isLogin}==false){/* 没登陆 */
+		    $("html,body").animate({scrollTop:$('#contact').get(0).offsetTop}, 500);
 		    $('#publishTop').attr("href","#");
 		  }else{
 		    $('#publishTop').attr("href","/course/create");
@@ -225,8 +228,7 @@ $(function(){
 	})
 	$('#publishBottom').click(function(){
     if(${isLogin}==false){/* 没登陆 */
-        console.log($('#aboutUs').get(0).offsetTop);
-        $("html,body").animate({scrollTop:$('#aboutUs').get(0).offsetTop}, 500);
+        $("html,body").animate({scrollTop:$('#contact').get(0).offsetTop}, 500);
         $('#publishBottom').attr("href","#");
       }else{
         $('#publishBottom').attr("href","/course/create");

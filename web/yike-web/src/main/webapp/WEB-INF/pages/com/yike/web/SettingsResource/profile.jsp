@@ -63,7 +63,7 @@
         <h4 class="modal-title" id="imageModalLabel">设置头像</h4>
       </div>
       <div class="modal-body">
-        <div class="form-group">
+        <div class="form-group clearfix">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <span class="btn btn-default file-input-container"> 从电脑选择并上传图片 <input type="file" name="imageFile" class="fileupload"></span>
           </div>

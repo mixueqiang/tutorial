@@ -37,7 +37,7 @@ p {
 }
 
 input, select, textarea, .btn, .form-control, .panel {
-  border-radius: 2px; -moz-appearance: none; -webkit-appearance: none;
+  border-radius: 2px;
 }
 
 #header {

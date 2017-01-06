@@ -360,10 +360,6 @@ input, select, textarea, .btn, .form-control, .panel {
   display: inline; padding: 0 2px;
 }
 
-.index-panel-body {
-  padding: 15px; border: 1px solid #ddd; min-height: 280px; position: relative;
-}
-
 .section {
   
 }
@@ -596,4 +592,8 @@ input, select, textarea, .btn, .form-control, .panel {
 
 .index-panel {
   margin-bottom: 20px; background-color: #fff;
+}
+
+.index-panel-body {
+  padding: 15px; padding-bottom: 30px; border: 1px solid #ddd; min-height: 280px; position: relative;
 }

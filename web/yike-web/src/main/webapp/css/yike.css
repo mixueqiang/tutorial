@@ -588,3 +588,7 @@ input, select, textarea, .btn, .form-control, .panel {
 #contact_form input[type=text], #contact_form textarea {
   border: none; border-bottom: 1px solid #DBE1EC; margin: 0; padding: 12px 0; display: block; box-sizing: border-box; width: 100%; max-width: 100%; min-width: 100%; resize: none; color: #16364f;
 }
+.index-panel{
+  margin-bottom: 20px;
+  background-color: #fff;
+}

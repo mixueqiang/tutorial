@@ -94,16 +94,16 @@
     </div>
     <div class="contact col-xs-12 col-sm-12 col-md-6 col-lg-6">
       <h1>为你设计</h1>
-      <p>每一个有工作经验的人都可以讲课，告诉我们你的工作经历，让我们和你 一起设计一门实践课程。</p>
+      <p>每一个有工作经验的人都可以讲课，告诉我们你的工作经历，让我们和你一起设计一门实践课程。</p>
       <form class="text-left" id="contact_form" action="/api/v1/invitation" method="post" class="form-inline" role="form">
         <div class="form-group">
-          <label for="name">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label> <input id="name" type="text" name="name" placeholder="请输入姓名">
+          <input id="name" type="text" name="name" placeholder="请输入姓名">
         </div>
         <div class="form-group">
-          <label for="contacts">联系方式：</label> <input id="contacts" type="text" name="contacts" placeholder="请输入联系方式">
+          <input id="contacts" type="text" name="contacts" placeholder="请输入联系方式">
         </div>
         <div class="form-group">
-          <label for="content">工作经历：</label> <input id="content" type="text" name="content" placeholder="请输入工作经历">
+          <textarea id="content" name="content" class="form-control" rows="3" placeholder="请输入工作经历"></textarea>
         </div>
         <button id="btn" type="submit" class="btn btn-danger">取得联系</button>
       </form>

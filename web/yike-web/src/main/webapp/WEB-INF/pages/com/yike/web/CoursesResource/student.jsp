@@ -1,19 +1,4 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<div class="col-md-3 col-sm-3 col-xs-6">
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <c:choose>
-        <c:when test="${not empty student.avatar}">
-          <img alt="一课-用户头像" src="http://yikeyun.b0.upaiyun.com/${student.avatar}!M">
-        </c:when>
-        <c:otherwise>
-          <img alt="一课-用户头像" src="http://yikeyun.b0.upaiyun.com/static/user-avatar.png!M">
-        </c:otherwise>
-      </c:choose>
-      <h2 class="text-center">${student.username}</h2>
-    </div>
-  </div>
-</div>
 
 <div class="col-md-9 col-sm-9 col-xs-12" id="courses">
   <div class="panel panel-default row-space-4">

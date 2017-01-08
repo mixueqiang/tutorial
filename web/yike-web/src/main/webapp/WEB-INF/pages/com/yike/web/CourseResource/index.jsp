@@ -80,7 +80,7 @@
                     </c:otherwise>
                   </c:choose>
                 </div>
-                <div class="col-md-8 col-sm-7 col-sx-6">
+                <div class="section-right col-md-8 col-sm-7 col-sx-6">
                   <div class="section-title lg">
                     <a href="/course/${item.id}" target="_blank">${item.name}</a>
                   </div>

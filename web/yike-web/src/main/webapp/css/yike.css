@@ -372,6 +372,10 @@ input, select, textarea, .btn, .form-control, .panel {
   
 }
 
+.section-right {
+  padding-bottom: 40px;
+}
+
 .section-title, .section-title a {
   color: #333; font-weight: normal; line-height: 1.2; padding-top: 4px; text-rendering: optimizelegibility;
 }
@@ -573,16 +577,8 @@ input, select, textarea, .btn, .form-control, .panel {
   position: relative;
 }
 
-#contact_form .form-group:nth-child(3) {
-  margin-top: 30px;
-}
-
 #contact_form .control-label-show {
   position: absolute; top: -12px; left: 0; display: none; color: rgba(195, 204, 210, 1);
-}
-
-#contact_form #contentLable {
-  top: -22px;
 }
 
 #contact_form input[type=text], #contact_form textarea {

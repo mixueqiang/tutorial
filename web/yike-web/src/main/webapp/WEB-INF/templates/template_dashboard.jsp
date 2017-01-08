@@ -5,18 +5,9 @@
 <d:head />
 </head>
 <body>
+  <a class="sr-only" href="#content">Skip to main content</a>
   <%@ include file="/WEB-INF/commons/header.jsp"%>
-  <div class="subnav">
-    <div class="container">
-      <ul class="subnav-list">
-        <li><a href="/dashboard" data-class="dashboard" aria-selected="false" class="subnav-item">控制面板</a></li>
-        <li><a href="/courses" data-class="course" aria-selected="false" class="subnav-item">我的课程</a></li>
-        <li><a href="/settings/profile" data-class="settings/profile" aria-selected="false" class="subnav-item">设置</a></li>
-      </ul>
-    </div>
-  </div>
   <%@ include file="/WEB-INF/commons/message.jsp"%>
-
   <div class="container row-space-top-4 row-space-4">
     <div class="row">
       <div class="col-md-3 col-sm-4">
@@ -28,10 +19,6 @@
             </div>
 
             <h2 class="text-center">${sessionScope._user.username}</h2>
-            <ul class="list-unstyled text-center hide">
-              <li><a href="/user/${sessionScope._user.id}">查看个人资料</a></li>
-              <li><a href="/users/edit">编辑个人资料</a></li>
-            </ul>
           </div>
         </div>
         <div class="panel panel-default row-space-4">
@@ -40,19 +27,24 @@
             <ul class="list-unstyled">
               <li>
                 <div class="alert alert-success">
-                  <a href="/user/${sessionScope._user.id}" target="_blank"><span class="glyphicon glyphicon-user" aria-hidden="true">个人主页</span></a>
+                  <a href="/courses"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span>我的课程</span></a>
+                </div>
+              </li>
+             <%--  <c:if test="${sessionScope._user.admin}">
+              <li>
+                <div class="alert alert-success">
+                  <a href="/courses/as_a_student"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span><span>我报名的课程</span></a>
+                </div>
+              </li>
+              </c:if> --%>
+              <li>
+                <div class="alert alert-success">
+                  <a href="/settings/profile"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><span>个人资料编辑</span></a>
                 </div>
               </li>
               <li>
                 <div class="alert alert-success">
-                  <c:choose>
-                    <c:when test="${sessionScope._user.instructor}">
-                      <a href="/goto?type=instructor&userId=${sessionScope._user.id}" target="_blank"><span class="glyphicon glyphicon-book" aria-hidden="true">培训课程</span></a>
-                    </c:when>
-                    <c:otherwise>
-                      我是老师，现在<a class="col-space-1" href="/course/create"><span class="glyphicon glyphicon-plus" aria-hidden="true">添加课程</span></a>
-                    </c:otherwise>
-                  </c:choose>
+                  <a href="/settings/password"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span><span>密码修改</span></a>
                 </div>
               </li>
               <c:if test="${sessionScope._user.admin}">
@@ -113,16 +105,4 @@
   </div>
   <%@ include file="/WEB-INF/commons/footer.jsp"%>
 </body>
-<script>
-  $(function() {
-    var pathname = window.location.pathname;
-    $('.subnav-list .subnav-item').each(function() {
-      if (pathname.indexOf($(this).attr('data-class')) == 1) {
-        $(this).attr('aria-selected', true);
-      } else {
-        $(this).attr('aria-selected', false);
-      }
-    });
-  });
-</script>
 </html>

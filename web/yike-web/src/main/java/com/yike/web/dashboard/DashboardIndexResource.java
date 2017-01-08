@@ -28,7 +28,7 @@ public class DashboardIndexResource extends BaseResource {
     if (user == null) {
       return signinAndGoto(request.getRequestURI());
     }
-
+    request.setAttribute("isInstructor", user.isInstructor());
     return redirect("/courses");
   }
 

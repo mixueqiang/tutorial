@@ -98,6 +98,9 @@ public class IndexResource extends BaseResource {
   @Path("signin")
   @Produces(MediaType.TEXT_HTML)
   public Response signin() {
+    if (null != getSessionUser()) {
+      return redirect("/");
+    }
     return Response.ok(new Viewable("signin")).build();
   }
 

@@ -34,7 +34,7 @@
                   <a class="courses-title" href="/course/${item.id}" target="_blank">${item.name}</a>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
-                  <div class="pull-right">
+                  <div class="pull-right course-status">
                     <c:choose>
                       <c:when test="${item.status eq 0}">
                         <span>审核中</span>

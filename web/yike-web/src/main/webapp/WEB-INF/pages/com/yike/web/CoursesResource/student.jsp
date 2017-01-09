@@ -61,7 +61,7 @@
           <div class="col-md-10 col-sm-9">
             <div class="row-space-top-1 t-content-medium closeapplyContent">确认要取消报名？</div>
             <div class="row-space-top-3">
-              <a class="btn btn-danger op-cancel" href="">取消报名</a>
+              <a class="btn btn-danger op-cancel" href="#">取消报名</a>
             </div>
           </div>
         </div>
@@ -102,44 +102,42 @@
 </div>
 
 <script>
-	$(function() {
-		if ($('#contentList').text().trim()) {
-			$('#hint').hide();
-		} else {
-			$('#hint').show();
-		}
+  $(function() {
+    if ($('#contentList').text().trim()) {
+      $('#hint').hide();
+    } else {
+      $('#hint').show();
+    }
 
-		$('.op-confirm-cancel').click(
-				function() {
-					var courseId = $(this).attr('data-id');
-					var free = $('.section-course[data-id=' + courseId + ']')
-							.attr('data-free');
+    $('.op-confirm-cancel').click(function() {
+      var courseId = $(this).attr('data-id');
+      var free = $('.section-course[data-id=' + courseId + ']').attr('data-free');
 
-					if (free == 1) {
-						$('.op-cancel', $('#cancelModal')).attr('data-id',
-								courseId);
-						$('#cancelModal').modal('show');
+      if (free == 1) {
+        $('.op-cancel', $('#cancelModal')).attr('data-id', courseId);
+        $('#cancelModal').modal('show');
 
-					} else {
-						$('#cancelInformationModal').modal('show');
-					}
+      } else {
+        $('#cancelInformationModal').modal('show');
+      }
 
-					return false;
-				});
+      return false;
+    });
 
-		$(".op-cancel").click(
-				function() {
-					var courseId = $(this).attr('data-id');
+    $(".op-cancel").click(function() {
+      var courseId = $(this).attr('data-id');
 
-					$.getJSON("/api/v1/course/application/" + courseId
-							+ "/cancel", {}, function(result) {
-						if (result.e != 0) {
-							$(".closeapplyContent").html(result.m);
-							window.location.reload(); 
-						} else {
-							window.location.reload(); 
-						}
-					});
-				});
-	})
+      $.getJSON("/api/v1/course/application/" + courseId + "/cancel", {}, function(result) {
+        if (result && result.e == 0) {
+          window.location.reload();
+
+        } else {
+          $(".closeapplyContent").html(result.m);
+        }
+      });
+
+      return false;
+    });
+
+  })
 </script>

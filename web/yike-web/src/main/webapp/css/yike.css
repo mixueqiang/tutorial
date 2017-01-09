@@ -50,6 +50,9 @@ input, select, textarea, .btn, .form-control, .panel {
 .headerDropdown .dropdownMenu1{
   border: none;background-color: transparent; outline: 0;
 }
+.headerDropdown .dropdownMenu1 .caret:hover{
+  color:red;
+}
 .dropdown-menu{
   right:0;
 }
@@ -75,7 +78,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .xxl {
-  font-size: 30px; line-height: 45px
+  font-size: 30px; line-height: 45px;
 }
 
 .xl {
@@ -395,7 +398,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-content {
-  
+  margin-bottom: 20px;
 }
 
 .section-content, .section-content a, .section-content a:hover, .section-content a:visited {
@@ -423,7 +426,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-footer {
-  position: absolute; bottom: 10px; right: 15px;
+  
 }
 
 .contact_form input {

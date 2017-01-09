@@ -34,11 +34,11 @@ import com.octo.captcha.image.gimpy.GimpyFactory;
 public class SimpleCaptchaEngine extends ListImageCaptchaEngine {
 
   private static final int MIN_WORD_LENGTH = 4;
-  private static final int MAX_WORD_LENGTH = 5;
-  private static final int MIN_FONT_SIZE = 18;
-  private static final int MAX_FONT_SIZE = 20;
-  private static final int IMAGE_WIDTH_SIZE = 100;
-  private static final int IMAGE_HEIGHT_SIZE = 34;
+  private static final int MAX_WORD_LENGTH = 4;
+  private static final int MIN_FONT_SIZE = 44;
+  private static final int MAX_FONT_SIZE = 44;
+  private static final int IMAGE_WIDTH_SIZE = 180;
+  private static final int IMAGE_HEIGHT_SIZE = 60;
 
   @Override
   protected void buildInitialFactories() {
@@ -57,7 +57,7 @@ public class SimpleCaptchaEngine extends ListImageCaptchaEngine {
     ImageDeformation backDef = new ImageDeformationByFilters(new ImageFilter[] {});
     ImageDeformation textDef = new ImageDeformationByFilters(new ImageFilter[] {});
 
-    WordGenerator wordGenerator = new RandomWordGenerator("0123456789abcdefghijklmnopqrstuvwxyz");
+    WordGenerator wordGenerator = new RandomWordGenerator("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
     WordToImage word2image = new DeformedComposedWordToImage(fontGenerator, backgroundGenerator, textPaster, backDef, textDef, postDef);
     addFactory(new GimpyFactory(wordGenerator, word2image));
   }

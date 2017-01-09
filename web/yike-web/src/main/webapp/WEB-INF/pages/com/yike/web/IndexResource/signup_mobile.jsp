@@ -14,12 +14,14 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-3 control-label" for="captchaCode">图形验证码</label>
-          <div class="col-sm-3">
-            <input class="form-control" id="captchaCode" name="captchaCode" tabindex="2" type="text" />
+          <div class="col-sm-3 col-sm-offset-3 col-xs-4">
+            <img class="captcha-code" src="/api/v1/captcha" onclick="this.src='/api/v1/captcha?v='+new Date()*1"><span class="sm text-muted">点击图片更换一个验证码</span>
           </div>
-          <div class="col-sm-2">
-            <img src="/api/v1/captcha" onclick="this.src='/api/v1/captcha?v='+new Date()*1">
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="captchaCode">图形验证码</label>
+          <div class="col-sm-3 ">
+            <input class="form-control" id="captchaCode" name="captchaCode" tabindex="2" type="text" />
           </div>
         </div>
         <div class="form-group">
@@ -28,7 +30,7 @@
             <input type="text" id="securityCode" name="securityCode" tabindex="3" class="form-control" />
           </div>
           <div class="col-sm-2">
-            <a class="btn orange btn-send-sms" href="#">获取验证码</a>
+            <a class="btn btn-default btn-send-sms" href="#">获取验证码</a>
           </div>
         </div>
         <div class="form-group">

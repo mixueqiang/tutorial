@@ -5,7 +5,7 @@
 }
 </style>
 
-<div class="col-md-9 col-sm-9 col-xs-12" id="courses">
+<div id="courses">
   <div class="panel panel-default row-space-4">
     <div class="panel-heading">我的课程</div>
     <div class="panel-body">
@@ -18,7 +18,7 @@
       <div class="panel panel-default section-course" data-id="${item.id}">
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-8">
+            <div class="col-md-4 col-sm-4 col-xs-12">
               <c:choose>
                 <c:when test="${not empty item.image}">
                   <img alt="一课-课程" src="http://yikeyun.b0.upaiyun.com/${item.image}!M">
@@ -28,7 +28,7 @@
                 </c:otherwise>
               </c:choose>
             </div>
-            <div class="col-md-8 col-sm-8 col-xs-8">
+            <div class="col-md-8 col-sm-8 col-xs-12">
               <div class="row">
                 <div class="col-md-8 col-sm-12 col-xs-12">
                   <a class="courses-title" href="/course/${item.id}" target="_blank">${item.name}</a>
@@ -68,7 +68,7 @@
               </div>
               <a class="courses-content" href="/course/${item.id}" target="_blank">${item.content}</a>
               <div class="courses-hint row-space-top-1">
-                <span id="courses-subscript">${item.subscript}</span> <span class="courses-price"><c:choose>
+                <span id="courses-subscript pull-left">${item.subscript}</span> <span class="courses-price pull-right"><c:choose>
                     <c:when test="${item.free eq 1}">免费</c:when>
                     <c:otherwise>¥${item.price}</c:otherwise>
                   </c:choose></span>

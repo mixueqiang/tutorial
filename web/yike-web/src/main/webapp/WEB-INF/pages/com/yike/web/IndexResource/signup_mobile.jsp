@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<div class="container">
+<div class="container signcontainer">
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
       <h2>新用户注册</h2>

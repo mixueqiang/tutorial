@@ -4,33 +4,6 @@
   display: block; padding-bottom: 20px; margin-bottom: 30px;
 }
 </style>
-<div class="col-md-3 col-sm-3 col-xs-12">
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="row  row-top">
-        <div class="col-sm-12 col-xs-4">
-          <c:choose>
-            <c:when test="${not empty instructor.avatar}">
-              <img alt="一课-用户头像" src="http://yikeyun.b0.upaiyun.com/${instructor.avatar}!M">
-            </c:when>
-            <c:otherwise>
-              <img alt="一课-用户头像" src="http://yikeyun.b0.upaiyun.com/static/user-avatar.png!M">
-            </c:otherwise>
-          </c:choose>
-        </div>
-        <div class="col-sm-12 col-xs-5">
-          <h3 class="text-center">${instructor.name}</h3>
-        </div>
-        <div class="col-sm-12 col-xs-5">
-          <p>${instructor.profile}</p>
-        </div>
-        <div class="col-sm-12 col-xs-5">
-          <a class="btn btn-warning" href="/courses/as_a_student" target="_blank">我报名的课程</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="col-md-9 col-sm-9 col-xs-12" id="courses">
   <div class="panel panel-default row-space-4">

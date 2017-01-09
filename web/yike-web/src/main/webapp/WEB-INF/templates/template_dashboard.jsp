@@ -13,16 +13,16 @@
       <div class="col-md-3 col-sm-4">
         <div class="panel panel-default row-space-4">
           <div class="panel-body">
-            <div class="media media-photo-block">
+            <%-- <div class="media media-photo-block">
               <img alt="${sessionScope._user.username}" title="${sessionScope._user.username}" class="img-responsive"
-                <c:choose><c:when test="${not empty sessionScope._user.avatar}">src="http://yikeyun.b0.upaiyun.com/${sessionScope._user.avatar}!M"</c:when><c:otherwise>src="http://yikeyun.b0.upaiyun.com/static/user-avatar.png!M"</c:otherwise></c:choose>>
-            </div>
+                <c:choose><c:when test="${not empty sessionScope._user.avatar}">src="http://yikeyun.b0.upaiyun.com/${sessionScope._user.avatar}!M"</c:when><c:otherwise>src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1483941478218&di=a44cb14f83fb9956a7b0262894d57584&imgtype=0&src=http%3A%2F%2Fu4.tdimg.com%2F1%2F47%2F247%2F_68875802257203077983607694872025081701.jpg"</c:otherwise></c:choose>>
+            </div> --%>
 
             <h2 class="text-center">${sessionScope._user.username}</h2>
           </div>
         </div>
         <div class="panel panel-default row-space-4">
-          <div class="panel-heading">帐号信息</div>
+          <div class="panel-heading">帐号信息 </div>
           <div class="panel-body">
             <ul class="list-unstyled">
               <li>
@@ -30,13 +30,13 @@
                   <a href="/courses"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span>我的课程</span></a>
                 </div>
               </li>
-             <%--  <c:if test="${sessionScope._user.admin}">
+             <c:if test="${sessionScope._user.instructor eq true}">
               <li>
                 <div class="alert alert-success">
                   <a href="/courses/as_a_student"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span><span>我报名的课程</span></a>
                 </div>
               </li>
-              </c:if> --%>
+              </c:if>
               <li>
                 <div class="alert alert-success">
                   <a href="/settings/profile"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><span>个人资料编辑</span></a>

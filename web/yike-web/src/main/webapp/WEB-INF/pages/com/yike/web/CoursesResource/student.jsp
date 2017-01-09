@@ -134,11 +134,10 @@
 
 					$.getJSON("/api/v1/course/application/" + courseId
 							+ "/cancel", {}, function(result) {
-						if (result.e != 0) 
+						if (result.e != 0) {
 							$(".closeapplyContent").html(result.m);
 						} else {
 							document.location.reload();
-							/* window.location = "/courses/as_a_student"; */
 						}
 					});
 				});

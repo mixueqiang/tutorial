@@ -47,14 +47,17 @@ input, select, textarea, .btn, .form-control, .panel {
 .headerDropdown {
   line-height: 50px; margin-left: 20px;
 }
-.headerDropdown .dropdownMenu1{
-  border: none;background-color: transparent; outline: 0;
+
+.headerDropdown .dropdownMenu1 {
+  border: none; background-color: transparent; outline: 0;
 }
-.headerDropdown .dropdownMenu1 .caret:hover{
-  color:red;
+
+.headerDropdown .dropdownMenu1 .caret:hover {
+  color: red;
 }
-.dropdown-menu{
-  right:0;
+
+.dropdown-menu {
+  right: 0;
 }
 
 #footer {
@@ -607,6 +610,18 @@ input, select, textarea, .btn, .form-control, .panel {
   padding: 15px; padding-bottom: 30px; border: 1px solid #ddd; min-height: 280px; position: relative;
 }
 
-.signcontainer{
+.signcontainer {
   min-height: 365px;
+}
+
+.icon-center {
+  text-align: center;
+}
+
+.icon-lg {
+  font-size: 40px;
+}
+
+.icon-error, .icon-danger {
+  color: #d03747;
 }

@@ -174,7 +174,7 @@ $('#application-form').validate({
 
           } else if (application.progress == 100) {
             Message.info('报名成功。', true, $('.form-group:last', $(form)));
-
+            
             setTimeout(function() {
               window.location = '/courses/as_a_student';
 
@@ -210,6 +210,7 @@ $('.op-close').click(function() {
       $('.glyphicon', $target).text('已结束招生').addClass('icon-danger');
       $('.op-confirm-edit', $target.parent()).hide();
       $('#confirmCloseModal').modal('hide');
+      window.location.reload(); 
 
     } else {
       Message.error('无法结束招生。', false, $target.parent().parent().parent());

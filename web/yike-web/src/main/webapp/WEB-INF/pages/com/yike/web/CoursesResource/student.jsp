@@ -1,5 +1,4 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-
 <div id="courses">
   <div class="panel panel-default row-space-4">
     <div class="panel-heading">我的课程</div>
@@ -136,8 +135,9 @@
 							+ "/cancel", {}, function(result) {
 						if (result.e != 0) {
 							$(".closeapplyContent").html(result.m);
+							window.location.reload(); 
 						} else {
-							document.location.reload();
+							window.location.reload(); 
 						}
 					});
 				});

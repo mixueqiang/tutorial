@@ -2,6 +2,7 @@ package com.yike.web;
 
 import com.sun.jersey.api.view.Viewable;
 import com.yike.Constants;
+import com.yike.dao.BaseDao;
 import com.yike.dao.mapper.CategoryRowMapper;
 import com.yike.dao.mapper.CourseRowMapper;
 import com.yike.dao.mapper.InstructorRowMapper;
@@ -57,7 +58,7 @@ public class IndexResource extends BaseResource {
       long categoryId = category.getId();
 
       Map<String, Object> courseFindCondition = new HashMap<String, Object>();
-      courseFindCondition.put(Course.SQL_STATUS, Constants.STATUS_READY);
+      courseFindCondition.put(Course.SQL_STATUS, Constants.STATUS_ENABLED);
       courseFindCondition.put(Course.SQL_APPLIABLE, Course.APPLIABLE_TRUE);
       courseFindCondition.put(Course.SQL_CATEGORY_ID, categoryId);
 
@@ -66,7 +67,8 @@ public class IndexResource extends BaseResource {
               courseFindCondition,
               0,
               4,
-              CourseRowMapper.getInstance());
+              CourseRowMapper.getInstance(),
+              BaseDao.ORDER_OPTION_DESC);
 
       if (!courses.isEmpty()) {
 

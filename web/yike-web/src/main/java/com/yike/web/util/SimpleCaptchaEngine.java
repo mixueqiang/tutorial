@@ -35,8 +35,8 @@ public class SimpleCaptchaEngine extends ListImageCaptchaEngine {
 
   private static final int MIN_WORD_LENGTH = 4;
   private static final int MAX_WORD_LENGTH = 4;
-  private static final int MIN_FONT_SIZE = 44;
-  private static final int MAX_FONT_SIZE = 44;
+  private static final int MIN_FONT_SIZE = 40;
+  private static final int MAX_FONT_SIZE = 40;
   private static final int IMAGE_WIDTH_SIZE = 180;
   private static final int IMAGE_HEIGHT_SIZE = 60;
 
@@ -59,7 +59,7 @@ public class SimpleCaptchaEngine extends ListImageCaptchaEngine {
 
     WordGenerator wordGenerator = new RandomWordGenerator("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
     WordToImage word2image = new DeformedComposedWordToImage(fontGenerator, backgroundGenerator, textPaster, backDef, textDef, postDef);
-    addFactory(new GimpyFactory(wordGenerator, word2image));
+    addFactory(new GimpyFactory(wordGenerator, word2image, false));
   }
 
 }

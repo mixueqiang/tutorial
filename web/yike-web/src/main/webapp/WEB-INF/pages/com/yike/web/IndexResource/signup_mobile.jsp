@@ -30,7 +30,7 @@
             <input type="text" id="securityCode" name="securityCode" tabindex="3" class="form-control" />
           </div>
           <div class="col-sm-2">
-            <a class="btn btn-default btn-send-sms" href="#">获取验证码</a>
+            <a class="btn btn-warning btn-send-sms" href="#">获取验证码</a>
           </div>
         </div>
         <div class="form-group">

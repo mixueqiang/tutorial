@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
 
-<div class="col-md-9 col-sm-9 col-xs-12" id="courses">
+<div id="courses">
   <div class="panel panel-default row-space-4">
     <div class="panel-heading">我的课程</div>
     <div class="panel-body">

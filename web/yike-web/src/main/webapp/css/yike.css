@@ -44,6 +44,10 @@ input, select, textarea, .btn, .form-control, .panel {
   -webkit-box-shadow: 0 1px 2px #cbcbcb; box-shadow: 0 1px 2px #cbcbcb;
 }
 
+.headerDropdown {
+  line-height: 50px;
+}
+
 #footer {
   padding: 50px 0; margin-top: 100px; text-align: center; background-color: #ecf1f1; border-top: 1px solid #e5e5e5;
 }

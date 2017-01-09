@@ -13,11 +13,11 @@
       <div class="col-md-3 col-sm-4">
         <div class="panel panel-default row-space-4">
           <div class="panel-body">
-            <%-- <div class="media media-photo-block">
+            <div class="media media-photo-block">
               <img alt="${sessionScope._user.username}" title="${sessionScope._user.username}" class="img-responsive"
-                <c:choose><c:when test="${not empty sessionScope._user.avatar}">src="http://yikeyun.b0.upaiyun.com/${sessionScope._user.avatar}!M"</c:when><c:otherwise>src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1483941478218&di=a44cb14f83fb9956a7b0262894d57584&imgtype=0&src=http%3A%2F%2Fu4.tdimg.com%2F1%2F47%2F247%2F_68875802257203077983607694872025081701.jpg"</c:otherwise></c:choose>>
-            </div> --%>
-
+                <%-- <c:choose><c:when test="${not empty sessionScope._user.avatar}">src="http://yikeyun.b0.upaiyun.com/${sessionScope._user.avatar}!M"</c:when><c:otherwise>src="http://img3.imgtn.bdimg.com/it/u=3799866287,2225466980&fm=23&gp=0.jpg"</c:otherwise></c:choose> --%>
+                src="http://img3.imgtn.bdimg.com/it/u=3799866287,2225466980&fm=23&gp=0.jpg">
+            </div> 
             <h2 class="text-center">${sessionScope._user.username}</h2>
           </div>
         </div>

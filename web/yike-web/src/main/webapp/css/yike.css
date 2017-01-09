@@ -45,7 +45,13 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .headerDropdown {
-  line-height: 50px;
+  line-height: 50px; margin-left: 20px;
+}
+.headerDropdown .dropdownMenu1{
+  border: none;background-color: transparent; outline: 0;
+}
+.dropdown-menu{
+  right:0;
 }
 
 #footer {

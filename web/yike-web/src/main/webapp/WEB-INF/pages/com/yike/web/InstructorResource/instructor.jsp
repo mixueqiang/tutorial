@@ -55,7 +55,7 @@
                   <a class="courses-name" href="/instructor/${item.properties.instructor.id}" target="_blank">${item.properties.instructor.name}</a> <a id="contentStr" class="courses-content"
                     href="/course/${item.id}" target="_blank">${item.content}</a>
                   <div class="courses-hint row-space-top-1">
-                    <span id="courses-subscript">${item.subscript}</span> <span class="courses-price"><c:choose>
+                    <span id="courses-subscript pull-left">${item.subscript}</span> <span class="courses-price pull-right"><c:choose>
                         <c:when test="${item.free eq 1}">免费</c:when>
                         <c:otherwise>¥${item.price}</c:otherwise>
                       </c:choose></span>

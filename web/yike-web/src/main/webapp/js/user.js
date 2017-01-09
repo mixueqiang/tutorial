@@ -154,9 +154,11 @@ $(function() {
           if (resp && resp.e == 0) {
             var role = $('#role').val();
             var message = '注册成功，';
-
             Message.info(message, false, $('.form-group:last', $(form)));
-            window.history.go(-1);
+            setTimeout(function() {
+            	window.history.go(-1);
+            }, 1500);
+            
           } else {
             $('input[name=password]', $('#signup-form')).val('');
             Message.error('注册失败：' + resp.m, false, $('.form-group:last', $(form)));
@@ -202,11 +204,18 @@ $(function() {
       $(form).ajaxSubmit({
         success : function(resp) {
           if (resp && resp.e == 0) {
-            Message.info('登录成功！', false, $('.form-group:last', $(form)));
-            var to = resp.r;
-            setTimeout(function() {
-              window.location.href = (to == '' ? '/' : to);
-            }, 1500);
+            Message.info('登录成功！', false, $('.form-group:last', $(form))); 
+			if(document.referrer=='http://localhost:8080/signup'){
+			    setTimeout(function() {
+			    	/*window.history.go(-2);*/
+			    	/*window.location.href = 'index.jsp';*/
+				    window.history.back(-2);
+	            }, 1500);
+			}else{
+				setTimeout(function() {
+	            	location.replace(document.referrer);
+	            }, 1500);
+			}
 
           } else {
             $('#password').val('');

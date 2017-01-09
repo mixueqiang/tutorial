@@ -54,8 +54,11 @@ public final class ImageUtils {
     if (StringUtils.startsWith(image, "http://") || StringUtils.startsWith(image, "https://")) {
       return image;
 
-    } else {
+    } else if (StringUtils.isNotEmpty(sizeType)) {
       return UpYunUtils.URL + "/" + image + "!" + sizeType;
+
+    } else {
+      return UpYunUtils.URL + "/" + image;
     }
   }
 

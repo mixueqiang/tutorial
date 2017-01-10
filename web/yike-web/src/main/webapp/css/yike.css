@@ -1,3 +1,4 @@
+/* ======================================commonCss-strat========================================= */
 body {
   background-color: #fff; color: #353535; font-family: "Gotham SSm", "Open Sans", -apple-system, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; margin-left: 0; position: relative;
 }
@@ -39,7 +40,9 @@ p {
 input, select, textarea, .btn, .form-control, .panel {
   border-radius: 2px;
 }
+/* ======================================commonCss-end================================================= */
 
+/* ======================================#header&&#footer-strat========================================= */
 #header {
   -webkit-box-shadow: 0 1px 2px #cbcbcb; box-shadow: 0 1px 2px #cbcbcb;
 }
@@ -71,7 +74,9 @@ input, select, textarea, .btn, .form-control, .panel {
 #footer a:hover, #footer a:focus {
   color: #666;
 }
+/* ======================================#header&&#footer-end========================================= */
 
+/* ======================================bootstrapReset-strat========================================= */
 .error {
   color: #dd4b39;
 }
@@ -375,7 +380,9 @@ input, select, textarea, .btn, .form-control, .panel {
 .footer-links li {
   display: inline; padding: 0 2px;
 }
+/* ======================================bootstrapReset-end========================================= */
 
+/* ======================================courseList-strat========================================= */
 .section {
   
 }
@@ -479,7 +486,9 @@ input, select, textarea, .btn, .form-control, .panel {
 .alert-gray {
   background-color: #ccc; border-color: #ccc;
 }
+/* ======================================courseList-end========================================= */
 
+/* ======================================courseCreate&&edit-start========================================= */
 #titleContainer, #contentContainer, #teachingTypeContainer, #descriptionContainer, charge {
   position: relative;
 }
@@ -491,8 +500,9 @@ input, select, textarea, .btn, .form-control, .panel {
 .rmb {
   position: absolute; top: 10px; right: 25px; font-size: 14px; height: 18px; line-height: 18px; z-index: 10;
 }
+/* ======================================courseCreate&&edit-end========================================= */
 
-/*subnav-start*/
+/* ======================================subnav-start========================================= */
 .subnav {
   position: relative; background-color: #4ca99f; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
 }
@@ -556,7 +566,8 @@ input, select, textarea, .btn, .form-control, .panel {
 .glyphicon-lg {
   margin: 0 15px 0 0; font-size: 27px; line-height: inherit;
 }
-/*subnav-end*/
+/* ======================================subnav-end========================================= */
+
 .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
   margin: 2px 0 0 -18px;
 }
@@ -568,7 +579,8 @@ input, select, textarea, .btn, .form-control, .panel {
 .file-input-container input[type=file] {
   cursor: pointer; position: absolute; font-size: 200px; top: 0; bottom: 0; right: 0; opacity: 0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 }
-/* index.jsp */
+
+/* ======================================index.jsp-start========================================= */
 #aboutUs {
   text-align: center; background-color: #fff; min-height: 516px;
 }
@@ -613,6 +625,7 @@ input, select, textarea, .btn, .form-control, .panel {
 .signcontainer {
   min-height: 365px;
 }
+/* ======================================index.jsp-start========================================= */
 
 .icon-center {
   text-align: center;

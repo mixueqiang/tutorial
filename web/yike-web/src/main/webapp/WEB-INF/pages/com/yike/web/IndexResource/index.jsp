@@ -37,7 +37,7 @@
   </div>
 </div>
 
-<div class="marketing-courses row-space-top-5">
+<div class="marketing-course index-bgcolor">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -47,14 +47,14 @@
               <div class="title">
                 <div class="lg pull-left">${item.name}</div>
                 <div class="md pull-right">
-                  <a href="/course?c=${item.id}">更多课程</a>
+                  <a href="/course?c=${item.id}">更多课程></a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row row-space-top-1">
+          <div class="row row-space-top-1 list">
             <c:forEach var="item" items="${courses[item.id]}">
-              <div class="col-md-3 col-sm-6 index-panel">
+              <div class="col-md-3 col-sm-6 index-panel index-bgcolor">
                 <div class="index-panel-body">
                   <div class="section">
                     <div class="section-cover">
@@ -72,7 +72,7 @@
                         <a href="/course/${item.id}" target="_blank">${item.name}</a>
                       </div>
                       <div class="section-caption row-space sm">${item.properties.instructor.name}</div>
-                      <div class="section-content row-space ln-1">${item.content}</div>
+                      <div class="section-content row-space ln-1 listLi">${item.content}</div>
                       <div class="section-footer">
                         <span class="text-muted">${item.superscript}</span><span class="course-price pull-right">¥${item.price}</span>
                       </div>
@@ -89,7 +89,7 @@
   </div>
 </div>
 
-<div class="marketing-banner hero-bottom row-space-top-10">
+<div class="marketing-banner hero-bottom">
   <div class="intro-area">
     <div class="col-middle content">
       <h1>每位有工作经验的人都是老师</h1>
@@ -123,6 +123,7 @@
     </div>
   </div>
 </div>
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -149,6 +150,38 @@ Heightadapt();
 window.onresize=function(){
   Heightadapt();
 }
+/* 字数控制事件 */
+ /**  
+  * js截取字符串，中英文都能用  
+  * @param str：需要截取的字符串  
+  * @param len: 需要截取的长度  
+  */
+ function cutStr(str, len) {
+   var str_length = 0;
+   var str_len = 0;
+   str_cut = new String();
+   str_len = str.length;
+   for (var i = 0; i < str_len; i++) {
+     a = str.charAt(i);
+     str_length++;
+     if (escape(a).length > 4) {
+       //中文字符的长度经编码之后大于4    
+       str_length++;
+     }
+     str_cut = str_cut.concat(a);
+     if (str_length >= len) {
+       str_cut = str_cut.concat("...");
+       return str_cut;
+     }
+   }
+   if (str_length < len) {
+     return str;
+   }
+ }
+
+ for (var i = 0; i < $('.list .listLi').length; i++) {
+    $('.list .listLi').eq(i).html(cutStr($('.list .listLi').eq(i).text(), 100));
+ }
 /*表单验证事件*/
 	$('#contact_form').validate({
 		rules : {

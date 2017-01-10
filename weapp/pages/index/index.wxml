@@ -1,5 +1,8 @@
 <!--index.wxml-->
 <view class="container">
+  <view class = "toFoo">
+  <text  bindtap="viewTapToFoo"  class = "toFooText">跳转到Foo页面</text>
+  </view>
   <view  bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>

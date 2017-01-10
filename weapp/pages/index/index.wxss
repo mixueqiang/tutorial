@@ -12,6 +12,10 @@
   border-radius: 50%;
 }
 
+.toFooText {
+  color: #95989a;
+}
+
 .userinfo-nickname {
   color: #aaa;
 }

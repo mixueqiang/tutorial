@@ -549,7 +549,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-contents{
-  padding: 10px;min-height:180px; max-height: 200px;position: relative;padding-bottom: 30px;
+  padding: 10px; min-height:180px; max-height: 200px;position: relative;padding-bottom: 30px;
 }
 .section-right {
   padding-bottom: 40px;

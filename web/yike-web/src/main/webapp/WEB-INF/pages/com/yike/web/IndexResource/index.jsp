@@ -16,7 +16,7 @@
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/courses">我的课程</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings/profile">个人信息</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="/signout">退出</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/signout">退出登陆</a></li>
               </ul>
             </div>
           </c:when>
@@ -60,10 +60,10 @@
                     <div class="section-cover">
                       <c:choose>
                         <c:when test="${not empty item.image}">
-                          <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/${item.image}!M">
+                          <img class="imgadapt" alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/${item.image}!M">
                         </c:when>
                         <c:otherwise>
-                          <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/static/course-cover.png!M">
+                          <img class="imgadapt" alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/static/course-cover.png!M">
                         </c:otherwise>
                       </c:choose>
                     </div>
@@ -141,6 +141,14 @@
   </div>
 </div>
 <script>
+/*图片高度适配*/
+function Heightadapt(){
+  $('.section-cover .imgadapt').height($('.section-cover .imgadapt').width()*0.65);
+}
+Heightadapt();
+window.onresize=function(){
+  Heightadapt();
+}
 /*表单验证事件*/
 	$('#contact_form').validate({
 		rules : {

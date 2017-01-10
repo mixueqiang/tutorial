@@ -1,7 +1,14 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
 <div id="courses">
   <div class="panel panel-default row-space-4">
-    <div class="panel-heading">我的课程</div>
+    <c:choose>
+      <c:when test="${isInstructor eq true}">
+        <div class="panel-heading">我报名的课程</div>
+      </c:when>
+      <c:otherwise>
+        <div class="panel-heading">我的课程</div>
+      </c:otherwise>
+    </c:choose>
     <div class="panel-body">
       <a class="btn btn-warning" href="/course" target="_blank">去选课</a>
     </div>

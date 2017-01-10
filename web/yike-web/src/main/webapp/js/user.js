@@ -205,18 +205,7 @@ $(function() {
         success : function(resp) {
           if (resp && resp.e == 0) {
             Message.info('登录成功！', false, $('.form-group:last', $(form))); 
-			if(document.referrer=='http://localhost:8080/signup'){
-			    setTimeout(function() {
-			    	/*window.history.go(-2);*/
-			    	/*window.location.href = 'index.jsp';*/
-				    window.history.back(-2);
-	            }, 1500);
-			}else{
-				setTimeout(function() {
-	            	location.replace(document.referrer);
-	            }, 1500);
-			}
-
+            location.replace(document.referrer);
           } else {
             $('#password').val('');
             Message.error('登录失败：' + resp.m, false, $('.form-group:last', $(form)));

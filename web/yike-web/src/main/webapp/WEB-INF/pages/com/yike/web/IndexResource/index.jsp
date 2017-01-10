@@ -67,14 +67,17 @@
                         </c:otherwise>
                       </c:choose>
                     </div>
-                    <div class="section-title md">
-                      <a href="/course/${item.id}" target="_blank">${item.name}</a>
+                    <div class="section-contents">
+                      <div class="section-title md">
+                        <a href="/course/${item.id}" target="_blank">${item.name}</a>
+                      </div>
+                      <div class="section-caption row-space sm">${item.properties.instructor.name}</div>
+                      <div class="section-content row-space ln-1">${item.content}</div>
+                      <div class="section-footer">
+                        <span class="text-muted">${item.superscript}</span><span class="course-price pull-right">¥${item.price}</span>
+                      </div>
                     </div>
-                    <div class="section-caption row-space sm">${item.properties.instructor.name}</div>
-                    <div class="section-content row-space ln-1">${item.content}</div>
-                    <div class="section-footer">
-                      <span class="text-muted">${item.superscript}</span><span class="course-price pull-right">¥${item.price}</span>
-                    </div>
+                    
                   </div>
                 </div>
               </div>

@@ -107,6 +107,8 @@ public class CoursesResource extends BaseResource {
         courses.add(course);
       }
     }
+
+    request.setAttribute("isInstructor", user.isInstructor());
     request.setAttribute("courses", courses);
     request.setAttribute("student", user);
 

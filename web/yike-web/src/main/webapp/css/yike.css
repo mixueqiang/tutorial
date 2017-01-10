@@ -535,11 +535,11 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .index-panel-body {
-  box-shadow:0 3px 6px rgba(0,0,0,.4); overflow: hidden;  background-color: #fff;
+  /* box-shadow:0 3px 6px rgba(0,0,0,.4);  */box-shadow:  rgba(50, 50, 50, 0.2) 0 1px 4px 0; overflow: hidden;  background-color: #fff;
 }
 
 .index-panel-body:hover {
-   box-shadow:0 3px 5px rgba(0,0,0,.5); overflow: hidden;background-color: #fff;
+   box-shadow:0 3px 5px rgba(0,0,0,.4); overflow: hidden;background-color: #fff;
 }
 
 .section {

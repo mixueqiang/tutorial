@@ -26,10 +26,10 @@
         <div class="col-md-4 col-sm-4 col-xs-6 image-container">
           <c:choose>
             <c:when test="${not empty user.avatar}">
-              <img src="http://transkip.b0.upaiyun.com/${user.avatar}!M" alt="${user.username}">
+              <img src="http://yikeyun.b0.upaiyun.com/${user.avatar}!M" alt="${user.username}">
             </c:when>
             <c:otherwise>
-              <img src="http://transkip.b0.upaiyun.com/201612/user-avatar.png!M" alt="${user.username}">
+              <img src="http://yikeyun.b0.upaiyun.com/201612/user-avatar.png!M" alt="${user.username}">
             </c:otherwise>
           </c:choose>
         </div>

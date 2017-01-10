@@ -1,11 +1,8 @@
 package com.yike.model;
 
-import java.io.Serializable;
-
-import com.yike.dao.EntityDao;
 import org.apache.commons.lang.StringUtils;
 
-import javax.annotation.Resource;
+import java.io.Serializable;
 
 /**
  * @author mixueqiang
@@ -27,9 +24,6 @@ public class User extends BaseModel implements Serializable {
   private String locale;
   private String roles;
   private String securityCode;
-
-  @Resource
-  protected EntityDao entityDao;
 
   public String getAvatar() {
     return avatar;
@@ -88,7 +82,9 @@ public class User extends BaseModel implements Serializable {
     return StringUtils.endsWith(email, "@transkip.com");
   }
 
-  public boolean isInstructor() {return entityDao.exists(Instructor.SQL_TABLE_NAME, Instructor.SQL_USER_ID, this.getId());}
+  public boolean isInstructor() {
+    return StringUtils.contains(roles, "instructor");
+  }
 
   public void setAvatar(String avatar) {
     this.avatar = avatar;

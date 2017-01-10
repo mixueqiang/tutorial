@@ -108,7 +108,7 @@ public class CoursesResource extends BaseResource {
       }
     }
 
-    request.setAttribute("isInstructor", user.isInstructor());
+    request.setAttribute("isInstructor", entityDao.exists(Instructor.SQL_TABLE_NAME, Instructor.SQL_USER_ID, user.getId()));
     request.setAttribute("courses", courses);
     request.setAttribute("student", user);
 

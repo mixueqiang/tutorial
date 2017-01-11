@@ -1,7 +1,6 @@
 /* ======================================commonCss-strat========================================= */
 body {
-  background-color: #fff; color: #353535; font-family: "微软雅黑", "宋体", Arail, Tabhoma; /* font-family: "Gotham SSm", "Open Sans", -apple-system, Helvetica, Arial, sans-serif; */ font-size: 14px;
-  line-height: 1.5; margin-left: 0; position: relative;
+  background-color: #fff; color: #353535; font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif; font-size: 14px; line-height: 1.5; margin-left: 0; position: relative;
 }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong,
@@ -313,17 +312,15 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .course-nav {
-  height: 50px;
-  line-height: 50px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;display: block;
+  height: 50px; line-height: 50px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; display: block;
 }
 
 .course-nav>li {
-  display: inline-block; margin-right: 20px;height: 50px; line-height: 50px;
+  display: inline-block; margin-right: 20px; height: 50px; line-height: 50px;
 }
 
 .course-nav>li>a {
-  color: #666;
-  font-size: 16px;
+  color: #666; font-size: 16px;
 }
 
 .course-nav>li>a:hover, .course-nav>li>a:focus {
@@ -665,3 +662,13 @@ input, select, textarea, .btn, .form-control, .panel {
 .icon-error, .icon-danger {
   color: #d03747;
 }
+
+/* ====================================template.jsp-start========================================= */
+.template-navList li div a span {
+  margin-left: 5px;
+}
+
+.template-navList li div a span:nth-child(1) {
+  top: 2px;
+}
+/* ====================================template.jsp-end========================================= */

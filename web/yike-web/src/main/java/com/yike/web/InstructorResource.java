@@ -84,6 +84,7 @@ public class InstructorResource extends BaseResource {
       sb.append("正在审核");
     } else if (course.getStatus() < Constants.STATUS_NOT_READY) {
       sb.append("已删除");
+
     } else {
       if (course.getAppliable() == Course.APPLIABLE_FALSE) {
         sb.append("已结束   ");

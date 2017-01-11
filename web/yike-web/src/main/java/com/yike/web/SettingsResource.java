@@ -1,14 +1,18 @@
 package com.yike.web;
 
 import com.sun.jersey.api.view.Viewable;
+import com.yike.Constants;
+import com.yike.dao.mapper.InstructorRowMapper;
 import com.yike.dao.mapper.UserRowMapper;
 import com.yike.model.Entity;
+import com.yike.model.Instructor;
 import com.yike.model.User;
 import com.yike.util.ResponseBuilder;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.aspectj.weaver.patterns.HasThisTypePatternTriedToSneakInSomeGenericOrParameterizedTypePatternMatchingStuffAnywhereVisitor;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -56,6 +60,13 @@ public class SettingsResource extends BaseResource {
     user = entityDao.get("user", user.getId(), UserRowMapper.getInstance());
     setSessionAttribute("_user", user);
 
+    Map<String, Object> instructorFindCondition = new HashMap<String, Object>();
+    instructorFindCondition.put(Instructor.SQL_USER_ID, user.getId());
+    instructorFindCondition.put(Instructor.SQL_STATUS, Constants.STATUS_OK);
+    Instructor instructor = entityDao.findOne(Instructor.SQL_TABLE_NAME, instructorFindCondition, InstructorRowMapper.getInstance());
+    if (null != instructor) {
+      request.setAttribute("instructor", instructor);
+    }
     request.setAttribute("user", user);
     return Response.ok(new Viewable("profile")).build();
   }

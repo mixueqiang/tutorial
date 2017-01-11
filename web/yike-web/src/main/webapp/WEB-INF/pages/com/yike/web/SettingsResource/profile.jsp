@@ -29,7 +29,7 @@
               <img src="http://yikeyun.b0.upaiyun.com/${user.avatar}!M" alt="${user.username}">
             </c:when>
             <c:otherwise>
-              <img src="http://yikeyun.b0.upaiyun.com/201612/user-avatar.png!M" alt="${user.username}">
+              <img src="http://yikeyun.b0.upaiyun.com/static/user-avatar.png!M" alt="${user.username}">
             </c:otherwise>
           </c:choose>
         </div>

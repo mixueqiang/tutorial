@@ -54,10 +54,10 @@
           </div>
         </div>
 
-        <div class="course-navbar row-space-top-4">
-          <div class="row row-space-top-3">
+        <div class="course-navbar  fix-nav">
+          <div class="row">
             <div class="col-md-12">
-              <ul class="nav course-nav">
+              <ul class="course-nav">
                 <li><a href="#about-the-course">关于此课程</a></li>
                 <li><a href="#course-list">课程安排</a></li>
                 <c:if test="${not empty achievements}">
@@ -225,3 +225,36 @@
 </div>
 
 <script src="/js/course.js?v=20161220008"></script>
+<script>
+	$(function() {
+		if ($('.fix-nav').scrollTop() == $('.fix-nav').scrollTop()) {
+		}
+	})
+ /* 导航栏滚动至浏览器顶部位置固定 */
+	$(function() {
+		//获取要定位元素距离浏览器顶部的距离
+		var navH = $(".fix-nav").offset().top;
+
+		//滚动条事件
+		$(window).scroll(function() {
+			//获取滚动条的滑动距离
+			var scroH = $(this).scrollTop();
+			//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+			if (scroH >= navH) {
+        /*var dom=$("<li></li>");
+        $('course-nav').append();*/
+				$(".fix-nav").css({
+          "position" : "fixed",
+          "display" : "block",
+          "background" : "#fff",
+					"width" : "100%",
+					"top" : 0
+				});
+			} else if (scroH < navH) {
+				$(".fix-nav").css({
+					"position" : "static",
+				});
+			}
+		})
+	})
+</script>

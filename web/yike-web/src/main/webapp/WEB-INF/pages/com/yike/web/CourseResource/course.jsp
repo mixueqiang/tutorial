@@ -113,24 +113,26 @@
       </div>
 
       <div class="col-md-2 col-md-offset-1 col-sm-6 col-xs-6">
-        <div class="section">
-          <div class="img-responsive">
-            <a href="/instructor/${instructor.id}"><c:choose>
-                <c:when test="${not empty instructor.avatar}">
-                  <img alt="一课-用户头像" src="http://yikeyun.b0.upaiyun.com/${instructor.avatar}!M">
-                </c:when>
-                <c:otherwise>
-                  <img alt="一课-用户头像" src="http://yikeyun.b0.upaiyun.com/static/user-avatar.png!M">
-                </c:otherwise>
-              </c:choose></a>
-          </div>
-          <div class="column-content">
-            <div class="section-title lg">
-              <a href="/instructor/${instructor.id}">${instructor.name}</a>
+        <c:if test="${not empty instructor}">
+          <div class="section">
+            <div class="img-responsive">
+              <a href="/instructor/${instructor.id}"><c:choose>
+                  <c:when test="${not empty instructor.avatar}">
+                    <img alt="一课-用户头像" src="http://yikeyun.b0.upaiyun.com/${instructor.avatar}!M">
+                  </c:when>
+                  <c:otherwise>
+                    <img alt="一课-用户头像" src="http://yikeyun.b0.upaiyun.com/static/user-avatar.png!M">
+                  </c:otherwise>
+                </c:choose></a>
             </div>
-            <div class="section-content row-space-top-1">${instructor.profile}</div>
+            <div class="column-content">
+              <div class="section-title lg">
+                <a href="/instructor/${instructor.id}">${instructor.name}</a>
+              </div>
+              <div class="section-content row-space-top-1">${instructor.profile}</div>
+            </div>
           </div>
-        </div>
+        </c:if>
       </div>
 
     </div>

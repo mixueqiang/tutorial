@@ -7,12 +7,12 @@
 
 <div id="courses">
   <div class="panel panel-default row-space-4">
-    <div class="panel-heading">我的课程</div>
+    <div class="panel-heading">我发布的课程</div>
     <div class="panel-body">
       <a class="btn btn-warning" href="/course/create" target="_blank">发布新课程</a>
     </div>
   </div>
-  <div id="hint" class="alert" role="alert" style="display: none;">你当前没有课程！</div>
+  <div id="hint" class="alert" role="alert" style="display: none;">你还没有发布课程！</div>
   <div id="contentList">
     <c:forEach var="item" items="${courses}">
       <div class="panel panel-default section-course" data-id="${item.id}">

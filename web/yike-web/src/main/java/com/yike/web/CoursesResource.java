@@ -108,6 +108,7 @@ public class CoursesResource extends BaseResource {
       }
     }
 
+    // TODO 删除 `isInstructor` 字段，所有用户均为老师
     request.setAttribute("isInstructor", entityDao.exists(Instructor.SQL_TABLE_NAME, Instructor.SQL_USER_ID, user.getId()));
     request.setAttribute("courses", courses);
     request.setAttribute("student", user);
@@ -123,9 +124,9 @@ public class CoursesResource extends BaseResource {
       return signinAndGoback();
     }
 
-    if (user.isInstructor()) {
-      return redirect("/courses/as_an_instructor");
-    }
+//    if (user.isInstructor()) {
+//      return redirect("/courses/as_an_instructor");
+//    }
 
     return redirect("/courses/as_a_student");
   }

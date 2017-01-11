@@ -13,7 +13,7 @@
       <a class="btn btn-warning" href="/course" target="_blank">去选课</a>
     </div>
   </div>
-  <div id="hint" class="alert" role="alert" style="display: none;">你当前没有课程!</div>
+  <div id="hint" class="alert" role="alert" style="display: none;">你还没有报名课程!</div>
 
   <div id="contentList">
     <c:forEach var="item" items="${courses}">

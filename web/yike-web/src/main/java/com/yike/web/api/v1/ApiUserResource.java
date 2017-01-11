@@ -3,6 +3,7 @@ package com.yike.web.api.v1;
 import com.yike.Constants;
 import com.yike.dao.mapper.UserRowMapper;
 import com.yike.model.Entity;
+import com.yike.model.Instructor;
 import com.yike.model.User;
 import com.yike.util.RandomUtil;
 import com.yike.util.ResponseBuilder;
@@ -128,7 +129,6 @@ public class ApiUserResource extends BaseResource {
       condition.put("type", 1);
       if (StringUtils.isNotEmpty(email)) {
         condition.put("email", email);
-
       } else {
         condition.put("phone", phone);
       }
@@ -140,23 +140,36 @@ public class ApiUserResource extends BaseResource {
 
       long time = System.currentTimeMillis();
       // Save user.
-      Entity entity = new Entity("user");
-      entity.set("email", email).set("phone", phone);
+      Entity userEntity = new Entity("user");
+      userEntity.set("email", email).set("phone", phone);
       if (StringUtils.isEmpty(username)) {
-        entity.set("username", RandomUtil.randomString(6) + System.currentTimeMillis());
-
-      } else {
-        entity.set("username", username);
+        username = RandomUtil.randomString(6) + System.currentTimeMillis();
       }
-      entity.set("password", password);
-      entity.set("locale", "cn").set("roles", roles);
-      entity.set("status", Constants.STATUS_ENABLED).set("createTime", time);
-      entity = entityDao.saveAndReturn(entity);
+      userEntity.set("username", username);
+      userEntity.set("password", password);
+      userEntity.set("locale", "cn").set("roles", roles);
+      userEntity.set("status", Constants.STATUS_ENABLED).set("createTime", time);
+      userEntity = entityDao.saveAndReturn(userEntity);
+      // Save instructor
+      Entity instructorEntity = new Entity(Instructor.SQL_TABLE_NAME);
+      instructorEntity
+              .set(Instructor.SQL_USER_ID, userEntity.getId())
+              .set(Instructor.SQL_NAME, username);
+      if (StringUtils.isEmpty(email)) {
+        instructorEntity.set(Instructor.SQL_CONTACTS, phone);
+      } else {
+        instructorEntity.set(Instructor.SQL_CONTACTS, email);
+      }
+
+      instructorEntity
+              .set(Instructor.SQL_CREATE_TIME, time)
+              .set(Instructor.SQL_STATUS, Constants.STATUS_OK);
+      entityDao.save(instructorEntity);
 
       entityDao.update("security_code", "id", securityCodeEntity.getId(), "status", 0);
 
       // 自动登录
-      long userId = entity.getId();
+      long userId = userEntity.getId();
       User user = entityDao.get("user", userId, UserRowMapper.getInstance());
       // 更新并保存session
       setSessionAttribute("_user", user);

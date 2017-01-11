@@ -71,8 +71,8 @@
                       <div class="section-title md">
                         <a href="/course/${item.id}" target="_blank">${item.name}</a>
                       </div>
-                      <div class="section-caption row-space sm">${item.properties.instructor.name}</div>
-                      <div class="section-content row-space ln-1 listLi">${item.content}</div>
+                      <!-- <div class="section-caption row-space sm">${item.properties.instructor.name}</div> -->
+                      <div class="section-content ln-1">${item.content}</div>
                       <div class="section-footer">
                         <span class="text-muted">${item.superscript}</span><span class="course-price pull-right">¥${item.price}</span>
                       </div>
@@ -144,7 +144,7 @@
 <script>
 /*图片高度适配*/
 function Heightadapt(){
-  $('.section-cover .imgadapt').height($('.section-cover .imgadapt').width()*0.65);
+  $('.section-cover .imgadapt').height($('.section-cover .imgadapt').width()*0.62);
 }
 Heightadapt();
 window.onresize=function(){
@@ -179,8 +179,9 @@ window.onresize=function(){
    }
  }
 
- for (var i = 0; i < $('.list .listLi').length; i++) {
-    $('.list .listLi').eq(i).html(cutStr($('.list .listLi').eq(i).text(), 100));
+ for (var i = 0; i < $('.list .section-content').length; i++) {
+    $('.list .section-content').eq(i).html(cutStr($('.list .section-content').eq(i).text(), 65));
+    $('.list .section-title a').eq(i).html(cutStr($('.list .section-title a').eq(i).text(), 45));
  }
 /*表单验证事件*/
 	$('#contact_form').validate({

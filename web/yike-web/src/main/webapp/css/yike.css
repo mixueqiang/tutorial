@@ -1,6 +1,7 @@
 /* ======================================commonCss-strat========================================= */
 body {
-  background-color: #fff; color: #353535; font-family: "Gotham SSm", "Open Sans", -apple-system, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; margin-left: 0; position: relative;
+  background-color: #fff; color: #353535; font-family: "微软雅黑", "宋体", Arail, Tabhoma; /* font-family: "Gotham SSm", "Open Sans", -apple-system, Helvetica, Arial, sans-serif; */ font-size: 14px;
+  line-height: 1.5; margin-left: 0; position: relative;
 }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong,
@@ -304,7 +305,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .course-price {
-  color: #333;
+  color: #333; font-size: 18px;
 }
 
 .course-navbar {
@@ -440,20 +441,27 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 /* ======================================index.jsp-start========================================= */
-.index-bgcolor{
+.index-bgcolor {
   background-color: #FAFBFC;
 }
+
 .marketing-banner {
   background-position: center center; background-repeat: no-repeat; background-size: cover; color: #fff; text-align: center; height: 420px;
 }
+
 .marketing-course {
-  padding: 50px 0 80px 0; 
+  padding: 50px 0 80px 0;
 }
+
 .navbar-header, .hero-header {
   position: absolute; width: 100%; z-index: 4; border-color: transparent; padding: 0;
 }
 
 .hero-header, .hero-header a {
+  color: #fff;
+}
+
+.hero-header, .hero-header a:hover {
   color: #fff;
 }
 
@@ -478,7 +486,8 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .navbar-header .nav>li>a.btn:hover, .hero-header .nav>li>a.btn:hover {
-  background-color: #449d44;
+  /* background-color: #ccc; */
+  
 }
 
 .hero-top {
@@ -486,7 +495,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .hero-top {
-   overflow: hidden; position: relative;
+  overflow: hidden; position: relative;
 }
 
 .hero-top .hero-placeholder, .hero-top .hero-overlay {
@@ -529,17 +538,17 @@ input, select, textarea, .btn, .form-control, .panel {
   display: inline; padding: 0 2px;
 }
 
-
 .index-panel {
-  margin-bottom: 20px;
+  margin-bottom: 20px; padding: 0 25px;
 }
 
 .index-panel-body {
-  /* box-shadow:0 3px 6px rgba(0,0,0,.4);  */box-shadow:  rgba(50, 50, 50, 0.2) 0 1px 4px 0; overflow: hidden;  background-color: #fff;
+  /* box-shadow:0 3px 6px rgba(0,0,0,.4);  */
+  box-shadow: rgba(50, 50, 50, 0.2) 0 1px 4px 0; overflow: hidden; background-color: #fff;
 }
 
 .index-panel-body:hover {
-   box-shadow:0 3px 5px rgba(0,0,0,.4); overflow: hidden;background-color: #fff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .4); overflow: hidden; background-color: #fff;
 }
 
 .section {
@@ -555,12 +564,11 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-cover img {
-  /* min-height: 180px; max-height: 180px; */
-  
+  float: left;
 }
 
 .section-contents {
-  padding: 10px; min-height: 180px; max-height: 200px; position: relative; padding-bottom: 30px;
+  padding: 20px 12px 12px; min-height: 180px; max-height: 200px; position: relative; padding-bottom: 60px;
 }
 
 .section-right {
@@ -568,8 +576,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-title, .section-title a {
-  color: #333; font-weight: normal; overflow: hidden;
-  /* height: 2.5em; min-height: 2.5em; */ max-height: 2.5em; line-height: 1.2; padding-top: 4px; text-rendering: optimizelegibility;
+  color: #333; font-weight: normal; overflow: hidden; min-height: 2.4em; max-height: 2.4em; line-height: 1.2; font-size: 16px; margin-bottom: 20px; font-weight: bold;
 }
 
 .section-caption, .section-caption a {
@@ -581,7 +588,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-content.ln-1 {
-  overflow: hidden; height: 4.5em; min-height: 4.5em; max-height: 4.5em; text-overflow: ellipsis; height: 3em;
+  font-size: 15px; color: #4a4d56; overflow: hidden; height: 4.5em; min-height: 4.5em; max-height: 4.5em; text-overflow: ellipsis; height: 3em;
 }
 
 .section-content.ln-2 {
@@ -601,7 +608,11 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-footer {
-  padding: 0 10px; width: 100%; position: absolute; bottom: 5px; left: 0;
+  padding: 0 10px; width: 100%; position: absolute; bottom: 14px; left: 0;
+}
+
+.section-footer .course-price {
+  font-size: 14px;
 }
 
 #aboutUs {

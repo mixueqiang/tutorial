@@ -52,7 +52,7 @@
     </form>
   </div>
 </div>
-<c:if test="${not empty instructor}">
+<%-- <c:if test="${not empty instructor}">
   <div class="panel panel-default row-space-4">
     <div class="panel-heading">老师资料修改</div>
     <div class="panel-body">
@@ -101,7 +101,7 @@
       </form>
     </div>
   </div>
-</c:if>
+</c:if> --%>
 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

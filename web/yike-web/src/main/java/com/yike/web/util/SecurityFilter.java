@@ -13,7 +13,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.context.WebApplicationContext;
@@ -73,7 +72,7 @@ public class SecurityFilter implements Filter {
     String requestURI = req.getRequestURI();
     if (requestURI.startsWith("/admin")) {
       user = (User) WebUtils.getSessionAttribute(req, "_user");
-      if (user == null || !StringUtils.endsWith(user.getEmail(), "@dabllo.com")) {
+      if (user == null || !user.isAdmin()) {
         LOG.warn("No permission to access " + requestURI + ": " + user);
         resp.sendRedirect("/signin?to=" + requestURI);
         return;

@@ -60,10 +60,10 @@
                     <div class="section-cover">
                       <c:choose>
                         <c:when test="${not empty item.image}">
-                          <img class="imgadapt" alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/${item.image}!M">
+                          <a href="/course/${item.id}"><div class="imgadapt" style=" width:100%; background: url('http://yikeyun.b0.upaiyun.com/${item.image}!M') 0 0 no-repeat; background-size:cover;"></div></a>
                         </c:when>
                         <c:otherwise>
-                          <img class="imgadapt" alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/static/course-cover.png!M">
+                          <a href="/course/${item.id}"><div class="imgadapt" style=" width:100%; background: url('http://yikeyun.b0.upaiyun.com/static/course-cover.png!M') 0 0 no-repeat; background-size:cover;"></div></a>
                         </c:otherwise>
                       </c:choose>
                     </div>

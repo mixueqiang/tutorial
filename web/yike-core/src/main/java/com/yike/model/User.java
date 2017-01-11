@@ -77,9 +77,8 @@ public class User extends BaseModel implements Serializable {
     return username;
   }
 
-  // TODO 修改isAdmin
   public boolean isAdmin() {
-    return StringUtils.endsWith(email, "@transkip.com");
+    return StringUtils.contains(roles, "admin");
   }
 
   public boolean isInstructor() {

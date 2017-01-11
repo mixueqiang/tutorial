@@ -5,16 +5,14 @@
   <div class="row">
     <div class="col-md-12">
       <h2>上传一张图片</h2>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="form-group">
-            <div class="col-md-6 col-sm-8 col-xs-12">
-              <span class="btn btn-default file-input-container"> 从电脑选择并上传图片 <input type="file" name="imageFile" class="fileupload"></span>
-            </div>
+      <div class="section">
+        <div class="form-group">
+          <div class="col-md-12">
+            <span class="btn btn-default file-input-container"> 从电脑选择并上传图片 <input type="file" name="imageFile" class="fileupload"></span>
           </div>
-          <div class="form-group">
-            <div class="col-md-6 col-sm-8 col-xs-12 image-container"></div>
-          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-6 col-sm-8 col-xs-12 image-container"></div>
         </div>
       </div>
     </div>

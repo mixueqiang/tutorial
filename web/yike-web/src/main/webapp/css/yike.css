@@ -299,7 +299,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 /* ======================================bootstrapReset-end========================================= */
 
-/* ======================================courseList-strat========================================= */
+/* ======================================coursedetails-strat========================================= */
 .contact_form input {
   
 }
@@ -313,15 +313,16 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .course-nav {
-  
+  height: 50px;
+  line-height: 50px;
 }
 
 .course-nav>li {
-  display: inline-block; margin-right: 20px;
+  display: inline-block; margin-right: 20px;height: 50px; line-height: 50px;
 }
 
 .course-nav>li>a {
-  color: #666; display: block; padding: 0 0 20px;
+  color: #666; display: block;
 }
 
 .course-nav>li>a:hover, .course-nav>li>a:focus {
@@ -539,7 +540,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .index-panel {
-  margin-bottom: 20px; padding: 0 25px;
+  margin-bottom: 20px;
 }
 
 .index-panel-body {

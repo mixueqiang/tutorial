@@ -100,12 +100,12 @@
 </div>
 <div id="aboutUs" class="container">
   <div class="row">
-    <div class="about col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div class="about col-xs-12 col-sm-12 col-md-5 col-lg-5">
       <h1>关于我们</h1>
       <p>一课是一个专注实践类课程的平台。在一课，你可以通过实践课程参与到真实的项目中，收获到真实的动手经验。一课致力于把真实的经验和实战带给学员，也希望学员能通过老师分享的经验和实战把学到的东西快速上手。术业专攻，一课上手。</p>
       <p>在一课，经验和实战是最大的老师。每一位有经验和实战的人都是一课在寻找的好老师。如果你在某一专业上有实战经验，联系我们，让我们一起让经验和实战发挥更大的作用。我们诚挚的邀请各位有行业经验的老师来发挥你的才智。</p>
     </div>
-    <div id="contact" class="contact col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div id="contact" class="contact col-xs-12 col-sm-12 col-md-6 col-md-offset-1 col-lg-6 col-lg-offset-1">
       <h1>为你设计</h1>
       <p>每一个有工作经验的人都可以讲课，告诉我们你的工作经历，让我们和你一起设计一门实践课程。</p>
       <form class="text-left" id="contact_form" action="/api/v1/invitation" method="post" class="form-inline" role="form">

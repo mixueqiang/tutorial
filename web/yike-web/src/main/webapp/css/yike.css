@@ -309,12 +309,12 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .course-navbar {
-  background: #fff; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;
+  background: #fff;
 }
 
 .course-nav {
   height: 50px;
-  line-height: 50px;
+  line-height: 50px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;display: block;
 }
 
 .course-nav>li {
@@ -322,7 +322,8 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .course-nav>li>a {
-  color: #666; display: block;
+  color: #666;
+  font-size: 16px;
 }
 
 .course-nav>li>a:hover, .course-nav>li>a:focus {
@@ -625,7 +626,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 #aboutUs .about p {
-  font-weight: 300; font-size: 18px; line-height: 28px; color: #16364f; line-height: 1.6; padding-right: 90px; text-align: left; margin: 0 0 20px 0;
+  font-weight: 300; font-size: 18px; line-height: 28px; color: #16364f; line-height: 1.6; text-align: left; margin: 0 0 20px 0;
 }
 
 #aboutUs .contact p {

@@ -3,7 +3,6 @@ package com.yike.web;
 import com.sun.jersey.api.view.Viewable;
 import com.yike.Constants;
 import com.yike.dao.BaseDao;
-import com.yike.dao.mapper.CategoryRowMapper;
 import com.yike.dao.mapper.CourseApplicationRowMapper;
 import com.yike.dao.mapper.CourseRowMapper;
 import com.yike.dao.mapper.InstructorRowMapper;

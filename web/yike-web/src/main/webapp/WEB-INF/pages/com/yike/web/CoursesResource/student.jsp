@@ -1,14 +1,8 @@
-<%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ include file="/WEB-INF/commons/taglibs.jsp" %>
 <div id="courses">
   <div class="panel panel-default row-space-4">
-    <c:choose>
-      <c:when test="${isInstructor eq true}">
-        <div class="panel-heading">我报名的课程</div>
-      </c:when>
-      <c:otherwise>
-        <div class="panel-heading">我的课程</div>
-      </c:otherwise>
-    </c:choose>
+    <div class="panel-heading">我报名的课程</div>
     <div class="panel-body">
       <a class="btn btn-warning" href="/course" target="_blank">去选课</a>
     </div>
@@ -39,8 +33,10 @@
                   <a class="courses-colse op-confirm-cancel" data-id="${item.id}" href="#">取消报名</a>
                 </div>
               </div>
-              <a class="courses-name" href="/instructor/${item.properties.instructor.id}" target="_blank">${item.properties.instructor.name}</a> <a id="contentStr" class="courses-content"
-                href="/course/${item.id}" target="_blank">${item.content}</a>
+              <a class="courses-name" href="/instructor/${item.properties.instructor.id}"
+                 target="_blank">${item.properties.instructor.name}</a> <a id="contentStr" class="courses-content"
+                                                                           href="/course/${item.id}"
+                                                                           target="_blank">${item.content}</a>
             </div>
           </div>
         </div>
@@ -49,7 +45,8 @@
   </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="cancelModal" tabindex="0" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+<div class="modal fade" id="cancelModal" tabindex="0" role="dialog" aria-labelledby="cancelModalLabel"
+     aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -79,7 +76,8 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="cancelInformationModal" tabindex="0" role="dialog" aria-labelledby="cancelInformationModalLabel" aria-hidden="true">
+<div class="modal fade" id="cancelInformationModal" tabindex="0" role="dialog"
+     aria-labelledby="cancelInformationModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -97,7 +95,8 @@
           </div>
           <div class="col-md-10 col-sm-9">
             <div class="row-space-top-1 t-content-medium closeapplyContent">收费课程怎样取消报名？</div>
-            <div class="row-space-top-3">请加QQ群：475581666，或者发送邮件到：service@transkip.com 提供你的账号信息、需要取消的课程链接以及你的支付宝收款账号。</div>
+            <div class="row-space-top-3">请加QQ群：475581666，或者发送邮件到：service@transkip.com 提供你的账号信息、需要取消的课程链接以及你的支付宝收款账号。
+            </div>
           </div>
         </div>
       </div>
@@ -109,42 +108,42 @@
 </div>
 
 <script>
-  $(function() {
-    if ($('#contentList').text().trim()) {
-      $('#hint').hide();
-    } else {
-      $('#hint').show();
-    }
-
-    $('.op-confirm-cancel').click(function() {
-      var courseId = $(this).attr('data-id');
-      var free = $('.section-course[data-id=' + courseId + ']').attr('data-free');
-
-      if (free == 1) {
-        $('.op-cancel', $('#cancelModal')).attr('data-id', courseId);
-        $('#cancelModal').modal('show');
-
-      } else {
-        $('#cancelInformationModal').modal('show');
-      }
-
-      return false;
-    });
-
-    $(".op-cancel").click(function() {
-      var courseId = $(this).attr('data-id');
-
-      $.getJSON("/api/v1/course/application/" + courseId + "/cancel", {}, function(result) {
-        if (result && result.e == 0) {
-          window.location.reload();
-
+    $(function () {
+        if ($('#contentList').text().trim()) {
+            $('#hint').hide();
         } else {
-          $(".closeapplyContent").html(result.m);
+            $('#hint').show();
         }
-      });
 
-      return false;
-    });
+        $('.op-confirm-cancel').click(function () {
+            var courseId = $(this).attr('data-id');
+            var free = $('.section-course[data-id=' + courseId + ']').attr('data-free');
 
-  })
+            if (free == 1) {
+                $('.op-cancel', $('#cancelModal')).attr('data-id', courseId);
+                $('#cancelModal').modal('show');
+
+            } else {
+                $('#cancelInformationModal').modal('show');
+            }
+
+            return false;
+        });
+
+        $(".op-cancel").click(function () {
+            var courseId = $(this).attr('data-id');
+
+            $.getJSON("/api/v1/course/application/" + courseId + "/cancel", {}, function (result) {
+                if (result && result.e == 0) {
+                    window.location.reload();
+
+                } else {
+                    $(".closeapplyContent").html(result.m);
+                }
+            });
+
+            return false;
+        });
+
+    })
 </script>

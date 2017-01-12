@@ -313,7 +313,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .course-nav {
-  height: 50px; line-height: 50px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; display: block;
+  height: 50px; line-height: 50px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; display: block; background: #fff; opacity: 1;
 }
 
 .course-nav>li {
@@ -483,6 +483,10 @@ input, select, textarea, .btn, .form-control, .panel {
 
 .navbar-header .nav>li>a:hover, .hero-header .nav>li>a:hover {
   background-color: transparent;
+}
+
+.navbar-header .nav>li>#publishTop:hover, .hero-header .nav>li>#publishTop:hover {
+  background-color: #449d44;
 }
 
 .navbar-header .nav>li>a.btn:hover, .hero-header .nav>li>a.btn:hover {

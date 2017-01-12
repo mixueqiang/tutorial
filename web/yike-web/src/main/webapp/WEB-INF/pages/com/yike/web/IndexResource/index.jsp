@@ -16,7 +16,7 @@
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/courses">我的课程</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings/profile">个人信息</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="/signout">退出登陆</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/signout">退出登录</a></li>
               </ul>
             </div>
           </c:when>

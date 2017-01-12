@@ -27,11 +27,27 @@
 .course-nav-item a:active, .course-nav-item a:hover {
   background: #236aa7; color: #fff;
 }
+.course-content{
+  position: relative;
+}
 .courses-imgcover{
 
 }
 .courses-img{
-
+  
+}
+.courses-details{
+   
+}
+.courses-title{
+  margin-top:10px;
+}
+.courses-footer{
+  font-size: 14px;
+  padding-left: 15px;
+  position: absolute;
+  bottom: 0;
+  left:0px;
 }
 </style>
 <div class="container">
@@ -75,7 +91,7 @@
         <c:forEach var="item" items="${courses}">
           <div class="panel panel-default section-course" data-id="${item.id}">
             <div class="panel-body">
-              <div class="row">
+              <div class="course-content row">
                 <div class="courses-imgcover col-md-4 col-sm-5 col-sx-6">
                   <c:choose>
                     <c:when test="${not empty item.image}">
@@ -86,8 +102,8 @@
                     </c:otherwise>
                   </c:choose>
                 </div>
-                <div class="section-right col-md-8 col-sm-7 col-sx-6">
-                  <div class="section-title lg">
+                <div class="courses-details section-right col-md-8 col-sm-7 col-sx-6">
+                  <div class="courses-title section-title lg">
                     <a href="/course/${item.id}" target="_blank">${item.name}</a>
                   </div>
                   <div class="section-caption row-space-top-1">
@@ -96,12 +112,12 @@
                   <div class="section-content fixed row-space-top-1">
                     <a href="/course/${item.id}" target="_blank">${item.content}</a>
                   </div>
-                  <div class="section-footer row-space-top-1">
-                    <span class="text-muted">${item.subscript}</span><span class="course-price pull-right"><c:choose>
-                        <c:when test="${item.free eq 1}">免费</c:when>
-                        <c:otherwise>¥ ${item.price}</c:otherwise>
-                      </c:choose></span>
-                  </div>
+                </div>
+                <div class="courses-footer row-space-top-1">
+                  <span class="text-muted">${item.subscript}</span><span class="courses-price pull-right"><c:choose>
+                      <c:when test="${item.free eq 1}">免费</c:when>
+                      <c:otherwise>¥ ${item.price}</c:otherwise>
+                    </c:choose></span>
                 </div>
               </div>
             </div>
@@ -156,9 +172,14 @@
   </div>
 </div>
 <script>
-/*图片高度适配*/
 function Heightadapt(){
+  /*列表图片成比例*/
   $('.courses-imgcover .courses-img').height($('.courses-imgcover .courses-img').width()*0.60);
+  /*下角标位置动态问题*/
+  $('.courses-footer').css({
+    left:$('.courses-details').position().left,
+    width:$('.courses-details').width()
+  })
 }
 Heightadapt();
 window.onresize=function(){

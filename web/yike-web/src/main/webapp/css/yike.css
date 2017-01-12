@@ -494,27 +494,31 @@ input, select, textarea, .btn, .form-control, .panel {
   
 }
 
+.hero-top, .hero-bottom {
+  overflow: hidden; position: relative;
+}
+
+.hero-top .hero-placeholder, .hero-top .hero-overlay, .hero-bottom .hero-overlay {
+  position: absolute; top: 0; right: 0; left: 0; bottom: 0;
+}
+
 .hero-top {
   background-image: url(http://yikeyun.b0.upaiyun.com/static/b2.jpg);
 }
 
-.hero-top {
-  overflow: hidden; position: relative;
-}
-
-.hero-top .hero-placeholder, .hero-top .hero-overlay {
-  position: absolute; top: 0; right: 0; left: 0; bottom: 0;
+.hero-bottom {
+  background-image: url(http://yikeyun.b0.upaiyun.com/static/b1.jpg);
 }
 
 .hero-top .hero-placeholder {
   z-index: 0; margin-top: -160px;
 }
 
-.hero-top .hero-overlay {
+.hero-top .hero-overlay, .hero-bottom .hero-overlay {
   background-color: rgba(0, 0, 0, 0.3); z-index: 2;
 }
 
-.hero-top .intro-area {
+.hero-top .intro-area, .hero-bottom .intro-area {
   z-index: 3;
 }
 
@@ -524,10 +528,6 @@ input, select, textarea, .btn, .form-control, .panel {
 
 .intro-area .content {
   max-width: 930px; width: 85%;
-}
-
-.hero-bottom {
-  background-image: url(http://yikeyun.b0.upaiyun.com/static/b1.jpg);
 }
 
 .footer-links {

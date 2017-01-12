@@ -89,6 +89,7 @@
 </div>
 
 <div class="marketing-banner hero-bottom">
+  <div class="hero-overlay"></div>
   <div class="intro-area">
     <div class="col-middle content">
       <h1>每位有工作经验的人都是老师</h1>
@@ -254,7 +255,8 @@ window.onresize=function(){
 		  }else{
 		    $('#publishTop').attr("href","/course/create");
 		  }
-	})
+	});
+
 	$('#publishBottom').click(function(){
     if(${isLogin}==false){/* 没登陆 */
         $("html,body").animate({scrollTop:$('#contact').get(0).offsetTop}, 500);
@@ -262,7 +264,7 @@ window.onresize=function(){
       }else{
         $('#publishBottom').attr("href","/course/create");
       }
-  })
+  });
   
   /* 对于不登录状态 注册显示 */
   if(${isLogin}==true){

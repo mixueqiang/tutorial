@@ -95,7 +95,7 @@
           </div>
           <div class="col-md-10 col-sm-9">
             <div class="row-space-top-1 t-content-medium closeapplyContent">收费课程怎样取消报名？</div>
-            <div class="row-space-top-3">请加QQ群：475581666，或者发送邮件到：service@transkip.com 提供你的账号信息、需要取消的课程链接以及你的支付宝收款账号。
+            <div class="row-space-top-3">请加QQ群：475581666，或者发送邮件到：service@yikeshangshou.com 提供你的账号信息、需要取消的课程链接以及你的支付宝收款账号。
             </div>
           </div>
         </div>

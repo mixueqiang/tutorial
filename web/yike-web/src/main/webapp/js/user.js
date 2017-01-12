@@ -24,7 +24,7 @@ $(function() {
   $('.btn-send-sms', $('#signup-form')).click(function() {
     var $btn = $(this);
     $btn.attr('disabled', 'disabled');
-    $('.error', $('#signup-form')).remove();
+    $('label.error', $('#signup-form')).remove();
 
     var phone = $('input[name=phone]', $('#signup-form')).val();
     if (phone == null || phone.length != 11) {
@@ -156,9 +156,9 @@ $(function() {
             var message = '注册成功，';
             Message.info(message, false, $('.form-group:last', $(form)));
             setTimeout(function() {
-            	window.history.go(-1);
+              window.history.go(-1);
             }, 1500);
-            
+
           } else {
             $('input[name=password]', $('#signup-form')).val('');
             Message.error('注册失败：' + resp.m, false, $('.form-group:last', $(form)));
@@ -204,7 +204,7 @@ $(function() {
       $(form).ajaxSubmit({
         success : function(resp) {
           if (resp && resp.e == 0) {
-            Message.info('登录成功！', false, $('.form-group:last', $(form))); 
+            Message.info('登录成功！', false, $('.form-group:last', $(form)));
             location.replace(document.referrer);
           } else {
             $('#password').val('');

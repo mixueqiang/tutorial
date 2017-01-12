@@ -30,7 +30,7 @@
             <input type="text" id="securityCode" name="securityCode" tabindex="3" class="form-control" />
           </div>
           <div class="col-sm-2">
-            <a class="btn btn-warning btn-send-sms" href="#">获取验证码</a>
+            <button class="btn btn-warning btn-send-sms">获取验证码</button>
           </div>
         </div>
         <div class="form-group">
@@ -58,4 +58,4 @@
 </div>
 
 <script src="/libs/jquery/jquery.md5.js"></script>
-<script src="/js/user.js?v=20170104001"></script>
+<script src="/js/user.js?v=20170112003"></script>

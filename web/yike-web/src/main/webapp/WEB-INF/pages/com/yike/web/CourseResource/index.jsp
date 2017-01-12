@@ -27,6 +27,12 @@
 .course-nav-item a:active, .course-nav-item a:hover {
   background: #236aa7; color: #fff;
 }
+.courses-imgcover{
+
+}
+.courses-img{
+
+}
 </style>
 <div class="container">
   <div class="course-nav-row clearfix">
@@ -70,13 +76,13 @@
           <div class="panel panel-default section-course" data-id="${item.id}">
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-4 col-sm-5 col-sx-6">
+                <div class="courses-imgcover col-md-4 col-sm-5 col-sx-6">
                   <c:choose>
                     <c:when test="${not empty item.image}">
-                      <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/${item.image}!M">
+                      <div class="courses-img" style="width:100%; background: url('http://yikeyun.b0.upaiyun.com/${item.image}!M') 0 0 no-repeat; background-size:cover;"></div>
                     </c:when>
                     <c:otherwise>
-                      <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/static/course-cover.png!M">
+                      <div class="courses-img" style=" width:100%; background: url('http://yikeyun.b0.upaiyun.com/static/course-cover.png!M') 0 0 no-repeat; background-size:cover;"></div>
                     </c:otherwise>
                   </c:choose>
                 </div>
@@ -149,3 +155,13 @@
     </div>
   </div>
 </div>
+<script>
+/*图片高度适配*/
+function Heightadapt(){
+  $('.courses-imgcover .courses-img').height($('.courses-imgcover .courses-img').width()*0.60);
+}
+Heightadapt();
+window.onresize=function(){
+  Heightadapt();
+}
+</script>

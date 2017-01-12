@@ -8,13 +8,13 @@
       <div class="col-md-9 col-sm-12" data-purpose="introduction">
 
         <div class="row section">
-          <div class="col-md-6 col-sm-6">
+          <div class="course-imgcover col-md-6 col-sm-6">
             <c:choose>
               <c:when test="${not empty course.image}">
-                <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/${course.image}!L">
+                <div class="course-img" style="width:100%; background: url('http://yikeyun.b0.upaiyun.com/${course.image}!M') 0 0 no-repeat; background-size:cover;"></div>
               </c:when>
               <c:otherwise>
-                <img alt="一课-课程图片" src="http://yikeyun.b0.upaiyun.com/static/course-cover.png!L">
+                <div class="courses-img" style="width: 100%; background: url('http://yikeyun.b0.upaiyun.com/static/course-cover.png!M') 0 0 no-repeat; background-size: cover;"></div>
               </c:otherwise>
             </c:choose>
           </div>
@@ -227,10 +227,18 @@
 
 <script src="/js/course.js?v=20161220008"></script>
 <script>
- /* 导航栏滚动至浏览器顶部位置固定,同时添加元素 */
+/*图片高度适配*/
+function Heightadapt(){
+  $('.course-imgcover .course-img').height($('.course-imgcover .course-img').width()*0.60);
+}
+Heightadapt();
+window.onresize=function(){
+  Heightadapt();
+}
+	/* 导航栏滚动至浏览器顶部位置固定,同时添加元素 */
 	$(function() {
-    //控制滚动条滚动次数
-    var a=0;
+		//控制滚动条滚动次数
+		var a = 0;
 
 		//获取要定位元素距离浏览器顶部的距离
 		var navH = $(".fix-nav").offset().top;
@@ -241,24 +249,24 @@
 			var scroH = $(this).scrollTop();
 			//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
 			if (scroH >= navH) {
-        if(a==0){
-          $(".fix-nav").css({
-          "position" : "fixed",
-          "display" : "block",
-          "background" : "#fff",
-          "width" : "100%",
-          "top" : 0
-        });
-          var cloneDom=$('.actions button').clone(true);
-          $('.appendContent').append(cloneDom);
-        }
-        a++;
+				if (a == 0) {
+					$(".fix-nav").css({
+						"position" : "fixed",
+						"display" : "block",
+						"background" : "#fff",
+						"width" : "100%",
+						"top" : 0
+					});
+					var cloneDom = $('.actions button').clone(true);
+					$('.appendContent').append(cloneDom);
+				}
+				a++;
 			} else if (scroH < navH) {
-        $(".fix-nav").css({
-          "position" : "static",
-        });
-        $('.appendContent').empty();
-        a=0;
+				$(".fix-nav").css({
+					"position" : "static",
+				});
+				$('.appendContent').empty();
+				a = 0;
 			}
 		})
 	})

@@ -170,18 +170,10 @@ public class CoursesResource extends BaseResource {
       }
     }
 
-    if (course.getCategoryId() > 0) {
 
-      Category category = entityDao.get(
-              Category.SQL_TABLE_NAME,
-              course.getCategoryId(),
-              CategoryRowMapper.getInstance());
-
-      if (null != category) {
-
-        course.getProperties().put("category", category);
-
-      }
+    Category category = getCategory(course.getCategoryId());
+    if (null != category && category.getStatus() == Constants.STATUS_OK) {
+      course.getProperties().put("category", category);
     }
   }
 }

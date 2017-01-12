@@ -48,7 +48,7 @@ public class IndexResource extends BaseResource {
   @GET
   @Produces(MediaType.TEXT_HTML)
   public Response index() {
-    List<Category> allCategories = entityDao.find(Category.SQL_TABLE_NAME, Category.SQL_STATUS, Constants.STATUS_OK, CategoryRowMapper.getInstance());
+    List<Category> allCategories = entityDao.find(Category.SQL_TABLE_NAME, Category.SQL_STATUS, Constants.STATUS_OK, CategoryRowMapper.getInstance(), Category.SQL_RANK, BaseDao.ORDER_OPTION_ASC);
 
     Map<Long, List<Course>> courseMap = new HashMap<Long, List<Course>>();
     List<Category> categories = new ArrayList<Category>();
@@ -59,7 +59,6 @@ public class IndexResource extends BaseResource {
 
       Map<String, Object> courseFindCondition = new HashMap<String, Object>();
       courseFindCondition.put(Course.SQL_STATUS, Constants.STATUS_ENABLED);
-      courseFindCondition.put(Course.SQL_APPLIABLE, Course.APPLIABLE_TRUE);
       courseFindCondition.put(Course.SQL_CATEGORY_ID, categoryId);
 
       List<Course> courses = entityDao.find(

@@ -18,11 +18,13 @@ public class Category extends BaseModel implements Serializable {
   public static final String SQL_STATUS = "status";
   public static final String SQL_CREATE_TIME = "createTime";
   public static final String SQL_UPDATE_TIME = "updateTime";
+  public static final String SQL_RANK = "rank";
 
 
   private String image;
   private long parentId;
   private String slug;
+  private long rank;
 
   public String getImage() {
     return image;
@@ -34,6 +36,10 @@ public class Category extends BaseModel implements Serializable {
 
   public String getSlug() {
     return slug;
+  }
+
+  public long getRank() {
+    return rank;
   }
 
   public void setImage(String image) {
@@ -48,4 +54,7 @@ public class Category extends BaseModel implements Serializable {
     this.slug = slug;
   }
 
+  public void setRank(long rank) {
+    this.rank = rank;
+  }
 }

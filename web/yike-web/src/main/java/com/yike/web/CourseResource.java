@@ -160,14 +160,17 @@ public class CourseResource extends BaseResource {
   public Response index(
           @QueryParam("c") @DefaultValue("0") long categoryId,
           @QueryParam("p") @DefaultValue("1") int page) {
+
     Map<String, Object> condition = new HashMap<String, Object>();
     condition.put("status", Constants.STATUS_ENABLED);
+
     if (categoryId != 0) {
       if (entityDao.exists(Category.SQL_TABLE_NAME, Category.SQL_ID, categoryId)) {
         request.setAttribute("currentCategoryId", categoryId);
         condition.put(Course.SQL_CATEGORY_ID, categoryId);
       }
     }
+
     Pair<Integer, List<Course>> result = entityDao.findAndCount("course", condition, page, PageNumberUtils.PAGE_SIZE_SMALL, CourseRowMapper.getInstance());
     List<Course> courses = result.right;
     request.setAttribute("courses", courses);
@@ -176,7 +179,9 @@ public class CourseResource extends BaseResource {
             Category.SQL_TABLE_NAME,
             Category.SQL_STATUS,
             Constants.STATUS_OK,
-            CategoryRowMapper.getInstance());
+            CategoryRowMapper.getInstance(),
+            Category.SQL_RANK,
+            BaseDao.ORDER_OPTION_ASC);
 
     for (Course course : courses) {
       if (course == null || course.isDisabled()) {
@@ -211,11 +216,9 @@ public class CourseResource extends BaseResource {
         course.getProperties().put("instructor", instructor);
       }
     }
-    if (course.getCategoryId() > 0) {
-      Category category = entityDao.get(Category.SQL_TABLE_NAME, course.getCategoryId(), CategoryRowMapper.getInstance());
-      if (null != category && category.getStatus() == Constants.STATUS_OK) {
-        course.getProperties().put("category", category);
-      }
+    Category category = getCategory(course.getCategoryId());
+    if (null != category && category.getStatus() == Constants.STATUS_OK) {
+      course.getProperties().put("category", category);
     }
   }
 

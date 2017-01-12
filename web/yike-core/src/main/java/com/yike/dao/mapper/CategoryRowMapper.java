@@ -33,6 +33,7 @@ public class CategoryRowMapper implements RowMapper<Category> {
     entity.setStatus(rs.getInt(Category.SQL_STATUS));
     entity.setCreateTime(rs.getLong(Category.SQL_CREATE_TIME));
     entity.setUpdateTime(rs.getLong(Category.SQL_UPDATE_TIME));
+    entity.setRank(rs.getLong(Category.SQL_RANK));
 
     return entity;
   }

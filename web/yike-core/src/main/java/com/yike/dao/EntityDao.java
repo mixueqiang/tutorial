@@ -273,7 +273,7 @@ public class EntityDao extends BaseDao {
   }
 
   public <T> List<T> find(String modelName, String columnName, Object columnValue, RowMapper<T> rowMapper, String orderBy, String orderOption) {
-    return find(modelName, columnName, columnValue, rowMapper, 1, PAGE_SIZE_MEDIUM, ORDER_BY_ID, orderOption);
+    return find(modelName, columnName, columnValue, rowMapper, 1, PAGE_SIZE_MEDIUM, orderBy, orderOption);
   }
 
   public <T> Pair<Integer, List<T>> findAndCount(String modelName, int pageNumber, int pageSize, RowMapper<T> rowMapper) {

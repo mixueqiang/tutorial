@@ -3,6 +3,22 @@
 .courses-content {
   display: block; padding-bottom: 20px; margin-bottom: 30px;
 }
+
+.as-instructor-content {
+  position: relative;
+}
+
+.as-instructor-title {
+  font-weight: bold; font-size: 16px; margin-top: 10px;
+}
+
+.as-instructor-lightspot {
+  margin-top: 10px; padding-bottom: 20px;
+}
+
+.as-instructor-footer {
+  font-size: 14px; padding-left: 15px; position: absolute; bottom: 0; left: 0px;
+}
 </style>
 
 <div id="courses">
@@ -15,23 +31,23 @@
   <div id="hint" class="alert" role="alert" style="display: none;">你还没有发布课程！</div>
   <div id="contentList">
     <c:forEach var="item" items="${courses}">
-      <div class="panel panel-default section-course" data-id="${item.id}">
+      <div class="panel panel-default" data-id="${item.id}">
         <div class="panel-body">
-          <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="as-instructor-content row">
+            <div class="as-instructor-imgcover col-md-4 col-sm-4 col-xs-12">
               <c:choose>
                 <c:when test="${not empty item.image}">
-                  <img alt="一课-课程" src="http://yikeyun.b0.upaiyun.com/${item.image}!M">
+                  <div class="as-instructor-img" style="width:100%; background: url('http://yikeyun.b0.upaiyun.com/${item.image}!M') 0 0 no-repeat; background-size:cover;"></div>
                 </c:when>
                 <c:otherwise>
-                  <img alt="一课-课程" src="http://yikeyun.b0.upaiyun.com/static/course-cover.png!M">
+                  <div class="as-instructor-img" style="width: 100%; background: url('http://yikeyun.b0.upaiyun.com/static/course-cover.png!M') 0 0 no-repeat; background-size: cover;"></div>
                 </c:otherwise>
               </c:choose>
             </div>
-            <div class="col-md-8 col-sm-8 col-xs-12">
+            <div class="as-instructor-details col-md-8 col-sm-8 col-xs-12">
               <div class="row">
                 <div class="col-md-8 col-sm-12 col-xs-12">
-                  <a class="courses-title" href="/course/${item.id}" target="_blank">${item.name}</a>
+                  <a class="as-instructor-title" href="/course/${item.id}" target="_blank">${item.name}</a>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   <div class="pull-right course-status">
@@ -66,13 +82,15 @@
                   </div>
                 </div>
               </div>
-              <a class="courses-content" href="/course/${item.id}" target="_blank">${item.content}</a>
-              <div class="courses-hint row-space-top-1">
-                <span id="courses-subscript pull-left">${item.subscript}</span> <span class="courses-price pull-right"><c:choose>
-                    <c:when test="${item.free eq 1}">免费</c:when>
-                    <c:otherwise>¥${item.price}</c:otherwise>
-                  </c:choose></span>
+              <div class="as-instructor-lightspot">
+                <a href="/course/${item.id}" target="_blank">${item.content}</a>
               </div>
+            </div>
+            <div class="as-instructor-footer row-space-top-1">
+              <span id="courses-subscript pull-left">${item.subscript}</span> <span class="courses-price pull-right"><c:choose>
+                  <c:when test="${item.free eq 1}">免费</c:when>
+                  <c:otherwise>¥${item.price}</c:otherwise>
+                </c:choose></span>
             </div>
           </div>
         </div>
@@ -146,13 +164,29 @@
 
 <script src="/js/course.js?v=20161220006"></script>
 <script>
-  $(function() {
-	  /* 没有课程时->显示当前没有课程 */
-    if ($('#contentList').text().trim()) {
-      $('#hint').hide();
-    } else {
-      $('#hint').show();
-    }
-    
-  })
+	$(function() {
+		/* 没有课程时->显示当前没有课程 */
+		if ($('#contentList').text().trim()) {
+			$('#hint').hide();
+		} else {
+			$('#hint').show();
+		}
+
+	})
+	function Heightadapt() {
+		/*列表图片成比例*/
+		$('.as-instructor-imgcover .as-instructor-img').height(
+				$('.as-instructor-imgcover .as-instructor-img').width() * 0.60);
+		/*下角标位置动态问题*/
+		console.log($('.as-instructor-details').width());
+		$('.as-instructor-footer').css({
+			left : $('.as-instructor-details').position().left,
+			width : $('.as-instructor-details').width() + 15
+		});
+		console.log($('.as-instructor-footer').width());
+	}
+	Heightadapt();
+	window.onresize = function() {
+		Heightadapt();
+	}
 </script>

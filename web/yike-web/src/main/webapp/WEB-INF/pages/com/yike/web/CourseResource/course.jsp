@@ -42,7 +42,7 @@
                             <button class="btn btn-danger large" disabled="disabled">已结束招生</button>
                           </c:when>
                           <c:when test="${course.status eq 1 and course.appliable eq 1}">
-                            <a class="btn btn-success large" data-toggle="modal" data-target="#applicationModal" href="#">报名</a>
+                            <button class="btn btn-success large" data-toggle="modal" data-target="#applicationModal" href="#">报名</button>
                           </c:when>
                         </c:choose>
                       </c:otherwise>
@@ -63,6 +63,7 @@
                 <c:if test="${not empty achievements}">
                   <li><a href="#course-achievements">课程成果</a></li>
                 </c:if>
+                <li class="appendContent"></li>
               </ul>
             </div>
           </div>
@@ -226,12 +227,11 @@
 
 <script src="/js/course.js?v=20161220008"></script>
 <script>
+ /* 导航栏滚动至浏览器顶部位置固定,同时添加元素 */
 	$(function() {
-		if ($('.fix-nav').scrollTop() == $('.fix-nav').scrollTop()) {
-		}
-	})
- /* 导航栏滚动至浏览器顶部位置固定 */
-	$(function() {
+    //控制滚动条滚动次数
+    var a=0;
+
 		//获取要定位元素距离浏览器顶部的距离
 		var navH = $(".fix-nav").offset().top;
 
@@ -241,19 +241,24 @@
 			var scroH = $(this).scrollTop();
 			//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
 			if (scroH >= navH) {
-        /*var dom=$("<li></li>");
-        $('course-nav').append();*/
-				$(".fix-nav").css({
+        if(a==0){
+          $(".fix-nav").css({
           "position" : "fixed",
           "display" : "block",
           "background" : "#fff",
-					"width" : "100%",
-					"top" : 0
-				});
+          "width" : "100%",
+          "top" : 0
+        });
+          var cloneDom=$('.actions button').clone(true);
+          $('.appendContent').append(cloneDom);
+        }
+        a++;
 			} else if (scroH < navH) {
-				$(".fix-nav").css({
-					"position" : "static",
-				});
+        $(".fix-nav").css({
+          "position" : "static",
+        });
+        $('.appendContent').empty();
+        a=0;
 			}
 		})
 	})

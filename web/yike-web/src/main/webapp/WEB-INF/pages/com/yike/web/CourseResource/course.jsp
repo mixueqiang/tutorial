@@ -1,11 +1,16 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
 <title>${course.name}&nbsp;|&nbsp;一课</title>
-
+<style>
+  .course-navbar{
+    display: block;
+    background-color: #fff;
+  }
+</style>
 <div class="course" data-id="${course.id}">
   <input type="hidden" id="courseId" value="${course.id}">
   <div class="container">
     <div class="row row-space-top-2 section">
-      <div class="col-md-9 col-sm-12" data-purpose="introduction">
+      <div class="course-parent col-md-9 col-sm-12" data-purpose="introduction">
 
         <div class="row section">
           <div class="course-imgcover col-md-6 col-sm-6">
@@ -54,7 +59,7 @@
           </div>
         </div>
 
-        <div class="course-navbar  fix-nav">
+        <div class="course-navbar fix-nav">
           <div class="row">
             <div class="col-md-12">
               <ul class="course-nav">
@@ -63,7 +68,7 @@
                 <c:if test="${not empty achievements}">
                   <li><a href="#course-achievements">课程成果</a></li>
                 </c:if>
-                <li class="appendContent"></li>
+                <li class="appendContent pull-right"></li>
               </ul>
             </div>
           </div>
@@ -230,6 +235,7 @@
 /*图片高度适配*/
 function Heightadapt(){
   $('.course-imgcover .course-img').height($('.course-imgcover .course-img').width()*0.60);
+  $('.course-navbar').width($('.course-parent').width());
 }
 Heightadapt();
 window.onresize=function(){
@@ -254,7 +260,6 @@ window.onresize=function(){
 						"position" : "fixed",
 						"display" : "block",
 						"background" : "#fff",
-						"width" : "100%",
 						"top" : 0
 					});
 					var cloneDom = $('.actions button').clone(true);

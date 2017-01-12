@@ -81,10 +81,6 @@ public class User extends BaseModel implements Serializable {
     return StringUtils.contains(roles, "admin");
   }
 
-//  public boolean isInstructor() {
-//    return StringUtils.contains(roles, "instructor");
-//  }
-
   public void setAvatar(String avatar) {
     this.avatar = avatar;
   }

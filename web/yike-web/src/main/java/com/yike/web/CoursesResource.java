@@ -124,10 +124,6 @@ public class CoursesResource extends BaseResource {
       return signinAndGoback();
     }
 
-//    if (user.isInstructor()) {
-//      return redirect("/courses/as_an_instructor");
-//    }
-
     return redirect("/courses/as_a_student");
   }
 

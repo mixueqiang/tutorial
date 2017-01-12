@@ -180,8 +180,8 @@ window.onresize=function(){
  }
 
  for (var i = 0; i < $('.list .section-content').length; i++) {
-    $('.list .section-content').eq(i).html(cutStr($('.list .section-content').eq(i).text(), 65));
-    $('.list .section-title a').eq(i).html(cutStr($('.list .section-title a').eq(i).text(), 45));
+    $('.list .section-content').eq(i).html(cutStr($('.list .section-content').eq(i).text(), 88));
+    $('.list .section-title a').eq(i).html(cutStr($('.list .section-title a').eq(i).text(), 50));
  }
 /*表单验证事件*/
 	$('#contact_form').validate({

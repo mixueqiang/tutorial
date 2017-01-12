@@ -17,3 +17,12 @@
 <script src="/libs/jquery/jquery.form.min.js?v=20161229"></script>
 <script src="/libs/bootstrap/js/bootstrap.min.js?v=20161229"></script>
 <script src="/js/yike.js?v=20161229"></script>
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?22ac26b8893d49f04b459d3ef2aae2f9";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>

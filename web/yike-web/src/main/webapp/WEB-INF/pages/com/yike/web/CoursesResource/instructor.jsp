@@ -1,15 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
 <style>
-.courses-content {
-  display: block; padding-bottom: 20px; margin-bottom: 30px;
-}
-
 .as-instructor-content {
   position: relative;
 }
 
+.as-instructor-details {
+  margin-top: 10px;
+}
+
 .as-instructor-title {
-  font-weight: bold; font-size: 16px; margin-top: 10px;
+  font-weight: bold; font-size: 16px;
 }
 
 .as-instructor-lightspot {

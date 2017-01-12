@@ -100,7 +100,7 @@
         </div>
       </div>
 
-      <div class="col-md-8 col-sm-8">
+      <div class="col-md-9 col-sm-8">
         <c:if test="${not _blank}">
           <d:body />
         </c:if>

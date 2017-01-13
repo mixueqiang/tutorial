@@ -40,11 +40,17 @@ public class ApiInvitationResource extends BaseResource {
     if (StringUtils.isEmpty(name)) {
       return ResponseBuilder.error(100101, "请输入你的姓名。");
     }
+    if (StringUtils.length(name) > 10) {
+      return ResponseBuilder.error(100102, "姓名不能超过10个字。");
+    }
     if (StringUtils.isEmpty(contacts)) {
-      return ResponseBuilder.error(100102, "请输入你的联系方式。");
+      return ResponseBuilder.error(100103, "请输入你的手机号码。");
     }
     if (StringUtils.isEmpty(content)) {
-      return ResponseBuilder.error(100103, "请写下想要对我们说的话。");
+      return ResponseBuilder.error(100104, "请输入你的工作经历。");
+    }
+    if (StringUtils.length(content) > 2000) {
+      return ResponseBuilder.error(100105, "工作经历不能超过2000个字。");
     }
 
     long time = System.currentTimeMillis();

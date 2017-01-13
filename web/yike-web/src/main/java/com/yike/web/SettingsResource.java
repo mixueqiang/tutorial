@@ -12,7 +12,6 @@ import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.aspectj.weaver.patterns.HasThisTypePatternTriedToSneakInSomeGenericOrParameterizedTypePatternMatchingStuffAnywhereVisitor;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -127,20 +126,23 @@ public class SettingsResource extends BaseResource {
     try {
       long time = System.currentTimeMillis();
       Map<String, Object> updateValues = new HashMap<String, Object>();
+      Map<String, Object> instructorUpdateValues = new HashMap<String, Object>();
       if (!StringUtils.equals(user.getUsername(), username)) {
         if (entityDao.exists("user", "username", username)) {
           return ResponseBuilder.error(10113, "昵称已经被使用，请重新选择一个昵称。");
         }
-
+        instructorUpdateValues.put(Instructor.SQL_NAME, username);
         updateValues.put("username", username);
       }
       if (!StringUtils.equals(user.getGender(), gender)) {
         updateValues.put("gender", gender);
       }
       if (StringUtils.isNotEmpty(avatar) && !StringUtils.equals(user.getAvatar(), avatar)) {
+        instructorUpdateValues.put(Instructor.SQL_AVATAR, avatar);
         updateValues.put("avatar", avatar);
       }
       if (!StringUtils.equals(user.getProfile(), profile)) {
+        instructorUpdateValues.put(Instructor.SQL_PROFILE, profile);
         updateValues.put("profile", profile);
       }
 
@@ -148,8 +150,10 @@ public class SettingsResource extends BaseResource {
         return ResponseBuilder.error(10110, "没有提交任何修改。");
       }
 
+      instructorUpdateValues.put(Instructor.SQL_UPDATE_TIME, time);
       updateValues.put("updateTime", time);
       entityDao.update("user", "id", user.getId(), updateValues);
+      entityDao.update(Instructor.SQL_TABLE_NAME, Instructor.SQL_USER_ID, user.getId(), instructorUpdateValues);
 
       // 更新Session
       user = entityDao.get("user", user.getId(), UserRowMapper.getInstance());

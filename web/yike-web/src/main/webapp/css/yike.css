@@ -1,4 +1,4 @@
-/* ======================================commonCss-strat========================================= */
+/* ======================================reset-strat========================================= */
 html, body {
   background-color: #fff; color: #353535; font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif; font-size: 14px; line-height: 1.5; margin-left: 0;
   position: relative;
@@ -41,7 +41,7 @@ p {
 input, select, textarea, .btn, .form-control, .panel {
   border-radius: 2px;
 }
-/* ======================================commonCss-end================================================= */
+/* ===========================================reset-end========================================== */
 
 /* ======================================#header&&#footer-strat========================================= */
 #header {
@@ -299,14 +299,74 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 /* ======================================bootstrapReset-end========================================= */
 
+/* ======================================contentCommon-strat========================================= */
+.section {
+  position: relative;
+}
+
+.section-header {
+  
+}
+
+.section-cover {
+  overflow: hidden; font-weight: bold;
+}
+
+.section-cover img {
+  float: left;
+}
+
+.section-contents {
+  padding: 20px 12px 12px; min-height: 180px; max-height: 200px; padding-bottom: 30px;
+}
+
+.section-right {
+  padding-bottom: 40px;
+}
+
+.section-title, .section-title a {
+  color: #333; font-weight: bold; overflow: hidden; min-height: 2.4em; max-height: 2.4em; line-height: 1.2; font-size: 16px; margin-bottom:10px;
+}
+
+.section-caption, .section-caption a {
+  color: #777; max-height: 1.5em; margin-top: 5px;
+}
+
+.section-content, .section-content a, .section-content a:hover, .section-content a:visited {
+  color: #666;
+}
+
+.section-content{
+  font-size: 15px; color: #4a4d56; overflow: hidden; min-height: 4.5em; max-height: 4.5em; 
+}
+
+.section-left {
+  
+}
+
+.section-right {
+  
+}
+
+.section-footer {
+  padding: 0 10px; width: 100%; position: absolute; bottom: 14px; left: 0;
+}
+.section-subscript{
+
+}
+.section-price{
+  color: #333;font-size: 14px;
+}
+/* ======================================contentCommon-end========================================= */
+
 /* ======================================coursedetails-strat========================================= */
 .contact_form input {
   
 }
 
-.course-price {
+/* .course-price {
   color: #333; font-size: 18px;
-}
+} */
 
 .course-navbar {
   background: #fff;
@@ -554,70 +614,7 @@ input, select, textarea, .btn, .form-control, .panel {
 .index-panel-body:hover {
   box-shadow: 0 3px 5px rgba(0, 0, 0, .4); overflow: hidden; background-color: #fff;
 }
-
-.section {
-  
-}
-
-.section-header {
-  
-}
-
-.section-cover {
-  overflow: hidden;
-}
-
-.section-cover img {
-  float: left;
-}
-
-.section-contents {
-  padding: 20px 12px 12px; min-height: 180px; max-height: 200px; position: relative; padding-bottom: 60px;
-}
-
-.section-right {
-  padding-bottom: 40px;
-}
-
-.section-title, .section-title a {
-  color: #333; font-weight: normal; overflow: hidden; min-height: 2.4em; max-height: 2.4em; line-height: 1.2; font-size: 16px; margin-bottom: 20px; font-weight: bold;
-}
-
-.section-caption, .section-caption a {
-  color: #777; /* height: 1.5em; min-height: 1.5em; */ max-height: 1.5em; margin-top: 5px;
-}
-
-.section-content, .section-content a, .section-content a:hover, .section-content a:visited {
-  color: #666;
-}
-
-.section-content.ln-1 {
-  font-size: 15px; color: #4a4d56; overflow: hidden; height: 4.5em; min-height: 4.5em; max-height: 4.5em; text-overflow: ellipsis; height: 3em;
-}
-
-.section-content.ln-2 {
-  height: 40px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-}
-
-.section-content.ln-3 {
-  height: 60px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
-}
-
-.section-left {
-  
-}
-
-.section-right {
-  
-}
-
-.section-footer {
-  padding: 0 10px; width: 100%; position: absolute; bottom: 14px; left: 0;
-}
-
-.section-footer .course-price {
-  font-size: 14px;
-}
+.index-cover{margin: 20px 12px 12px;}
 
 #aboutUs {
   text-align: center; background-color: #fff; min-height: 516px;

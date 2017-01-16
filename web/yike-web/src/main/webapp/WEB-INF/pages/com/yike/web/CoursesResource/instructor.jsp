@@ -65,6 +65,7 @@
                             <a class="btn-link col-space-2 students-list" href="/course/${item.id}/students">学生名单</a>
                           </c:otherwise>
                         </c:choose>
+                        <a class="btn-link col-space-2" data-id="${item.id}" href="../course/${item.id}/edit"><span>编辑</span></a>
                       </c:when>
                       <c:when test="${item.status gt 0}">
                         <c:choose>
@@ -177,12 +178,10 @@
 		$('.as-instructor-imgcover .as-instructor-img').height(
 				$('.as-instructor-imgcover .as-instructor-img').width() * 0.60);
 		/*下角标位置动态问题*/
-		console.log($('.as-instructor-details').width());
 		$('.as-instructor-footer').css({
 			left : $('.as-instructor-details').position().left,
 			width : $('.as-instructor-details').width() + 15
 		});
-		console.log($('.as-instructor-footer').width());
 	}
 	Heightadapt();
 	window.onresize = function() {

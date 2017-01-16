@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>支付尚未完成 | 一课</title>
+<title>支付尚未完成 | 一课上手</title>
 
 <div class="container">
   <div class="row row-space-top-4">

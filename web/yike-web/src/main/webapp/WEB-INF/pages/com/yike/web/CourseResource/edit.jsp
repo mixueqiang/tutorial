@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>编辑实践&nbsp;|&nbsp;一课</title>
+<title>编辑实践&nbsp;|&nbsp;一课上手</title>
 <style>
 </style>
 <div class="container">

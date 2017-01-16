@@ -17,10 +17,10 @@
             <div class="col-sx-8 col-sm-4 col-4">
               <c:choose>
                 <c:when test="${not empty item.image}">
-                  <img alt="一课-课程" src="http://yikeyun.b0.upaiyun.com/${item.image}!M">
+                  <img alt="一课上手-课程" src="http://yikeyun.b0.upaiyun.com/${item.image}!M">
                 </c:when>
                 <c:otherwise>
-                  <img alt="一课-课程" src="http://yikeyun.b0.upaiyun.com/static/course-cover.png!M">
+                  <img alt="一课上手-课程" src="http://yikeyun.b0.upaiyun.com/static/course-cover.png!M">
                 </c:otherwise>
               </c:choose>
             </div>

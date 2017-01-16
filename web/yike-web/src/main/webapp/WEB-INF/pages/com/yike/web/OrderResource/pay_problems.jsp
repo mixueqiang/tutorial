@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>支付遇到问题 | 一课</title>
+<title>支付遇到问题 | 一课上手</title>
 
 <div class="container">
   <div class="row row-space-top-4">
@@ -21,7 +21,7 @@
           </div>
           <div class="row-space-top-3">如果支付超时导致订单失败，支付宝会在3个工作日内将付款退还至你的银行卡。如有更多疑问，可以向你的银行卡客户服务部门咨询。如果在支付宝支付过程中出错导致了订单失败，请及时联系支付宝。</div>
           <div class="row-space-top-3">
-            如果通过上述方式仍然不能解决你的问题，请直接联系我们，<br />QQ群：475581666，<br />Email：service@transkip.com
+            如果通过上述方式仍然不能解决你的问题，请直接联系我们，<br />QQ群：475581666，<br />Email：service@yikeshangshou.com
           </div>
         </div>
       </div>

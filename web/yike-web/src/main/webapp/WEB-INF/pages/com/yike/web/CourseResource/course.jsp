@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>${course.name}&nbsp;|&nbsp;一课</title>
+<title>${course.name}&nbsp;|&nbsp;一课上手</title>
 <style>
   .course-navbar{
     display: block;
@@ -95,7 +95,7 @@
                   <h4 class="row-space-top-2 row-space-2">招收学员数量：${course.countMax} 人</h4>
                 </c:if>
                 <h4 class="row-space-top-2 row-space-2">购买支持</h4>
-                <p>一课对课程的报名及购买提供支持。如对课程或者课程的购买有疑问，请加QQ群：475581666，或者发送邮件到：service@yikeshangshou.com 进行咨询。</p>
+                <p>「一课上手」对课程的报名及购买提供支持。如对课程或者课程的购买有疑问，请加QQ群：475581666，或者发送邮件到：service@yikeshangshou.com 进行咨询。</p>
               </div>
               <div class="col-md-4"></div>
             </div>
@@ -130,10 +130,10 @@
             <div class="img-responsive">
               <a href="/instructor/${instructor.id}"><c:choose>
                   <c:when test="${not empty instructor.avatar}">
-                    <img alt="一课-用户头像" src="http://yikeyun.b0.upaiyun.com/${instructor.avatar}!M">
+                    <img alt="一课上手-用户头像" src="http://yikeyun.b0.upaiyun.com/${instructor.avatar}!M">
                   </c:when>
                   <c:otherwise>
-                    <img alt="一课-用户头像" src="http://yikeyun.b0.upaiyun.com/static/user-avatar.png!M">
+                    <img alt="一课上手-用户头像" src="http://yikeyun.b0.upaiyun.com/static/user-avatar.png!M">
                   </c:otherwise>
                 </c:choose></a>
             </div>

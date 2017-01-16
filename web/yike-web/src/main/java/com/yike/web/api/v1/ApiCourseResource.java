@@ -1,19 +1,11 @@
 package com.yike.web.api.v1;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-
+import com.yike.Constants;
+import com.yike.dao.mapper.CourseRowMapper;
+import com.yike.dao.mapper.InstructorRowMapper;
+import com.yike.model.*;
+import com.yike.util.ResponseBuilder;
+import com.yike.web.BaseResource;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -21,16 +13,10 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.yike.model.Entity;
-import com.yike.model.User;
-import com.yike.util.ResponseBuilder;
-import com.yike.Constants;
-import com.yike.dao.mapper.CourseRowMapper;
-import com.yike.dao.mapper.InstructorRowMapper;
-import com.yike.model.Course;
-import com.yike.model.CourseApplication;
-import com.yike.model.Instructor;
-import com.yike.web.BaseResource;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author ilakeyc
@@ -47,7 +33,12 @@ public class ApiCourseResource extends BaseResource {
   @Path("{id}")
   @Produces(APPLICATION_JSON)
   public Map<String, Object> get(@PathParam("id") long courseId) {
-    Course course = entityDao.get(Course.SQL_TABLE_NAME, courseId, CourseRowMapper.getInstance());
+
+    Map<String, Object> courseFindCondition = new HashMap<String, Object>();
+    courseFindCondition.put(Course.SQL_ID, courseId);
+    courseFindCondition.put(Course.SQL_STATUS, Constants.STATUS_OK);
+    Course course = entityDao.findOne(Course.SQL_TABLE_NAME, courseFindCondition, CourseRowMapper.getInstance());
+
     if (course == null || course.isDisabled()) {
       return ResponseBuilder.error(60404, "未找到课程。");
     }

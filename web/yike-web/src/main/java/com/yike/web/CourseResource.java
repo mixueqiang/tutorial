@@ -1,32 +1,25 @@
 package com.yike.web;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
+import com.sun.jersey.api.view.Viewable;
+import com.yike.Constants;
 import com.yike.dao.BaseDao;
 import com.yike.dao.mapper.*;
 import com.yike.model.*;
+import com.yike.util.PageNumberUtils;
+import com.yike.util.Pair;
+import com.yike.util.StringUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.yike.util.PageNumberUtils;
-import com.yike.util.Pair;
-import com.yike.util.StringUtil;
-import com.sun.jersey.api.view.Viewable;
-import com.yike.Constants;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author xueqiangmi
@@ -79,7 +72,12 @@ public class CourseResource extends BaseResource {
   @Path("{id}")
   @Produces(MediaType.TEXT_HTML)
   public Response get(@PathParam("id") long id) {
-    Course course = entityDao.get("course", id, CourseRowMapper.getInstance());
+
+    Map<String, Object> courseFindCondition = new HashMap<String, Object>();
+    courseFindCondition.put(Course.SQL_ID, id);
+    courseFindCondition.put(Course.SQL_STATUS, Constants.STATUS_OK);
+    Course course = entityDao.findOne(Course.SQL_TABLE_NAME, courseFindCondition, CourseRowMapper.getInstance());
+
     if (course == null) {
       request.setAttribute("_blank", true);
       request.setAttribute("_msg", "课程未找到。");

@@ -56,16 +56,15 @@
                         <span>审核中</span>
                         <c:choose>
                           <c:when test="${empty item.countThis}">
-                            <a class="btn-link col-space-2 students-list" href=""></a>
+                            <!-- <a class="btn-link col-space-2 students-list" href=""></a> -->
                           </c:when>
                           <c:when test="${item.countThis eq 0}">
-                            <a class="btn-link col-space-2 students-list" href=""></a>
+                            <!-- <a class="btn-link col-space-2 students-list" href=""></a> -->
                           </c:when>
                           <c:otherwise>
                             <a class="btn-link col-space-2 students-list" href="/course/${item.id}/students">学生名单</a>
                           </c:otherwise>
                         </c:choose>
-                        <a class="btn-link col-space-2 op-confirm-edit" data-id="${item.id}" href="#"><span>编辑</span></a>
                       </c:when>
                       <c:when test="${item.status gt 0}">
                         <c:choose>

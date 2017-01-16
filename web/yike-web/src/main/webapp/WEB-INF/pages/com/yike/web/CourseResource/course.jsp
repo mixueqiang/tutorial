@@ -260,7 +260,8 @@ window.onresize=function(){
 						"position" : "fixed",
 						"display" : "block",
 						"background" : "#fff",
-						"top" : 0
+            "top" : 0,
+						"zIndex" : 1000
 					});
 					var cloneDom = $('.actions button').clone(true);
 					$('.appendContent').append(cloneDom);

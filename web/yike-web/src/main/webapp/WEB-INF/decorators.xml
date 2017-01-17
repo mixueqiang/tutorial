@@ -16,6 +16,10 @@
     <pattern>/</pattern>
   </decorator>
 
+  <decorator name="template_skill" page="template_skill.jsp">
+    <pattern>/skill*</pattern>
+  </decorator>
+
   <decorator name="template_admin" page="template_admin.jsp">
     <pattern>/admin*</pattern>
   </decorator>
@@ -25,13 +29,5 @@
     <pattern>/courses*</pattern>
     <pattern>/settings*</pattern>
   </decorator>
-
-  <!-- <decorator name="template_dashboard_course" page="template_dashboard_course.jsp">
-    <pattern>/courses*</pattern>
-  </decorator>
-
-  <decorator name="template_dashboard_settings" page="template_dashboard_settings.jsp">
-    <pattern>/settings*</pattern>
-  </decorator> -->
 
 </decorators>

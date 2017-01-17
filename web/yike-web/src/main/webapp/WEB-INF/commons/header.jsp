@@ -19,7 +19,14 @@
             </div>
           </c:when>
           <c:otherwise>
-            <li class="pull-left col-space-2"><a href="/signin?to=${pageContext.request.requestURI}">登录</a></li>
+            <li class="pull-left col-space-2"><c:choose>
+                <c:when test="${pageContext.request.requestURI eq '/signup' or pageContext.request.requestURI eq '/password/remind'}">
+                  <a href="/signin">登录</a>
+                </c:when>
+                <c:otherwise>
+                  <a href="/signin?to=${pageContext.request.requestURI}">登录</a>
+                </c:otherwise>
+              </c:choose></li>
           </c:otherwise>
         </c:choose>
       </ul>

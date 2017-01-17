@@ -2,15 +2,14 @@
 <div class="marketing-banner hero-top">
   <div class="hero-header">
     <div class="container">
-      <a class="hero-brand xxl" href="/">一课上手</a>
+      <a class="hero-brand xl" href="/">一课上手</a>
       <ul class="nav pull-right">
         <li class="pull-left"><a id="publishTop" class="btn btn-success" href="/course/create">发布一门实践课程</a></li>
         <c:choose>
           <c:when test="${not empty _user}">
             <div class="dropdown headerDropdown pull-left">
               <button class="btn dropdown-toggle dropdownMenu1" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                <a href="/dashboard">${_user.username}</a>
-                <span class="caret"></span>
+                <a href="/dashboard">${_user.username}</a><span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/courses">我的课程</a></li>
@@ -59,10 +58,12 @@
                     <div class="section-cover">
                       <c:choose>
                         <c:when test="${not empty item.image}">
-                          <a href="/course/${item.id}"><div class="imgadapt" style=" width:100%; background: url('http://yikeyun.b0.upaiyun.com/${item.image}!M') 0 0 no-repeat; background-size:cover;"></div></a>
+                          <a href="/course/${item.id}"><div class="imgadapt"
+                              style=" width:100%; background: url('http://yikeyun.b0.upaiyun.com/${item.image}!M') 0 0 no-repeat; background-size:cover;"></div></a>
                         </c:when>
                         <c:otherwise>
-                          <a href="/course/${item.id}"><div class="imgadapt" style=" width:100%; background: url('http://yikeyun.b0.upaiyun.com/static/course-cover.png!M') 0 0 no-repeat; background-size:cover;"></div></a>
+                          <a href="/course/${item.id}"><div class="imgadapt"
+                              style="width: 100%; background: url('http://yikeyun.b0.upaiyun.com/static/course-cover.png!M') 0 0 no-repeat; background-size: cover;"></div></a>
                         </c:otherwise>
                       </c:choose>
                     </div>
@@ -76,7 +77,7 @@
                         <span class="text-muted">${item.superscript}</span><span class="course-price pull-right">¥${item.price}</span>
                       </div>
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
@@ -102,7 +103,7 @@
   <div class="row">
     <div class="about col-xs-12 col-sm-12 col-md-5 col-lg-5">
       <h1>关于我们</h1>
-      <p> “ 一课上手 ” 是一个专注实践类课程的平台。在一课，你可以通过实践课程参与到真实的项目中，收获到真实的动手经验。我们致力于把真实的经验和实战带给学员，也希望学员能通过老师分享的经验和实战把学到的东西快速上手。术业专攻，一课上手。</p>
+      <p>“ 一课上手 ” 是一个专注实践类课程的平台。在一课，你可以通过实践课程参与到真实的项目中，收获到真实的动手经验。我们致力于把真实的经验和实战带给学员，也希望学员能通过老师分享的经验和实战把学到的东西快速上手。术业专攻，一课上手。</p>
       <p>在一课，经验和实战是最大的老师。每一位有经验和实战的人都是我们在寻找的好老师。如果你在某一专业上有实战经验，联系我们，我们一起让经验和实战发挥更大的作用！我们诚挚的邀请各位有行业经验的老师来发挥你的才智。</p>
     </div>
     <div id="contact" class="contact col-xs-12 col-sm-12 col-md-6 col-md-offset-1 col-lg-6 col-lg-offset-1">
@@ -116,7 +117,7 @@
           <input id="contacts" type="text" name="contacts" placeholder="手机号码">
         </div>
         <div class="form-group">
-          <textarea id="content" name="content" rows="3" placeholder="工作经历" ></textarea>
+          <textarea id="content" name="content" rows="3" placeholder="工作经历"></textarea>
         </div>
         <button id="btn" type="submit" class="btn btn-success">提交我的经验</button>
       </form>

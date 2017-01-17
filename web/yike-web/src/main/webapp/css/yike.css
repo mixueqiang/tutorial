@@ -39,7 +39,7 @@ p {
 }
 
 input, select, textarea, .btn, .form-control, .panel {
-  border-radius: 2px;
+  border-radius: 3px;
 }
 /* ===========================================reset-end========================================== */
 
@@ -78,11 +78,11 @@ input, select, textarea, .btn, .form-control, .panel {
 /* ======================================#header&&#footer-end========================================= */
 
 /* ======================================bootstrapReset-strat========================================= */
-.error {
+.error, .red, a.red {
   color: #dd4b39;
 }
 
-.success {
+.success, .green, a.green {
   color: #39b574;
 }
 
@@ -325,7 +325,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-title, .section-title a {
-  color: #333; font-weight: bold; overflow: hidden; min-height: 2.4em; max-height: 2.4em; line-height: 1.2; font-size: 16px; margin-bottom:10px;
+  color: #333; font-weight: bold; overflow: hidden; min-height: 2.4em; max-height: 2.4em; line-height: 1.2; font-size: 16px; margin-bottom: 10px;
 }
 
 .section-caption, .section-caption a {
@@ -336,8 +336,8 @@ input, select, textarea, .btn, .form-control, .panel {
   color: #666;
 }
 
-.section-content{
-  font-size: 15px; color: #4a4d56; overflow: hidden; min-height: 4.5em; max-height: 4.5em; 
+.section-content {
+  font-size: 15px; color: #4a4d56; overflow: hidden; min-height: 4.5em; max-height: 4.5em;
 }
 
 .section-left {
@@ -351,11 +351,13 @@ input, select, textarea, .btn, .form-control, .panel {
 .section-footer {
   padding: 0 10px; width: 100%; position: absolute; bottom: 14px; left: 0;
 }
-.section-subscript{
 
+.section-subscript {
+  
 }
-.section-price{
-  color: #333;font-size: 14px;
+
+.section-price {
+  color: #333; font-size: 14px;
 }
 /* ======================================contentCommon-end========================================= */
 
@@ -367,7 +369,6 @@ input, select, textarea, .btn, .form-control, .panel {
 /* .course-price {
   color: #333; font-size: 18px;
 } */
-
 .course-navbar {
   background: #fff;
 }
@@ -526,11 +527,11 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .navbar-brand, .hero-brand {
-  color: #57ca8e; float: left; height: 50px; line-height: 50px; padding: 0;
+  color: #39b574; float: left; height: 50px; line-height: 50px; padding: 0;
 }
 
 .navbar-brand:hover, .navbar-brand:focus {
-  color: #39b574;
+  color: #57ca8e;
 }
 
 .nav>li>a {
@@ -550,7 +551,6 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .navbar-header .nav>li>a.btn:hover, .hero-header .nav>li>a.btn:hover {
-  /* background-color: #ccc; */
   
 }
 
@@ -614,7 +614,10 @@ input, select, textarea, .btn, .form-control, .panel {
 .index-panel-body:hover {
   box-shadow: 0 3px 5px rgba(0, 0, 0, .4); overflow: hidden; background-color: #fff;
 }
-.index-cover{margin: 20px 12px 12px;}
+
+.index-cover {
+  margin: 20px 12px 12px;
+}
 
 #aboutUs {
   text-align: center; background-color: #fff; min-height: 516px;
@@ -674,3 +677,106 @@ input, select, textarea, .btn, .form-control, .panel {
   top: 2px;
 }
 /* ====================================template.jsp-end========================================= */
+.cards {
+  margin: 0 -10px 20px; overflow: hidden;
+}
+
+.card-list {
+  padding-left: 0; list-style: none;
+}
+
+.cards li {
+  float: left; width: 50%; height: 120px; padding: 10px 0; font-size: 10px; text-align: center; background-color: #efefef; border: 1px solid #fff;
+}
+
+.cards li:hover, .cards li:hover a {
+  color: #fff; background-color: #39b574;
+}
+
+.cards .card {
+  position: relative;
+}
+
+.cards .card-title {
+  margin-top: 5px; margin-bottom: 10px; font-size: 16px;
+}
+
+.cards .card-caption {
+  display: block; text-align: center; word-wrap: break-word; /* Help out IE10+ with class names */
+}
+
+.cards .card-footer {
+  position: absolute; bottom: 0px; width: 100%;
+}
+
+@media ( min-width : 768px) {
+  .cards {
+    margin-right: 0; margin-left: 0;
+  }
+  .cards li {
+    width: 25%; font-size: 12px;
+  }
+}
+
+@media ( min-width : 992px) {
+  .cards {
+    margin-right: 0; margin-left: 0;
+  }
+  .cards li {
+    width: 12.5%; font-size: 12px;
+  }
+}
+
+.card-cover {
+  
+}
+
+.card-cover img {
+  width: 100px; height: 100px;
+}
+
+.card-content {
+  
+}
+
+.card-attribute {
+  
+}
+
+.card-attribute dl {
+  float: left; display: inline-block; text-align: center; padding-right: 20px;
+}
+
+.card-attribute dl dt {
+  color: #999;
+}
+
+.card-attribute dl dd {
+  font-size: 16px;
+}
+
+.skill-section {
+  
+}
+
+.skill-section .card {
+  border-radius: 3px;
+}
+
+.skill-section .header {
+  background-color: #39b574; height: 150px;
+}
+
+.skill-section .body {
+  
+}
+
+.skill-section .title {
+  display: -webkit-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; -webkit-justify-content: c; justify-content: center; enter;
+  -webkit-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; padding: 10px 10px 0; height: 100px; overflow: hidden; white-space: pre-wrap;
+  text-overflow: ellipsis; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+}
+
+.skill-section .title, .skill-section .title a, .skill-section .title a:hover {
+  color: #fff;
+}

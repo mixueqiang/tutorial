@@ -1,5 +1,7 @@
 package com.yike.web;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -12,6 +14,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.sun.jersey.api.view.Viewable;
+import com.yike.dao.mapper.SkillRowMapper;
+import com.yike.model.Skill;
 
 /**
  * 
@@ -27,6 +31,8 @@ public class SkillResource extends BaseResource {
   @GET
   @Produces(MediaType.TEXT_HTML)
   public Response index() {
+    List<Skill> skills = entityDao.get("skill", 1, SkillRowMapper.getInstance());
+    request.setAttribute("skills", skills);
 
     return Response.ok(new Viewable("index")).build();
   }
@@ -35,6 +41,8 @@ public class SkillResource extends BaseResource {
   @Path("{name}")
   @Produces(MediaType.TEXT_HTML)
   public Response get(@PathParam("name") String name) {
+    Skill skill = entityDao.findOne("skill", "slug", name, SkillRowMapper.getInstance());
+    request.setAttribute("skill", skill);
 
     return Response.ok(new Viewable("skill")).build();
   }

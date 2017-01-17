@@ -12,8 +12,14 @@ public class Skill extends BaseModel {
   private String slug;
   private String image;
   private String description;
+  private long skillCount;
+  private long articleCount;
   private long userCount;
   private long companyCount;
+
+  public long getArticleCount() {
+    return articleCount;
+  }
 
   public long getCompanyCount() {
     return companyCount;
@@ -25,6 +31,10 @@ public class Skill extends BaseModel {
 
   public String getImage() {
     return image;
+  }
+
+  public long getSkillCount() {
+    return skillCount;
   }
 
   public String getSlug() {
@@ -39,6 +49,10 @@ public class Skill extends BaseModel {
     return userId;
   }
 
+  public void setArticleCount(long articleCount) {
+    this.articleCount = articleCount;
+  }
+
   public void setCompanyCount(long companyCount) {
     this.companyCount = companyCount;
   }
@@ -49,6 +63,10 @@ public class Skill extends BaseModel {
 
   public void setImage(String image) {
     this.image = image;
+  }
+
+  public void setSkillCount(long skillCount) {
+    this.skillCount = skillCount;
   }
 
   public void setSlug(String slug) {

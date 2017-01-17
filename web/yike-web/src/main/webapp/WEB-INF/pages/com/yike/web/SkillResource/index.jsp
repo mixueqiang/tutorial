@@ -1,125 +1,23 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
 <title>技术图谱&nbsp;|&nbsp;一课上手</title>
 
-<div class="container">
-  <div class="course-nav-row clearfix">
-    <span class="hd pull-left">课程分类：</span>
-    <div class="bd">
-      <c:choose>
-        <c:when test="${empty currentCategoryId}">
-          <p class="course-nav-item on">
-            <a href="/course">全部</a>
-          </p>
-        </c:when>
-        <c:otherwise>
-          <p class="course-nav-item">
-            <a href="/course">全部</a>
-          </p>
-        </c:otherwise>
-      </c:choose>
-
-      <c:forEach var="item" items="${categories}">
-        <c:choose>
-          <c:when test="${currentCategoryId eq item.id}">
-            <p class="course-nav-item on">
-              <a href="/course?c=${item.id}">${item.name}</a>
-            </p>
-          </c:when>
-          <c:otherwise>
-            <p class="course-nav-item">
-              <a href="/course?c=${item.id}">${item.name}</a>
-            </p>
-          </c:otherwise>
-        </c:choose>
-      </c:forEach>
-    </div>
-  </div>
-
-  <div class="row row-space-top-2">
-    <div class="col-md-12 col-sm-12 col-xs-12" id="courses">
-
-      <div class="section">
-        <div class="title lg">实践课列表</div>
-        <c:forEach var="item" items="${courses}">
-          <div class="panel panel-default section-course" data-id="${item.id}">
-            <div class="panel-body">
-              <div class="course-content row">
-                <div class="courses-imgcover col-md-4 col-sm-5 col-sx-6">
-                  <c:choose>
-                    <c:when test="${not empty item.image}">
-                      <div class="courses-img" style="width:100%; background: url('http://yikeyun.b0.upaiyun.com/${item.image}!M') 0 0 no-repeat; background-size:cover;"></div>
-                    </c:when>
-                    <c:otherwise>
-                      <div class="courses-img" style="width: 100%; background: url('http://yikeyun.b0.upaiyun.com/static/course-cover.png!M') 0 0 no-repeat; background-size: cover;"></div>
-                    </c:otherwise>
-                  </c:choose>
-                </div>
-                <div class="courses-details section-right col-md-8 col-sm-7 col-sx-6">
-                  <div class="courses-title section-title lg">
-                    <a href="/course/${item.id}" target="_blank">${item.name}</a>
-                  </div>
-                  <div class="section-caption row-space-top-1">
-                    <a href="/instructor/${item.properties.instructor.id}" target="_blank">${item.properties.instructor.name}</a>
-                  </div>
-                  <div class="section-content fixed row-space-top-1">
-                    <a href="/course/${item.id}" target="_blank">${item.content}</a>
-                  </div>
-                </div>
-                <div class="courses-footer row-space-top-1">
-                  <span class="text-muted">${item.subscript}</span><span class="courses-price pull-right"><c:choose>
-                      <c:when test="${item.free eq 1}">免费</c:when>
-                      <c:otherwise>¥ ${item.price}</c:otherwise>
-                    </c:choose></span>
-                </div>
-              </div>
+<div class="container row-space-top-4">
+  <div class="cards">
+    <ul class="card-list">
+      <c:forEach var="item" items="${skills}">
+        <li class="card">
+          <div class="card-title">
+            <a href="/skill/${item.slug}">${item.name}</a>
+          </div>
+          <div class="card-footer">
+            <div class="card-action">
+              <a class="green xl" href="#"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a>
             </div>
           </div>
-        </c:forEach>
-
-        <c:choose>
-          <c:when test="${empty currentCategoryId}">
-            <ul class="pagination">
-              <c:if test="${currentPage ne 1}">
-                <li><a href="/course">&laquo;</a></li>
-              </c:if>
-              <c:forEach var="p" items="${pages}">
-                <c:choose>
-                  <c:when test="${p ne currentPage}">
-                    <li><a id="page" href="/course?p=${p}">${p}</a></li>
-                  </c:when>
-                  <c:otherwise>
-                    <li class="active"><a href="#">${p}</a></li>
-                  </c:otherwise>
-                </c:choose>
-              </c:forEach>
-              <c:if test="${lastPage > 0 and currentPage ne lastPage}">
-                <li><a href="/course?p=${lastPage}">&raquo;</a></li>
-              </c:if>
-            </ul>
-          </c:when>
-          <c:otherwise>
-            <ul class="pagination">
-              <c:if test="${currentPage ne 1}">
-                <li><a href="/course?c=${currentCategoryId}">&laquo;</a></li>
-              </c:if>
-              <c:forEach var="p" items="${pages}">
-                <c:choose>
-                  <c:when test="${p ne currentPage}">
-                    <li><a id="page" href="/course?c=${currentCategoryId}&p=${p}">${p}</a></li>
-                  </c:when>
-                  <c:otherwise>
-                    <li class="active"><a href="#">${p}</a></li>
-                  </c:otherwise>
-                </c:choose>
-              </c:forEach>
-              <c:if test="${lastPage > 0 and currentPage ne lastPage}">
-                <li><a href="/course?c=${currentCategoryId}&p=${lastPage}">&raquo;</a></li>
-              </c:if>
-            </ul>
-          </c:otherwise>
-        </c:choose>
-
-      </div>
-    </div>
+        </li>
+      </c:forEach>
+    </ul>
   </div>
 </div>
+
+<script src="/js/skill.js?v=20170117001"></script>

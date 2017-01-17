@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.yike.model.Course;
 import com.yike.model.Skill;
 
 /**
@@ -33,9 +32,11 @@ public class SkillRowMapper implements RowMapper<Skill> {
     entity.setSlug(rs.getString("slug"));
     entity.setName(rs.getString("name"));
     entity.setDescription(rs.getString("description"));
-    entity.setStatus(rs.getInt(Course.SQL_STATUS));
+    entity.setUserCount(rs.getLong("skillCount"));
+    entity.setCompanyCount(rs.getLong("articleCount"));
     entity.setUserCount(rs.getLong("userCount"));
     entity.setCompanyCount(rs.getLong("companyCount"));
+    entity.setStatus(rs.getInt("status"));
     entity.setCreateTime(rs.getLong("createTime"));
     entity.setUpdateTime(rs.getLong("updateTime"));
 

@@ -22,21 +22,46 @@
                 <span class="xl">${skill.name}</span><a class="green pull-right" href="#"><span class="glyphicon glyphicon-heart-empty xl" aria-hidden="true"></span><span class="hidden-xs">我正在使用</span></a>
               </div>
               <div class="card-attribute row-space-top-2">
+
                 <dl>
-                  <dt>文章</dt>
-                  <dd>${skill.articleCount}</dd>
+                  <dt>公司</dt>
+                  <dd>${skill.companyCount}</dd>
                 </dl>
                 <dl>
                   <dt>用户</dt>
                   <dd>${skill.userCount}</dd>
                 </dl>
                 <dl>
-                  <dt>公司</dt>
-                  <dd>${skill.companyCount}</dd>
+                  <dt>文章</dt>
+                  <dd>${skill.articleCount}</dd>
                 </dl>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-space-top-2 section skill-section">
+    <div class="col-md-1 col-sm-2 col-xs-2">
+      <div class="card header">
+        <div class="title">公司</div>
+      </div>
+    </div>
+    <div class="col-md-11 col-sm-10 col-xs-10">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="card">123</div>
+        </div>
+        <div class="col-md-2">
+          <div class="card">456</div>
+        </div>
+        <div class="col-md-2">
+          <div class="card">789</div>
+        </div>
+        <div class="col-md-2">
+          <div class="card">012</div>
         </div>
       </div>
     </div>
@@ -70,30 +95,6 @@
     <div class="col-md-1 col-sm-2 col-xs-2">
       <div class="card header">
         <div class="title">用户</div>
-      </div>
-    </div>
-    <div class="col-md-11 col-sm-10 col-xs-10">
-      <div class="row">
-        <div class="col-md-2">
-          <div class="card">123</div>
-        </div>
-        <div class="col-md-2">
-          <div class="card">456</div>
-        </div>
-        <div class="col-md-2">
-          <div class="card">789</div>
-        </div>
-        <div class="col-md-2">
-          <div class="card">012</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row row-space-top-2 section skill-section">
-    <div class="col-md-1 col-sm-2 col-xs-2">
-      <div class="card header">
-        <div class="title">公司</div>
       </div>
     </div>
     <div class="col-md-11 col-sm-10 col-xs-10">

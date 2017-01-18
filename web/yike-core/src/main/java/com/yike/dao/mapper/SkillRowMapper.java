@@ -31,6 +31,7 @@ public class SkillRowMapper implements RowMapper<Skill> {
     entity.setUserId(rs.getLong("userId"));
     entity.setSlug(rs.getString("slug"));
     entity.setName(rs.getString("name"));
+    entity.setImage(rs.getString("image"));
     entity.setDescription(rs.getString("description"));
     entity.setUserCount(rs.getLong("skillCount"));
     entity.setCompanyCount(rs.getLong("articleCount"));

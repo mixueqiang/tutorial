@@ -3,47 +3,33 @@
 
 <div class="container row-space-top-4">
   <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-2 col-sm-3 col-xs-4 card-cover">
-              <c:choose>
-                <c:when test="${not empty skill.image}">
-                  <img alt="一课上手-技能头像" src="http://yikeyun.b0.upaiyun.com/${skill.image}!M">
-                </c:when>
-                <c:otherwise>
-                  <img alt="一课上手-技能头像" src="http://yikeyun.b0.upaiyun.com/static/skill-avatar.png!L">
-                </c:otherwise>
-              </c:choose>
-            </div>
-            <div class="col-md-10 col-sm-9 col-xs-8 card-content">
-              <div class="card-title">
-                <span class="xl">${skill.name}</span><a class="green pull-right" href="#"><span class="glyphicon glyphicon-heart-empty xl" aria-hidden="true"></span><span class="hidden-xs">我正在使用</span></a>
-              </div>
-              <div class="card-attribute row-space-top-2">
-
-                <dl>
-                  <dt>公司</dt>
-                  <dd>${skill.companyCount}</dd>
-                </dl>
-                <dl>
-                  <dt>用户</dt>
-                  <dd>${skill.userCount}</dd>
-                </dl>
-                <dl>
-                  <dt>文章</dt>
-                  <dd>${skill.articleCount}</dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 card">
+      <div class="card-cover">
+        <c:if test="${not empty skill.image}">
+          <img alt="一课上手-技能头像" src="http://yikeyun.b0.upaiyun.com/${skill.image}!M">
+        </c:if>
+      </div>
+      <div class="card-title">
+        <span class="xl">${skill.name}</span>
+      </div>
+      <div class="card-attribute">
+        <dl>
+          <dt>公司</dt>
+          <dd>${skill.companyCount}</dd>
+        </dl>
+        <dl class="col-space-6">
+          <dt>用户</dt>
+          <dd>${skill.userCount}</dd>
+        </dl>
+        <dl class="col-space-6">
+          <dt>文章</dt>
+          <dd>${skill.articleCount}</dd>
+        </dl>
       </div>
     </div>
   </div>
 
-  <div class="row row-space-top-2 section skill-section">
+  <div class="row row-space-top-4 section skill-section">
     <div class="col-md-1 col-sm-2 col-xs-2">
       <div class="card header">
         <div class="title">公司</div>

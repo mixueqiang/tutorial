@@ -694,7 +694,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .cards .card {
-  position: relative;
+  position: relative; text-align: center;
 }
 
 .cards .card-title {
@@ -728,23 +728,23 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .card-cover {
-  
+  text-align: center;
 }
 
 .card-cover img {
-  width: 100px; height: 100px;
+  height: 75px; width: auto; margin: 0 auto;
 }
 
-.card-content {
-  
+.card-title {
+  text-align: center;
 }
 
 .card-attribute {
-  
+  text-align: center; width: 168px; margin: 0 auto;
 }
 
 .card-attribute dl {
-  float: left; display: inline-block; text-align: center; padding-right: 20px;
+  float: left; display: inline-block; text-align: center; width: 40px;
 }
 
 .card-attribute dl dt {

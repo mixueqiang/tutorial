@@ -550,6 +550,10 @@ input, select, textarea, .btn, .form-control, .panel {
   background-color: #449d44;
 }
 
+.navbar-header .nav>li>#publishTop:focus, .hero-header .nav>li>#publishTop:focus {
+  background-color: #449d44;
+}
+
 .navbar-header .nav>li>a.btn:hover, .hero-header .nav>li>a.btn:hover {
   
 }

@@ -41,6 +41,10 @@ p {
 input, select, textarea, .btn, .form-control, .panel {
   border-radius: 3px;
 }
+
+.panel-heading {
+  text-align: center;
+}
 /* ===========================================reset-end========================================== */
 
 /* ======================================#header&&#footer-strat========================================= */
@@ -736,7 +740,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .card-cover img {
-  height: 75px; width: auto; margin: 0 auto;
+  height: 160px; width: auto; margin: 0 auto;
 }
 
 .card-title {

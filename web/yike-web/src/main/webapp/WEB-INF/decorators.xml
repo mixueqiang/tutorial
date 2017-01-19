@@ -16,8 +16,9 @@
     <pattern>/</pattern>
   </decorator>
 
-  <decorator name="template_skill" page="template_skill.jsp">
+  <decorator name="template_skill" page="template_fu.jsp">
     <pattern>/skill*</pattern>
+    <pattern>/fu*</pattern>
   </decorator>
 
   <decorator name="template_admin" page="template_admin.jsp">

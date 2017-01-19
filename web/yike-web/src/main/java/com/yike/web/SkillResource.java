@@ -1,6 +1,8 @@
 package com.yike.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -31,7 +33,9 @@ public class SkillResource extends BaseResource {
   @GET
   @Produces(MediaType.TEXT_HTML)
   public Response index() {
-    List<Skill> skills = entityDao.get("skill", 1, SkillRowMapper.getInstance());
+    Map<String, Object> condition = new HashMap<String, Object>();
+    condition.put("categoryId", 1);
+    List<Skill> skills = entityDao.find("skill", condition, 1, SkillRowMapper.getInstance());
     request.setAttribute("skills", skills);
 
     return Response.ok(new Viewable("index")).build();

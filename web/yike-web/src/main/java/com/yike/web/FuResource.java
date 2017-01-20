@@ -78,8 +78,14 @@ public class FuResource extends BaseResource {
   @Path("publish")
   @Produces(APPLICATION_JSON)
   public Map<String, Object> publish(@FormParam("source") int source, @FormParam("target") int target, @FormParam("alipay") String alipay) {
-    if (source <= 0 && target <= 0) {
-      return ResponseBuilder.error(50000, "请选择你有的和需要的福。");
+    if (source <= 0) {
+      return ResponseBuilder.error(50000, "请选择你有的福。");
+    }
+    if (target <= 0) {
+      return ResponseBuilder.error(50000, "请选择你需要的福。");
+    }
+    if (source == target) {
+      return ResponseBuilder.error(50000, "有和需要的福不能相同。");
     }
     if (StringUtils.isEmpty(alipay)) {
       return ResponseBuilder.error(50000, "请输入支付宝账号。");

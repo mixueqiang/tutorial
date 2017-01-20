@@ -55,6 +55,9 @@ public class FuResource extends BaseResource {
   @GET
   @Produces(MediaType.TEXT_HTML)
   public Response index() {
+    int count = entityDao.count("skill_exchange");
+    request.setAttribute("count", count);
+
     return Response.ok(new Viewable("index")).build();
   }
 

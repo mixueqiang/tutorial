@@ -748,7 +748,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .card-attribute {
-  text-align: center; width: 104px; margin: 0 auto;
+  text-align: center; width: 200px; margin: 0 auto;
 }
 
 .card-attribute dl {

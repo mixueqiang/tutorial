@@ -12,16 +12,7 @@
       <div class="card-title">
         <span class="xl">集福</span>
       </div>
-      <div class="card-attribute hide">
-        <dl>
-          <dt>公司</dt>
-          <dd>${skill.companyCount}</dd>
-        </dl>
-        <dl class="col-space-6">
-          <dt>用户</dt>
-          <dd>${skill.userCount}</dd>
-        </dl>
-      </div>
+      <div class="card-attribute lg">有${count}人在使用</div>
     </div>
   </div>
 

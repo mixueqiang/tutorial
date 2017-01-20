@@ -34,6 +34,7 @@ import com.yike.model.Skill;
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class SkillResource extends BaseResource {
   public static final Map<Long, String> FU_COLLECTION = new HashMap<Long, String>();
+
   static {
     FU_COLLECTION.put(1001L, "爱国福");
     FU_COLLECTION.put(1002L, "富强福");

@@ -80,14 +80,54 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title"></h4>
+        <h4 class="modal-title">换福</h4>
       </div>
-      <div class="modal-body">
-        <p>One fine body&hellip;</p>
+      <div class="exchange-check">
+        <div class="modal-body">
+          <div class="row loading">
+            <div class="col-md-3 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+              <img src="/images/loading.gif">
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="exchange-signup" style="display: none;">
+        <form id="signup-form" name="signup-form" action="/fu/user" method="post" class="form-horizontal" role="form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="phone" class="col-sm-3 control-label">手机号</label>
+              <div class="col-sm-5">
+                <input type="text" id="phone" name="phone" tabindex="1" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="securityCode" class="col-sm-3 control-label">验证码</label>
+              <div class="col-sm-2">
+                <input type="text" id="securityCode" name="securityCode" tabindex="2" class="form-control" />
+              </div>
+              <div class="col-sm-3">
+                <button class="btn btn-warning btn-block btn-send-sms">获取验证码</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-sm-3 control-label">密码</label>
+              <div class="col-sm-5">
+                <input type="password" id="password" name="password" tabindex="3" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-4 col-sm-offset-3">
+                <input type="hidden" id="exchangeId" name="exchangeId">
+                <button type="submit" class="btn btn-success">提交，获取换福信息</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="exchange-check">
+        <div class="modal-body">
+          <div class="alipay_info"></div>
+        </div>
       </div>
     </div>
   </div>

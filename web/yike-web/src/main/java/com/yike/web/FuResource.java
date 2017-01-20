@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -18,7 +20,9 @@ import org.springframework.stereotype.Component;
 import com.sun.jersey.api.view.Viewable;
 import com.yike.dao.BaseDao;
 import com.yike.model.Entity;
+import com.yike.model.User;
 import com.yike.util.Pair;
+import com.yike.util.ResponseBuilder;
 
 /**
  * @author mixueqiang
@@ -64,6 +68,27 @@ public class FuResource extends BaseResource {
     request.setAttribute("fus", fus);
 
     return Response.ok(new Viewable("exchange")).build();
+  }
+
+  @POST
+  @Path("publish")
+  @Produces(APPLICATION_JSON)
+  public Map<String, Object> publish(@FormParam("source") int source, @FormParam("target") int target, @FormParam("alipay") String alipay, @FormParam("contact") String contact) {
+    if (source <= 0 && target <= 0) {
+      return ResponseBuilder.error(50000, "请选择你有的和需要的福。");
+    }
+
+    long time = System.currentTimeMillis();
+    Entity entity = new Entity("user_fu");
+    User user = getSessionUser();
+    if (user != null) {
+      entity.set("userId", user.getId()).set("username", user.getUsername());
+    }
+    entity.set("source", source).set("target", target).set("contact", contact).set("alipay", alipay);
+    entity.set("status", 1).set("createTime", time);
+    entityDao.save(entity);
+
+    return ResponseBuilder.OK;
   }
 
 }

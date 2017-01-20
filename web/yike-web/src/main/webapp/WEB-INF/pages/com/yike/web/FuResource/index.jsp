@@ -66,7 +66,7 @@
         <div class="col-sm-4 col-xs-6">
           <div class="panel panel-default" id="fu5">
             <div class="panel-body">
-              <img src="http://yikeyun.b0.upaiyun.com/static/fu1.png!M">
+              <img src="http://yikeyun.b0.upaiyun.com/static/fu5.png!M">
               <h3 class="panel-title row-space-top-2">敬业福</h3>
             </div>
             <div class="panel-footer">

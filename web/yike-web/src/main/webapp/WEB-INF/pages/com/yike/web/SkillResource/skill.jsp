@@ -117,7 +117,8 @@
             </div>
             <div class="form-group">
               <div class="col-sm-4 col-sm-offset-3">
-                <input type="hidden" id="exchangeId" name="exchangeId"><input type="submit" class="btn btn-success" value="提交，获取换福信息">
+                <input type="hidden" id="exchangeId" name="exchangeId">
+                <button type="submit" class="btn btn-success">提交，获取换福信息</button>
               </div>
             </div>
           </div>
@@ -169,7 +170,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <input type="submit" class="btn btn-success" value="提交">
+          <button type="submit" class="btn btn-success">提交</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         </div>
       </form>

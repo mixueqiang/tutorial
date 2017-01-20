@@ -187,17 +187,17 @@ $(function() {
             var exchange = resp.r;
             var html = '<label>支付宝账号：</label><span>' + exchange.alipay + '</span>';
             $('.alipay-info', $('.exchange-info')).html(html);
-            $('.exchange-check', $('#ExchangeModal')).hide();
+            $('.exchange-signup', $('#ExchangeModal')).hide();
             $('.exchange-info', $('#ExchangeModal')).show();
 
           } else {
             $('input[name=password]', $('#signup-form')).val('');
-            Message.error('访问失败：' + resp.m, false, $('.form-group:last', $(form)));
+            Message.error('访问失败：' + resp.m, true, $('.form-group:last', $(form)));
           }
         },
         error : function() {
           $('input[name=password]', $('#signup-form')).val('');
-          Message.error('访问失败！', false, $('.form-group:last', $(form)));
+          Message.error('访问失败！', true, $('.form-group:last', $(form)));
         }
       });
     }

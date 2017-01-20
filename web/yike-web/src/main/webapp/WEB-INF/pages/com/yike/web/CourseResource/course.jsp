@@ -11,6 +11,10 @@
   .course-title{
     margin-top: 10px;
   }
+  .course-content{
+    font-size: 15px;
+    color: #4a4d56;
+  }
 </style>
 <div class="course" data-id="${course.id}">
   <input type="hidden" id="courseId" value="${course.id}">
@@ -31,7 +35,7 @@
           </div>
           <div class="col-md-6 col-sm-6">
             <div class="course-title section-title xl">${course.name}</div>
-            <div class="section-content lh-lg row-space-top-2">${course.content}</div>
+            <div class="course-content lh-lg row-space-top-2">${course.content}</div>
             <div class="row row-space-top-3 section">
               <div class="col-md-9 col-md-offset-3 col-sm-10 col-xs-offset-2 col-xs-6 col-xs-offset-6">
                 <div class="section">
@@ -141,7 +145,7 @@
               <div class="section-title lg">
                 <a href="/instructor/${instructor.id}">${instructor.name}</a>
               </div>
-              <div class="section-content row-space-top-1">${instructor.profile}</div>
+              <div class=" row-space-top-1">${instructor.profile}</div>
             </div>
           </div>
         </c:if>

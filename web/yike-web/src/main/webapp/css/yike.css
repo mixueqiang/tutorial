@@ -42,7 +42,7 @@ input, select, textarea, .btn, .form-control, .panel {
   border-radius: 3px;
 }
 
-.panel-title {
+.panel-heading {
   text-align: center;
 }
 /* ===========================================reset-end========================================== */
@@ -740,7 +740,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .card-cover img {
-  height: 160px; width: auto; margin: 0 auto;
+  height: 120px; width: auto; margin: 0 auto;
 }
 
 .card-title {
@@ -771,7 +771,7 @@ input, select, textarea, .btn, .form-control, .panel {
   border-radius: 3px;
 }
 
-.skill-section .first {
+.skill-section .header {
   background-color: #39b574; color: #fff; height: 150px; text-align: center;
 }
 
@@ -779,8 +779,8 @@ input, select, textarea, .btn, .form-control, .panel {
   background-color: #39b574; color: #fff; height: 150px; text-align: center;
 }
 
-.skill-section .last {
-  background-color: #dd4b39; color: #fff; height: 150px; text-align: center;
+.skill-section .body {
+  
 }
 
 .skill-section .title {
@@ -789,7 +789,7 @@ input, select, textarea, .btn, .form-control, .panel {
   text-overflow: ellipsis; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
 }
 
-.skill-section .header a, .skill-section .header a:hover, .skill-section .item a, .skill-section .item a:hover, .skill-section .last a, .skill-section .last a:hover {
+.skill-section .header a, .skill-section .header a:hover, .skill-section .item a, .skill-section .item a:hover {
   color: #fff;
 }
 

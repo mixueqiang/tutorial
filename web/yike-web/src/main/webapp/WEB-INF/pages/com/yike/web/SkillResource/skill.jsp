@@ -165,4 +165,4 @@
   </div>
 </div>
 
-<script src="/js/fu.js?v=20170120007"></script>
+<script src="/js/fu.js?v=20170120008"></script>

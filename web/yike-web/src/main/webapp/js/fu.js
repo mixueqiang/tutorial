@@ -151,10 +151,6 @@ $(function() {
       },
       securityCode : {
         required : true
-      },
-      password : {
-        required : true,
-        minlength : 8
       }
     },
     messages : {
@@ -163,10 +159,6 @@ $(function() {
       },
       securityCode : {
         required : '请输入验证码。'
-      },
-      password : {
-        required : '请输入密码。',
-        minlength : $.format('密码长度必须大于{0}位，建议同时包含字母和数字。')
       }
     },
     submitHandler : function(form) {
@@ -174,12 +166,6 @@ $(function() {
         $('.error').eq(0).focus();
         return false;
       }
-
-      var password = $('#password').val();
-      var md5 = $.md5(password);
-      var salt = md5.substring(27);
-      password = $.md5(md5 + salt);
-      $('#password').val(password);
 
       $(form).ajaxSubmit({
         success : function(resp) {
@@ -191,12 +177,10 @@ $(function() {
             $('.exchange-info', $('#ExchangeModal')).show();
 
           } else {
-            $('input[name=password]', $('#signup-form')).val('');
             Message.error('访问失败：' + resp.m, true, $('.form-group:last', $(form)));
           }
         },
         error : function() {
-          $('input[name=password]', $('#signup-form')).val('');
           Message.error('访问失败！', true, $('.form-group:last', $(form)));
         }
       });

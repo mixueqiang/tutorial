@@ -166,7 +166,7 @@ public class FuResource extends BaseResource {
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(APPLICATION_JSON)
   public Map<String, Object> signupForExchange(@FormParam("phone") String phone, @FormParam("securityCode") String securityCode, @FormParam("username") String username,
-      @FormParam("password") String password, @FormParam("exchangeId") long exchangeId) {
+      @FormParam("exchangeId") long exchangeId) {
     // Data validation.
     if (StringUtils.isEmpty(phone)) {
       return ResponseBuilder.error(10100, "请输入手机号。");
@@ -176,9 +176,6 @@ public class FuResource extends BaseResource {
     }
     if (StringUtils.isEmpty(securityCode)) {
       return ResponseBuilder.error(10105, "请输入验证码。");
-    }
-    if (StringUtils.isEmpty(password)) {
-      return ResponseBuilder.error(10108, "请输入密码。");
     }
 
     try {
@@ -200,7 +197,6 @@ public class FuResource extends BaseResource {
           username = RandomUtil.randomString(3) + System.currentTimeMillis();
         }
         userEntity.set("username", username);
-        userEntity.set("password", password);
         userEntity.set("locale", "cn").set("roles", "user");
         userEntity.set("status", Constants.STATUS_ENABLED).set("createTime", time);
         userEntity = entityDao.saveAndReturn(userEntity);

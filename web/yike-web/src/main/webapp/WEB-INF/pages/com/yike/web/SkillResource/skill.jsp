@@ -103,12 +103,6 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="password" class="col-sm-3 control-label">密码</label>
-              <div class="col-sm-5">
-                <input type="password" id="password" name="password" tabindex="3" class="form-control">
-              </div>
-            </div>
-            <div class="form-group">
               <div class="col-sm-4 col-sm-offset-3">
                 <input type="hidden" id="exchangeId" name="exchangeId">
                 <button type="submit" class="btn btn-success">提交，获取换福信息</button>
@@ -171,5 +165,4 @@
   </div>
 </div>
 
-<script src="/libs/jquery/jquery.md5.js"></script>
-<script src="/js/fu.js?v=20170120005"></script>
+<script src="/js/fu.js?v=20170120006"></script>

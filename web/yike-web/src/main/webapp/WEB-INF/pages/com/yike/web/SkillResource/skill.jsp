@@ -25,9 +25,9 @@
     </div>
   </div>
 
-  <div class="row row-space-top-2 section skill-section">
+  <div class="row row-space-top-1 section skill-section">
     <c:if test="${not empty entities}">
-      <div class="col-md-2 col-sm-3 col-xs-6">
+      <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2">
         <div class="card first">
           <div class="title xl">{谁}有</div>
           <div class="md">TA需要{什么}</div>
@@ -39,7 +39,7 @@
         </div>
       </div>
       <c:forEach var="item" items="${entities}">
-        <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2">
           <div class="card item">
             <div class="title xl">${item.contact}</div>
             <div class="md"></div>
@@ -52,7 +52,7 @@
         </div>
       </c:forEach>
     </c:if>
-    <div class="col-md-2 col-sm-3 col-xs-6">
+    <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2">
       <div class="card last">
         <div class="title xl">我有福</div>
         <div class="md"></div>

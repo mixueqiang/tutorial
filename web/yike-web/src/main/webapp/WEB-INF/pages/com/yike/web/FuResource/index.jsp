@@ -35,7 +35,7 @@
               <h3 class="panel-title row-space-top-2">爱国福</h3>
             </div>
             <div class="panel-footer">
-              <a class="btn btn-success btn-block" href="/skill/fu_aiguo">交换</a>
+              <a class="btn btn-success btn-block" href="/skill/fu_aiguo">我需要</a>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
               <h3 class="panel-title row-space-top-2">富强福</h3>
             </div>
             <div class="panel-footer">
-              <a class="btn btn-success btn-block" href="/skill/fu_fuqiang">交换</a>
+              <a class="btn btn-success btn-block" href="/skill/fu_fuqiang">我需要</a>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
               <h3 class="panel-title row-space-top-2">和谐福</h3>
             </div>
             <div class="panel-footer">
-              <a class="btn btn-success btn-block" href="/skill/fu_hexie">交换</a>
+              <a class="btn btn-success btn-block" href="/skill/fu_hexie">我需要</a>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@
               <h3 class="panel-title row-space-top-2">友善福</h3>
             </div>
             <div class="panel-footer">
-              <a class="btn btn-success btn-block" href="/skill/fu_youshan">交换</a>
+              <a class="btn btn-success btn-block" href="/skill/fu_youshan">我需要</a>
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@
               <h3 class="panel-title row-space-top-2">敬业福</h3>
             </div>
             <div class="panel-footer">
-              <a class="btn btn-success btn-block" href="/skill/fu_jingye">交换</a>
+              <a class="btn btn-success btn-block" href="/skill/fu_jingye">我需要</a>
             </div>
           </div>
         </div>

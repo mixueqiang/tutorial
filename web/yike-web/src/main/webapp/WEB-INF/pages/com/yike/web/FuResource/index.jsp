@@ -19,7 +19,7 @@
   <div class="row  row-space-top-2">
     <div class="col-md-8 col-md-offset-2 col-sm-12">
       <div class="row">
-        <div class="col-sm-4 col-xs-12">
+        <div class="col-sm-4 col-xs-6">
           <div class="panel panel-default" id="fu1">
             <div class="panel-body">
               <img src="http://yikeyun.b0.upaiyun.com/static/fu1.png!M">

@@ -89,7 +89,6 @@ $(function() {
           $('.exchange-info', $('#ExchangeModal')).show();
 
         } else if (resp.e == 10001) {
-          alert(exchangeId);
           $('input[name=exchangeId]', $('.exchange-signup')).val(exchangeId);
           $('.exchange-check', $('#ExchangeModal')).hide();
           $('.exchange-signup', $('#ExchangeModal')).show();

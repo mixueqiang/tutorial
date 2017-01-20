@@ -83,7 +83,14 @@ $(function() {
       setTimeout(function() {
         if (resp && resp.e == 0) {
           var exchange = resp.r;
-          var html = '<label class="md">支付宝账号：</label><span class="md">' + exchange.alipay + '</span>';
+          var html = '';
+          if (exchange == undefined || exchange == null) {
+            html += '<label class="md error">信息已经过期，请找其他人交换。</label>';
+
+          } else {
+            html += '<label class="md">支付宝账号：</label><span class="md">' + exchange.alipay + '</span>';
+          }
+
           $('.alipay-info', $('.exchange-info')).html(html);
           $('.exchange-check', $('#ExchangeModal')).hide();
           $('.exchange-info', $('#ExchangeModal')).show();

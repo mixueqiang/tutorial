@@ -6,7 +6,7 @@
     <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 card">
       <div class="card-cover">
         <c:if test="${not empty skill.image}">
-          <img alt="技能图标" src="http://yikeyun.b0.upaiyun.com/${skill.image}!M">
+          <img alt="技能图标" src="http://yikeyun.b0.upaiyun.com${skill.image}!M">
         </c:if>
       </div>
       <div class="card-title">

@@ -115,7 +115,7 @@ public class FuResource extends BaseResource {
   @GET
   @Path("sms/send")
   @Produces(APPLICATION_JSON)
-  public Map<String, Object> send(@QueryParam("phone") String phone, @QueryParam("type") String type) {
+  public Map<String, Object> sendSms(@QueryParam("phone") String phone, @QueryParam("type") String type) {
     if (StringUtils.isEmpty(phone)) {
       return ResponseBuilder.error(10601, "请输入手机号码。");
     }
@@ -132,7 +132,7 @@ public class FuResource extends BaseResource {
     }
 
     // Generate security code.
-    String securityCode = RandomUtil.randomNumber(6);
+    String securityCode = RandomUtil.randomNumber(4);
     String[] datas = new String[] { securityCode };
     if (SmsUtilsYunpian.send(phone, type, datas)) {
       LOG.info("Send " + type + " sms to phone: " + phone);

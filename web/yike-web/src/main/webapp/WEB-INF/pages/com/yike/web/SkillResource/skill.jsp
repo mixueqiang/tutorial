@@ -97,13 +97,13 @@
             <div class="form-group">
               <label for="phone" class="col-sm-3 control-label">手机号</label>
               <div class="col-sm-5">
-                <input type="text" id="phone" name="phone" tabindex="1" class="form-control" />
+                <input type="text" id="phone" name="phone" tabindex="1" class="form-control">
               </div>
             </div>
             <div class="form-group">
               <label for="securityCode" class="col-sm-3 control-label">验证码</label>
               <div class="col-sm-2">
-                <input type="text" id="securityCode" name="securityCode" tabindex="2" class="form-control" />
+                <input type="text" id="securityCode" name="securityCode" tabindex="2" class="form-control">
               </div>
               <div class="col-sm-3">
                 <button class="btn btn-warning btn-block btn-send-sms">获取验证码</button>
@@ -112,13 +112,12 @@
             <div class="form-group">
               <label for="password" class="col-sm-3 control-label">密码</label>
               <div class="col-sm-5">
-                <input type="password" id="password" name="password" tabindex="3" class="form-control" />
+                <input type="password" id="password" name="password" tabindex="3" class="form-control">
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-4 col-sm-offset-3">
-                <input type="hidden" id="exchangeId" name="exchangeId">
-                <button type="submit" class="btn btn-success">提交，获取换福信息</button>
+                <input type="hidden" id="exchangeId" name="exchangeId"><input type="submit" class="btn btn-success" value="提交，获取换福信息">
               </div>
             </div>
           </div>
@@ -126,7 +125,7 @@
       </div>
       <div class="exchange-info">
         <div class="modal-body">
-          <div class="alipay_info"></div>
+          <div class="alipay-info"></div>
         </div>
       </div>
     </div>
@@ -178,4 +177,5 @@
   </div>
 </div>
 
-<script src="/js/fu.js?v=20170120002"></script>
+<script src="/libs/jquery/jquery.md5.js"></script>
+<script src="/js/fu.js?v=20170120004"></script>

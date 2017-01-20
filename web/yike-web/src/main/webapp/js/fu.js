@@ -84,7 +84,7 @@ $(function() {
         if (resp && resp.e == 0) {
           var exchange = resp.r;
           var html = '<label>支付宝账号：</label><span>' + exchange.alipay + '</span>';
-          $('.alipay_info', $('.exchange-info')).html(html);
+          $('.alipay-info', $('.exchange-info')).html(html);
           $('.exchange-check', $('#ExchangeModal')).hide();
           $('.exchange-info', $('#ExchangeModal')).show();
 
@@ -95,7 +95,7 @@ $(function() {
 
         } else {
           var html = '<label class="error">访问失败！</label>';
-          $('.alipay_info', $('.exchange-info')).html(html);
+          $('.alipay-info', $('.exchange-info')).html(html);
           $('.exchange-check', $('#ExchangeModal')).hide();
           $('.exchange-info', $('#ExchangeModal')).show();
         }
@@ -103,6 +103,13 @@ $(function() {
     });
 
     return false;
+  });
+
+  $('#ExchangeModal').on('show.bs.modal', function(e) {
+    $('.alipay-info', $('.exchange-info')).html('');
+    $('.exchange-check', $('#ExchangeModal')).show();
+    $('.exchange-signup', $('#ExchangeModal')).hide();
+    $('.exchange-info', $('#ExchangeModal')).hide();
   });
 
   $('.btn-send-sms', $('#signup-form')).click(function() {
@@ -179,7 +186,7 @@ $(function() {
           if (resp && resp.e == 0) {
             var exchange = resp.r;
             var html = '<label>支付宝账号：</label><span>' + exchange.alipay + '</span>';
-            $('.alipay_info', $('.exchange-info')).html(html);
+            $('.alipay-info', $('.exchange-info')).html(html);
             $('.exchange-check', $('#ExchangeModal')).hide();
             $('.exchange-info', $('#ExchangeModal')).show();
 

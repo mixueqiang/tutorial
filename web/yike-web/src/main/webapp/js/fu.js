@@ -83,7 +83,7 @@ $(function() {
       setTimeout(function() {
         if (resp && resp.e == 0) {
           var exchange = resp.r;
-          var html = '<label>支付宝账号：</label><span>' + exchange.alipay + '</span>';
+          var html = '<label class="md">支付宝账号：</label><span class="md">' + exchange.alipay + '</span>';
           $('.alipay-info', $('.exchange-info')).html(html);
           $('.exchange-check', $('#ExchangeModal')).hide();
           $('.exchange-info', $('#ExchangeModal')).show();
@@ -94,7 +94,7 @@ $(function() {
           $('.exchange-signup', $('#ExchangeModal')).show();
 
         } else {
-          var html = '<label class="error">访问失败！</label>';
+          var html = '<label class="md error">访问失败！</label>';
           $('.alipay-info', $('.exchange-info')).html(html);
           $('.exchange-check', $('#ExchangeModal')).hide();
           $('.exchange-info', $('#ExchangeModal')).show();
@@ -185,7 +185,7 @@ $(function() {
         success : function(resp) {
           if (resp && resp.e == 0) {
             var exchange = resp.r;
-            var html = '<label>支付宝账号：</label><span>' + exchange.alipay + '</span>';
+            var html = '<label class="md">支付宝账号：</label><span class="md">' + exchange.alipay + '</span>';
             $('.alipay-info', $('.exchange-info')).html(html);
             $('.exchange-signup', $('#ExchangeModal')).hide();
             $('.exchange-info', $('#ExchangeModal')).show();

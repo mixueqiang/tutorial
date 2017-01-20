@@ -179,4 +179,4 @@
 </div>
 
 <script src="/libs/jquery/jquery.md5.js"></script>
-<script src="/js/fu.js?v=20170120004"></script>
+<script src="/js/fu.js?v=20170120005"></script>

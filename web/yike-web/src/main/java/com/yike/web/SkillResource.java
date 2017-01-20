@@ -72,6 +72,7 @@ public class SkillResource extends BaseResource {
       String contact = entity.getString("contact");
       if (StringUtils.isNotEmpty(contact)) {
         contact = StringUtils.rightPad(StringUtils.substring(contact, 0, 3), StringUtils.length(contact), '*');
+        contact = StringUtils.substring(contact, 0, 11);
         entity.put("contact", contact);
       }
 

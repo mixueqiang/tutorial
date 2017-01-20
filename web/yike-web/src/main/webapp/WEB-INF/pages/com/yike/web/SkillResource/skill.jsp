@@ -40,9 +40,9 @@
       </div>
       <c:forEach var="item" items="${entities}">
         <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2">
-          <div class="card item">
+          <div class="card item" data-id="${item.id}" data-source="${item.source}" data-target="${item.target}">
             <div class="title xl">${item.contact}</div>
-            <div class="md"></div>
+            <div class="md">需要${item.targetFu}</div>
             <div class="card-footer">
               <div class="card-action xxl">
                 <a class="green op-exchange" href="#" title="换福"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>
@@ -121,9 +121,6 @@
               <option value="1004">友善福</option>
               <option value="1005">敬业福</option>
             </select>
-          </div>
-          <div class="form-group">
-            <label for="contact">手机号或QQ号</label><input type="text" class="form-control" id="contact" name="contact">
           </div>
           <div class="form-group">
             <label for="alipay">留下支付宝，方便交换福</label><input type="text" class="form-control" id="alipay" name="alipay">

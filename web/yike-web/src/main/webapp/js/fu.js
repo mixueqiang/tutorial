@@ -7,7 +7,7 @@ $(function() {
       target : {
         required : true
       },
-      contact : {
+      alipay : {
         required : true,
         minlength : 5
       }
@@ -19,9 +19,9 @@ $(function() {
       target : {
         required : '请选择你需要什么福。'
       },
-      contact : {
-        required : '请输入有效的手机号或QQ号。',
-        minlength : '请输入有效的手机号或QQ号。'
+      alipay : {
+        required : '请输入支付宝账号。',
+        minlength : '请输入支付宝账号。'
       }
     },
     submitHandler : function(form) {

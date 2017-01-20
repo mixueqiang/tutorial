@@ -34,7 +34,7 @@ import com.yike.util.ResponseBuilder;
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class FuResource extends BaseResource {
-  private static final Map<String, Pair<String, String>> FU_COLLECTION = new HashMap<String, Pair<String, String>>();
+  public static final Map<String, Pair<String, String>> FU_COLLECTION = new HashMap<String, Pair<String, String>>();
   static {
     FU_COLLECTION.put("fu1", new Pair<String, String>("爱国福", "fu1.png"));
     FU_COLLECTION.put("fu2", new Pair<String, String>("富强福", "fu2.png"));
@@ -74,22 +74,22 @@ public class FuResource extends BaseResource {
   @POST
   @Path("publish")
   @Produces(APPLICATION_JSON)
-  public Map<String, Object> publish(@FormParam("source") int source, @FormParam("target") int target, @FormParam("contact") String contact, @FormParam("alipay") String alipay) {
+  public Map<String, Object> publish(@FormParam("source") int source, @FormParam("target") int target, @FormParam("alipay") String alipay) {
     if (source <= 0 && target <= 0) {
       return ResponseBuilder.error(50000, "请选择你有的和需要的福。");
     }
-    if (StringUtils.isEmpty(contact)) {
-      return ResponseBuilder.error(50000, "请输入有效的手机号或QQ号。");
+    if (StringUtils.isEmpty(alipay)) {
+      return ResponseBuilder.error(50000, "请输入支付宝账号。");
     }
 
     long time = System.currentTimeMillis();
     User user = getSessionUser();
 
-    Entity entity = new Entity("user_fu");
+    Entity entity = new Entity("skill_exchange");
     if (user != null) {
       entity.set("userId", user.getId()).set("username", user.getUsername());
     }
-    entity.set("source", source).set("target", target).set("contact", contact).set("alipay", alipay);
+    entity.set("source", source).set("target", target).set("contact", alipay).set("alipay", alipay);
     entity.set("status", 1).set("createTime", time);
     entityDao.save(entity);
 
@@ -97,7 +97,7 @@ public class FuResource extends BaseResource {
     if (user != null) {
       entity.set("userId", user.getId()).set("username", user.getUsername());
     }
-    entity.set("skillId", source).set("contact", contact);
+    entity.set("skillId", source).set("contact", alipay);
     entity.set("status", 1).set("createTime", time);
     entityDao.save(entity);
 

@@ -30,7 +30,7 @@
       <a class="green op-publish" data-toggle="modal" data-target="#PublishModal" href="#" title="发布一张福">
         <div class="card last">
           <div class="title xl">我有福</div>
-          <div class="md"></div>
+          <div class="sm"></div>
           <div class="card-footer">
             <div class="card-action xxl">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>

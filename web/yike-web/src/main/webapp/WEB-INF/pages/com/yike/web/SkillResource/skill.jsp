@@ -27,41 +27,34 @@
 
   <div class="row row-space-top-1 section skill-section">
     <c:if test="${not empty entities}">
-      <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2">
-        <div class="card first">
-          <div class="title xl">{谁}有</div>
-          <div class="md">TA需要{什么}</div>
-          <div class="card-footer">
-            <div class="card-action md">
-              <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span><span>点击交换</span>
-            </div>
-          </div>
-        </div>
-      </div>
       <c:forEach var="item" items="${entities}">
         <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2">
-          <div class="card item" data-id="${item.id}" data-source="${item.source}" data-target="${item.target}">
-            <div class="title xl">${item.contact}</div>
-            <div class="md">需要${item.targetFu}</div>
-            <div class="card-footer">
-              <div class="card-action xxl">
-                <a class="green op-exchange" href="#" title="换福"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a>
+          <a class="green op-exchange" href="#" title="换福">
+            <div class="card item" data-id="${item.id}" data-source="${item.source}" data-target="${item.target}">
+              <div class="title xl">${item.contact}</div>
+              <div class="md">需要${item.targetFu}</div>
+              <div class="card-footer">
+                <div class="card-action xxl">
+                  <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </c:forEach>
     </c:if>
     <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2">
-      <div class="card last">
-        <div class="title xl">我有福</div>
-        <div class="md"></div>
-        <div class="card-footer">
-          <div class="card-action xxl">
-            <a class="green op-publish" data-toggle="modal" data-target="#PublishModal" href="#" title="发布一张福"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+      <a class="green op-publish" data-toggle="modal" data-target="#PublishModal" href="#" title="发布一张福">
+        <div class="card last">
+          <div class="title xl">我有福</div>
+          <div class="md"></div>
+          <div class="card-footer">
+            <div class="card-action xxl">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 

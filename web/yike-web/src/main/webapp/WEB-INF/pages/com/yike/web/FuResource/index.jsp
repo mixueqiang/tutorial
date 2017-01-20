@@ -22,7 +22,7 @@
         <div class="col-sm-4 col-xs-6">
           <div class="panel panel-default" id="fu1">
             <div class="panel-body">
-              <img src="http://yikeyun.b0.upaiyun.com/static/fu1.png!M">
+              <a href="/skill/fu_aiguo"><img src="http://yikeyun.b0.upaiyun.com/static/fu1.png!M"></a>
               <h3 class="panel-title row-space-top-2">爱国福</h3>
             </div>
             <div class="panel-footer">
@@ -33,7 +33,7 @@
         <div class="col-sm-4 col-xs-6">
           <div class="panel panel-default" id="fu2">
             <div class="panel-body">
-              <img src="http://yikeyun.b0.upaiyun.com/static/fu2.png!M">
+              <a href="/skill/fu_fuqiang"><img src="http://yikeyun.b0.upaiyun.com/static/fu2.png!M"></a>
               <h3 class="panel-title row-space-top-2">富强福</h3>
             </div>
             <div class="panel-footer">
@@ -44,7 +44,7 @@
         <div class="col-sm-4 col-xs-6">
           <div class="panel panel-default" id="fu3">
             <div class="panel-body">
-              <img src="http://yikeyun.b0.upaiyun.com/static/fu3.png!M">
+              <a href="/skill/fu_hexie"><img src="http://yikeyun.b0.upaiyun.com/static/fu3.png!M"></a>
               <h3 class="panel-title row-space-top-2">和谐福</h3>
             </div>
             <div class="panel-footer">
@@ -55,7 +55,7 @@
         <div class="col-sm-4 col-xs-6">
           <div class="panel panel-default" id="fu4">
             <div class="panel-body">
-              <img src="http://yikeyun.b0.upaiyun.com/static/fu4.png!M">
+              <a href="/skill/fu_youshan"><img src="http://yikeyun.b0.upaiyun.com/static/fu4.png!M"></a>
               <h3 class="panel-title row-space-top-2">友善福</h3>
             </div>
             <div class="panel-footer">
@@ -66,7 +66,7 @@
         <div class="col-sm-4 col-xs-6">
           <div class="panel panel-default" id="fu5">
             <div class="panel-body">
-              <img src="http://yikeyun.b0.upaiyun.com/static/fu5.png!M">
+              <a href="/skill/fu_jingye"><img src="http://yikeyun.b0.upaiyun.com/static/fu5.png!M"></a>
               <h3 class="panel-title row-space-top-2">敬业福</h3>
             </div>
             <div class="panel-footer">

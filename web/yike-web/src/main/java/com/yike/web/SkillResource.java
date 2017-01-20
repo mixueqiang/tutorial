@@ -66,7 +66,7 @@ public class SkillResource extends BaseResource {
     Map<String, Object> condition = new HashMap<String, Object>();
     condition.put("source", skill.getId());
     condition.put("status", 1);
-    List<Entity> entities = entityDao.find("skill_exchange", condition, 1, 11, EntityRowMapper.getInstance(), "rank", BaseDao.ORDER_OPTION_DESC);
+    List<Entity> entities = entityDao.find("skill_exchange", condition, 1, 11, EntityRowMapper.getInstance(), BaseDao.ORDER_OPTION_DESC);
     for (Entity entity : entities) {
       String contact = entity.getString("contact");
       if (StringUtils.isNotEmpty(contact)) {

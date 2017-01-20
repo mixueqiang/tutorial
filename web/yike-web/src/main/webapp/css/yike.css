@@ -740,7 +740,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .card-cover img {
-  height: 160px; width: auto; margin: 0 auto;
+  height: 120px; width: auto; margin: 0 auto;
 }
 
 .card-title {
@@ -772,7 +772,11 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .skill-section .header {
-  background-color: #39b574; height: 150px;
+  background-color: #39b574; color: #fff; height: 150px; text-align: center;
+}
+
+.skill-section .item {
+  background-color: #39b574; color: #fff; height: 150px; text-align: center;
 }
 
 .skill-section .body {
@@ -781,10 +785,10 @@ input, select, textarea, .btn, .form-control, .panel {
 
 .skill-section .title {
   display: -webkit-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; -webkit-justify-content: c; justify-content: center; enter;
-  -webkit-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; padding: 10px 10px 0; height: 100px; overflow: hidden; white-space: pre-wrap;
+  -webkit-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; padding: 10px 10px 0; height: 60px; overflow: hidden; white-space: pre-wrap;
   text-overflow: ellipsis; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
 }
 
-.skill-section .title, .skill-section .title a, .skill-section .title a:hover {
+.skill-section .header a, .skill-section .header a:hover, .skill-section .item a, .skill-section .item a:hover {
   color: #fff;
 }

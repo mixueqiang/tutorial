@@ -1,5 +1,6 @@
 package com.yike.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +17,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.sun.jersey.api.view.Viewable;
+import com.yike.dao.BaseDao;
+import com.yike.dao.mapper.EntityRowMapper;
 import com.yike.dao.mapper.SkillRowMapper;
+import com.yike.dao.mapper.UserRowMapper;
+import com.yike.model.Entity;
 import com.yike.model.Skill;
+import com.yike.model.User;
 
 /**
  * 
@@ -46,7 +52,24 @@ public class SkillResource extends BaseResource {
   @Produces(MediaType.TEXT_HTML)
   public Response get(@PathParam("name") String name) {
     Skill skill = entityDao.findOne("skill", "slug", name, SkillRowMapper.getInstance());
+    if (skill == null || skill.isDisabled()) {
+      // TODO:
+    }
     request.setAttribute("skill", skill);
+
+    Map<String, Object> condition = new HashMap<String, Object>();
+    condition.put("skillId", skill.getId());
+    condition.put("status", 1);
+    List<Entity> entities = entityDao.find("skill_user", condition, 1, 11, EntityRowMapper.getInstance(), "rank", BaseDao.ORDER_OPTION_DESC);
+    List<User> users = new ArrayList<User>();
+    for (Entity entity : entities) {
+      User user = entityDao.get("user", entity.getLong("userId"), UserRowMapper.getInstance());
+      if (user != null) {
+        user.getProperties().put("count", entity.getInt("rank"));
+        users.add(user);
+      }
+    }
+    request.setAttribute("users", users);
 
     return Response.ok(new Viewable("skill")).build();
   }

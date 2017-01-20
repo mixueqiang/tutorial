@@ -65,6 +65,12 @@
     </div>
   </div>
 
+  <div class="row row-space-top-6">
+    <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+      <a class="btn btn-default btn-block" href="/fu">返回首页</a>
+    </div>
+  </div>
+
 </div>
 
 <div class="modal fade" id="ExchangeModal" tabindex="-1" role="dialog">
@@ -117,7 +123,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="contact">手机号／QQ号</label><input type="text" class="form-control" id="contact" name="contact">
+            <label for="contact">手机号或QQ号</label><input type="text" class="form-control" id="contact" name="contact">
           </div>
           <div class="form-group">
             <label for="alipay">留下支付宝，方便交换福</label><input type="text" class="form-control" id="alipay" name="alipay">

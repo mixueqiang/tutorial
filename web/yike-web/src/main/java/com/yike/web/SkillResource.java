@@ -1,6 +1,5 @@
 package com.yike.web;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -20,10 +20,8 @@ import com.sun.jersey.api.view.Viewable;
 import com.yike.dao.BaseDao;
 import com.yike.dao.mapper.EntityRowMapper;
 import com.yike.dao.mapper.SkillRowMapper;
-import com.yike.dao.mapper.UserRowMapper;
 import com.yike.model.Entity;
 import com.yike.model.Skill;
-import com.yike.model.User;
 
 /**
  * 
@@ -61,15 +59,15 @@ public class SkillResource extends BaseResource {
     condition.put("skillId", skill.getId());
     condition.put("status", 1);
     List<Entity> entities = entityDao.find("skill_user", condition, 1, 11, EntityRowMapper.getInstance(), "rank", BaseDao.ORDER_OPTION_DESC);
-    List<User> users = new ArrayList<User>();
     for (Entity entity : entities) {
-      User user = entityDao.get("user", entity.getLong("userId"), UserRowMapper.getInstance());
-      if (user != null) {
-        user.getProperties().put("count", entity.getInt("rank"));
-        users.add(user);
+      String contact = entity.getString("contact");
+      if (StringUtils.isNotEmpty(contact)) {
+        contact = StringUtils.rightPad(StringUtils.substring(contact, 0, 3), StringUtils.length(contact), '*');
+        entity.put("contact", contact);
       }
+
     }
-    request.setAttribute("users", users);
+    request.setAttribute("entities", entities);
 
     return Response.ok(new Viewable("skill")).build();
   }

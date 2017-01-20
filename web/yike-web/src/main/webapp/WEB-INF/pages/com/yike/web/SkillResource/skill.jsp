@@ -26,7 +26,7 @@
   </div>
 
   <div class="row row-space-top-2 section skill-section">
-    <c:if test="${not empty users}">
+    <c:if test="${not empty entities}">
       <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="card first">
           <div class="title xl">{谁}有</div>
@@ -38,10 +38,10 @@
           </div>
         </div>
       </div>
-      <c:forEach var="item" items="${users}">
+      <c:forEach var="item" items="${entities}">
         <div class="col-md-2 col-sm-3 col-xs-6">
           <div class="card item">
-            <div class="title xl">${item.username}</div>
+            <div class="title xl">${item.contact}</div>
             <div class="md"></div>
             <div class="card-footer">
               <div class="card-action xxl">

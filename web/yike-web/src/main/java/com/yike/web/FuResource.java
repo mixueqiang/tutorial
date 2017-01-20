@@ -13,6 +13,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -73,18 +74,30 @@ public class FuResource extends BaseResource {
   @POST
   @Path("publish")
   @Produces(APPLICATION_JSON)
-  public Map<String, Object> publish(@FormParam("source") int source, @FormParam("target") int target, @FormParam("alipay") String alipay, @FormParam("contact") String contact) {
+  public Map<String, Object> publish(@FormParam("source") int source, @FormParam("target") int target, @FormParam("contact") String contact, @FormParam("alipay") String alipay) {
     if (source <= 0 && target <= 0) {
       return ResponseBuilder.error(50000, "请选择你有的和需要的福。");
     }
+    if (StringUtils.isEmpty(contact)) {
+      return ResponseBuilder.error(50000, "请输入有效的手机号或QQ号。");
+    }
 
     long time = System.currentTimeMillis();
-    Entity entity = new Entity("user_fu");
     User user = getSessionUser();
+
+    Entity entity = new Entity("user_fu");
     if (user != null) {
       entity.set("userId", user.getId()).set("username", user.getUsername());
     }
     entity.set("source", source).set("target", target).set("contact", contact).set("alipay", alipay);
+    entity.set("status", 1).set("createTime", time);
+    entityDao.save(entity);
+
+    entity = new Entity("skill_user");
+    if (user != null) {
+      entity.set("userId", user.getId()).set("username", user.getUsername());
+    }
+    entity.set("skillId", source).set("contact", contact);
     entity.set("status", 1).set("createTime", time);
     entityDao.save(entity);
 

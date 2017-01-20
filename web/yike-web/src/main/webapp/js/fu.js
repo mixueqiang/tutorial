@@ -6,6 +6,10 @@ $(function() {
       },
       target : {
         required : true
+      },
+      contact : {
+        required : true,
+        minlength : 5
       }
     },
     messages : {
@@ -14,6 +18,10 @@ $(function() {
       },
       target : {
         required : '请选择你需要什么福。'
+      },
+      contact : {
+        required : '请输入有效的手机号或QQ号。',
+        minlength : '请输入有效的手机号或QQ号。'
       }
     },
     submitHandler : function(form) {

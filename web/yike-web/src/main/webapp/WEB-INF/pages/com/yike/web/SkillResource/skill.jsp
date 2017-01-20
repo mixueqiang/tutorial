@@ -41,9 +41,9 @@
     </div>
     <c:if test="${not empty entities}">
       <c:forEach var="item" items="${entities}">
-        <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2">
+        <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2" data-id="${item.id}" data-source="${item.source}" data-target="${item.target}">
           <a class="green op-exchange" href="#" title="换福">
-            <div class="card item" data-id="${item.id}" data-source="${item.source}" data-target="${item.target}">
+            <div class="card item">
               <div class="title xl">${item.contact}</div>
               <div class="sm">需要${item.targetFu}交换</div>
               <div class="card-footer">
@@ -165,4 +165,4 @@
   </div>
 </div>
 
-<script src="/js/fu.js?v=20170120006"></script>
+<script src="/js/fu.js?v=20170120007"></script>

@@ -74,7 +74,7 @@ $(function() {
   $('.op-exchange').click(function() {
     $('#ExchangeModal').modal('show');
 
-    var $exchange = $(this).parent().parent().parent();
+    var $exchange = $(this).parent();
     var exchangeId = $exchange.attr('data-id');
 
     $.getJSON('/fu/exchange', {
@@ -89,6 +89,7 @@ $(function() {
           $('.exchange-info', $('#ExchangeModal')).show();
 
         } else if (resp.e == 10001) {
+          alert(exchangeId);
           $('input[name=exchangeId]', $('.exchange-signup')).val(exchangeId);
           $('.exchange-check', $('#ExchangeModal')).hide();
           $('.exchange-signup', $('#ExchangeModal')).show();

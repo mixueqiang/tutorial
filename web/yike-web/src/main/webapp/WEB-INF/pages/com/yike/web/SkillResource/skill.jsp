@@ -124,7 +124,7 @@
           </div>
         </form>
       </div>
-      <div class="exchange-check">
+      <div class="exchange-info">
         <div class="modal-body">
           <div class="alipay_info"></div>
         </div>
@@ -178,4 +178,4 @@
   </div>
 </div>
 
-<script src="/js/fu.js?v=20170120001"></script>
+<script src="/js/fu.js?v=20170120002"></script>

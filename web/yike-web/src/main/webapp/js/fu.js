@@ -102,6 +102,7 @@ $(function() {
       }, 1500);
     });
 
+    return false;
   });
 
   $('.btn-send-sms', $('#signup-form')).click(function() {

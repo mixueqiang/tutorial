@@ -12,7 +12,16 @@
       <div class="card-title">
         <span class="xl">集福</span>
       </div>
-      <div class="card-attribute lg">${userCount}人在用，已发布${fuCount}个福</div>
+      <div class="card-attribute">
+        <dl>
+          <dt>人</dt>
+          <dd>${userCount}</dd>
+        </dl>
+        <dl class="col-space-6">
+          <dt>福</dt>
+          <dd>${fuCount}</dd>
+        </dl>
+      </div>
     </div>
   </div>
 

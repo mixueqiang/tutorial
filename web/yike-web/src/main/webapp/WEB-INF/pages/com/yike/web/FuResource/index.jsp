@@ -12,7 +12,7 @@
       <div class="card-title">
         <span class="xl">集福</span>
       </div>
-      <div class="card-attribute lg">有${count}人在使用</div>
+      <div class="card-attribute lg">${userCount}人在用，已发布${fuCount}个福</div>
     </div>
   </div>
 

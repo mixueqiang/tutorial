@@ -153,7 +153,7 @@
             <label for="alipay">留下支付宝，方便交换福</label><input type="text" class="form-control" id="alipay" name="alipay">
           </div>
           <div class="form-group">
-            <label for="">或加入QQ群：612511614换福，可扫码加群</label><img alt="换福群" src="http://yikeyun.b0.upaiyun.com/static/20170120001.jpg!M">
+            <label>或关注公众号：一课上手，1月22号中午12点整点开始抢福。</label>
           </div>
         </div>
         <div class="modal-footer">

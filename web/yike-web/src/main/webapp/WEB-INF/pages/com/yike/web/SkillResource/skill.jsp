@@ -58,7 +58,7 @@
     </c:if>
   </div>
 
-  <div class="row row-space-top-6">
+  <div class="row row-space-top-6 row-space-6">
     <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
       <a class="btn btn-default btn-block" href="/fu">返回首页</a>
     </div>
@@ -141,7 +141,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="target">我想要</label><select class="form-control" id="target" name="target">
+            <label for="target">我需要</label><select class="form-control" id="target" name="target">
               <option value="1001">爱国福</option>
               <option value="1002">富强福</option>
               <option value="1003">和谐福</option>
@@ -153,7 +153,7 @@
             <label for="alipay">留下支付宝，方便交换福</label><input type="text" class="form-control" id="alipay" name="alipay">
           </div>
           <div class="form-group">
-            <label>或关注公众号：一课上手，1月22号中午12点整点开始抢福。</label>
+            <label>或关注公众号：一课上手，参与集福。</label><img alt="一课上手二维码" class="qr-code" src="http://yikeyun.b0.upaiyun.com/static/20170122001.jpg!M">
           </div>
         </div>
         <div class="modal-footer">

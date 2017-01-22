@@ -792,3 +792,7 @@ input, select, textarea, .btn, .form-control, .panel {
 .skill-section .header a, .skill-section .header a:hover, .skill-section .item a, .skill-section .item a:hover, .skill-section .last a, .skill-section .last a:hover {
   color: #fff;
 }
+
+.qr-code {
+  width: 160px;
+}

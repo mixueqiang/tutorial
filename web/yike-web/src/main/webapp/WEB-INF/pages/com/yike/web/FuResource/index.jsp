@@ -89,9 +89,6 @@
               <img src="http://yikeyun.b0.upaiyun.com/static/20170122001.jpg!M">
               <h3 class="panel-title row-space-top-2">关注一课上手</h3>
             </div>
-            <div class="panel-footer">
-              <a class="btn btn-danger btn-block" href="http://mp.weixin.qq.com/s/TCLtZ5LaUH7R3hcsdAURJQ">投个票吧！</a>
-            </div>
           </div>
         </div>
       </div>

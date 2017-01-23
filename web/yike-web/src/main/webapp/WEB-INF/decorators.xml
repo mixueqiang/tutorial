@@ -2,10 +2,10 @@
 <decorators defaultdir="/WEB-INF/templates">
   <excludes>
     <pattern>/css/*</pattern>
+    <pattern>/favicon.ico</pattern>
     <pattern>/images/*</pattern>
     <pattern>/js/*</pattern>
     <pattern>/libs/*</pattern>
-    <pattern>/favicon.ico</pattern>
   </excludes>
 
   <decorator name="template" page="template.jsp">

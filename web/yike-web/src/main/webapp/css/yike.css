@@ -673,7 +673,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .courses-footer {
-  bottom: 0px; font-size: 14px; padding-left: 15px;
+  bottom: 0px; font-size: 14px; padding-left: 15px;padding-right: 0px;
 }
 
 .courses-subscript {

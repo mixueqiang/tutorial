@@ -1,26 +1,4 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<style>
-.as-instructor-content {
-  position: relative;
-}
-
-.as-instructor-details {
-  margin-top: 10px;
-}
-
-.as-instructor-title {
-  font-weight: bold; font-size: 16px;
-}
-
-.as-instructor-lightspot {
-  margin-top: 10px; padding-bottom: 20px;
-}
-
-.as-instructor-footer {
-  font-size: 14px; padding-left: 15px; position: absolute; bottom: 0; left: 0px;
-}
-</style>
-
 <div id="courses">
   <div class="panel panel-default row-space-4">
     <div class="panel-heading">我发布的课程</div>
@@ -33,7 +11,70 @@
     <c:forEach var="item" items="${courses}">
       <div class="panel panel-default" data-id="${item.id}">
         <div class="panel-body">
-          <div class="as-instructor-content row">
+          <div class="courses-contents row  row-top">
+            <div class="courses-imgcover col-sx-8 col-sm-4 col-md-4">
+              <c:choose>
+                <c:when test="${not empty item.image}">
+                  <div class="courses-img" style="width:100%; background: url('http://yikeyun.b0.upaiyun.com/${item.image}!M') 0 0 no-repeat; background-size:cover;"></div>
+                </c:when>
+                <c:otherwise>
+                  <div class="courses-img" style=" width:100%; background: url('http://yikeyun.b0.upaiyun.com/static/course-cover.png!M') 0 0 no-repeat; background-size:cover;"></div>
+                </c:otherwise>
+              </c:choose>
+            </div>
+            <div class="courses-details section-right col-md-8 col-sm-7 col-sx-6">
+              <div class="row">
+                <div class="section-title courses-title col-md-8 col-sm-12 col-xs-12">
+                  <a href="/course/${item.id}" target="_blank">${item.name}</a>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="pull-right course-status">
+                    <c:choose>
+                      <c:when test="${item.status eq 0}">
+                        <span>审核中</span>
+                        <c:choose>
+                          <c:when test="${empty item.countThis}">
+                            <a class="btn-link col-space-2 students-list" href=""></a>
+                          </c:when>
+                          <c:when test="${item.countThis eq 0}">
+                            <a class="btn-link col-space-2 students-list" href=""></a>
+                          </c:when>
+                          <c:otherwise>
+                            <a class="btn-link col-space-2 students-list" href="/course/${item.id}/students">学生名单</a>
+                          </c:otherwise>
+                        </c:choose>
+                        <a class="btn-link col-space-2" data-id="${item.id}" href="../course/${item.id}/edit"><span>编辑</span></a>
+                      </c:when>
+                      <c:when test="${item.status gt 0}">
+                        <c:choose>
+                          <c:when test="${item.appliable eq 1}">
+                            <a class="btn-link op-confirm-close" data-id="${item.id}" href="#"><span>结束招生</span></a>
+                            <a class="btn-link col-space-2 op-confirm-edit" data-id="${item.id}" href="#"><span>编辑</span></a>
+                          </c:when>
+                          <c:otherwise>
+                            <span>已结束招生</span>
+                          </c:otherwise>
+                        </c:choose>
+                      </c:when>
+                    </c:choose>
+                  </div>
+                </div>
+              </div>
+              <div class="section-caption row-space-top-1">
+                <a href="/instructor/${item.properties.instructor.id}" target="_blank">${item.properties.instructor.name}</a>
+              </div>
+              <div class="section-content  row-space-top-1">
+                <a href="/course/${item.id}" target="_blank">${item.content}</a>
+              </div>
+            </div>
+            <div class="section-footer courses-footer row-space-top-1">
+              <span id="courses-subscript pull-left">${item.subscript}</span> <span class="courses-price pull-right"><c:choose>
+                  <c:when test="${item.free eq 1}">免费</c:when>
+                  <c:otherwise>¥${item.price}</c:otherwise>
+                </c:choose></span>
+            </div>
+          </div>
+          <!-- <div class="as-instructor-content row">
             <div class="as-instructor-imgcover col-md-4 col-sm-4 col-xs-12">
               <c:choose>
                 <c:when test="${not empty item.image}">
@@ -56,10 +97,10 @@
                         <span>审核中</span>
                         <c:choose>
                           <c:when test="${empty item.countThis}">
-                            <!-- <a class="btn-link col-space-2 students-list" href=""></a> -->
+                            <a class="btn-link col-space-2 students-list" href=""></a>
                           </c:when>
                           <c:when test="${item.countThis eq 0}">
-                            <!-- <a class="btn-link col-space-2 students-list" href=""></a> -->
+                            <a class="btn-link col-space-2 students-list" href=""></a>
                           </c:when>
                           <c:otherwise>
                             <a class="btn-link col-space-2 students-list" href="/course/${item.id}/students">学生名单</a>
@@ -92,7 +133,7 @@
                   <c:otherwise>¥${item.price}</c:otherwise>
                 </c:choose></span>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </c:forEach>
@@ -173,18 +214,17 @@
 		}
 
 	})
-	function Heightadapt() {
-		/*列表图片成比例*/
-		$('.as-instructor-imgcover .as-instructor-img').height(
-				$('.as-instructor-imgcover .as-instructor-img').width() * 0.60);
-		/*下角标位置动态问题*/
-		$('.as-instructor-footer').css({
-			left : $('.as-instructor-details').position().left,
-			width : $('.as-instructor-details').width() + 15
-		});
-	}
-	Heightadapt();
-	window.onresize = function() {
-		Heightadapt();
-	}
+	function Heightadapt(){
+    /*列表图片成比例*/
+    $('.courses-imgcover .courses-img').height($('.courses-imgcover .courses-img').width()*0.60);
+    /*下角标位置动态问题*/
+    $('.courses-footer').css({
+      left:$('.courses-details').position().left,
+      width:$('.courses-details').width()+15
+    })
+  }
+  Heightadapt();
+  window.onresize=function(){
+    Heightadapt();
+  }
 </script>

@@ -67,14 +67,14 @@
                         </c:otherwise>
                       </c:choose>
                     </div>
-                    <div class="section-contents">
-                      <div class="section-title md">
+                    <div class="section-contents index-contents">
+                      <div class="section-title index-title">
                         <a href="/course/${item.id}" target="_blank">${item.name}</a>
                       </div>
                       <!-- <div class="section-caption row-space sm">${item.properties.instructor.name}</div> -->
-                      <div class="section-content ln-1">${item.content}</div>
+                      <div class="section-content index-content ln-1">${item.content}</div>
                       <div class="section-footer">
-                        <span class="text-muted">${item.superscript}</span><span class="course-price pull-right">¥${item.price}</span>
+                        <span class="section-subscript">${item.superscript}</span><span class="section-price pull-right">¥${item.price}</span>
                       </div>
                     </div>
 

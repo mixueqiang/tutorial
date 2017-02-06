@@ -321,7 +321,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-contents {
-  padding: 20px 12px 12px; min-height: 180px; max-height: 200px; padding-bottom: 30px;
+  padding: 20px 12px 12px; padding-bottom: 30px;
 }
 
 .section-right {
@@ -329,7 +329,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-title, .section-title a {
-  color: #333; font-weight: bold; overflow: hidden; min-height: 2.4em; max-height: 2.4em; line-height: 1.2; font-size: 16px; margin-bottom: 10px;
+  color: #333; font-weight: bold; overflow: hidden; max-height: 2.4em; line-height: 1.2; font-size: 16px; margin-bottom: 10px;
 }
 
 .section-caption, .section-caption a {
@@ -337,11 +337,11 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-content, .section-content a, .section-content a:hover, .section-content a:visited {
-  color: #666;
+  color: #4a4d56;
 }
 
 .section-content {
-  font-size: 15px; color: #4a4d56; overflow: hidden; min-height: 4.5em; max-height: 4.5em;
+  font-size: 15px; color: #4a4d56; overflow: hidden;
 }
 
 .section-left {
@@ -353,7 +353,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-footer {
-  padding: 0 10px; width: 100%; position: absolute; bottom: 14px; left: 0;
+  padding: 0 10px; width: 100%; position: absolute; bottom: 6px; left: 0;
 }
 
 .section-subscript {
@@ -361,151 +361,47 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .section-price {
-  color: #333; font-size: 14px;
+  color: #666; font-size: 14px;
 }
 /* ======================================contentCommon-end========================================= */
 
-/* ======================================coursedetails-strat========================================= */
-.contact_form input {
-  
-}
-
-/* .course-price {
-  color: #333; font-size: 18px;
-} */
-.course-navbar {
-  background: #fff;
-}
-
-.course-nav {
-  height: 50px; line-height: 50px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; display: block; background: #fff; opacity: 1;
-}
-
-.course-nav>li {
-  display: inline-block; margin-right: 20px;
-}
-
-.course-nav>li>a {
-  color: #666; font-size: 16px;
-}
-
-.course-nav>li>a:hover, .course-nav>li>a:focus {
-  color: #333; background-color: #fff; text-decoration: none;
-}
-
-.course-details {
-  background: #fff; padding-bottom: 50px;
-}
-
-.control-txt {
-  margin-top: 0; margin-bottom: 0; padding-top: 7px; text-align: left;
-}
-
-.alert {
-  padding: 8px; margin: 1px auto 10px; border-radius: 0;
-}
-
-.alert-white {
-  background-color: #fff; border-color: #eee;
-}
-
-.alert-gray {
-  background-color: #ccc; border-color: #ccc;
-}
-/* ======================================courseList-end========================================= */
-
-/* ======================================courseCreate&&edit-start========================================= */
-#titleContainer, #contentContainer, #teachingTypeContainer, #descriptionContainer, charge {
-  position: relative;
-}
-
-#titleNum, #contentNum, #teachingTypeNum, #descriptionNum {
-  position: absolute; bottom: 1px; right: 25px; z-index: 10; height: 18px; margin: 0; text-align: right; background: rgba(255, 255, 255, 1); font-size: 14px; line-height: 18px; color: #999999;
-}
-
-.rmb {
-  position: absolute; top: 10px; right: 25px; font-size: 14px; height: 18px; line-height: 18px; z-index: 10;
-}
-/* ======================================courseCreate&&edit-end========================================= */
-
-/* ======================================subnav-start========================================= */
-.subnav {
-  position: relative; background-color: #4ca99f; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
-}
-
-.subnav-list {
-  padding-left: 0;
-}
-
-.subnav-item, a.subnav-item {
-  position: relative; float: left; padding: 10px 14px; color: #edf1f3;
-}
-
-.subnav-item:hover, .subnav-item:focus, .subnav-item[aria-selected="true"] {
-  color: #fff; text-decoration: none;
-}
-
-.subnav-item[aria-selected="true"]:before {
-  position: absolute; content: ''; bottom: 0; left: 14px; right: 14px; height: 4px; background: #cacccd;
-}
-
-.sidenav {
-  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
-}
-
-.sidenav:before, .sidenav:after {
-  content: ""; display: table;
-}
-
-.sidenav:after {
-  clear: both
-}
-
-.sidenav-text, .sidenav-item {
-  display: block; padding: 6px 0; font-size: 16px; color: #82888a;
-}
-
-.sidenav-item {
-  display: block; padding: 6px 0; font-size: 16px; color: #82888a;
-}
-
-.sidenav-item:hover, .sidenav-item:focus {
-  text-decoration: none; color: #cacccd
-}
-
-.sidenav-item[aria-selected="true"] {
-  text-decoration: none; color: #353535; font-weight: bold;
-}
-
-.glyphicon {
-  
-}
-
-.glyphicon-ok-circle {
-  color: #3fb34f;
-}
-
-.glyphicon-remove-circle {
-  color: #d03747;
-}
-
-.glyphicon-lg {
-  margin: 0 15px 0 0; font-size: 27px; line-height: inherit;
-}
-/* ======================================subnav-end========================================= */
-.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
-  margin: 2px 0 0 -18px;
-}
-
-.file-input-container {
-  position: relative; overflow: hidden;
-}
-
-.file-input-container input[type=file] {
-  cursor: pointer; position: absolute; font-size: 200px; top: 0; bottom: 0; right: 0; opacity: 0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-}
-
 /* ======================================index.jsp-start========================================= */
+.index-contents {
+  min-height: 180px; max-height: 200px;
+}
+
+.index-right {
+  
+}
+
+.index-title, .index-title a {
+  min-height: 2.4em;
+}
+
+.index-caption, .index-caption a {
+  color: #777; max-height: 1.5em; margin-top: 5px;
+}
+
+.index-content, .index-content a, .index-content a:hover, .index-content a:visited {
+  color: #4a4d56;
+}
+
+.index-content {
+  min-height: 4.5em; max-height: 4.5em;
+}
+
+.index-footer {
+  
+}
+
+.index-subscript {
+  
+}
+
+.index-price {
+  
+}
+
 .index-bgcolor {
   background-color: #FAFBFC;
 }
@@ -663,7 +559,250 @@ input, select, textarea, .btn, .form-control, .panel {
 .signcontainer {
   min-height: 365px;
 }
-/* ======================================index.jsp-start========================================= */
+/* ======================================index.jsp-end========================================= */
+
+/* ======================================coursedetails-strat========================================= */
+.course-section {
+  margin-bottom: 40px;
+}
+
+.course-contents {
+  max-height: 400px;
+}
+
+.course-right {
+  
+}
+
+.course-title, .course-title a {
+  margin-top: 10px;
+}
+
+.course-caption, .course-caption a {
+  color: #777; max-height: 1.5em; margin-top: 5px;
+}
+
+.course-content, .course-content a, .course-content a:hover, .course-content a:visited {
+  color: #4a4d56;
+}
+
+.course-content {
+  min-height: 7.5em; max-height: 7.5em;
+}
+
+.course-footer {
+  
+}
+
+.course-subscript {
+  
+}
+
+.course-price {
+  
+}
+
+.course-navbar {
+  display: block; background-color: #fff;
+}
+
+.contact_form input {
+  
+}
+
+.course-navbar {
+  background: #fff;
+}
+
+.course-nav {
+  height: 50px; line-height: 50px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; display: block; background: #fff; opacity: 1;
+}
+
+.course-nav>li {
+  display: inline-block; margin-right: 20px;
+}
+
+.course-nav>li>a {
+  color: #666; font-size: 16px;
+}
+
+.course-nav>li>a:hover, .course-nav>li>a:focus {
+  color: #333; background-color: #fff; text-decoration: none;
+}
+
+.course-details {
+  background: #fff; padding-bottom: 50px;
+}
+
+.control-txt {
+  margin-top: 0; margin-bottom: 0; padding-top: 7px; text-align: left;
+}
+
+.alert {
+  padding: 8px; margin: 1px auto 10px; border-radius: 0;
+}
+
+.alert-white {
+  background-color: #fff; border-color: #eee;
+}
+
+.alert-gray {
+  background-color: #ccc; border-color: #ccc;
+}
+/* ======================================coursedetails-end========================================= */
+
+/* ====================================coursesListindex-start==================================== */
+.courses-contents {
+  position: relative;
+}
+
+.courses-right {
+  
+}
+
+.courses-title, .courses-title a {
+  margin-top: 10px;
+}
+
+.courses-content, .courses-content a, .courses-content a:hover, .courses-content a:visited {
+  
+}
+
+.courses-content {
+  
+}
+
+.courses-footer {
+  bottom: 0px; font-size: 14px; padding-left: 15px;
+}
+
+.courses-subscript {
+  
+}
+
+.courses-price {
+  
+}
+.course-nav-row {
+  padding: 16px 0 5px; border-bottom: 1px solid #edf1f2;
+}
+
+.course-nav-row .hd {
+  width: 80px; height: 30px; line-height: 30px; font-weight: 700; font-size: 14px; color: #07111b; text-align: right;
+}
+
+.course-nav-row .bd {
+  margin-left: 64px;
+}
+
+.course-nav-item {
+  display: inline-block; margin: 0 6px;
+}
+
+.course-nav-item.on a {
+  background: #337ab7; color: #fff;
+}
+
+.course-nav-item a {
+  display: block; line-height: 14px; margin-bottom: 10px; padding: 9px 12px; font-size: 14px; border-radius: 2px;
+}
+
+.course-nav-item a:active, .course-nav-item a:hover {
+  background: #236aa7; color: #fff;
+}
+/* ====================================courseListindex-end==================================== */
+
+/* ======================================courseCreate&&edit-start========================================= */
+#titleContainer, #contentContainer, #teachingTypeContainer, #descriptionContainer, charge {
+  position: relative;
+}
+
+#titleNum, #contentNum, #teachingTypeNum, #descriptionNum {
+  position: absolute; bottom: 1px; right: 25px; z-index: 10; height: 18px; margin: 0; text-align: right; background: rgba(255, 255, 255, 1); font-size: 14px; line-height: 18px; color: #999999;
+}
+
+.rmb {
+  position: absolute; top: 10px; right: 25px; font-size: 14px; height: 18px; line-height: 18px; z-index: 10;
+}
+/* ======================================courseCreate&&edit-end========================================= */
+
+/* ======================================subnav-start========================================= */
+.subnav {
+  position: relative; background-color: #4ca99f; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+}
+
+.subnav-list {
+  padding-left: 0;
+}
+
+.subnav-item, a.subnav-item {
+  position: relative; float: left; padding: 10px 14px; color: #edf1f3;
+}
+
+.subnav-item:hover, .subnav-item:focus, .subnav-item[aria-selected="true"] {
+  color: #fff; text-decoration: none;
+}
+
+.subnav-item[aria-selected="true"]:before {
+  position: absolute; content: ''; bottom: 0; left: 14px; right: 14px; height: 4px; background: #cacccd;
+}
+
+.sidenav {
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+}
+
+.sidenav:before, .sidenav:after {
+  content: ""; display: table;
+}
+
+.sidenav:after {
+  clear: both
+}
+
+.sidenav-text, .sidenav-item {
+  display: block; padding: 6px 0; font-size: 16px; color: #82888a;
+}
+
+.sidenav-item {
+  display: block; padding: 6px 0; font-size: 16px; color: #82888a;
+}
+
+.sidenav-item:hover, .sidenav-item:focus {
+  text-decoration: none; color: #cacccd
+}
+
+.sidenav-item[aria-selected="true"] {
+  text-decoration: none; color: #353535; font-weight: bold;
+}
+
+.glyphicon {
+  
+}
+
+.glyphicon-ok-circle {
+  color: #3fb34f;
+}
+
+.glyphicon-remove-circle {
+  color: #d03747;
+}
+
+.glyphicon-lg {
+  margin: 0 15px 0 0; font-size: 27px; line-height: inherit;
+}
+/* ======================================subnav-end========================================= */
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+  margin: 2px 0 0 -18px;
+}
+
+.file-input-container {
+  position: relative; overflow: hidden;
+}
+
+.file-input-container input[type=file] {
+  cursor: pointer; position: absolute; font-size: 200px; top: 0; bottom: 0; right: 0; opacity: 0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+
 .icon-center {
   text-align: center;
 }

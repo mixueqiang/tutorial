@@ -1,21 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
 <title>${course.name}&nbsp;|&nbsp;一课上手</title>
-<style>
-  .course-navbar{
-    display: block;
-    background-color: #fff;
-  }
-  .course-section{
-    margin-bottom: 40px;
-  }
-  .course-title{
-    margin-top: 10px;
-  }
-  .course-content{
-    font-size: 15px;
-    color: #4a4d56;
-  }
-</style>
 <div class="course" data-id="${course.id}">
   <input type="hidden" id="courseId" value="${course.id}">
   <div class="container">
@@ -35,7 +19,7 @@
           </div>
           <div class="col-md-6 col-sm-6">
             <div class="course-title section-title xl">${course.name}</div>
-            <div class="course-content lh-lg row-space-top-2">${course.content}</div>
+            <div class="section-content course-content lh-lg row-space-top-2">${course.content}</div>
             <div class="row row-space-top-3 section">
               <div class="col-md-9 col-md-offset-3 col-sm-10 col-xs-offset-2 col-xs-6 col-xs-offset-6">
                 <div class="section">

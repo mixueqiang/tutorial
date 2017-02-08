@@ -37,7 +37,7 @@ public class WXAccessTokenScheduler implements Runnable {
 
   public WXAccessTokenScheduler() {
 
-    TaskScheduler.register(getClass().getSimpleName(), this, 10, 20);
+    TaskScheduler.register(getClass().getSimpleName(), this, 10, 7100);
   }
 
   @Override

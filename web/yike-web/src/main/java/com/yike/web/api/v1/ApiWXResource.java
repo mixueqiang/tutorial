@@ -8,10 +8,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -31,6 +28,7 @@ public class ApiWXResource extends BaseResource {
   private static final String WX_TOKEN = "yikeshangshouwx";
 
   @GET
+  @Produces("text/*; charset=utf-8")
   public String test(
           @DefaultValue("") @QueryParam("signature") String signature,
           @DefaultValue("") @QueryParam("timestamp") String timestamp,

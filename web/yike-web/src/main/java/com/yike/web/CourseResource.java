@@ -190,7 +190,7 @@ public class CourseResource extends BaseResource {
       setCourseProperties(course);
       String categoryForSubscript = null;
       if (categoryId == 0) {
-        categoryForSubscript = ((Category)course.getProperties().get("category")).getName();
+        categoryForSubscript = ((Category) course.getProperties().get("category")).getName();
       }
       setSubscripts(course, categoryForSubscript);
     }

@@ -73,12 +73,14 @@ public class CourseResource extends BaseResource {
   @Produces(MediaType.TEXT_HTML)
   public Response get(@PathParam("id") long id) {
 
-    Map<String, Object> courseFindCondition = new HashMap<String, Object>();
-    courseFindCondition.put(Course.SQL_ID, id);
-    courseFindCondition.put(Course.SQL_STATUS, Constants.STATUS_OK);
-    Course course = entityDao.findOne(Course.SQL_TABLE_NAME, courseFindCondition, CourseRowMapper.getInstance());
+    Course course = entityDao.get(Course.SQL_TABLE_NAME, id, CourseRowMapper.getInstance());
 
-    if (course == null) {
+    long userId = getSessionUserId();
+    boolean courseExist = (course != null) && (course.getStatus() >= Constants.STATUS_NOT_READY);
+    boolean courseNotReady = (course != null) && course.getStatus() == Constants.STATUS_READY;
+    boolean isCourseInstructor = (course != null) && course.getInstructorId() == getInstructorIdBy(userId);
+
+    if (!courseExist || (courseNotReady && !isCourseInstructor)) {
       request.setAttribute("_blank", true);
       request.setAttribute("_msg", "课程未找到。");
       return Response.ok(new Viewable("course")).build();

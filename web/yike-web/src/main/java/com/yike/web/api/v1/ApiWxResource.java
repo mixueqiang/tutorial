@@ -39,15 +39,9 @@ public class ApiWxResource extends BaseResource {
   }
 
   @POST
-  @Produces(MediaType.TEXT_XML)
-  public String handleMessages(
-          @FormParam("ToUserName") String toUserName,
-          @FormParam("FromUserName") String fromUserName,
-          @FormParam("CreateTime") long createTime,
-          @FormParam("MsgType") String msgType,
-          @FormParam("Content") String content,
-          @FormParam("MsgId") long msgId) {
-    System.out.println(msgId);
+  @Consumes(MediaType.TEXT_PLAIN)
+  public String handleMessages(String xml) {
+    System.out.println(xml);
     return null;
   }
 

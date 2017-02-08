@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -28,7 +29,7 @@ public class ApiWXResource extends BaseResource {
   private static final String WX_TOKEN = "yikeshangshouwx";
 
   @GET
-  @Produces("text/*; charset=utf-8")
+  @Produces(MediaType.TEXT_PLAIN)
   public String test(
           @DefaultValue("") @QueryParam("signature") String signature,
           @DefaultValue("") @QueryParam("timestamp") String timestamp,

@@ -38,6 +38,19 @@ public class ApiWxResource extends BaseResource {
     return echostr;
   }
 
+  @POST
+  @Produces(MediaType.TEXT_XML)
+  public String handleMessages(
+          @FormParam("ToUserName") String toUserName,
+          @FormParam("FromUserName") String fromUserName,
+          @FormParam("CreateTime") long createTime,
+          @FormParam("MsgType") String msgType,
+          @FormParam("Content") String content,
+          @FormParam("MsgId") long msgId) {
+    System.out.println(msgId);
+    return null;
+  }
+
 
   private boolean check_signature(String signature, String timestamp, String nonce) {
     String[] array = new String[]{timestamp, nonce, WX_TOKEN};

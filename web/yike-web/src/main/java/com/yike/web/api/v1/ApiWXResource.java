@@ -36,12 +36,7 @@ public class ApiWXResource extends BaseResource {
           @DefaultValue("") @QueryParam("timestamp") String timestamp,
           @DefaultValue("") @QueryParam("nonce") String nonce,
           @DefaultValue("") @QueryParam("echostr") String echostr) {
-
-    if (check_signature(signature, timestamp, nonce)) {
-      return echostr;
-    } else {
-      return null;
-    }
+    return echostr;
   }
 
 
@@ -54,8 +49,8 @@ public class ApiWXResource extends BaseResource {
 
     try {
       md = MessageDigest.getInstance("SHA-1");
-    } catch (NoSuchAlgorithmException nae) {
-      nae.printStackTrace();
+    } catch (NoSuchAlgorithmException nsae) {
+      nsae.printStackTrace();
       return false;
     }
 
@@ -71,8 +66,8 @@ public class ApiWXResource extends BaseResource {
       }
       hexString = sb.toString();
       return StringUtils.equals(signature, hexString);
-    } catch (UnsupportedEncodingException nee) {
-      nee.printStackTrace();
+    } catch (UnsupportedEncodingException uee) {
+      uee.printStackTrace();
       return false;
     }
   }

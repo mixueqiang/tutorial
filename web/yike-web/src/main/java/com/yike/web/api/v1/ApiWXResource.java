@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.GET;
 import javax.ws.rs.MatrixParam;
 import javax.ws.rs.Path;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 /**
@@ -43,7 +45,25 @@ public class ApiWXResource extends BaseResource {
     }
 
     String mParms = null;
-    mParms = DigestUtils.sha1Hex(parmsString);
+    MessageDigest digest = null;
+    try {
+      digest = java.security.MessageDigest.getInstance("SHA");
+    } catch (NoSuchAlgorithmException e) {
+      e.printStackTrace();
+    }
+    digest.update(parmsString.getBytes());
+    byte messageDigest[] = digest.digest();
+
+    StringBuffer hexString = new StringBuffer();
+
+    for (int i = 0; i < messageDigest.length; i++) {
+      String shaHex = Integer.toHexString(messageDigest[i] & 0xFF);
+      if (shaHex.length() < 2) {
+        hexString.append(0);
+      }
+      hexString.append(shaHex);
+    }
+    mParms = hexString.toString();
 
     if (StringUtils.equals(mParms, signature)) {
       return echostr;

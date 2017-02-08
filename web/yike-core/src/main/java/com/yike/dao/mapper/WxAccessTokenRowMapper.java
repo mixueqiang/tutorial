@@ -1,7 +1,7 @@
 package com.yike.dao.mapper;
 
 
-import com.yike.model.WXAccessToken;
+import com.yike.model.WxAccessToken;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -11,20 +11,20 @@ import java.sql.SQLException;
  * @author ilakeyc
  * @since 08/02/2017
  */
-public class WXAccessTokenRowMapper implements RowMapper<WXAccessToken> {
-  private static WXAccessTokenRowMapper instance;
+public class WxAccessTokenRowMapper implements RowMapper<WxAccessToken> {
+  private static WxAccessTokenRowMapper instance;
 
-  public static WXAccessTokenRowMapper getInstance() {
+  public static WxAccessTokenRowMapper getInstance() {
     if (instance == null) {
-      instance = new WXAccessTokenRowMapper();
+      instance = new WxAccessTokenRowMapper();
     }
     return instance;
   }
 
   @Override
-  public WXAccessToken mapRow(ResultSet rs, int rowNum) throws SQLException {
+  public WxAccessToken mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-    WXAccessToken entity = new WXAccessToken();
+    WxAccessToken entity = new WxAccessToken();
 
     entity.setId(rs.getLong("id"));
     entity.setAccess_token(rs.getString("access_token"));

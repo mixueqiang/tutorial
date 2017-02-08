@@ -3,9 +3,9 @@ package com.yike.task;
 import com.google.gson.Gson;
 import com.yike.Constants;
 import com.yike.dao.EntityDao;
-import com.yike.dao.mapper.WXAccessTokenRowMapper;
+import com.yike.dao.mapper.WxAccessTokenRowMapper;
 import com.yike.model.Entity;
-import com.yike.model.WXAccessToken;
+import com.yike.model.WxAccessToken;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
@@ -26,8 +26,8 @@ import java.util.Map;
  * @since 08/02/2017
  */
 @Service
-public class WXAccessTokenScheduler implements Runnable {
-  private static final Log LOG = LogFactory.getLog(WXAccessTokenScheduler.class);
+public class WxAccessTokenScheduler implements Runnable {
+  private static final Log LOG = LogFactory.getLog(WxAccessTokenScheduler.class);
 
   private static final String WX_APP_ID = "wxce4aa0af6d3ec704";
   private static final String WX_APP_SECRET = "5f8238027cab1b5348df2dd86f5bd6fe";
@@ -35,7 +35,7 @@ public class WXAccessTokenScheduler implements Runnable {
   @Resource
   protected EntityDao entityDao;
 
-  public WXAccessTokenScheduler() {
+  public WxAccessTokenScheduler() {
 
     TaskScheduler.register(getClass().getSimpleName(), this, 10, 7100);
   }
@@ -52,8 +52,8 @@ public class WXAccessTokenScheduler implements Runnable {
     Map<String, Object> tokenFindCondition = new HashMap<String, Object>();
     tokenFindCondition.put("status", Constants.STATUS_OK);
     long currentTime = System.currentTimeMillis();
-    List<WXAccessToken> tokens = entityDao.find("wx_access_token", tokenFindCondition, WXAccessTokenRowMapper.getInstance());
-    for (WXAccessToken token : tokens) {
+    List<WxAccessToken> tokens = entityDao.find("wx_access_token", tokenFindCondition, WxAccessTokenRowMapper.getInstance());
+    for (WxAccessToken token : tokens) {
       long createTime = token.getCreateTime();
       if ((createTime - currentTime) / 1000 > 7100) {
         Map<String, Object> tokenUpdateCondition = new HashMap<String, Object>();
@@ -76,7 +76,7 @@ public class WXAccessTokenScheduler implements Runnable {
     String result = getRequest(urlString);
 
     Gson gson = new Gson();
-    WXAccessToken token = gson.fromJson(result, WXAccessToken.class);
+    WxAccessToken token = gson.fromJson(result, WxAccessToken.class);
 
     String accessToken = token.getAccess_token();
     long expiresIn = token.getExpires_in();
@@ -85,12 +85,14 @@ public class WXAccessTokenScheduler implements Runnable {
     try {
 
       Entity entity = new Entity("wx_access_token");
+
       entity.set("access_token", accessToken);
       entity.set("expires_in", expiresIn);
       entity.set("createTime", createTime);
       entity.set("status", Constants.STATUS_OK);
+
       entityDao.save(entity);
-      // TODO
+
     } catch (Throwable t) {
       t.printStackTrace();
       LOG.error("unable to save access_token from TECENT", t);
@@ -137,9 +139,6 @@ public class WXAccessTokenScheduler implements Runnable {
         e2.printStackTrace();
       }
     }
-
-    System.out.println(result);
-
     return result;
   }
 

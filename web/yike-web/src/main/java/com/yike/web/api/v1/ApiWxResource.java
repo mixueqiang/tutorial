@@ -23,7 +23,7 @@ import java.util.Arrays;
 @Path("/api/v1/wx")
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
-public class ApiWXResource extends BaseResource {
+public class ApiWxResource extends BaseResource {
   private static final Log LOG = LogFactory.getLog(ApiCourseResource.class);
 
   private static final String WX_TOKEN = "yikeshangshouwx";

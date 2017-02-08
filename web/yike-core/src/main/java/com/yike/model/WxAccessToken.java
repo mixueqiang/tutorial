@@ -4,7 +4,7 @@ package com.yike.model;
  * @author ilakeyc
  * @since 08/02/2017
  */
-public class WXAccessToken extends BaseModel {
+public class WxAccessToken extends BaseModel {
 
   private static final long serialVersionUID = -1934616133245072557L;
 

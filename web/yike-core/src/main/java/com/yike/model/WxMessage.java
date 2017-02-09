@@ -2,8 +2,6 @@ package com.yike.model;
 
 import java.io.Serializable;
 
-import org.w3c.dom.Element;
-
 /**
  * @author ilakeyc
  * @since 09/02/2017
@@ -12,10 +10,10 @@ public class WxMessage implements Serializable {
   private static final long serialVersionUID = -5203791270579103906L;
 
 
-  private String toUserName;   // all 开发者微信号
-  private String fromUserName; // all 发送方帐号（一个OpenID）
-  private long createTime;     // all 消息创建时间 （整型）
-  private String msgId;        // all 消息id，64位整型
+  private String ToUserName;   // all 开发者微信号
+  private String FromUserName; // all 发送方帐号（一个OpenID）
+  private long CreateTime;     // all 消息创建时间 （整型）
+  private String MsgId;        // all 消息id，64位整型
   /**
    * 消息类型
    * text  ------ 文本消息
@@ -27,22 +25,22 @@ public class WxMessage implements Serializable {
    * link ------- 链接消息
    * event ------ 事件
    */
-  private String msgType;
-  private String content; // text 文本消息内容
-  private String picUrl;  // image 图片链接（由系统生成）
+  private String MsgType;
+  private String Content; // text 文本消息内容
+  private String PicUrl;  // image 图片链接（由系统生成）
   // voice 语音消息媒体id，可以调用多媒体文件下载接口拉取数据。
   // video 视频消息媒体id，可以调用多媒体文件下载接口拉取数据。
-  private String mediaId; // image 图片消息媒体id，可以调用多媒体文件下载接口拉取数据。
-  private String format;       // voice 语音格式，如amr，speex等
-  private String recognition;  // voice 语音识别结果，UTF8编码
-  private String thumbMediaId; // video 视频消息缩略图的媒体id，可以调用多媒体文件下载接口拉取数据。
-  private double location_X;   // location 地理位置维度
-  private double location_Y;   // location 地理位置经度
-  private double scale;        // location 地图缩放大小
-  private String label;        // location 地理位置信息
-  private String title;        // link 消息标题
-  private String description;  // link 消息描述
-  private String url;          // link 消息链接
+  private String MediaId; // image 图片消息媒体id，可以调用多媒体文件下载接口拉取数据。
+  private String Format;       // voice 语音格式，如amr，speex等
+  private String Recognition;  // voice 语音识别结果，UTF8编码
+  private String ThumbMediaId; // video 视频消息缩略图的媒体id，可以调用多媒体文件下载接口拉取数据。
+  private double Location_X;   // location 地理位置维度
+  private double Location_Y;   // location 地理位置经度
+  private double Scale;        // location 地图缩放大小
+  private String Label;        // location 地理位置信息
+  private String Title;        // link 消息标题
+  private String Description;  // link 消息描述
+  private String Url;          // link 消息链接
 
   /**
    * 事件类型
@@ -52,234 +50,207 @@ public class WxMessage implements Serializable {
    * LOCATION ---------------- 上报地理位置事件
    * CLICK ------------------- 点击菜单拉取消息时的事件推送
    * VIEW -------------------- 点击菜单跳转链接时的事件推送
-   * */
-  private String event;
+   */
+  private String Event;
   // SCAN  事件KEY值，是一个32位无符号整数，即创建二维码时的二维码scene_id
   // CLICK 事件KEY值，与自定义菜单接口中KEY值对应
   // VIEW  事件KEY值，设置的跳转URL
-  private String eventKey; // subscribe 事件KEY值，qrscene_为前缀，后面为二维码的参数值。
-  private String ticket;   // subscribe 二维码的ticket，可用来换取二维码图片
-  private String latitude; // LOCATION
-  private String longitude;// LOCATION
-  private String precision;// LOCATION 地理位置精度
+  private String EventKey; // subscribe 事件KEY值，qrscene_为前缀，后面为二维码的参数值。
+  private String Ticket;   // subscribe 二维码的ticket，可用来换取二维码图片
+  private String Latitude; // LOCATION
+  private String Longitude;// LOCATION
+  private String Precision;// LOCATION 地理位置精度
 
-  private Element xmlRoot;
-  public WxMessage(Element xmlRoot) {
-    this.xmlRoot = xmlRoot;
-    setToUserName(getContext("ToUserName"));
-    setFromUserName(getContext("FromUserName"));
-    setCreateTime(Long.parseLong(getContext("CreateTime")));
-    setMsgId(getContext("MsgId"));
-    setMsgType(getContext("MsgType"));
-    setContent(getContext("Content"));
-    setPicUrl(getContext("PicUrl"));
-    setMediaId(getContext("MediaId"));
-    setFormat(getContext("Format"));
-    setRecognition(getContext("Recognition"));
-    setThumbMediaId(getContext("ThumbMediaId"));
-    setLocation_X(Double.parseDouble(getContext("Location_X")));
-    setLocation_Y(Double.parseDouble(getContext("Location_Y")));
-    setScale(Double.parseDouble(getContext("Scale")));
-    setLabel(getContext("Label"));
-    setTitle(getContext("Title"));
-    setDescription(getContext("Description"));
-    setUrl(getContext("Url"));
-  }
-
-  private String getContext(String name) {
-    return xmlRoot.getElementsByTagName(name)
-            .item(0).getTextContent();
-  }
 
   public String getToUserName() {
-    return toUserName;
+    return ToUserName;
   }
 
   public void setToUserName(String toUserName) {
-    this.toUserName = toUserName;
+    ToUserName = toUserName;
   }
 
   public String getFromUserName() {
-    return fromUserName;
+    return FromUserName;
   }
 
   public void setFromUserName(String fromUserName) {
-    this.fromUserName = fromUserName;
+    FromUserName = fromUserName;
   }
 
   public long getCreateTime() {
-    return createTime;
+    return CreateTime;
   }
 
   public void setCreateTime(long createTime) {
-    this.createTime = createTime;
-  }
-
-  public String getMsgType() {
-    return msgType;
-  }
-
-  public void setMsgType(String msgType) {
-    this.msgType = msgType;
-  }
-
-  public String getContent() {
-    return content;
-  }
-
-  public void setContent(String content) {
-    this.content = content;
+    CreateTime = createTime;
   }
 
   public String getMsgId() {
-    return msgId;
+    return MsgId;
   }
 
   public void setMsgId(String msgId) {
-    this.msgId = msgId;
+    MsgId = msgId;
+  }
+
+  public String getMsgType() {
+    return MsgType;
+  }
+
+  public void setMsgType(String msgType) {
+    MsgType = msgType;
+  }
+
+  public String getContent() {
+    return Content;
+  }
+
+  public void setContent(String content) {
+    Content = content;
   }
 
   public String getPicUrl() {
-    return picUrl;
+    return PicUrl;
   }
 
   public void setPicUrl(String picUrl) {
-    this.picUrl = picUrl;
+    PicUrl = picUrl;
   }
 
   public String getMediaId() {
-    return mediaId;
+    return MediaId;
   }
 
   public void setMediaId(String mediaId) {
-    this.mediaId = mediaId;
+    MediaId = mediaId;
   }
 
   public String getFormat() {
-    return format;
+    return Format;
   }
 
   public void setFormat(String format) {
-    this.format = format;
+    Format = format;
   }
 
   public String getRecognition() {
-    return recognition;
+    return Recognition;
   }
 
   public void setRecognition(String recognition) {
-    this.recognition = recognition;
+    Recognition = recognition;
   }
 
   public String getThumbMediaId() {
-    return thumbMediaId;
+    return ThumbMediaId;
   }
 
   public void setThumbMediaId(String thumbMediaId) {
-    this.thumbMediaId = thumbMediaId;
+    ThumbMediaId = thumbMediaId;
   }
 
   public double getLocation_X() {
-    return location_X;
+    return Location_X;
   }
 
   public void setLocation_X(double location_X) {
-    this.location_X = location_X;
+    Location_X = location_X;
   }
 
   public double getLocation_Y() {
-    return location_Y;
+    return Location_Y;
   }
 
   public void setLocation_Y(double location_Y) {
-    this.location_Y = location_Y;
+    Location_Y = location_Y;
   }
 
   public double getScale() {
-    return scale;
+    return Scale;
   }
 
   public void setScale(double scale) {
-    this.scale = scale;
+    Scale = scale;
   }
 
   public String getLabel() {
-    return label;
+    return Label;
   }
 
   public void setLabel(String label) {
-    this.label = label;
+    Label = label;
   }
 
   public String getTitle() {
-    return title;
+    return Title;
   }
 
   public void setTitle(String title) {
-    this.title = title;
+    Title = title;
   }
 
   public String getDescription() {
-    return description;
+    return Description;
   }
 
   public void setDescription(String description) {
-    this.description = description;
+    Description = description;
   }
 
   public String getUrl() {
-    return url;
+    return Url;
   }
 
   public void setUrl(String url) {
-    this.url = url;
+    Url = url;
   }
 
   public String getEvent() {
-    return event;
+    return Event;
   }
 
   public void setEvent(String event) {
-    this.event = event;
+    Event = event;
   }
 
   public String getEventKey() {
-    return eventKey;
+    return EventKey;
   }
 
   public void setEventKey(String eventKey) {
-    this.eventKey = eventKey;
+    EventKey = eventKey;
   }
 
   public String getTicket() {
-    return ticket;
+    return Ticket;
   }
 
   public void setTicket(String ticket) {
-    this.ticket = ticket;
+    Ticket = ticket;
   }
 
   public String getLatitude() {
-    return latitude;
+    return Latitude;
   }
 
   public void setLatitude(String latitude) {
-    this.latitude = latitude;
+    Latitude = latitude;
   }
 
   public String getLongitude() {
-    return longitude;
+    return Longitude;
   }
 
   public void setLongitude(String longitude) {
-    this.longitude = longitude;
+    Longitude = longitude;
   }
 
   public String getPrecision() {
-    return precision;
+    return Precision;
   }
 
   public void setPrecision(String precision) {
-    this.precision = precision;
+    Precision = precision;
   }
 }

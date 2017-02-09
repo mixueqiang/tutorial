@@ -54,14 +54,16 @@ public class WxService implements Runnable {
     String result = getRequest(urlString);
 
     Gson gson = new Gson();
+
     WxAccessToken token = gson.fromJson(result, WxAccessToken.class);
 
-    String accessToken = token.getAccess_token();
-
-    WX_ACCESS_TOKEN = accessToken;
+    WX_ACCESS_TOKEN = token.getAccess_token();
   }
 
   private void setButtons() {
+    if (WX_ACCESS_TOKEN == null) {
+      requestAccessToken();
+    }
     Map<String, Object> parameter = new HashMap<String, Object>();
     Map<String, String> button0 = new HashMap<String, String>();
     button0.put("type", "click");

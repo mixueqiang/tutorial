@@ -63,15 +63,15 @@ public class WxService implements Runnable {
 
   private void setButtons() {
     Map<String, Object> parameter = new HashMap<String, Object>();
-    Map<String, String> button0    = new HashMap<String, String>();
+    Map<String, String> button0 = new HashMap<String, String>();
     button0.put("type", "click");
     button0.put("name", "btn0");
     button0.put("key", "button_0");
-    Map<String, String> button1    = new HashMap<String, String>();
+    Map<String, String> button1 = new HashMap<String, String>();
     button1.put("type", "click");
     button1.put("name", "btn1");
     button1.put("key", "button_1");
-    Map<String, String> button2    = new HashMap<String, String>();
+    Map<String, String> button2 = new HashMap<String, String>();
     button2.put("type", "click");
     button2.put("name", "btn2");
     button2.put("key", "button_2");
@@ -140,19 +140,18 @@ public class WxService implements Runnable {
       conn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
       conn.setDoOutput(true);
       conn.setDoInput(true);
-      out = new PrintWriter(new OutputStreamWriter(conn.getOutputStream(),"utf-8"));
+      out = new PrintWriter(new OutputStreamWriter(conn.getOutputStream(), "utf-8"));
       System.out.println(param);
       out.flush();
       in = new BufferedReader(
-              new InputStreamReader(conn.getInputStream(),"utf-8"));
+              new InputStreamReader(conn.getInputStream(), "utf-8"));
       String line;
       while ((line = in.readLine()) != null) {
         result += line;
       }
     } catch (Exception e) {
       e.printStackTrace();
-    }
-    finally {
+    } finally {
       try {
         if (out != null) {
           out.close();

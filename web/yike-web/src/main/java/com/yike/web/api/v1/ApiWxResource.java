@@ -52,7 +52,14 @@ public class ApiWxResource extends BaseResource {
 
     WxMessage message = handleMessage(xml);
 
-    return null;
+    return "<xml>" +
+            "<ToUserName><![CDATA[" + message.getFromUserName() + "]]></ToUserName>" +
+            "<FromUserName><![CDATA[" + message.getToUserName() + "]]></FromUserName>" +
+            "<CreateTime>" + message.getCreateTime() + "</CreateTime>" +
+            "<MsgType><![CDATA[text]]></MsgType>" +
+            "<Content><![CDATA[" + message.getMsgType() + "]]></Content>" +
+            "</xml>";
+
   }
 
 

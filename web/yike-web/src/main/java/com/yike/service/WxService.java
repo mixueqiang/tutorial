@@ -65,23 +65,48 @@ public class WxService implements Runnable {
       requestAccessToken();
     }
     Map<String, Object> parameter = new HashMap<String, Object>();
-    Map<String, String> button0 = new HashMap<String, String>();
-    button0.put("type", "click");
-    button0.put("name", "btn0");
-    button0.put("key", "button_0");
-    Map<String, String> button1 = new HashMap<String, String>();
-    button1.put("type", "click");
-    button1.put("name", "btn1");
-    button1.put("key", "button_1");
-    Map<String, String> button2 = new HashMap<String, String>();
-    button2.put("type", "click");
-    button2.put("name", "btn2");
-    button2.put("key", "button_2");
-    ArrayList<Map<String, String>> buttons = new ArrayList<Map<String, String>>();
-    buttons.add(button0);
-    buttons.add(button1);
-    buttons.add(button2);
+
+    Map<String, Object> button_free = new HashMap<String, Object>();
+    button_free.put("type", "click");
+    button_free.put("name", "免费入学");
+    button_free.put("key", "com.yikeshangshou.wx.free");
+
+    Map<String, Object> button_share = new HashMap<String, Object>();
+    button_share.put("name", "资源共享");
+
+    ArrayList<Map<String, Object>> button_share_sub = new ArrayList<Map<String, Object>>();
+    Map<String, Object> button_share_plan = new HashMap<String, Object>();
+    button_share_plan.put("type", "click");
+    button_share_plan.put("name", "资源共享计划");
+    button_share_plan.put("key", "com.yikeshangshou.wx.share.plan");
+
+    Map<String, Object> button_share_web = new HashMap<String, Object>();
+    button_share_web.put("type", "click");
+    button_share_web.put("name", "前端学习资源");
+    button_share_web.put("key", "com.yikeshangshou.wx.share.web");
+
+    Map<String, Object> button_share_java = new HashMap<String, Object>();
+    button_share_java.put("type", "click");
+    button_share_java.put("name", "Java学习资源");
+    button_share_java.put("key", "com.yikeshangshou.wx.share.java");
+
+    Map<String, Object> button_share_db = new HashMap<String, Object>();
+    button_share_db.put("type", "click");
+    button_share_db.put("name", "数据学习资源");
+    button_share_db.put("key", "com.yikeshangshou.wx.share.db");
+
+    button_share_sub.add(button_share_db);
+    button_share_sub.add(button_share_java);
+    button_share_sub.add(button_share_web);
+    button_share_sub.add(button_share_plan);
+    button_share.put("sub_button", button_share_sub);
+
+    ArrayList<Map<String, Object>> buttons = new ArrayList<Map<String, Object>>();
+    buttons.add(button_free);
+    buttons.add(button_share);
+
     parameter.put("button", buttons);
+
     Gson gson = new Gson();
     String result = postRequest(" https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + WX_ACCESS_TOKEN, gson.toJson(parameter));
     System.out.print(result);
@@ -139,11 +164,12 @@ public class WxService implements Runnable {
     try {
       URL realUrl = new URL(url);
       URLConnection conn = realUrl.openConnection();
-      conn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+      conn.setRequestProperty("accept", "application/json; charset=utf-8");
       conn.setDoOutput(true);
       conn.setDoInput(true);
       out = new PrintWriter(new OutputStreamWriter(conn.getOutputStream(), "utf-8"));
       System.out.println(param);
+      out.print(param);
       out.flush();
       in = new BufferedReader(
               new InputStreamReader(conn.getInputStream(), "utf-8"));

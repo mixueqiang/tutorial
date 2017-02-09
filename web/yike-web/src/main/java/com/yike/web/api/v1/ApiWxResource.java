@@ -1,8 +1,10 @@
 package com.yike.web.api.v1;
 
+import com.google.gson.Gson;
 import com.yike.model.WxMessage;
 import com.yike.util.XmlUtil;
 import com.yike.web.BaseResource;
+import com.yike.web.util.SimpleNetworking;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -21,7 +23,10 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
+import static com.yike.service.WxService.WX_ACCESS_TOKEN;
 import static com.yike.service.WxService.WX_TOKEN;
 
 /**
@@ -61,6 +66,15 @@ public class ApiWxResource extends BaseResource {
             "<Content><![CDATA[" + message.getMsgType() + "]]></Content>" +
             "</xml>";
     System.out.println(response);
+
+    Map<String, String> fooMessage = new HashMap<String, String>();
+    fooMessage.put("content", "内容建设中。。。");
+    Map<String, Object> foo = new HashMap<String, Object>();
+    foo.put("touser", message.getFromUserName());
+    foo.put("msgtype", "text");
+    foo.put("text", fooMessage);
+    Gson g = new Gson();
+    SimpleNetworking.postRequest("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + WX_ACCESS_TOKEN, g.toJson(foo));
     return response;
   }
 

@@ -1,5 +1,6 @@
 package com.yike.web.api.v1;
 
+import com.yike.model.WxMessage;
 import com.yike.web.BaseResource;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -7,13 +8,21 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.InputSource;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+
+import static com.yike.service.WxService.WX_TOKEN;
 
 /**
  * @author ilakeyc
@@ -25,8 +34,6 @@ import java.util.Arrays;
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class ApiWxResource extends BaseResource {
   private static final Log LOG = LogFactory.getLog(ApiCourseResource.class);
-
-  private static final String WX_TOKEN = "yikeshangshouwx";
 
   @GET
   @Produces(MediaType.TEXT_PLAIN)
@@ -40,11 +47,32 @@ public class ApiWxResource extends BaseResource {
 
   @POST
   @Consumes(MediaType.TEXT_PLAIN)
-  public String handleMessages(String xml) {
+  public String receiveMessages(String xml) {
     System.out.println(xml);
+
+    WxMessage message = handleMessage(xml);
+
     return null;
   }
 
+
+  private WxMessage handleMessage(String xmlString) {
+
+    try {
+
+      DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+      DocumentBuilder db = dbf.newDocumentBuilder();
+      StringReader sr = new StringReader(xmlString);
+      InputSource is = new InputSource(sr);
+      Document document = db.parse(is);
+      Element root = document.getDocumentElement();
+      return new WxMessage(root);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
 
   private boolean check_signature(String signature, String timestamp, String nonce) {
     String[] array = new String[]{timestamp, nonce, WX_TOKEN};

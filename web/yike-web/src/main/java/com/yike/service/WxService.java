@@ -59,21 +59,13 @@ public class WxService {
 	  
 	  LOG.info("MSG EVENT : " + wxMessage.getEvent());
 	  //文本消息
-	  if ("<![CDATA[text]]>".equals(wxMessage.getEvent())) {
+	  if ("text".equals(wxMessage.getMsgType())) {
 		return handleTextMsg(wxMessage);
 	  }
-	  //点击
-	  if ("<![CDATA[CLICK]]>".equals(wxMessage.getEvent())) {
-		return handleClickMsg(wxMessage);	
+	  if ("event".equals(wxMessage.getMsgType())) {
+			return handleEventMsg(wxMessage);	
 	  }
-	  //取消关注
-	  if ("<![CDATA[unsubscribe]]>".equals(wxMessage.getEvent())) {
-		return handleUnsubscribeMsg(wxMessage);	
-	  }
-	  //关注
-	  if ("<![CDATA[subscribe]]>".equals(wxMessage.getEvent())) {
-		return handleSubscribeMsg(wxMessage);	
-	  }
+	  
 	  
 	  
 	  
@@ -84,7 +76,23 @@ public class WxService {
 	  return true;
   }
   
-  private static boolean handleSubscribeMsg(WxMessage wxMessage) {
+  private static boolean handleEventMsg(WxMessage wxMessage) {
+	//点击
+	  if ("CLICK".equals(wxMessage.getEvent())) {
+		return handleClickMsg(wxMessage);	
+	  }
+	  //取消关注
+	  if ("unsubscribe".equals(wxMessage.getEvent())) {
+		return handleUnsubscribeMsg(wxMessage);	
+	  }
+	  //关注
+	  if ("subscribe".equals(wxMessage.getEvent())) {
+		return handleSubscribeMsg(wxMessage);	
+	  }
+	return true;
+}
+
+private static boolean handleSubscribeMsg(WxMessage wxMessage) {
 	// TODO Auto-generated method stub
 	return true;
 }
@@ -95,10 +103,10 @@ private static boolean handleUnsubscribeMsg(WxMessage wxMessage) {
 }
 
 private static boolean handleClickMsg(WxMessage wxMessage) {
-	if ("<![CDATA[com.yikeshangshou.wx.share.plan]]>".equals(wxMessage.getEventKey())) {
+	if ("com.yikeshangshou.wx.share.plan".equals(wxMessage.getEventKey())) {
 		
 	}
-	if ("<![CDATA[com.yikeshangshou.wx.free]]>".equals(wxMessage.getEventKey())) {
+	if ("com.yikeshangshou.wx.free".equals(wxMessage.getEventKey())) {
 		WxService.sendTextMessage("滴~  学生卡<(*￣▽￣*)"
 				+ "限时名额有限，请在1小时内将下方专属邀请卡发送朋友圈或群哦~ "
 				+ "Ps:（完成 2 个朋友扫码支持，系统会自动给您发送入学通知）"

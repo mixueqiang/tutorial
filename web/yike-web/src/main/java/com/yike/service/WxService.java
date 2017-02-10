@@ -57,6 +57,7 @@ public class WxService {
 
   public static boolean handleMessage(WxMessage wxMessage) {
 	  
+	  LOG.info("MSG EVENT : " + wxMessage.getEvent());
 	  //文本消息
 	  if ("<![CDATA[text]]>".equals(wxMessage.getEvent())) {
 		return handleTextMsg(wxMessage);

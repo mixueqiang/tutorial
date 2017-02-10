@@ -107,9 +107,9 @@ private static boolean handleClickMsg(WxMessage wxMessage) {
 		
 	}
 	if ("com.yikeshangshou.wx.free".equals(wxMessage.getEventKey())) {
-		WxService.sendTextMessage("滴~  学生卡<(*￣▽￣*)"
-				+ "限时名额有限，请在1小时内将下方专属邀请卡发送朋友圈或群哦~ "
-				+ "Ps:（完成 2 个朋友扫码支持，系统会自动给您发送入学通知）"
+		WxService.sendTextMessage("滴~  学生卡 (*￣▽￣*) \n\n"
+				+ "限时名额有限，请在1小时内将下方专属邀请卡发送朋友圈或群哦~ \n\n"
+				+ "Ps:（完成 2 个朋友扫码支持，系统会自动给您发送入学通知）\n\n"
 				+ "↓↓邀请卡正在生成中↓↓", wxMessage.getFromUserName(), true);
 		//TODO 异步生成一张图片，发送一张图片
 		WxService.sendTextMessage("假装我是一张图片", wxMessage.getFromUserName(), true);

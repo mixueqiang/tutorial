@@ -62,7 +62,8 @@ public class ApiWxResource extends BaseResource {
     System.out.println(xml);
     LOG.info("wx receiveMessages : " + xml);
 
-    WxMessage message = handleMessage(xml);
+    WxMessage message = formatMessage(xml);
+    WxService.handleMessage(message);
 
     String response = "<xml>" +
             "<ToUserName><![CDATA[" + message.getFromUserName() + "]]></ToUserName>" +
@@ -72,15 +73,15 @@ public class ApiWxResource extends BaseResource {
             "<Content><![CDATA[内容建设中1]]></Content>" +
             "</xml>";
     //System.out.println(response);
+    
+    
 
-    WxService.sendTextMessage("内容建设中1", message.getFromUserName(), true);
-    WxService.sendTextMessage("内容建设中2", message.getFromUserName(), true);
 
     return null;
   }
 
 
-  private WxMessage handleMessage(String xmlString) {
+  private WxMessage formatMessage(String xmlString) {
 
     WxMessage message = null;
     InputSource in = new InputSource(new StringReader(xmlString));

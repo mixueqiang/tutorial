@@ -9,6 +9,7 @@ import org.springframework.util.StringUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.yike.model.WxMessage;
 import com.yike.web.util.SimpleNetworking;
 
 /**
@@ -54,8 +55,66 @@ public class WxService {
     return "0".equals(errCode);
   }
 
+  public static boolean handleMessage(WxMessage wxMessage) {
+	  
+	  //文本消息
+	  if ("<![CDATA[text]]>".equals(wxMessage.getEvent())) {
+		return handleTextMsg(wxMessage);
+	  }
+	  //点击
+	  if ("<![CDATA[CLICK]]>".equals(wxMessage.getEvent())) {
+		return handleClickMsg(wxMessage);	
+	  }
+	  //取消关注
+	  if ("<![CDATA[unsubscribe]]>".equals(wxMessage.getEvent())) {
+		return handleUnsubscribeMsg(wxMessage);	
+	  }
+	  //关注
+	  if ("<![CDATA[subscribe]]>".equals(wxMessage.getEvent())) {
+		return handleSubscribeMsg(wxMessage);	
+	  }
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  return true;
+  }
+  
+  private static boolean handleSubscribeMsg(WxMessage wxMessage) {
+	// TODO Auto-generated method stub
+	return true;
+}
 
-  public static boolean requestAccessToken() {
+private static boolean handleUnsubscribeMsg(WxMessage wxMessage) {
+	// TODO Auto-generated method stub
+	return true;
+}
+
+private static boolean handleClickMsg(WxMessage wxMessage) {
+	if ("<![CDATA[com.yikeshangshou.wx.share.plan]]>".equals(wxMessage.getEventKey())) {
+		
+	}
+	if ("<![CDATA[com.yikeshangshou.wx.free]]>".equals(wxMessage.getEventKey())) {
+		WxService.sendTextMessage("滴~  学生卡<(*￣▽￣*)"
+				+ "限时名额有限，请在1小时内将下方专属邀请卡发送朋友圈或群哦~ "
+				+ "Ps:（完成 2 个朋友扫码支持，系统会自动给您发送入学通知）"
+				+ "↓↓邀请卡正在生成中↓↓", wxMessage.getFromUserName(), true);
+		//TODO 异步生成一张图片，发送一张图片
+		WxService.sendTextMessage("假装我是一张图片", wxMessage.getFromUserName(), true);
+	}
+	
+	return true;
+}
+
+private static boolean handleTextMsg(WxMessage wxMessage) {
+	WxService.sendTextMessage("消息已收到，暂无关于" + wxMessage.getContent() + "的回复", wxMessage.getFromUserName(), true);
+	return true;
+}
+
+public static boolean requestAccessToken() {
 
     String urlString = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + WX_APP_ID + "&secret=" + WX_APP_SECRET;
 

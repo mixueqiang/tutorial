@@ -1,18 +1,19 @@
 package com.yike.service;
 
-import com.google.gson.Gson;
-import com.yike.task.TaskScheduler;
-import com.yike.web.util.SimpleNetworking;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+import static com.yike.service.WxService.WX_ACCESS_TOKEN;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.yike.service.WxService.WX_ACCESS_TOKEN;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import com.google.gson.Gson;
+import com.yike.task.TaskScheduler;
+import com.yike.web.util.SimpleNetworking;
 
 /**
  * @author ilakeyc
@@ -53,24 +54,24 @@ public class WxServiceScheduler implements Runnable {
 
     ArrayList<Map<String, Object>> button_share_sub = new ArrayList<Map<String, Object>>();
     Map<String, Object> button_share_plan = new HashMap<String, Object>();
-    button_share_plan.put("type", "click");
+    button_share_plan.put("type", "view");
     button_share_plan.put("name", "资源共享计划");
-    button_share_plan.put("key", "com.yikeshangshou.wx.share.plan");
+    button_share_plan.put("url", "http://mp.weixin.qq.com/s/NlThXqnfFQ7_d8MKF6wA4w");
 
     Map<String, Object> button_share_web = new HashMap<String, Object>();
-    button_share_web.put("type", "click");
+    button_share_web.put("type", "view");
     button_share_web.put("name", "前端学习资源");
-    button_share_web.put("key", "com.yikeshangshou.wx.share.web");
+    button_share_web.put("url", "https://pan.baidu.com/s/1o7SXZgY");
 
     Map<String, Object> button_share_java = new HashMap<String, Object>();
-    button_share_java.put("type", "click");
+    button_share_java.put("type", "view");
     button_share_java.put("name", "Java学习资源");
-    button_share_java.put("key", "com.yikeshangshou.wx.share.java");
+    button_share_java.put("url", "https://pan.baidu.com/s/1o7SXZgY");
 
     Map<String, Object> button_share_db = new HashMap<String, Object>();
-    button_share_db.put("type", "click");
+    button_share_db.put("type", "view");
     button_share_db.put("name", "数据学习资源");
-    button_share_db.put("key", "com.yikeshangshou.wx.share.db");
+    button_share_db.put("url", "https://pan.baidu.com/s/1o7SXZgY");
 
     button_share_sub.add(button_share_db);
     button_share_sub.add(button_share_java);

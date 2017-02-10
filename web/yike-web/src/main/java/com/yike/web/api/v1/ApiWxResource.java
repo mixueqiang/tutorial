@@ -1,9 +1,22 @@
 package com.yike.web.api.v1;
 
-import com.yike.model.WxMessage;
-import com.yike.service.WxService;
-import com.yike.util.XmlUtil;
-import com.yike.web.BaseResource;
+import static com.yike.service.WxService.WX_TOKEN;
+
+import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,15 +28,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.xml.sax.InputSource;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-
-import static com.yike.service.WxService.WX_TOKEN;
+import com.yike.model.WxMessage;
+import com.yike.service.WxService;
+import com.yike.util.XmlUtil;
+import com.yike.web.BaseResource;
 
 
 /**
@@ -35,7 +43,7 @@ import static com.yike.service.WxService.WX_TOKEN;
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class ApiWxResource extends BaseResource {
-  private static final Log LOG = LogFactory.getLog(ApiCourseResource.class);
+  private static final Log LOG = LogFactory.getLog(ApiWxResource.class);
 
   @GET
   @Produces(MediaType.TEXT_PLAIN)
@@ -52,6 +60,7 @@ public class ApiWxResource extends BaseResource {
   @Produces(MediaType.TEXT_XML)
   public String receiveMessages(String xml) {
     System.out.println(xml);
+    LOG.info("wx receiveMessages : " + xml);
 
     WxMessage message = handleMessage(xml);
 
@@ -60,13 +69,14 @@ public class ApiWxResource extends BaseResource {
             "<FromUserName><![CDATA[" + message.getToUserName() + "]]></FromUserName>" +
             "<CreateTime>" + message.getCreateTime() + "</CreateTime>" +
             "<MsgType><![CDATA[text]]></MsgType>" +
-            "<Content><![CDATA[内容建设中]]></Content>" +
+            "<Content><![CDATA[内容建设中1]]></Content>" +
             "</xml>";
-    System.out.println(response);
+    //System.out.println(response);
 
-    WxService.sendTextMessage("内容建设中", message.getFromUserName());
+    WxService.sendTextMessage("内容建设中1", message.getFromUserName(), true);
+    WxService.sendTextMessage("内容建设中2", message.getFromUserName(), true);
 
-    return response;
+    return null;
   }
 
 

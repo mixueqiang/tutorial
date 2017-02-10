@@ -1,18 +1,23 @@
 package com.yike.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.util.StringUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yike.web.util.SimpleNetworking;
-import org.springframework.util.StringUtils;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author ilakeyc
  * @since 10/02/2017
  */
 public class WxService {
+	
+  private static final Log LOG = LogFactory.getLog(WxService.class);
 
   public static String WX_TOKEN = "yikeshangshouwx";
   public static String WX_APP_ID = "wxce4aa0af6d3ec704";
@@ -20,7 +25,7 @@ public class WxService {
   public static String WX_ACCESS_TOKEN;
 
 
-  public static boolean sendTextMessage(String content, String toUser) {
+  public static boolean sendTextMessage(String content, String toUser, boolean needCheckAccessToken) {
 
     String messageSendUrl = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + WX_ACCESS_TOKEN;
 
@@ -34,15 +39,17 @@ public class WxService {
 
     Gson g = new Gson();
 
-    String jsonString = SimpleNetworking.postRequest(messageSendUrl, g.toJson(foo));
+    String postJson = g.toJson(foo);
+    LOG.info("postJson :" + postJson); 
+	String postResult = SimpleNetworking.postRequest(messageSendUrl, postJson);
 
-    Map<String, String> result = g.fromJson(jsonString, new TypeToken<Map<String, String>>() {
+    Map<String, String> result = g.fromJson(postResult, new TypeToken<Map<String, String>>() {
     }.getType());
 
     String errCode = result.get("errcode");
 
-    if ("40014".equals(errCode)) {
-      return requestAccessToken() && sendTextMessage(content, toUser);
+    if ("40014".equals(errCode) && needCheckAccessToken) {
+      return requestAccessToken() && sendTextMessage(content, toUser, false);
     }
     return "0".equals(errCode);
   }

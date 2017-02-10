@@ -77,7 +77,7 @@ public class CourseResource extends BaseResource {
 
     long userId = getSessionUserId();
     boolean courseExist = (course != null) && (course.getStatus() >= Constants.STATUS_NOT_READY);
-    boolean courseNotReady = (course != null) && course.getStatus() == Constants.STATUS_READY;
+    boolean courseNotReady = (course != null) && course.getStatus() == Constants.STATUS_NOT_READY;
     boolean isCourseInstructor = (course != null) && course.getInstructorId() == getInstructorIdBy(userId);
 
     if (!courseExist || (courseNotReady && !isCourseInstructor)) {

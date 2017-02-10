@@ -36,15 +36,15 @@ public class WxService {
 
     String jsonString = SimpleNetworking.postRequest(messageSendUrl, g.toJson(foo));
 
-    Map<String, Object> result = g.fromJson(jsonString, new TypeToken<Map<String, Object>>() {
+    Map<String, String> result = g.fromJson(jsonString, new TypeToken<Map<String, String>>() {
     }.getType());
 
-    Long errCode = (Long) result.get("errcode");
+    String errCode = result.get("errcode");
 
-    if (errCode == 40014) {
+    if ("40014".equals(errCode)) {
       return requestAccessToken() && sendTextMessage(content, toUser);
     }
-    return errCode == 0;
+    return "0".equals(errCode);
   }
 
 
@@ -63,7 +63,7 @@ public class WxService {
 
     WX_ACCESS_TOKEN = token;
 
-    return !(StringUtils.isEmpty(token) || (Long) response.get("errcode") == 40013);
+    return !(StringUtils.isEmpty(token) || "40013".equals(response.get("errcode")));
   }
 
 }

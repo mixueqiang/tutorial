@@ -1,10 +1,9 @@
 package com.yike.web.api.v1;
 
-import com.google.gson.Gson;
 import com.yike.model.WxMessage;
+import com.yike.service.WxService;
 import com.yike.util.XmlUtil;
 import com.yike.web.BaseResource;
-import com.yike.web.util.SimpleNetworking;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,11 +22,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
-import static com.yike.service.WxService.WX_ACCESS_TOKEN;
 import static com.yike.service.WxService.WX_TOKEN;
+
 
 /**
  * @author ilakeyc
@@ -63,18 +60,12 @@ public class ApiWxResource extends BaseResource {
             "<FromUserName><![CDATA[" + message.getToUserName() + "]]></FromUserName>" +
             "<CreateTime>" + message.getCreateTime() + "</CreateTime>" +
             "<MsgType><![CDATA[text]]></MsgType>" +
-            "<Content><![CDATA[" + message.getMsgType() + "]]></Content>" +
+            "<Content><![CDATA[内容建设中]]></Content>" +
             "</xml>";
     System.out.println(response);
 
-    Map<String, String> fooMessage = new HashMap<String, String>();
-    fooMessage.put("content", "内容建设中。。。");
-    Map<String, Object> foo = new HashMap<String, Object>();
-    foo.put("touser", message.getFromUserName());
-    foo.put("msgtype", "text");
-    foo.put("text", fooMessage);
-    Gson g = new Gson();
-    SimpleNetworking.postRequest("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + WX_ACCESS_TOKEN, g.toJson(foo));
+    WxService.sendTextMessage("内容建设中", message.getFromUserName());
+
     return response;
   }
 

@@ -1,11 +1,20 @@
 package com.yike.web.util;
 
 import com.yike.Constants;
+import com.yike.model.WxUser;
+import com.yike.service.WxService;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 
 
 /**
@@ -18,31 +27,112 @@ public class WxFotoMixUtil {
   public static String localImagePath = Constants.IMAGE_REPO + "wx/";
 
   public static String mainImageName = "wx-invitation-main.jpg";
-  public static String localMainImageURL = localImagePath + mainImageName;
+
   public static String upyunMainImageURL = "http://yikeyun.b0.upaiyun.com/static/" + mainImageName;
 
+  public static File createInvitationImage(WxUser user) {
+    File mainImageFile = getMainImage();
+    File userImageFile = getUserImage(user);
+    File QRCodeFile = getQRCode(user);
+    String nickName = user.getNickname();
+    if (StringUtils.length(nickName) > 5) {
+      nickName = StringUtils.substring(nickName, 0, 4);
+    }
+    try {
+      Image mainImage = ImageIO.read(mainImageFile);
+      Image userImage;
+      Image QRCode;
 
-//  public static void foo(File file) {
-//    BufferedImage image = null;
-//    try {
-//      image = ImageIO.read(file);
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
-//
-//    BufferedImage combined = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
-//    Graphics g = combined.getGraphics();
-////    g.drawImage();
-//    try {
-//      ImageIO.write(combined, "JPG", new File(localImagePath, "foo.jpg"));
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
-//  }
+      BufferedImage tag = new BufferedImage(750, 1334, BufferedImage.TYPE_INT_RGB);
+      Graphics2D g2d = tag.createGraphics();
+      g2d.drawImage(mainImage, 0, 0, 750, 1334, null);
+      g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 1.0f));
+      float textX = 49;
+      if (userImageFile != null) {
+        userImage = ImageIO.read(userImageFile);
+        g2d.drawImage(userImage, 49, 973, 77, 77, null);
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
+      } else {
+        textX = 158;
+      }
+      if (QRCodeFile != null) {
+        QRCode = ImageIO.read(QRCodeFile);
+        g2d.drawImage(QRCode, 474, 1002, 210, 210, null);
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
+      }
+
+      g2d.setColor(Color.white);
+      g2d.setFont(new Font("Heiti SC", Font.PLAIN, 24));
+      g2d.drawString(nickName, textX, 1035);
+      g2d.dispose();
+
+      MessageDigest md = MessageDigest.getInstance("MD5");
+      md.update(user.getOpenid().getBytes());
+      String imageName = new BigInteger(1, md.digest()).toString(16) + "wx.jpg";
+      String imageSaveUrl = localImagePath + imageName;
+      FileOutputStream out = new FileOutputStream(imageSaveUrl);
+      ImageIO.write(tag, "jpg", out);
+      out.close();
+
+      return getLocalImage(imageName);
+    } catch (Throwable t) {
+      t.printStackTrace();
+    }
+    return null;
+  }
+
+  private static File getQRCode(WxUser user) {
+    File image;
+    String imageName;
+    try {
+
+      MessageDigest md = MessageDigest.getInstance("MD5");
+      md.update(user.getOpenid().getBytes());
+      imageName = new BigInteger(1, md.digest()).toString(16);
+
+      image = getLocalImage(imageName);
+
+      if (null == image) {
+        String QRCodeURL = WxService.requestQRCode(imageName);
+        image = SimpleNetworking.downLoadFromUrl(QRCodeURL, localImagePath, imageName);
+      }
+
+      return image;
+
+    } catch (Throwable t) {
+      LOG.error("get WxUser avatar name unsuccessful", t);
+    }
+
+    return null;
+  }
+
+
+  private static File getUserImage(WxUser user) {
+    File image;
+    String userAvatarName;
+    try {
+      MessageDigest md = MessageDigest.getInstance("MD5");
+      md.update(user.getHeadimgurl().getBytes());
+      userAvatarName = new BigInteger(1, md.digest()).toString(16);
+
+      image = getLocalImage(userAvatarName);
+
+      if (null == image) {
+        image = SimpleNetworking.downLoadFromUrl(user.getHeadimgurl(), localImagePath, userAvatarName);
+      }
+
+      return image;
+
+    } catch (Throwable t) {
+      LOG.error("get WxUser avatar name unsuccessful", t);
+    }
+    return null;
+  }
+
 
   private static File getMainImage() {
     File image;
-    image = getLocalMainImage();
+    image = getLocalImage(mainImageName);
     if (null == image) {
       try {
         image = SimpleNetworking.downLoadFromUrl(upyunMainImageURL, localImagePath, mainImageName);
@@ -53,8 +143,8 @@ public class WxFotoMixUtil {
     return image;
   }
 
-  private static File getLocalMainImage() {
-    File image = new File(localMainImageURL);
+  private static File getLocalImage(String imageName) {
+    File image = new File(localImagePath + imageName);
     if (!image.exists()) {
       return null;
     }

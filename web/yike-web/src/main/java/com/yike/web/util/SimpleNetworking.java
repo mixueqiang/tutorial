@@ -132,4 +132,87 @@ public class SimpleNetworking {
     return bos.toByteArray();
   }
 
+  public static String uploadImage(String url, File image) {
+    BufferedReader reader = null;
+    String result = "";
+    try {
+      URL realUrl = new URL(url);
+      URLConnection conn = realUrl.openConnection();
+      StringBuilder sb = new StringBuilder();
+
+      conn.setDoOutput(true);
+      conn.setDoInput(true);
+      conn.setUseCaches(false);
+
+      conn.setRequestProperty("Connection", "Keep-Alive");
+      conn.setRequestProperty("Charset", "UTF-8");
+
+      String BOUNDARY = "----------" + System.currentTimeMillis();
+      conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
+
+
+      sb.append("--"); // 必须多两道线
+
+      sb.append(BOUNDARY);
+
+      sb.append("\r\n");
+
+      sb.append("Content-Disposition: form-data;name=\"media\";filelength=\"" + image.length() + "\";filename=\""
+
+              + image.getName() + "\"\r\n");
+
+      sb.append("Content-Type:application/octet-stream\r\n\r\n");
+
+      byte[] head = sb.toString().getBytes("utf-8");
+
+      OutputStream out = new DataOutputStream(conn.getOutputStream());
+
+      out.write(head);
+
+      DataInputStream in = new DataInputStream(new FileInputStream(image));
+
+      int bytes = 0;
+
+      byte[] bufferOut = new byte[1024];
+
+      while ((bytes = in.read(bufferOut)) != -1) {
+        out.write(bufferOut, 0, bytes);
+      }
+
+      in.close();
+
+      byte[] foot = ("\r\n--" + BOUNDARY + "--\r\n").getBytes("utf-8");// 定义最后数据分隔线
+
+      out.write(foot);
+      out.flush();
+      out.close();
+
+      StringBuffer buffer = new StringBuffer();
+      reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+      String line = null;
+
+      while ((line = reader.readLine()) != null) {
+        buffer.append(line);
+      }
+
+      return result;
+
+    } catch (IOException o) {
+
+      return null;
+
+    } finally {
+
+      if (reader != null) {
+        try {
+          reader.close();
+        } catch (IOException o) {
+          o.printStackTrace();
+
+        }
+      }
+
+    }
+  }
 }

@@ -1,20 +1,21 @@
 package com.yike.service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.util.StringUtils;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.yike.model.WxMessage;
 import com.yike.model.WxUser;
 import com.yike.web.util.SimpleNetworking;
+import com.yike.web.util.WxFotoMixUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.util.StringUtils;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author ilakeyc
@@ -28,7 +29,8 @@ public class WxService {
   public static String WX_APP_ID = "wxce4aa0af6d3ec704";
   public static String WX_APP_SECRET = "5f8238027cab1b5348df2dd86f5bd6fe";
   public static String WX_ACCESS_TOKEN;
-  private static ExecutorService executor = Executors.newFixedThreadPool(10);  
+
+  private static ExecutorService executor = Executors.newFixedThreadPool(10);
 
 
   public static boolean sendTextMessage(String text, String toUser) {
@@ -61,7 +63,8 @@ public class WxService {
     LOG.info("postJson :" + postJson);
     String postResult = SimpleNetworking.postRequest(messageSendUrl, postJson);
 
-    Map<String, String> result = g.fromJson(postResult, new TypeToken<Map<String, String>>() {}.getType());
+    Map<String, String> result = g.fromJson(postResult, new TypeToken<Map<String, String>>() {
+    }.getType());
 
     String errCode = result.get("errcode");
 
@@ -117,7 +120,8 @@ public class WxService {
 
     }
     if ("com.yikeshangshou.wx.free".equals(wxMessage.getEventKey())) {
-      WxUser user = requestWxUser(wxMessage.getFromUserName(), true);
+      final WxUser user = requestWxUser(wxMessage.getFromUserName(), true);
+      final WxMessage message = wxMessage;
       if (null == user) {
         LOG.error("wx: user is null");
       } else {
@@ -130,15 +134,34 @@ public class WxService {
       //TODO 异步生成一张图片，发送一张图片
       if (user != null) {
         if (!StringUtils.isEmpty(user.getNickname())) {
-          WxService.sendTextMessage("你好" + user.getNickname(), wxMessage.getFromUserName());
+          executor.execute(new Runnable() {
+            public void run() {
+
+              File image = WxFotoMixUtil.createInvitationImage(user);
+              if (image == null) {
+                WxService.sendTextMessage("图片生成失败，请稍后再试。", message.getFromUserName());
+              } else {
+                String responseString = SimpleNetworking.uploadImage("https://api.weixin.qq.com/cgi-bin/media/upload?access_token=" + WX_ACCESS_TOKEN + "&type=image", image);
+                WxService.sendTextMessage(responseString, message.getFromUserName());
+                Gson g = new Gson();
+                try {
+                  Map<String, String> response = g.fromJson(responseString, new TypeToken<Map<String, String>>() {
+                  }.getType());
+                  if (response != null) {
+                    String id = response.get("media_id");
+                    sendImageMessage(id, message.getFromUserName());
+                  }
+
+                } catch (Throwable t) {
+                  LOG.error("json解析失败", t);
+                }
+              }
+            }
+          });
+//          WxService.sendTextMessage("你好" + user.getNickname(), wxMessage.getFromUserName());
         }
       } else {
         WxService.sendTextMessage("假装我是一张图片", wxMessage.getFromUserName());
-        executor.execute(new Runnable() {
-			public void run() {
-				
-			}
-		});
       }
     }
 
@@ -169,7 +192,7 @@ public class WxService {
   }
 
   public static WxUser requestWxUser(String openId, boolean needCheckAccessToken) {
-    String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + WX_ACCESS_TOKEN + "&openid="+openId+"&lang=zh_CN";
+    String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + WX_ACCESS_TOKEN + "&openid=" + openId + "&lang=zh_CN";
     String responseString = SimpleNetworking.getRequest(url);
     Gson g = new Gson();
     WxUser user;
@@ -181,14 +204,34 @@ public class WxService {
     }
 
     return null;
+  }
 
-//    WxRequestResponse response = WxRequestUtils.getJson(url, WxUser.class);
-//    if (!StringUtils.isEmpty(response.getErrorCode())) {
-//      if ("40014".equals(response.getErrorCode()) && needCheckAccessToken) {
-//        if (requestAccessToken()) { return requestWxUser(openId, false); }
-//      }
-//    }
-//    return (WxUser) response.getObject();
+  public static String requestQRCode(String sceneString) {
+    String url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=" + WX_ACCESS_TOKEN;
+
+    Map<String, Object> main = new HashMap<String, Object>();
+    Map<String, Object> actionInfo = new HashMap<String, Object>();
+    Map<String, Object> scene = new HashMap<String, Object>();
+
+    scene.put("scene_str", sceneString);
+    actionInfo.put("scene", scene);
+    main.put("action_name", "QR_LIMIT_STR_SCENE");
+    main.put("action_info", actionInfo);
+
+    Gson g = new Gson();
+
+    String postString = g.toJson(main);
+
+    String responseString = SimpleNetworking.postRequest(url, postString);
+
+    try {
+      Map<String, String> response = g.fromJson(responseString, new TypeToken<Map<String, String>>() {
+      }.getType());
+      return response.get("url");
+    } catch (Throwable t) {
+      t.printStackTrace();
+      return "";
+    }
   }
 
 }

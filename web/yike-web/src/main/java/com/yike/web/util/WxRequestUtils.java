@@ -6,7 +6,6 @@ import com.google.gson.reflect.TypeToken;
 import com.yike.model.WxRequestResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -32,23 +31,16 @@ public class WxRequestUtils {
 
     try {
 
-      error = g.fromJson(responseString, new TypeToken<Map<String, String>>() {
-      }.getType());
+      T object = g.fromJson(responseString, typeOfT);
+      response.setObject(object);
+
+      error = g.fromJson(responseString, new TypeToken<Map<String, String>>() {}.getType());
       errorCode = error.get("errcode");
       errorMessage = error.get("errorMessage");
+      response.setErrorCode(errorCode);
+      response.setErrorMessage(errorMessage);
+      LOG.error(urlString + "\n" + "errorCode: " + errorCode + "errorMessage: " + errorMessage);
 
-      if (!StringUtils.isEmpty(errorCode) && !"0".equals(errorCode)) {
-
-        response.setErrorCode(errorCode);
-        response.setErrorMessage(errorMessage);
-        LOG.error(urlString + "\n" + "errorCode: " + errorCode + "errorMessage: " + errorMessage);
-
-      } else {
-
-        T object = g.fromJson(responseString, typeOfT);
-        response.setObject(object);
-
-      }
     } catch (JsonSyntaxException j) {
       LOG.error("", j);
     }

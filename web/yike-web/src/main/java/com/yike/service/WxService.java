@@ -141,6 +141,7 @@ public class WxService {
               if (image == null) {
                 WxService.sendTextMessage("图片生成失败，请稍后再试。", message.getFromUserName());
               } else {
+                // TODO 图片上传失败
                 String responseString = SimpleNetworking.uploadImage("https://api.weixin.qq.com/cgi-bin/media/upload?access_token=" + WX_ACCESS_TOKEN + "&type=image", image);
                 WxService.sendTextMessage(responseString, message.getFromUserName());
                 Gson g = new Gson();

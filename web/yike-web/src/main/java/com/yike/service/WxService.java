@@ -2,20 +2,19 @@ package com.yike.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import com.google.gson.JsonSyntaxException;
-import com.yike.model.WxRequestResponse;
-import com.yike.model.WxUser;
-import com.yike.web.util.WxRequestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.StringUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.yike.model.WxMessage;
+import com.yike.model.WxUser;
 import com.yike.web.util.SimpleNetworking;
-import sun.java2d.pipe.SpanShapeRenderer;
 
 /**
  * @author ilakeyc
@@ -29,6 +28,7 @@ public class WxService {
   public static String WX_APP_ID = "wxce4aa0af6d3ec704";
   public static String WX_APP_SECRET = "5f8238027cab1b5348df2dd86f5bd6fe";
   public static String WX_ACCESS_TOKEN;
+  private static ExecutorService executor = Executors.newFixedThreadPool(10);  
 
 
   public static boolean sendTextMessage(String text, String toUser) {
@@ -134,6 +134,11 @@ public class WxService {
         }
       } else {
         WxService.sendTextMessage("假装我是一张图片", wxMessage.getFromUserName());
+        executor.execute(new Runnable() {
+			public void run() {
+				
+			}
+		});
       }
     }
 

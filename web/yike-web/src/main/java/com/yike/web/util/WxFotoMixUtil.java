@@ -88,13 +88,13 @@ public class WxFotoMixUtil {
 
       MessageDigest md = MessageDigest.getInstance("MD5");
       md.update(user.getOpenid().getBytes());
-      imageName = new BigInteger(1, md.digest()).toString(16);
+      imageName = new BigInteger(1, md.digest()).toString(16) + ".jpg";
 
       image = getLocalImage(imageName);
 
       if (null == image) {
-        String QRCodeURL = WxService.requestQRCode(imageName);
-        image = SimpleNetworking.downLoadFromUrl(QRCodeURL, localImagePath, imageName);
+        String ticket = WxService.requestQRCode(imageName);
+        image = SimpleNetworking.downLoadFromUrl("https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + ticket, localImagePath, imageName);
       }
 
       return image;

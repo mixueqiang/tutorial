@@ -227,7 +227,7 @@ public class WxService {
     try {
       Map<String, String> response = g.fromJson(responseString, new TypeToken<Map<String, String>>() {
       }.getType());
-      return response.get("url");
+      return response.get("ticket");
     } catch (Throwable t) {
       t.printStackTrace();
       return "";

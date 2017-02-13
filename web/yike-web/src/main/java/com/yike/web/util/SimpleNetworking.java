@@ -114,7 +114,6 @@ public class SimpleNetworking {
       int length;
       while ((byteread = inStream.read(buffer)) != -1) {
         bytesum += byteread;
-        System.out.println(bytesum);
         fs.write(buffer, 0, byteread);
       }
       File file = new File(savePath + fileName);

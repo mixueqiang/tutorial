@@ -59,8 +59,7 @@ public class WxService {
     LOG.info("postJson :" + postJson);
     String postResult = SimpleNetworking.postRequest(messageSendUrl, postJson);
 
-    Map<String, String> result = g.fromJson(postResult, new TypeToken<Map<String, String>>() {
-    }.getType());
+    Map<String, String> result = g.fromJson(postResult, new TypeToken<Map<String, String>>() {}.getType());
 
     String errCode = result.get("errcode");
 

@@ -3,6 +3,7 @@ package com.yike.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gson.JsonSyntaxException;
 import com.yike.model.WxRequestResponse;
 import com.yike.model.WxUser;
 import com.yike.web.util.WxRequestUtils;
@@ -14,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yike.model.WxMessage;
 import com.yike.web.util.SimpleNetworking;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 /**
  * @author ilakeyc
@@ -126,8 +128,13 @@ public class WxService {
               + "Ps:（完成 2 个朋友扫码支持，系统会自动给您发送入学通知）\n\n"
               + "↓↓邀请卡正在生成中↓↓", wxMessage.getFromUserName());
       //TODO 异步生成一张图片，发送一张图片
-//      WxService.sendTextMessage("假装我是一张图片", wxMessage.getFromUserName());
-      WxService.sendTextMessage(StringUtils.isEmpty(user.getNickname()) ? "null" : user.getNickname(), wxMessage.getFromUserName());
+      if (user != null) {
+        if (!StringUtils.isEmpty(user.getNickname())) {
+          WxService.sendTextMessage("你好" + user.getNickname(), wxMessage.getFromUserName());
+        }
+      } else {
+        WxService.sendTextMessage("假装我是一张图片", wxMessage.getFromUserName());
+      }
     }
 
     return true;
@@ -158,13 +165,25 @@ public class WxService {
 
   public static WxUser requestWxUser(String openId, boolean needCheckAccessToken) {
     String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + WX_ACCESS_TOKEN + "&openid="+openId+"&lang=zh_CN";
-    WxRequestResponse response = WxRequestUtils.getJson(url, WxUser.class);
-    if (!StringUtils.isEmpty(response.getErrorCode())) {
-      if ("40014".equals(response.getErrorCode()) && needCheckAccessToken) {
-        if (requestAccessToken()) { return requestWxUser(openId, false); }
-      }
+    String responseString = SimpleNetworking.getRequest(url);
+    Gson g = new Gson();
+    WxUser user;
+    try {
+      user = g.fromJson(responseString, WxUser.class);
+      return user;
+    } catch (JsonSyntaxException j) {
+      LOG.error("WxUser user = g.fromJson(responseString, WxUser.class);", j);
     }
-    return (WxUser) response.getObject();
+
+    return null;
+
+//    WxRequestResponse response = WxRequestUtils.getJson(url, WxUser.class);
+//    if (!StringUtils.isEmpty(response.getErrorCode())) {
+//      if ("40014".equals(response.getErrorCode()) && needCheckAccessToken) {
+//        if (requestAccessToken()) { return requestWxUser(openId, false); }
+//      }
+//    }
+//    return (WxUser) response.getObject();
   }
 
 }

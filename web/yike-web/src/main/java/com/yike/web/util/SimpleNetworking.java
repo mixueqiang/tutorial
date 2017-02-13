@@ -105,7 +105,7 @@ public class SimpleNetworking {
       URLConnection conn = url.openConnection();
       InputStream inStream = conn.getInputStream();
       File saveDir = new File(savePath);
-      if (!saveDir.exists() && saveDir.isDirectory()) {
+      if (!saveDir.exists()) {
         saveDir.mkdir();
       }
       FileOutputStream fs = new FileOutputStream(savePath + fileName);

@@ -95,30 +95,60 @@ public class SimpleNetworking {
   }
 
   public static File downLoadFromUrl(String fromUrl, String savePath, String fileName) throws IOException {
+    // 下载网络文件
+    int bytesum = 0;
+    int byteread = 0;
+
     URL url = new URL(fromUrl);
-    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-    conn.setConnectTimeout(3 * 1000);
-    conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+    try {
+      URLConnection conn = url.openConnection();
+      InputStream inStream = conn.getInputStream();
+      File saveDir = new File(savePath);
+      if (!saveDir.exists() && saveDir.isDirectory()) {
+        saveDir.mkdir();
+      }
+      FileOutputStream fs = new FileOutputStream(savePath + fileName);
 
-    InputStream inputStream = conn.getInputStream();
-    byte[] getData = readInputStream(inputStream);
-
-    File saveDir = new File(savePath);
-    if (!saveDir.exists() && saveDir.isDirectory()) {
-      saveDir.mkdir();
+      byte[] buffer = new byte[1204];
+      int length;
+      while ((byteread = inStream.read(buffer)) != -1) {
+        bytesum += byteread;
+        System.out.println(bytesum);
+        fs.write(buffer, 0, byteread);
+      }
+      File file = new File(savePath + fileName);
+      return file;
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
-
-    File file = new File(saveDir + File.separator + fileName);
-    FileOutputStream fos = new FileOutputStream(file);
-
-    fos.write(getData);
-    fos.close();
-
-    if (inputStream != null) {
-      inputStream.close();
-    }
-    return new File(savePath + fileName);
+    return null;
+//    URL url = new URL(fromUrl);
+//    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//
+//    conn.setConnectTimeout(3 * 1000);
+//    conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+//
+//    InputStream inputStream = conn.getInputStream();
+//    byte[] getData = readInputStream(inputStream);
+//
+//    File saveDir = new File(savePath);
+//    if (!saveDir.exists() && saveDir.isDirectory()) {
+//      saveDir.mkdir();
+//    }
+//
+//    File file = new File(saveDir + File.separator + fileName);
+//    FileOutputStream fos = new FileOutputStream(file);
+//
+//    fos.write(getData);
+//    fos.close();
+//
+//    if (inputStream != null) {
+//      inputStream.close();
+//    }
+//    return new File(savePath + fileName);
   }
 
   private static byte[] readInputStream(InputStream inputStream) throws IOException {

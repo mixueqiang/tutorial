@@ -65,18 +65,6 @@ public class ApiWxResource extends BaseResource {
     WxMessage message = formatMessage(xml);
     WxService.handleMessage(message);
 
-    String response = "<xml>" +
-            "<ToUserName><![CDATA[" + message.getFromUserName() + "]]></ToUserName>" +
-            "<FromUserName><![CDATA[" + message.getToUserName() + "]]></FromUserName>" +
-            "<CreateTime>" + message.getCreateTime() + "</CreateTime>" +
-            "<MsgType><![CDATA[text]]></MsgType>" +
-            "<Content><![CDATA[内容建设中1]]></Content>" +
-            "</xml>";
-    //System.out.println(response);
-    
-    
-
-
     return null;
   }
 

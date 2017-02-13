@@ -30,7 +30,7 @@
     <div class="col-middle content">
       <h1>学习，并且实战</h1>
       <h2 class="subtitle"></h2>
-      <a id="signup" class="btn btn-success row-space-top-6" href="/signup" target="_blank">注册</a>
+      <a id="signup" class="btn btn-success row-space-top-6" href="/signup">注册</a>
     </div>
   </div>
 </div>
@@ -230,19 +230,16 @@ window.onresize=function(){
 						var id = resp.r;
              $('.modal-body').html('感谢你的提交，我们会很快和你取得联系。');
             $('#myModal').modal('show');
-						/*alert('感谢你的提交，我们会很快和你取得联系。');*/
 					} else {
 						$btn.removeAttr('disabled').removeClass('disabled');
             $('.modal-body').html('信息提交失败:' + resp.m);
             $('#myModal').modal('show');
-						/*alert('信息提交失败:' + resp.m);*/
 					}
 				},
 				error : function() {
 					$btn.removeAttr('disabled').removeClass('disabled');
           $('.modal-body').html('信息提交失败:' + resp.m);
           $('#myModal').modal('show');
-					/*alert('信息提交失败:' + resp.m);*/
 				}
 			});
 		}

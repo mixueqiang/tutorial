@@ -154,6 +154,7 @@ $(function() {
           if (resp && resp.e == 0) {
             var role = $('#role').val();
             var message = '注册成功，';
+            sessionStorage.setItem("isSignup",true);
             Message.info(message, false, $('.form-group:last', $(form)));
             setTimeout(function() {
               window.history.go(-1);
@@ -205,7 +206,15 @@ $(function() {
         success : function(resp) {
           if (resp && resp.e == 0) {
             Message.info('登录成功！', false, $('.form-group:last', $(form)));
-            location.replace(document.referrer);
+            var isSignup=sessionStorage.getItem("isSignup");
+            var isResetPassword=sessionStorage.getItem("isResetPassword");
+            if (isSignup||isResetPassword) {
+              sessionStorage.removeItem("isSignup");
+              sessionStorage.removeItem("isResetPassword");
+              window.location.href="/";
+            }else{
+              location.replace(document.referrer);
+            }
           } else {
             $('#password').val('');
             Message.error('登录失败：' + resp.m, false, $('.form-group:last', $(form)));

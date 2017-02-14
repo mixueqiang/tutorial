@@ -62,7 +62,7 @@ public class WxFotoMixUtil {
       }
 
       g2d.setColor(Color.white);
-      g2d.setFont(new Font("Heiti SC", Font.PLAIN, 24));
+      g2d.setFont(new Font(null, Font.BOLD, 12));
       g2d.drawString(nickName, textX, 1035);
       g2d.dispose();
 

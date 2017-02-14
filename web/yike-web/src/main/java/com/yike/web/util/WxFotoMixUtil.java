@@ -27,7 +27,7 @@ import java.security.MessageDigest;
 public class WxFotoMixUtil {
   private static final Log LOG = LogFactory.getLog(WxFotoMixUtil.class);
 
-  public static String localImagePath = "/Users/ilakeyc/Desktop/" + "wx/";
+  public static String localImagePath = Constants.IMAGE_REPO + "wx/";
 
   public static String mainImageName = "wx-invitation-main.jpg";
 

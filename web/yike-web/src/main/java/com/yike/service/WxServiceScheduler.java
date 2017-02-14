@@ -33,14 +33,14 @@ public class WxServiceScheduler implements Runnable {
 
   @Override
   public void run() {
-    WxService.requestAccessToken();
+    WxService.getInstance().requestAccessToken();
     setButtons();
   }
 
 
   private void setButtons() {
     if (StringUtils.isEmpty(WX_ACCESS_TOKEN)) {
-      WxService.requestAccessToken();
+      WxService.getInstance().requestAccessToken();
     }
     Map<String, Object> parameter = new HashMap<String, Object>();
 

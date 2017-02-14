@@ -63,7 +63,7 @@ public class ApiWxResource extends BaseResource {
     LOG.info("wx receiveMessages : " + xml);
 
     WxMessage message = formatMessage(xml);
-    WxService.handleMessage(message);
+    WxService.getInstance().handleMessage(message);
 
     return null;
   }

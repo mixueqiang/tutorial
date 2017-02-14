@@ -93,7 +93,7 @@ public class WxFotoMixUtil {
       image = getLocalImage(imageName);
 
       if (null == image) {
-        String ticket = WxService.requestQRCode(imageName);
+        String ticket = WxService.getInstance().requestQRCode(imageName);
         image = SimpleNetworking.downLoadFromUrl("https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + ticket, localImagePath, imageName);
       }
 

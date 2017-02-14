@@ -50,7 +50,7 @@ public class WxFotoMixUtil {
       float textX = 49;
       if (userImageFile != null) {
         userImage = ImageIO.read(userImageFile);
-        g2d.drawImage(userImage, 49, 973, 77, 77, null);
+        g2d.drawImage(userImage, 49, 1020, 77, 77, null);
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
       } else {
         textX = 158;

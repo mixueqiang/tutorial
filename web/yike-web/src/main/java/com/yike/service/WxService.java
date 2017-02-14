@@ -240,7 +240,7 @@ public class WxService {
       entity.set("province", user.getProvince());
       entity.set("country", user.getCountry());
       entity.set("headImgUrl", user.getHeadimgurl());
-      entity.set("subscribeTime", user.getSubscribe_time());
+      entity.set("subscribeTime", user.getSubscribe_time() * 1000);
       entity.set("unionid", user.getUnionid());
       entity.set("remark", user.getRemark());
       entity.set("groupid", user.getGroupid());

@@ -23,10 +23,23 @@
   </bean>
 
   <context:annotation-config />
-  <context:component-scan base-package="com.yike.dao.*" />
-  <context:component-scan base-package="com.yike.service.*" />
-  <context:component-scan base-package="com.yike.web.util.*" />
+  <context:component-scan base-package="com.yike.*" />
   <aop:aspectj-autoproxy proxy-target-class="true" />
   <tx:annotation-driven transaction-manager="txManager" />
+
+  <bean id="captchaService" class="com.octo.captcha.service.multitype.GenericManageableCaptchaService">
+    <constructor-arg index="0">
+      <ref bean="simpleCaptchaEngine" />
+    </constructor-arg>
+    <constructor-arg index="1">
+      <value>300</value>
+    </constructor-arg>
+    <constructor-arg index="2">
+      <value>20000</value>
+    </constructor-arg>
+    <constructor-arg index="3">
+      <value>20000</value>
+    </constructor-arg>
+  </bean>
 
 </beans>

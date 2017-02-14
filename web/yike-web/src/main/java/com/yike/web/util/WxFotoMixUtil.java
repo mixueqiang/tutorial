@@ -27,7 +27,7 @@ import java.security.MessageDigest;
 public class WxFotoMixUtil {
   private static final Log LOG = LogFactory.getLog(WxFotoMixUtil.class);
 
-  public static String localImagePath = Constants.IMAGE_REPO + "wx/";
+  public static String localImagePath = "/Users/ilakeyc/Desktop/" + "wx/";
 
   public static String mainImageName = "wx-invitation-main.jpg";
 
@@ -42,7 +42,7 @@ public class WxFotoMixUtil {
     File QRCodeFile = getQRCode(user);
     String nickName = user.getNickname();
     if (StringUtils.length(nickName) > 5) {
-      nickName = StringUtils.substring(nickName, 0, 4);
+      nickName = StringUtils.substring(nickName, 0, 5);
     }
     try {
       Image mainImage = ImageIO.read(mainImageFile);
@@ -58,7 +58,6 @@ public class WxFotoMixUtil {
         userImage = ImageIO.read(userImageFile);
         g2d.drawImage(userImage, 49, 1020, 77, 77, null);
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
-      } else {
         textX = 158;
       }
       if (QRCodeFile != null) {
@@ -68,8 +67,8 @@ public class WxFotoMixUtil {
       }
 
       g2d.setColor(Color.white);
-      g2d.setFont(new Font(null, Font.BOLD, 12));
-      g2d.drawString(nickName, textX, 1035);
+      g2d.setFont(new Font(null, Font.BOLD, 48));
+      g2d.drawString(nickName, textX, 1075);
       g2d.dispose();
 
       MessageDigest md = MessageDigest.getInstance("MD5");

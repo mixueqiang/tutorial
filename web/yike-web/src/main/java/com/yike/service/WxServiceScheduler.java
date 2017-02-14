@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 import com.yike.task.TaskScheduler;
 import com.yike.web.util.SimpleNetworking;
 
+import javax.annotation.Resource;
+
 /**
  * @author ilakeyc
  * @since 08/02/2017
@@ -22,6 +24,9 @@ import com.yike.web.util.SimpleNetworking;
 @Service
 public class WxServiceScheduler implements Runnable {
   private static final Log LOG = LogFactory.getLog(WxServiceScheduler.class);
+
+  @Resource
+  protected WxService wxService;
 
   public WxServiceScheduler() {
     TaskScheduler.register(getClass().getSimpleName(),
@@ -33,14 +38,14 @@ public class WxServiceScheduler implements Runnable {
 
   @Override
   public void run() {
-    WxService.getInstance().requestAccessToken();
+    wxService.requestAccessToken();
     setButtons();
   }
 
 
   private void setButtons() {
     if (StringUtils.isEmpty(WX_ACCESS_TOKEN)) {
-      WxService.getInstance().requestAccessToken();
+      wxService.requestAccessToken();
     }
     Map<String, Object> parameter = new HashMap<String, Object>();
 

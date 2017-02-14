@@ -6,7 +6,9 @@ import com.yike.service.WxService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,6 +23,7 @@ import java.security.MessageDigest;
  * @author ilakeyc
  * @since 09/02/2017
  */
+@Service
 public class WxFotoMixUtil {
   private static final Log LOG = LogFactory.getLog(WxFotoMixUtil.class);
 
@@ -30,7 +33,10 @@ public class WxFotoMixUtil {
 
   public static String upyunMainImageURL = "http://yikeyun.b0.upaiyun.com/static/" + mainImageName;
 
-  public static File createInvitationImage(WxUser user) {
+  @Resource
+  protected WxService wxService;
+
+  public File createInvitationImage(WxUser user) {
     File mainImageFile = getMainImage();
     File userImageFile = getUserImage(user);
     File QRCodeFile = getQRCode(user);
@@ -81,7 +87,7 @@ public class WxFotoMixUtil {
     return null;
   }
 
-  private static File getQRCode(WxUser user) {
+  private File getQRCode(WxUser user) {
     File image;
     String imageName;
     try {
@@ -93,7 +99,7 @@ public class WxFotoMixUtil {
       image = getLocalImage(imageName);
 
       if (null == image) {
-        String ticket = WxService.getInstance().requestQRCode(imageName);
+        String ticket = wxService.requestQRCode(imageName);
         image = SimpleNetworking.downLoadFromUrl("https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + ticket, localImagePath, imageName);
       }
 
@@ -107,7 +113,7 @@ public class WxFotoMixUtil {
   }
 
 
-  private static File getUserImage(WxUser user) {
+  private File getUserImage(WxUser user) {
     File image;
     String userAvatarName;
     try {
@@ -130,7 +136,7 @@ public class WxFotoMixUtil {
   }
 
 
-  private static File getMainImage() {
+  private File getMainImage() {
     File image;
     image = getLocalImage(mainImageName);
     if (null == image) {
@@ -143,7 +149,7 @@ public class WxFotoMixUtil {
     return image;
   }
 
-  private static File getLocalImage(String imageName) {
+  private File getLocalImage(String imageName) {
     File image = new File(localImagePath + imageName);
     if (!image.exists()) {
       return null;

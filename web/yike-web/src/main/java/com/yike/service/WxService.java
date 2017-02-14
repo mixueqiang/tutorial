@@ -30,15 +30,6 @@ import java.util.concurrent.Executors;
 public class WxService {
   private static final Log LOG = LogFactory.getLog(WxService.class);
 
-  private static WxService instance;
-
-  public static WxService getInstance() {
-    if (instance == null) {
-      instance = new WxService();
-    }
-    return instance;
-  }
-
   public static String WX_TOKEN = "yikeshangshouwx";
   public static String WX_APP_ID = "wxce4aa0af6d3ec704";
   public static String WX_APP_SECRET = "5f8238027cab1b5348df2dd86f5bd6fe";
@@ -49,6 +40,8 @@ public class WxService {
   @Resource
   protected EntityDao entityDao;
 
+  @Resource
+  protected WxFotoMixUtil wxFotoMixUtil;
 
   public boolean sendTextMessage(String text, String toUser) {
 
@@ -164,7 +157,7 @@ public class WxService {
   }
 
   private boolean sendInvitationImage(WxUser user, WxMessage message) {
-    File image = WxFotoMixUtil.createInvitationImage(user);
+    File image = wxFotoMixUtil.createInvitationImage(user);
     if (image == null) {
       sendTextMessage("图片生成失败，请稍后再试。", message.getFromUserName());
       return false;

@@ -8,6 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
+import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -45,6 +46,9 @@ import com.yike.web.BaseResource;
 public class ApiWxResource extends BaseResource {
   private static final Log LOG = LogFactory.getLog(ApiWxResource.class);
 
+  @Resource
+  protected WxService wxService;
+
   @GET
   @Produces(MediaType.TEXT_PLAIN)
   public String test(
@@ -63,7 +67,7 @@ public class ApiWxResource extends BaseResource {
     LOG.info("wx receiveMessages : " + xml);
 
     WxMessage message = formatMessage(xml);
-    WxService.getInstance().handleMessage(message);
+    wxService.handleMessage(message);
 
     return null;
   }

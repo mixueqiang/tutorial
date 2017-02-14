@@ -1,7 +1,9 @@
 package com.yike.web.util;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -13,6 +15,7 @@ import java.util.Map;
  * @since 09/02/2017
  */
 public class SimpleNetworking {
+  private static final Log LOG = LogFactory.getLog(SimpleNetworking.class);
 
   public static String getRequest(String urlString) {
 
@@ -116,38 +119,13 @@ public class SimpleNetworking {
         bytesum += byteread;
         fs.write(buffer, 0, byteread);
       }
-      File file = new File(savePath + fileName);
-      return file;
+      return new File(savePath + fileName);
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } catch (IOException e) {
       e.printStackTrace();
     }
     return null;
-//    URL url = new URL(fromUrl);
-//    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//
-//    conn.setConnectTimeout(3 * 1000);
-//    conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-//
-//    InputStream inputStream = conn.getInputStream();
-//    byte[] getData = readInputStream(inputStream);
-//
-//    File saveDir = new File(savePath);
-//    if (!saveDir.exists() && saveDir.isDirectory()) {
-//      saveDir.mkdir();
-//    }
-//
-//    File file = new File(saveDir + File.separator + fileName);
-//    FileOutputStream fos = new FileOutputStream(file);
-//
-//    fos.write(getData);
-//    fos.close();
-//
-//    if (inputStream != null) {
-//      inputStream.close();
-//    }
-//    return new File(savePath + fileName);
   }
 
   private static byte[] readInputStream(InputStream inputStream) throws IOException {
@@ -161,9 +139,13 @@ public class SimpleNetworking {
     return bos.toByteArray();
   }
 
+
   public static String uploadImage(String url, File image) {
     BufferedReader reader = null;
+    DataInputStream in = null;
+    OutputStream out = null;
     String result = "";
+
     try {
       URL realUrl = new URL(url);
       URLConnection conn = realUrl.openConnection();
@@ -194,13 +176,13 @@ public class SimpleNetworking {
 
       byte[] head = sb.toString().getBytes("utf-8");
 
-      OutputStream out = new DataOutputStream(conn.getOutputStream());
+      out = new DataOutputStream(conn.getOutputStream());
 
       out.write(head);
 
-      DataInputStream in = new DataInputStream(new FileInputStream(image));
+      in = new DataInputStream(new FileInputStream(image));
 
-      int bytes = 0;
+      int bytes;
 
       byte[] bufferOut = new byte[1024];
 
@@ -216,32 +198,35 @@ public class SimpleNetworking {
       out.flush();
       out.close();
 
-      StringBuffer buffer = new StringBuffer();
+      StringBuilder resultBuilder = new StringBuilder();
       reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
-      String line = null;
+      String line;
 
       while ((line = reader.readLine()) != null) {
-        buffer.append(line);
+        resultBuilder.append(line);
       }
-
-      return result;
+      result = resultBuilder.toString();
 
     } catch (IOException o) {
-
-      return null;
+      LOG.error("post image to wx failure", o);
 
     } finally {
-
-      if (reader != null) {
-        try {
+      try {
+        if (reader != null) {
           reader.close();
-        } catch (IOException o) {
-          o.printStackTrace();
-
         }
+        if (in != null) {
+          in.close();
+        }
+        if (out != null) {
+          out.close();
+        }
+      } catch (IOException o) {
+        o.printStackTrace();
+        LOG.error("post close failure", o);
       }
-
     }
+    return result;
   }
 }

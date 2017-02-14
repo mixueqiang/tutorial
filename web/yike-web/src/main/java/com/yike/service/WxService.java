@@ -120,54 +120,54 @@ public class WxService {
 
     }
     if ("com.yikeshangshou.wx.free".equals(wxMessage.getEventKey())) {
-      final WxUser user = requestWxUser(wxMessage.getFromUserName(), true);
-      final WxMessage message = wxMessage;
-      if (null == user) {
-        LOG.error("wx: user is null");
-      } else {
-        LOG.error("wx: " + user.getNickname());
-      }
-      WxService.sendTextMessage("滴~  学生卡 (*￣▽￣*) \n\n"
-              + "限时名额有限，请在1小时内将下方专属邀请卡发送朋友圈或群哦~ \n\n"
-              + "Ps:（完成 2 个朋友扫码支持，系统会自动给您发送入学通知）\n\n"
-              + "↓↓邀请卡正在生成中↓↓", wxMessage.getFromUserName());
-      //TODO 异步生成一张图片，发送一张图片
-      if (user != null) {
-        if (!StringUtils.isEmpty(user.getNickname())) {
-          executor.execute(new Runnable() {
-            public void run() {
-
-              File image = WxFotoMixUtil.createInvitationImage(user);
-              if (image == null) {
-                WxService.sendTextMessage("图片生成失败，请稍后再试。", message.getFromUserName());
-              } else {
-                // TODO 图片上传失败
-                String responseString = SimpleNetworking.uploadImage("https://api.weixin.qq.com/cgi-bin/media/upload?access_token=" + WX_ACCESS_TOKEN + "&type=image", image);
-                WxService.sendTextMessage(responseString, message.getFromUserName());
-                Gson g = new Gson();
-                try {
-                  Map<String, String> response = g.fromJson(responseString, new TypeToken<Map<String, String>>() {
-                  }.getType());
-                  if (response != null) {
-                    String id = response.get("media_id");
-                    sendImageMessage(id, message.getFromUserName());
-                  }
-
-                } catch (Throwable t) {
-                  LOG.error("json解析失败", t);
-                }
-              }
-            }
-          });
-//          WxService.sendTextMessage("你好" + user.getNickname(), wxMessage.getFromUserName());
-        }
-      } else {
-        WxService.sendTextMessage("假装我是一张图片", wxMessage.getFromUserName());
-      }
+      return handleFreeClickEvent(wxMessage);
     }
 
     return true;
   }
+
+  private static boolean handleFreeClickEvent(final WxMessage message) {
+
+    final WxUser user = requestWxUser(message.getFromUserName(), true);
+    if (user == null) {
+      return false;
+    }
+    WxService.sendTextMessage("滴~  学生卡 (*￣▽￣*) \n\n"
+            + "限时名额有限，请在1小时内将下方专属邀请卡发送朋友圈或群哦~ \n\n"
+            + "Ps:（完成 2 个朋友扫码支持，系统会自动给您发送入学通知）\n\n"
+            + "↓↓邀请卡正在生成中↓↓", message.getFromUserName());
+    executor.execute(new Runnable() {
+      public void run() {
+        if (!sendInvitationImage(user, message)) {
+          sendTextMessage("图片生成失败，请稍后再试。", message.getFromUserName());
+        }
+      }
+    });
+    return true;
+  }
+
+  private static boolean sendInvitationImage(WxUser user, WxMessage message) {
+    File image = WxFotoMixUtil.createInvitationImage(user);
+    if (image == null) {
+      WxService.sendTextMessage("图片生成失败，请稍后再试。", message.getFromUserName());
+      return false;
+    }
+    String imageUploadURL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=" + WX_ACCESS_TOKEN + "&type=image";
+    String responseString = SimpleNetworking.uploadImage(imageUploadURL, image);
+    Gson g = new Gson();
+    try {
+      Map<String, String> response = g.fromJson(responseString, new TypeToken<Map<String, String>>() {
+      }.getType());
+      if (response != null) {
+        String id = response.get("media_id");
+        return sendImageMessage(id, message.getFromUserName());
+      }
+    } catch (Throwable t) {
+      LOG.error("json解析失败", t);
+    }
+    return false;
+  }
+
 
   private static boolean handleTextMsg(WxMessage wxMessage) {
     WxService.sendTextMessage("消息已收到，暂无关于" + wxMessage.getContent() + "的回复", wxMessage.getFromUserName());

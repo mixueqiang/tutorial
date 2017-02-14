@@ -2,19 +2,15 @@ package com.yike.web.util;
 
 import com.yike.Constants;
 import com.yike.model.WxUser;
-import com.yike.service.WxService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
@@ -23,9 +19,9 @@ import java.security.MessageDigest;
  * @author ilakeyc
  * @since 09/02/2017
  */
-@Service
-public class WxFotoMixUtil {
-  private static final Log LOG = LogFactory.getLog(WxFotoMixUtil.class);
+
+public class WxFotoMixUtils {
+  private static final Log LOG = LogFactory.getLog(WxFotoMixUtils.class);
 
   public static String localImagePath = Constants.IMAGE_REPO + "wx/";
 
@@ -33,13 +29,10 @@ public class WxFotoMixUtil {
 
   public static String upyunMainImageURL = "http://yikeyun.b0.upaiyun.com/static/" + mainImageName;
 
-  @Resource
-  protected WxService wxService;
-
-  public File createInvitationImage(WxUser user) {
+  public static File createInvitationImage(WxUser user, String ticket) {
     File mainImageFile = getMainImage();
     File userImageFile = getUserImage(user);
-    File QRCodeFile = getQRCode(user);
+    File QRCodeFile = getQRCode(user, ticket);
     String nickName = user.getNickname();
     if (StringUtils.length(nickName) > 5) {
       nickName = StringUtils.substring(nickName, 0, 5);
@@ -86,74 +79,55 @@ public class WxFotoMixUtil {
     return null;
   }
 
-  private File getQRCode(WxUser user) {
-    File image;
-    String imageName;
-    try {
-
-      MessageDigest md = MessageDigest.getInstance("MD5");
-      md.update(user.getOpenid().getBytes());
-      imageName = new BigInteger(1, md.digest()).toString(16) + ".jpg";
-
-      image = getLocalImage(imageName);
-
-      if (null == image) {
-        String ticket = wxService.requestQRCode(imageName);
-        image = SimpleNetworking.downLoadFromUrl("https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + ticket, localImagePath, imageName);
-      }
-
-      return image;
-
-    } catch (Throwable t) {
-      LOG.error("get WxUser avatar name unsuccessful", t);
-    }
-
-    return null;
+  private static File getQRCode(WxUser user, String ticket) {
+    String qrCodeDownloadUrl = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + ticket;
+    String imageName = encodingFileName(user.getOpenid());
+    return getImage(imageName, qrCodeDownloadUrl);
   }
 
 
-  private File getUserImage(WxUser user) {
-    File image;
-    String userAvatarName;
-    try {
-      MessageDigest md = MessageDigest.getInstance("MD5");
-      md.update(user.getHeadimgurl().getBytes());
-      userAvatarName = new BigInteger(1, md.digest()).toString(16);
-
-      image = getLocalImage(userAvatarName);
-
-      if (null == image) {
-        image = SimpleNetworking.downLoadFromUrl(user.getHeadimgurl(), localImagePath, userAvatarName);
-      }
-
-      return image;
-
-    } catch (Throwable t) {
-      LOG.error("get WxUser avatar name unsuccessful", t);
-    }
-    return null;
+  private static File getUserImage(WxUser user) {
+    String userAvatarName = encodingFileName(user.getHeadimgurl());
+    return getImage(userAvatarName, user.getHeadimgurl());
   }
 
 
-  private File getMainImage() {
-    File image;
-    image = getLocalImage(mainImageName);
-    if (null == image) {
-      try {
-        image = SimpleNetworking.downLoadFromUrl(upyunMainImageURL, localImagePath, mainImageName);
-      } catch (IOException io) {
-        LOG.error("Failure to download image : wx-invitation-main.jpg", io);
-      }
-    }
-    return image;
+  private static File getMainImage() {
+    return getImage(mainImageName, upyunMainImageURL);
   }
 
-  private File getLocalImage(String imageName) {
+  private static File getImage(String imageName, String imageDownloadUrlString) {
+    if (StringUtils.isEmpty(imageName)) {
+      LOG.error("unable to get image : fileName could not be `null`");
+      return null;
+    }
+    File image = getLocalImage(imageName);
+    return image != null ?
+            image :
+            SimpleNetworking.downLoadFromUrl(
+                    imageDownloadUrlString,
+                    localImagePath,
+                    imageName);
+  }
+
+  private static File getLocalImage(String imageName) {
     File image = new File(localImagePath + imageName);
     if (!image.exists()) {
       return null;
     }
     return image;
+  }
+
+  public static String encodingFileName(String baseString) {
+    String fileName = null;
+    try {
+      MessageDigest md = MessageDigest.getInstance("MD5");
+      md.update(baseString.getBytes());
+      fileName = new BigInteger(1, md.digest()).toString(16) + ".jpg";
+    } catch (Throwable t) {
+      LOG.error("unable to encoding file name : " + baseString, t);
+    }
+    return fileName;
   }
 
 }

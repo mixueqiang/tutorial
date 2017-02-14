@@ -4,13 +4,10 @@ import com.yike.model.WxUser;
 import com.yike.service.WxService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-
-import static org.junit.Assert.*;
 
 /**
  * @author ilakeyc
@@ -20,8 +17,6 @@ import static org.junit.Assert.*;
 @ContextConfiguration("classpath:ApplicationContext.xml")
 public class WxFotoMixUtilTest {
 
-  @Resource
-  protected WxFotoMixUtil wxFotoMixUtil;
   @Resource
   protected WxService wxService;
 
@@ -33,8 +28,9 @@ public class WxFotoMixUtilTest {
     user.setNickname("国国国国国国国国国国国国国");
     user.setOpenid("o6_3dwGJWBSj0eK6LJdBQRnYSCIY");
     user.setHeadimgurl("http://wx.qlogo.cn/mmopen/ajNVdqHZLLBRwrmQ8rAAY5vN51mtZicHhvvdXwUKzP9R8yB84ZxfZ4mvicP4Ikjv4K2JH1ZVv6DvRSozT3CSvtkA/0");
+    String ticket = wxService.requestQRCode(user.getOpenid());
 
-    wxFotoMixUtil.createInvitationImage(user);
+    WxFotoMixUtils.createInvitationImage(user, ticket);
   }
 
 }

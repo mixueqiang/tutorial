@@ -2,6 +2,7 @@ package com.yike.web.util;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -97,14 +98,18 @@ public class SimpleNetworking {
     return result;
   }
 
-  public static File downLoadFromUrl(String fromUrl, String savePath, String fileName) throws IOException {
+  public static File downLoadFromUrl(String fromUrl, String savePath, String fileName) {
     // 下载网络文件
     int bytesum = 0;
     int byteread = 0;
 
-    URL url = new URL(fromUrl);
+    if (StringUtils.isEmpty(fromUrl)) {
+      LOG.error("url could not be `null`");
+      return null;
+    }
 
     try {
+      URL url = new URL(fromUrl);
       URLConnection conn = url.openConnection();
       InputStream inStream = conn.getInputStream();
       File saveDir = new File(savePath);

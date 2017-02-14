@@ -9,7 +9,7 @@ import com.yike.model.Entity;
 import com.yike.model.WxMessage;
 import com.yike.model.WxUser;
 import com.yike.web.util.SimpleNetworking;
-import com.yike.web.util.WxFotoMixUtil;
+import com.yike.web.util.WxFotoMixUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
@@ -39,9 +39,6 @@ public class WxService {
 
   @Resource
   protected EntityDao entityDao;
-
-  @Resource
-  protected WxFotoMixUtil wxFotoMixUtil;
 
   public boolean sendTextMessage(String text, String toUser) {
 
@@ -157,7 +154,8 @@ public class WxService {
   }
 
   private boolean sendInvitationImage(WxUser user, WxMessage message) {
-    File image = wxFotoMixUtil.createInvitationImage(user);
+    String ticket = requestQRCode(user.getOpenid());
+    File image = WxFotoMixUtils.createInvitationImage(user, ticket);
     if (image == null) {
       sendTextMessage("图片生成失败，请稍后再试。", message.getFromUserName());
       return false;

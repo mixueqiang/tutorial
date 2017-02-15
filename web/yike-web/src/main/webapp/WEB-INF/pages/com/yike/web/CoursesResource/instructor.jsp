@@ -74,66 +74,6 @@
                 </c:choose></span>
             </div>
           </div>
-          <!-- <div class="as-instructor-content row">
-            <div class="as-instructor-imgcover col-md-4 col-sm-4 col-xs-12">
-              <c:choose>
-                <c:when test="${not empty item.image}">
-                  <div class="as-instructor-img" style="width:100%; background: url('http://yikeyun.b0.upaiyun.com/${item.image}!M') 0 0 no-repeat; background-size:cover;"></div>
-                </c:when>
-                <c:otherwise>
-                  <div class="as-instructor-img" style="width: 100%; background: url('http://yikeyun.b0.upaiyun.com/static/course-cover.png!M') 0 0 no-repeat; background-size: cover;"></div>
-                </c:otherwise>
-              </c:choose>
-            </div>
-            <div class="as-instructor-details col-md-8 col-sm-8 col-xs-12">
-              <div class="row">
-                <div class="col-md-8 col-sm-12 col-xs-12">
-                  <a class="as-instructor-title" href="/course/${item.id}" target="_blank">${item.name}</a>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                  <div class="pull-right course-status">
-                    <c:choose>
-                      <c:when test="${item.status eq 0}">
-                        <span>审核中</span>
-                        <c:choose>
-                          <c:when test="${empty item.countThis}">
-                            <a class="btn-link col-space-2 students-list" href=""></a>
-                          </c:when>
-                          <c:when test="${item.countThis eq 0}">
-                            <a class="btn-link col-space-2 students-list" href=""></a>
-                          </c:when>
-                          <c:otherwise>
-                            <a class="btn-link col-space-2 students-list" href="/course/${item.id}/students">学生名单</a>
-                          </c:otherwise>
-                        </c:choose>
-                        <a class="btn-link col-space-2" data-id="${item.id}" href="../course/${item.id}/edit"><span>编辑</span></a>
-                      </c:when>
-                      <c:when test="${item.status gt 0}">
-                        <c:choose>
-                          <c:when test="${item.appliable eq 1}">
-                            <a class="btn-link op-confirm-close" data-id="${item.id}" href="#"><span>结束招生</span></a>
-                            <a class="btn-link col-space-2 op-confirm-edit" data-id="${item.id}" href="#"><span>编辑</span></a>
-                          </c:when>
-                          <c:otherwise>
-                            <span>已结束招生</span>
-                          </c:otherwise>
-                        </c:choose>
-                      </c:when>
-                    </c:choose>
-                  </div>
-                </div>
-              </div>
-              <div class="as-instructor-lightspot">
-                <a href="/course/${item.id}" target="_blank">${item.content}</a>
-              </div>
-            </div>
-            <div class="as-instructor-footer row-space-top-1">
-              <span id="courses-subscript pull-left">${item.subscript}</span> <span class="courses-price pull-right"><c:choose>
-                  <c:when test="${item.free eq 1}">免费</c:when>
-                  <c:otherwise>¥${item.price}</c:otherwise>
-                </c:choose></span>
-            </div>
-          </div> -->
         </div>
       </div>
     </c:forEach>

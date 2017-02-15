@@ -3,9 +3,10 @@ package com.yike.web.util;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yike.model.WxUser;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.util.StringUtils;
+
 
 import javax.ws.rs.HttpMethod;
 import java.io.File;
@@ -63,7 +64,7 @@ public class WxApiUtils {
     return sendMessage("image", imageContent, toUserOpenId);
   }
 
-  public static boolean sendMessage(String type, Map<String, Object> content, String toUser) {
+  private static boolean sendMessage(String type, Map<String, Object> content, String toUser) {
     String messageSendUrl = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + WX_ACCESS_TOKEN;
     Map<String, Object> foo = new HashMap<String, Object>();
     foo.put("touser", toUser);
@@ -182,9 +183,13 @@ public class WxApiUtils {
     }
     String errorCode = foo.get("errcode");
     String errorMessage = foo.get("errmsg");
-    LOG.info("http request to Wx response an error : " +
-            "\n errorCode=" + errorCode +
-            "\nerrorMessage=" + errorMessage);
+    if (StringUtils.isNotEmpty(errorCode)) {
+      if (!"0".equals(errorCode)) {
+        LOG.info("http request to Wx response an error : " +
+                "\n errorCode=" + errorCode +
+                "\nerrorMessage=" + errorMessage);
+      }
+    }
     if (StringUtils.isEmpty(errorCode)) {
       return false;
     }

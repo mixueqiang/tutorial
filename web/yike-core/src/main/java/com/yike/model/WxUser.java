@@ -8,6 +8,11 @@ public class WxUser extends BaseModel {
 
   private static final long serialVersionUID = 3799451078879545355L;
 
+  private long invitationFromWxUserId;
+  private String invitationCode;
+  private String qrTicket;
+  private int isStudent;
+
   // 用户是否订阅该公众号标识
   // 值为0时，代表此用户没有关注该公众号，拉取不到其余信息。
   private int subscribe;
@@ -54,6 +59,38 @@ public class WxUser extends BaseModel {
   // 用户被打上的标签ID列表 ?
 //  private List<String> tagid_list;
 
+
+  public String getQrTicket() {
+    return qrTicket;
+  }
+
+  public void setQrTicket(String qrTicket) {
+    this.qrTicket = qrTicket;
+  }
+
+  public int getIsStudent() {
+    return isStudent;
+  }
+
+  public void setIsStudent(int isStudent) {
+    this.isStudent = isStudent;
+  }
+
+  public long getInvitationFromWxUserId() {
+    return invitationFromWxUserId;
+  }
+
+  public void setInvitationFromWxUserId(long invitationFromWxUserId) {
+    this.invitationFromWxUserId = invitationFromWxUserId;
+  }
+
+  public String getInvitationCode() {
+    return invitationCode;
+  }
+
+  public void setInvitationCode(String invitationCode) {
+    this.invitationCode = invitationCode;
+  }
 
   public int getSubscribe() {
     return subscribe;

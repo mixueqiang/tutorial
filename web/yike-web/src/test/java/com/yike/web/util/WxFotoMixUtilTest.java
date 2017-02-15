@@ -1,13 +1,10 @@
 package com.yike.web.util;
 
 import com.yike.model.WxUser;
-import com.yike.service.WxService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import javax.annotation.Resource;
 
 /**
  * @author ilakeyc
@@ -22,9 +19,9 @@ public class WxFotoMixUtilTest {
     WxApiUtils.requestAccessToken();
 
     WxUser user = new WxUser();
-    user.setNickname("国国国国国国国国国国国国国");
-    user.setOpenid("o6_3dwGJWBSj0eK6LJdBQRnYSCIY");
-    user.setHeadimgurl("http://wx.qlogo.cn/mmopen/ajNVdqHZLLBRwrmQ8rAAY5vN51mtZicHhvvdXwUKzP9R8yB84ZxfZ4mvicP4Ikjv4K2JH1ZVv6DvRSozT3CSvtkA/0");
+    user.setNickname("A~咸菜");
+    user.setOpenid("o6_3dwOk_aYvpSE8LpGatjpYtwzE");
+    user.setHeadimgurl("http://wx.qlogo.cn/mmopen/zmmyJ4q2nEZMhDd1CxtcUa8aX8g79XCTCbwribvZAYqWY5kiaPya4CdgN5Mjcs2m6gvVhjYWjHfw1Y72gn17Hiclic0eUVL0A87P/0");
     String ticket = WxApiUtils.requestQRCode(user.getOpenid());
 
     WxFotoMixUtils.createInvitationImage(user, ticket);

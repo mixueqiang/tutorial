@@ -117,11 +117,13 @@ public class WxApiUtils {
   public static <T> T postJsonToObject(String urlString, Object param, Type typeOfT) {
     Gson g = new Gson();
     String postJson = null;
-    try {
-      postJson = g.toJson(param);
-    } catch (Throwable t) {
-      LOG.error("Object encoding to Json failure", t);
-      return null;
+    if (param != null) {
+      try {
+        postJson = g.toJson(param);
+      } catch (Throwable t) {
+        LOG.error("Object encoding to Json failure", t);
+        return null;
+      }
     }
     String response = rootRequest(HttpMethod.POST, urlString, postJson);
     if (StringUtils.isEmpty(response)) {
@@ -138,7 +140,7 @@ public class WxApiUtils {
     return null;
   }
 
-  private static <T> T getJsonToObject(String urlString, Type typeOfT) {
+  public static <T> T getJsonToObject(String urlString, Type typeOfT) {
     String response = rootRequest(HttpMethod.GET, urlString, null);
     if (response == null) {
       return null;

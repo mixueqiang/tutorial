@@ -219,6 +219,28 @@ public class WxService {
     return true;
   }
 
+  // TODO finish sendTnvitingTemplateMessage
+  private boolean sendTnvitingTemplateMessage(WxUser scanner, WxUser inviter, int targetCount, int finishCount, int remainCount) {
+    long time = System.currentTimeMillis();
+    String templateId = "foo";
+    Map<String, Object> data = new HashMap<String, Object>();
+    data.put("subtitle", _formateTemplateData("你已协助联盟完成1为支持者", "#FF2C38"));
+    data.put("userName", _formateTemplateData(scanner.getNickname(), "#333333"));
+    data.put("submitTime", _formateTemplateData(String.valueOf(time), "#333333"));
+    data.put("targetCount", _formateTemplateData(String.valueOf(targetCount), "#333333"));
+    data.put("finishCount", _formateTemplateData(String.valueOf(finishCount), "#333333"));
+    data.put("remainCount", _formateTemplateData(String.valueOf(remainCount), "#333333"));
+    return WxApiUtils.sendTemplateMessage(templateId, null, data, inviter.getOpenid());
+  }
+
+  // TODO fooooo
+  private Map<String, Object> _formateTemplateData(String value, String color) {
+    Map<String, Object> foo = new HashMap<String, Object>();
+    foo.put("value", value);
+    foo.put("color", color);
+    return foo;
+  }
+
   private String formateInvitationCode(String openId) {
     if (StringUtils.isEmpty(openId)) {
       return "";

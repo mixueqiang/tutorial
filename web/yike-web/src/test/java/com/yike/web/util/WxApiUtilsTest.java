@@ -16,9 +16,12 @@ public class WxApiUtilsTest {
   public void mainTest() throws Exception {
     WxApiUtils.requestAccessToken();
 
-    addTemplate("TEMP0000");
+//    addTemplate("TEMP0000");
 
     getTemplateList();
+
+
+    postTemplate();
   }
 
 
@@ -36,6 +39,26 @@ public class WxApiUtilsTest {
     Map<String, Object> result = WxApiUtils.getJsonToObject("https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=" + WxApiUtils.WX_ACCESS_TOKEN, new TypeToken<Map<String, Object>>() {
     }.getType());
 
+    System.out.println(result);
+  }
+
+  private void postTemplate() {
+//    ARRmIiiyvlE9E78JIaKoBiW3ATtaESofyoCcscXW208
+    Map<String, Object> main = new HashMap<String, Object>();
+    main.put("touser", "oCooQw1i05m1hcThyqCcoIpVGzaU");
+    main.put("template_id", "ARRmIiiyvlE9E78JIaKoBiW3ATtaESofyoCcscXW208");
+
+
+    Map<String, Object> content = new HashMap<String, Object>();
+    content.put("value", "hhhhh");
+    content.put("color", "#333333");
+
+    Map<String, Object> data = new HashMap<String, Object>();
+    data.put("content", content);
+    main.put("data", data);
+
+    Map<String, Object> result = WxApiUtils.postJsonToObject("https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + WxApiUtils.WX_ACCESS_TOKEN, main, new TypeToken<Map<String, Object>>() {
+    }.getType());
     System.out.println(result);
   }
 

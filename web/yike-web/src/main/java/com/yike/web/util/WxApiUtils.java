@@ -22,8 +22,13 @@ public class WxApiUtils {
   private static final Log LOG = LogFactory.getLog(WxApiUtils.class);
 
   public static String WX_TOKEN = "yikeshangshouwx";
-  public static String WX_APP_ID = "wxce4aa0af6d3ec704";
-  public static String WX_APP_SECRET = "5f8238027cab1b5348df2dd86f5bd6fe";
+
+  //  public static String WX_APP_ID = "wxce4aa0af6d3ec704";
+  //  public static String WX_APP_SECRET = "5f8238027cab1b5348df2dd86f5bd6fe";
+
+  public static String WX_APP_ID = "wx19882be1b89e09e5";//test
+  public static String WX_APP_SECRET = "1b9fc8a682a840147a777822c14471f0";//test
+
   public static String WX_ACCESS_TOKEN;
 
   public static WxUser requestWxUser(String userOpenId) {
@@ -112,6 +117,29 @@ public class WxApiUtils {
       return "";
     }
     return response.get("media_id");
+  }
+
+  public static boolean sendTemplateMessage(String templateId, String url, Map<String, Object> data, String toUserOpenId) {
+    if (StringUtils.isEmpty(templateId) || StringUtils.isEmpty(toUserOpenId) || data.isEmpty() ) {
+      LOG.error("Template message id / data / toUserOpenId could not be null");
+      return false;
+    }
+    Map<String, Object> main = new HashMap<String, Object>();
+    main.put("touser", toUserOpenId);
+    main.put("template_id", templateId);
+    if (StringUtils.isNotEmpty(url)) {
+      main.put("url", url);
+    }
+    main.put("data", data);
+
+    String toUrl = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + WX_ACCESS_TOKEN;
+    Map<String, String> result = postJsonToObject(toUrl, main, new TypeToken<Map<String, String>>(){}.getType());
+    if (result != null) {
+      LOG.info("Template message sent with message id : " + result.get("msgid"));
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public static <T> T postJsonToObject(String urlString, Object param, Type typeOfT) {

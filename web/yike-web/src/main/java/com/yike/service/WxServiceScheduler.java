@@ -1,21 +1,18 @@
 package com.yike.service;
 
-import static com.yike.service.WxService.WX_ACCESS_TOKEN;
 
+import com.yike.task.TaskScheduler;
+import com.yike.web.util.WxApiUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
-import com.google.gson.Gson;
-import com.yike.task.TaskScheduler;
-import com.yike.web.util.SimpleNetworking;
-
-import javax.annotation.Resource;
+import static com.yike.web.util.WxApiUtils.WX_ACCESS_TOKEN;
 
 /**
  * @author ilakeyc
@@ -38,16 +35,13 @@ public class WxServiceScheduler implements Runnable {
 
   @Override
   public void run() {
-    wxService.requestAccessToken();
+    WxApiUtils.requestAccessToken();
     setButtons();
   }
 
 
   private void setButtons() {
-    if (StringUtils.isEmpty(WX_ACCESS_TOKEN)) {
-      wxService.requestAccessToken();
-    }
-    Map<String, Object> parameter = new HashMap<String, Object>();
+    Map<String, Object> main = new HashMap<String, Object>();
 
     Map<String, Object> button_free = new HashMap<String, Object>();
     button_free.put("type", "click");
@@ -88,10 +82,10 @@ public class WxServiceScheduler implements Runnable {
     buttons.add(button_free);
     buttons.add(button_share);
 
-    parameter.put("button", buttons);
+    main.put("button", buttons);
 
-    Gson gson = new Gson();
-    String result = SimpleNetworking.postRequest(" https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + WX_ACCESS_TOKEN, gson.toJson(parameter));
+    String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + WX_ACCESS_TOKEN;
+    WxApiUtils.postJsonToObject(url, main, null);
   }
 
 }

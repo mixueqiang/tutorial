@@ -1,23 +1,9 @@
 package com.yike.web.api.v1;
 
-import static com.yike.service.WxService.WX_TOKEN;
-
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-
-import javax.annotation.Resource;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-
+import com.yike.model.WxMessage;
+import com.yike.service.WxService;
+import com.yike.util.XmlUtil;
+import com.yike.web.BaseResource;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -29,10 +15,16 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.xml.sax.InputSource;
 
-import com.yike.model.WxMessage;
-import com.yike.service.WxService;
-import com.yike.util.XmlUtil;
-import com.yike.web.BaseResource;
+import javax.annotation.Resource;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+
+import static com.yike.web.util.WxApiUtils.WX_TOKEN;
 
 
 /**
@@ -64,9 +56,11 @@ public class ApiWxResource extends BaseResource {
   @Produces(MediaType.TEXT_XML)
   public String receiveMessages(String xml) {
     System.out.println(xml);
+
     LOG.info("wx receiveMessages : " + xml);
 
     WxMessage message = formatMessage(xml);
+
     wxService.handleMessage(message);
 
     return null;

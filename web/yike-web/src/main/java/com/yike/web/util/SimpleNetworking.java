@@ -1,10 +1,12 @@
 package com.yike.web.util;
 
+import com.google.gson.Gson;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.StringUtils;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -17,6 +19,38 @@ import java.util.Map;
  */
 public class SimpleNetworking {
   private static final Log LOG = LogFactory.getLog(SimpleNetworking.class);
+
+
+  public static <T> T postJson(String urlString, Object object, Type typeOfT) {
+    if (null == object) {
+      return null;
+    }
+    String json = "";
+    Gson g = new Gson();
+    try {
+      json = g.toJson(object);
+    } catch (Throwable t) {
+      LOG.error("object encoding to Json failure", t);
+    }
+
+    if (StringUtils.isEmpty(json)) {
+      return null;
+    }
+
+    String response = postRequest(urlString, json);
+
+    if (StringUtils.isEmpty(response)) {
+      return null;
+    }
+
+    try {
+      return g.fromJson(response, typeOfT);
+    } catch (Throwable t) {
+      LOG.error("Json encoding to object failure", t);
+      return null;
+    }
+  }
+
 
   public static String getRequest(String urlString) {
 

@@ -17,18 +17,15 @@ import javax.annotation.Resource;
 @ContextConfiguration("classpath:ApplicationContext.xml")
 public class WxFotoMixUtilTest {
 
-  @Resource
-  protected WxService wxService;
-
   @Test
   public void createInvitationImage() throws Exception {
-    wxService.requestAccessToken();
+    WxApiUtils.requestAccessToken();
 
     WxUser user = new WxUser();
     user.setNickname("国国国国国国国国国国国国国");
     user.setOpenid("o6_3dwGJWBSj0eK6LJdBQRnYSCIY");
     user.setHeadimgurl("http://wx.qlogo.cn/mmopen/ajNVdqHZLLBRwrmQ8rAAY5vN51mtZicHhvvdXwUKzP9R8yB84ZxfZ4mvicP4Ikjv4K2JH1ZVv6DvRSozT3CSvtkA/0");
-    String ticket = wxService.requestQRCode(user.getOpenid());
+    String ticket = WxApiUtils.requestQRCode(user.getOpenid());
 
     WxFotoMixUtils.createInvitationImage(user, ticket);
   }

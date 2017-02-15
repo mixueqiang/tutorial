@@ -83,7 +83,7 @@
                   <h4 class="row-space-top-2 row-space-2">招收学员数量：${course.countMax} 人</h4>
                 </c:if>
                 <h4 class="row-space-top-2 row-space-2">购买支持</h4>
-                <p>「一课上手」对课程的报名及购买提供支持。如对课程或者课程的购买有疑问，请加QQ群：475581666，或者发送邮件到：service@yikeshangshou.com 进行咨询。</p>
+                <p>「一课上手」对课程的报名及购买提供支持。如对课程或者课程的购买有疑问，请发送邮件到：service@yikeshangshou.com 进行咨询。</p>
               </div>
               <div class="col-md-4"></div>
             </div>

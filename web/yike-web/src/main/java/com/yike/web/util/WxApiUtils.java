@@ -26,10 +26,9 @@ public class WxApiUtils {
   public static String WX_APP_ID = "wxce4aa0af6d3ec704";
   public static String WX_APP_SECRET = "5f8238027cab1b5348df2dd86f5bd6fe";
 
-//  public static String WX_APP_ID = "wx19882be1b89e09e5";//test
-//  public static String WX_APP_SECRET = "1b9fc8a682a840147a777822c14471f0";//test
-
   public static String WX_ACCESS_TOKEN;
+
+
 
   public static WxUser requestWxUser(String userOpenId) {
     String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + WX_ACCESS_TOKEN + "&openid=" + userOpenId + "&lang=zh_CN";

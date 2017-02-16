@@ -8,6 +8,7 @@ import com.yike.model.WxMessage;
 import com.yike.model.WxUser;
 import com.yike.web.util.WxApiUtils;
 import com.yike.web.util.WxFotoMixUtils;
+import com.yike.web.util.WxTemplateMessageFormatter;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -31,6 +32,9 @@ public class WxService {
   private static final Log LOG = LogFactory.getLog(WxService.class);
 
   private static ExecutorService executor = Executors.newFixedThreadPool(10);
+
+  private static String NEW_MEMBER_JOINING_NOTICE_TEMPLATE_ID = "-nKMTybLcXHNsle6Ib5mdpO4ec2xFpCW6zjMX6mPzNQ";
+  private static String TASK_COMPLETION_NOTICE_TEMPLATE_ID = "G66-ZH08CQdAZVKWZH3do_pqwqaTDk8AKx_9QNzm1hg";
 
   @Resource
   protected EntityDao entityDao;
@@ -74,6 +78,8 @@ public class WxService {
     if (isInvitationEvent(message)) {
       return handleInvitationEvent(message);
     }
+
+
 
     return true;
   }
@@ -152,16 +158,16 @@ public class WxService {
     if (!saveWxUserInvitationUserId(scannedUserId, sourceUser.getId())) {
       return false;
     }
-
+    if (sourceUser.getIsStudent() == 1) {
+      return true;
+    }
     int count = entityDao.count("wx_user", "invitationFromWxUserId", sourceUser.getId());
-    if (count <= 2) {
-      // TODO 发送消息给sourceUser
-      WxApiUtils.sendTextMessage("有一位好友接受了你的邀请！", sourceUser.getOpenid());
-      WxApiUtils.sendTextMessage("你是第" + String.valueOf(count) + "位支持者！", message.getFromUserName());
-      if (count == 2) {
-        // TODO 更改sourceUser为已入学
-        updateWxUserAsStudent(sourceUser.getId());
-        WxApiUtils.sendTextMessage("恭喜你已成功入学！", sourceUser.getOpenid());
+    if (count == 1) {
+      return sendInvitingTemplateMessage(scannedUser, sourceUser);
+    }
+    if (count == 2) {
+      if (updateWxUserAsStudent(sourceUser.getId())) {
+        return sendFreeAdmissionTemplateMessage(sourceUser);
       }
     }
 
@@ -219,27 +225,17 @@ public class WxService {
     return true;
   }
 
-  // TODO finish sendTnvitingTemplateMessage
-  private boolean sendTnvitingTemplateMessage(WxUser scanner, WxUser inviter, int targetCount, int finishCount, int remainCount) {
-    long time = System.currentTimeMillis();
-    String templateId = "foo";
-    Map<String, Object> data = new HashMap<String, Object>();
-    data.put("subtitle", _formateTemplateData("你已协助联盟完成1为支持者", "#FF2C38"));
-    data.put("userName", _formateTemplateData(scanner.getNickname(), "#333333"));
-    data.put("submitTime", _formateTemplateData(String.valueOf(time), "#333333"));
-    data.put("targetCount", _formateTemplateData(String.valueOf(targetCount), "#333333"));
-    data.put("finishCount", _formateTemplateData(String.valueOf(finishCount), "#333333"));
-    data.put("remainCount", _formateTemplateData(String.valueOf(remainCount), "#333333"));
-    return WxApiUtils.sendTemplateMessage(templateId, null, data, inviter.getOpenid());
+
+  private boolean sendInvitingTemplateMessage(WxUser scanner, WxUser inviter) {
+    Map<String, Object> data = WxTemplateMessageFormatter.formateNewMemberNotice(scanner.getNickname());
+    return WxApiUtils.sendTemplateMessage(NEW_MEMBER_JOINING_NOTICE_TEMPLATE_ID, null, data, inviter.getOpenid());
   }
 
-  // TODO fooooo
-  private Map<String, Object> _formateTemplateData(String value, String color) {
-    Map<String, Object> foo = new HashMap<String, Object>();
-    foo.put("value", value);
-    foo.put("color", color);
-    return foo;
+  private boolean sendFreeAdmissionTemplateMessage(WxUser toUser) {
+    Map<String, Object> data = WxTemplateMessageFormatter.formateTaskCompletionNotice();
+    return WxApiUtils.sendTemplateMessage(TASK_COMPLETION_NOTICE_TEMPLATE_ID, "https://www.sojump.hk/jq/12131778.aspx", data, toUser.getOpenid());
   }
+
 
   private String formateInvitationCode(String openId) {
     if (StringUtils.isEmpty(openId)) {

@@ -126,7 +126,14 @@ public class WxService {
       // 自己不能邀请自己
       return false;
     }
-    WxUser scannedUser = WxApiUtils.requestWxUser(message.getFromUserName());
+    WxUser scannedUser = findWxUserByOpenId(message.getFromUserName());
+    if (scannedUser != null) {
+      if (0 != scannedUser.getInvitationFromWxUserId()) {
+        return false;
+      }
+    } else {
+      scannedUser = WxApiUtils.requestWxUser(message.getFromUserName());
+    }
     if (scannedUser == null) {
       return false;
     }

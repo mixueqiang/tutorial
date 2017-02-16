@@ -80,7 +80,6 @@ public class WxService {
     }
 
 
-
     return true;
   }
 
@@ -108,41 +107,21 @@ public class WxService {
   }
 
   private boolean isInvitationEvent(WxMessage message) {
-    boolean is = false;
-    String eventKey = message.getEventKey();
-    if (StringUtils.isNotEmpty(eventKey)) {
-      if (eventKey.contains("qrscene_")) {
-        if (eventKey.contains("inv_")) {
-          is = true;
-        }
-      }
-    }
-    if (!is) {
-      String qrTicket = message.getTicket();
-      is = entityDao.exists("wx_user", "qrTicket", qrTicket);
-    }
-    return is;
+    String qrTicket = message.getTicket();
+    return entityDao.exists("wx_user", "qrTicket", qrTicket);
   }
 
   private boolean handleInvitationEvent(WxMessage message) {
     boolean useInvitationCode = message.getEventKey().contains("qrscene_") && message.getEventKey().contains("inv_");
 
     WxUser sourceUser;
-    if (useInvitationCode) {
-      String invitationCode = message.getEventKey().replace("qrscene_", "");
-      sourceUser = findWxUserByInvitationCode(invitationCode);
-      if (sourceUser == null) {
-        LOG.error("Not found source WxUser with invitation code : " + invitationCode);
-        return false;
-      }
-    } else {
-      String ticket = message.getTicket();
-      sourceUser  = findWxUserByQrTicket(ticket);
-      if (sourceUser == null) {
-        LOG.error("Not found source WxUser with qeTicket : " + ticket);
-        return false;
-      }
+    String ticket = message.getTicket();
+    sourceUser = findWxUserByQrTicket(ticket);
+    if (sourceUser == null) {
+      LOG.error("Not found source WxUser with qeTicket : " + ticket);
+      return false;
     }
+
     if (StringUtils.equals(sourceUser.getOpenid(), message.getFromUserName())) {
       // 自己不能邀请自己
       return false;

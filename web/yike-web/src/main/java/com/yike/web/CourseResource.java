@@ -61,9 +61,10 @@ public class CourseResource extends BaseResource {
       request.setAttribute("_msg", "你没有权限编辑该课程");
       return Response.ok(new Viewable("course")).build();
     }
+    List<Category> categories = entityDao.find(Category.SQL_TABLE_NAME, Category.SQL_STATUS, Constants.STATUS_OK, CategoryRowMapper.getInstance());
 
     request.setAttribute("course", course);
-
+    request.setAttribute("categories", categories);
     return Response.ok(new Viewable("edit")).build();
   }
 

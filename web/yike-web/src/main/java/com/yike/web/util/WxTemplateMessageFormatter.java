@@ -22,14 +22,14 @@ public class WxTemplateMessageFormatter {
     Format dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
     String dateString = dateFormat.format(new Date());
 
-    data.put("first", formateData("你已协助学院完成1为支持者", "#FF2C38"));
+    data.put("first", formateData("你已协助学院完成1位支持者", "#FF2C38"));
     data.put("keyword1", formateData(memberId, null));
     data.put("keyword2", formateData(dateString, null));
 
     String remarkString = "任务目标：2人\n" +
             "已经完成：1人\n" +
             "还需完成：1人\n" +
-            "棒棒哒~继续努力，马上就可以加入「IT技术成长联盟」啦！";
+            "棒棒哒~还需完成1人就可以免费加入「IT技术成长联盟」啦！";
     data.put("remark", formateData(remarkString, null));
     return data;
 

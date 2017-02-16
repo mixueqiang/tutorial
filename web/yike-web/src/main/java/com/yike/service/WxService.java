@@ -1,9 +1,5 @@
 package com.yike.service;
 
-import com.yike.Constants;
-import com.yike.dao.EntityDao;
-import com.yike.dao.mapper.WxUserRowMapper;
-import com.yike.model.Entity;
 import com.yike.model.WxMessage;
 import com.yike.model.WxUser;
 import com.yike.web.util.WxApiUtils;
@@ -13,7 +9,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
-
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -37,7 +32,9 @@ public class WxService {
   private static String TASK_COMPLETION_NOTICE_TEMPLATE_ID = "G66-ZH08CQdAZVKWZH3do_pqwqaTDk8AKx_9QNzm1hg";
 
   @Resource
-  protected EntityDao entityDao;
+  protected WxUserService wxUserService;
+
+  private static Map<String, String> createdInvitationImageUsers = new HashMap<String, String>();
 
   public boolean handleMessage(WxMessage message) {
 
@@ -75,8 +72,7 @@ public class WxService {
 
   private boolean handleSubscribeMsg(WxMessage message) {
 
-    WxUser user = WxApiUtils.requestWxUser(message.getFromUserName());
-    saveWxUser(user, message.getFromUserName());
+    wxUserService.sync(message.getFromUserName());
 
     if (isInvitationEvent(message)) {
       return handleInvitationEvent(message);
@@ -87,7 +83,7 @@ public class WxService {
   }
 
   private boolean handleUnsubscribeMsg(WxMessage message) {
-    // TODO Auto-generated method stub
+    wxUserService.sync(message.getFromUserName());
     return true;
   }
 
@@ -111,14 +107,14 @@ public class WxService {
 
   private boolean isInvitationEvent(WxMessage message) {
     String qrTicket = message.getTicket();
-    return entityDao.exists("wx_user", "qrTicket", qrTicket);
+    return wxUserService.hasTicket(qrTicket);
   }
 
   private boolean handleInvitationEvent(WxMessage message) {
 
     WxUser sourceUser;
     String ticket = message.getTicket();
-    sourceUser = findWxUserByQrTicket(ticket);
+    sourceUser = wxUserService.findByTicket(ticket);
     if (sourceUser == null) {
       LOG.error("Not found source WxUser with qeTicket : " + ticket);
       return false;
@@ -128,34 +124,27 @@ public class WxService {
       // 自己不能邀请自己
       return false;
     }
-    WxUser scannedUser = findWxUserByOpenId(message.getFromUserName());
-    if (scannedUser != null) {
-      if (0 != scannedUser.getInviterId()) {
-        return false;
-      }
-    } else {
-      scannedUser = WxApiUtils.requestWxUser(message.getFromUserName());
-    }
+    WxUser scannedUser = wxUserService.sync(message.getFromUserName());
     if (scannedUser == null) {
       return false;
     }
-    long scannedUserId = saveWxUser(scannedUser, message.getFromUserName());
-    if (0 == scannedUserId) {
+    if (0 == scannedUser.getId()) {
       LOG.error("Not found scannedUser in database or save failure.");
       return false;
     }
-    if (!saveWxUserInvitationUserId(scannedUserId, sourceUser.getId())) {
+    if (!wxUserService.saveInvitation(message.getFromUserName(), sourceUser.getOpenid())) {
       return false;
     }
     if (sourceUser.getIsStudent() == 1) {
       return true;
     }
-    int count = entityDao.count("wx_user", "inviterId", sourceUser.getId());
+    int count = wxUserService.countInvitation(sourceUser.getOpenid());
+
     if (count == 1) {
       return sendInvitingTemplateMessage(scannedUser, sourceUser);
     }
     if (count == 2) {
-      if (updateWxUserAsStudent(sourceUser.getId())) {
+      if (wxUserService.makeStudent(sourceUser.getOpenid())) {
         return sendFreeAdmissionTemplateMessage(sourceUser);
       }
     }
@@ -165,15 +154,26 @@ public class WxService {
 
   private boolean handleFreeClickEvent(final WxMessage message) {
 
+    String lastTimeMillisStr = createdInvitationImageUsers.get(message.getFromUserName());
+    long currentTimeMillis = System.currentTimeMillis();
+    if (StringUtils.isNotEmpty(lastTimeMillisStr)) {
+      long lastTimeMillis = Long.parseLong(lastTimeMillisStr);
+      long difference = 60 - (currentTimeMillis - lastTimeMillis) / 1000;
+      if (difference > 0) {
+        return WxApiUtils.sendTextMessage(String.valueOf(difference) + "秒之后再来吧！", message.getFromUserName());
+      }
+    }
+    createdInvitationImageUsers.put(message.getFromUserName(), String.valueOf(currentTimeMillis));
+
     WxApiUtils.sendTextMessage("滴~  学生卡 (*￣▽￣*) \n\n"
             + "限时名额有限，请在1小时内将下方专属邀请卡发送朋友圈或群哦~ \n\n"
             + "Ps:（完成 2 个朋友扫码支持，系统会自动给您发送入学通知）\n\n"
             + "↓↓邀请卡正在生成中↓↓", message.getFromUserName());
     executor.execute(new Runnable() {
       public void run() {
-        WxUser user = findWxUserByOpenId(message.getFromUserName());
+        WxUser user = wxUserService.sync(message.getFromUserName());
         if (user != null) {
-          sendInvitationImage(user, message);
+          sendInvitationImage(user);
         } else {
           WxApiUtils.sendTextMessage("图片生成失败，请稍后再试。", message.getFromUserName());
         }
@@ -182,35 +182,36 @@ public class WxService {
     return true;
   }
 
-  private boolean sendInvitationImage(WxUser user, WxMessage message) {
+  private boolean sendInvitationImage(WxUser user) {
     File image = null;
     String ticket = user.getQrTicket();
+    String openId = user.getOpenid();
+
     if (StringUtils.isNotEmpty(ticket)) {
-      image = WxFotoMixUtils.localInvitationImage(user.getQrTicket());
+      image = WxFotoMixUtils.localInvitationImage(ticket);
     } else {
-      String invitationCode = formateInvitationCode(user.getOpenid());
-      ticket = WxApiUtils.requestQRCode(invitationCode);
+      ticket = WxApiUtils.requestQRCode(openId);
     }
+
     if (image == null) {
       image = WxFotoMixUtils.createInvitationImage(user, ticket);
     }
 
     if (image == null) {
-      WxApiUtils.sendTextMessage("图片生成失败，请稍后再试。", message.getFromUserName());
+      WxApiUtils.sendTextMessage("图片生成失败，请稍后再试。", openId);
       return false;
     }
 
-    saveWxUserQrTicket(message.getFromUserName(), ticket);
+    wxUserService.saveTicket(openId, ticket);
     String mediaId = WxApiUtils.uploadTempImage(image);
 
     if (StringUtils.isEmpty(mediaId)) {
-      WxApiUtils.sendTextMessage("图片生成失败，请稍后再试。", message.getFromUserName());
+      WxApiUtils.sendTextMessage("图片生成失败，请稍后再试。", openId);
       return false;
     }
 
-    return WxApiUtils.sendImageMessage(mediaId, message.getFromUserName());
+    return WxApiUtils.sendImageMessage(mediaId, openId);
   }
-
 
   private boolean handleTextMsg(WxMessage wxMessage) {
     WxApiUtils.sendTextMessage("消息已收到，暂无关于" + wxMessage.getContent() + "的回复", wxMessage.getFromUserName());
@@ -227,116 +228,4 @@ public class WxService {
     Map<String, Object> data = WxTemplateMessageFormatter.formateTaskCompletionNotice();
     return WxApiUtils.sendTemplateMessage(TASK_COMPLETION_NOTICE_TEMPLATE_ID, "https://www.sojump.hk/jq/12131778.aspx", data, toUser.getOpenid());
   }
-
-
-  private String formateInvitationCode(String openId) {
-    if (StringUtils.isEmpty(openId)) {
-      return "";
-    }
-    openId = "inv_" + openId;
-    if (openId.length() > 64) {
-      openId = openId.substring(0, 64);
-    }
-    return openId;
-  }
-
-  private boolean saveWxUserQrTicket(String openId, String ticket) {
-    Map<String, Object> wxUserFindCondition = new HashMap<String, Object>();
-    wxUserFindCondition.put("openId", openId);
-    WxUser existUser = entityDao.findOne("wx_user", wxUserFindCondition, WxUserRowMapper.getInstance());
-    if (existUser == null) {
-      return false;
-    }
-    Map<String, Object> updateValues = new HashMap<String, Object>();
-    updateValues.put("qrTicket", ticket);
-    try {
-      entityDao.update("wx_user", wxUserFindCondition, updateValues);
-      return true;
-    } catch (Throwable t) {
-      LOG.error("save invitation code failure", t);
-    }
-    return false;
-  }
-
-  private WxUser findWxUserByOpenId(String openId) {
-    Map<String, Object> wxUserFindCondition = new HashMap<String, Object>();
-    wxUserFindCondition.put("openId", openId);
-    return entityDao.findOne("wx_user", wxUserFindCondition, WxUserRowMapper.getInstance());
-  }
-
-  private WxUser findWxUserByQrTicket(String ticket) {
-    Map<String, Object> wxUserFindCondition = new HashMap<String, Object>();
-    wxUserFindCondition.put("qrTicket", ticket);
-    return entityDao.findOne("wx_user", wxUserFindCondition, WxUserRowMapper.getInstance());
-  }
-
-  private boolean updateWxUserAsStudent(long id) {
-    try {
-      entityDao.update("wx_user", "id", id, "isStudent", 1);
-      return true;
-    } catch (Throwable t) {
-      LOG.error("update WxUser as a student failure", t);
-    }
-    return false;
-  }
-
-  /**
-   * @param scannedUserId 扫描者的id
-   * @param inviterUserId 发送邀请者的id
-   * @return 是否保存
-   */
-  private boolean saveWxUserInvitationUserId(long scannedUserId, long inviterUserId) {
-    try {
-      entityDao.update("wx_user", "id", scannedUserId, "inviterId", inviterUserId);
-      return true;
-    } catch (Throwable t) {
-      LOG.error("save WxUser inviter failure", t);
-    }
-    return false;
-  }
-
-  private long saveWxUser(WxUser user, String openId) {
-    Map<String, Object> wxUserFindCondition = new HashMap<String, Object>();
-    wxUserFindCondition.put("openId", openId);
-    WxUser existUser = entityDao.findOne("wx_user", wxUserFindCondition, WxUserRowMapper.getInstance());
-    if (existUser != null) {
-      if (!StringUtils.equals(existUser.getHeadimgurl(), user.getHeadimgurl()) && StringUtils.isNotEmpty(user.getHeadimgurl())) {
-        try {
-          entityDao.update("wx_user", wxUserFindCondition, "headImgUrl", user.getHeadimgurl());
-        } catch (Throwable t) {
-          LOG.error("update WxUser headImgUrl failure", t);
-        }
-      }
-      return existUser.getId();
-    }
-    long createTime = System.currentTimeMillis();
-    Entity entity = new Entity("wx_user");
-    entity.set("createTime", createTime);
-    entity.set("subscribe", user.getSubscribe());
-    entity.set("openid", user.getOpenid());
-    entity.set("isStudent", 0);
-    if (0 != user.getSubscribe()) {
-      entity.set("nickName", user.getNickname());
-      entity.set("sex", user.getSex());
-      entity.set("language", user.getLanguage());
-      entity.set("city", user.getCity());
-      entity.set("province", user.getProvince());
-      entity.set("country", user.getCountry());
-      entity.set("headImgUrl", user.getHeadimgurl());
-      entity.set("subscribeTime", user.getSubscribe_time() * 1000);
-      entity.set("unionid", user.getUnionid());
-      entity.set("remark", user.getRemark());
-      entity.set("groupid", user.getGroupid());
-      entity.set("status", Constants.STATUS_OK);
-    }
-    try {
-      entity = entityDao.saveAndReturn(entity);
-      return entity.getId();
-    } catch (Throwable t) {
-      LOG.error("save WxUser failure", t);
-      return 0;
-    }
-  }
-
-
 }

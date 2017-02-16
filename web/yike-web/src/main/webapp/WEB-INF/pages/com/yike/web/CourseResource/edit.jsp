@@ -40,12 +40,12 @@
           </div>
         </div>
         <div class="form-group">
-           <p>${categories}</p>
-           <label for="categoryId" class="col-md-2 col-sm-2 col-xs-3 control-label">课程分类</label>
+           <label for="categoryId" class="col-md-2 col-sm-2 col-xs-3 control-label">课程分类${course.categoryId}</label>
            <div class="col-md-2 col-sm-2 col-xs-4">
-             <select id="categoryId" name="categoryId" class="form-control">
-               <option value="102" <c:if test="${categories.categoryId eq 102}">selected="selected"</c:if>>计算机技术</option>
-               <option value="101" <c:if test="${categories.categoryId eq 101}">selected="selected"</c:if>>外语翻译</option>
+              <select id="categoryId" name="categoryId" class="form-control">
+                <c:forEach var="item" items="${categories}">
+                  <option value="${item.id}" <c:if test="${course.categoryId eq item.id}">selected="selected"</c:if>>${item.name}</option>
+                </c:forEach>
               </select>
            </div>
          </div>

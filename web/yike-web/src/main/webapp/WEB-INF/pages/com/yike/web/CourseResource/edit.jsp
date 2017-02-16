@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="form-group">
-           <label for="categoryId" class="col-md-2 col-sm-2 col-xs-3 control-label">课程分类${course.categoryId}</label>
+           <label for="categoryId" class="col-md-2 col-sm-2 col-xs-3 control-label">课程分类</label>
            <div class="col-md-2 col-sm-2 col-xs-4">
               <select id="categoryId" name="categoryId" class="form-control">
                 <c:forEach var="item" items="${categories}">

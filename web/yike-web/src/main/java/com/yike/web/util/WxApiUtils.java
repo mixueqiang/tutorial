@@ -47,6 +47,7 @@ public class WxApiUtils {
     Map<String, Object> scene = new HashMap<String, Object>();
 
     scene.put("scene_str", sceneString);
+    scene.put("scene_id", 10000);
     actionInfo.put("scene", scene);
     main.put("action_name", "QR_LIMIT_STR_SCENE");
     main.put("action_info", actionInfo);
@@ -138,6 +139,7 @@ public class WxApiUtils {
       LOG.info("Template message sent with message id : " + result.get("msgid"));
       return true;
     } else {
+      LOG.error("Template message sent failure : " + main.toString());
       return false;
     }
   }

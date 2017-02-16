@@ -112,7 +112,6 @@ public class WxService {
   }
 
   private boolean handleInvitationEvent(WxMessage message) {
-    boolean useInvitationCode = message.getEventKey().contains("qrscene_") && message.getEventKey().contains("inv_");
 
     WxUser sourceUser;
     String ticket = message.getTicket();
@@ -128,7 +127,7 @@ public class WxService {
     }
     WxUser scannedUser = findWxUserByOpenId(message.getFromUserName());
     if (scannedUser != null) {
-      if (0 != scannedUser.getInvitationFromWxUserId()) {
+      if (0 != scannedUser.getInviterId()) {
         return false;
       }
     } else {
@@ -139,6 +138,7 @@ public class WxService {
     }
     long scannedUserId = saveWxUser(scannedUser, message.getFromUserName());
     if (0 == scannedUserId) {
+      LOG.error("Not found scannedUser in database or save failure.");
       return false;
     }
     if (!saveWxUserInvitationUserId(scannedUserId, sourceUser.getId())) {
@@ -147,7 +147,7 @@ public class WxService {
     if (sourceUser.getIsStudent() == 1) {
       return true;
     }
-    int count = entityDao.count("wx_user", "invitationFromWxUserId", sourceUser.getId());
+    int count = entityDao.count("wx_user", "inviterId", sourceUser.getId());
     if (count == 1) {
       return sendInvitingTemplateMessage(scannedUser, sourceUser);
     }
@@ -186,7 +186,7 @@ public class WxService {
 
     String ticket = WxApiUtils.requestQRCode(invitationCode);
 
-    saveWxUserInvitationCode(message.getFromUserName(), invitationCode, ticket);
+    saveWxUserInvitationCode(message.getFromUserName(), ticket);
 
     File image = WxFotoMixUtils.createInvitationImage(user, ticket);
 
@@ -234,18 +234,14 @@ public class WxService {
     return openId;
   }
 
-  private boolean saveWxUserInvitationCode(String openId, String code, String ticket) {
+  private boolean saveWxUserInvitationCode(String openId, String ticket) {
     Map<String, Object> wxUserFindCondition = new HashMap<String, Object>();
     wxUserFindCondition.put("openId", openId);
     WxUser existUser = entityDao.findOne("wx_user", wxUserFindCondition, WxUserRowMapper.getInstance());
     if (existUser == null) {
       return false;
     }
-    if (StringUtils.isNotEmpty(existUser.getInvitationCode())) {
-      return true;
-    }
     Map<String, Object> updateValues = new HashMap<String, Object>();
-    updateValues.put("invitationCode", code);
     updateValues.put("qrTicket", ticket);
     try {
       entityDao.update("wx_user", wxUserFindCondition, updateValues);
@@ -267,13 +263,7 @@ public class WxService {
     wxUserFindCondition.put("qrTicket", ticket);
     return entityDao.findOne("wx_user", wxUserFindCondition, WxUserRowMapper.getInstance());
   }
-
-  private WxUser findWxUserByInvitationCode(String code) {
-    Map<String, Object> wxUserFindCondition = new HashMap<String, Object>();
-    wxUserFindCondition.put("invitationCode", code);
-    return entityDao.findOne("wx_user", wxUserFindCondition, WxUserRowMapper.getInstance());
-  }
-
+  
   private boolean updateWxUserAsStudent(long id) {
     try {
       entityDao.update("wx_user", "id", id, "isStudent", 1);
@@ -291,7 +281,7 @@ public class WxService {
    */
   private boolean saveWxUserInvitationUserId(long scannedUserId, long inviterUserId) {
     try {
-      entityDao.update("wx_user", "id", scannedUserId, "invitationFromWxUserId", inviterUserId);
+      entityDao.update("wx_user", "id", scannedUserId, "inviterId", inviterUserId);
       return true;
     } catch (Throwable t) {
       LOG.error("save WxUser inviter failure", t);

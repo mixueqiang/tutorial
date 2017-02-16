@@ -8,8 +8,7 @@ public class WxUser extends BaseModel {
 
   private static final long serialVersionUID = 3799451078879545355L;
 
-  private long invitationFromWxUserId;
-  private String invitationCode;
+  private long inviterId;
   private String qrTicket;
   private int isStudent;
 
@@ -76,20 +75,12 @@ public class WxUser extends BaseModel {
     this.isStudent = isStudent;
   }
 
-  public long getInvitationFromWxUserId() {
-    return invitationFromWxUserId;
+  public long getInviterId() {
+    return inviterId;
   }
 
-  public void setInvitationFromWxUserId(long invitationFromWxUserId) {
-    this.invitationFromWxUserId = invitationFromWxUserId;
-  }
-
-  public String getInvitationCode() {
-    return invitationCode;
-  }
-
-  public void setInvitationCode(String invitationCode) {
-    this.invitationCode = invitationCode;
+  public void setInviterId(long inviterId) {
+    this.inviterId = inviterId;
   }
 
   public int getSubscribe() {

@@ -41,8 +41,7 @@ public class WxUserRowMapper implements RowMapper<WxUser> {
     entity.setGroupid(rs.getString("groupid"));
     entity.setCreateTime(rs.getLong("createTime"));
     entity.setUpdateTime(rs.getLong("updateTime"));
-    entity.setInvitationFromWxUserId(rs.getLong("invitationFromWxUserId"));
-    entity.setInvitationCode(rs.getString("invitationCode"));
+    entity.setInviterId(rs.getLong("inviterId"));
     entity.setIsStudent(rs.getInt("isStudent"));
     entity.setQrTicket(rs.getString("qrTicket"));
     entity.setStatus(rs.getInt("status"));

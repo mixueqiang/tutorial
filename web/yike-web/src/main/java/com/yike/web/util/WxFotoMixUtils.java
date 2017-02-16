@@ -29,7 +29,18 @@ public class WxFotoMixUtils {
 
   public static String upyunMainImageURL = "http://yikeyun.b0.upaiyun.com/static/" + mainImageName;
 
+  public static File localInvitationImage(String ticket) {
+    File file = new File(localImagePath + ticket + ".jpg");
+    if (file.exists()) {
+      return file;
+    }
+    return null;
+  }
+
   public static File createInvitationImage(WxUser user, String ticket) {
+
+    String imageName = ticket + ".jpg";
+
     File mainImageFile = getMainImage();
     File userImageFile = getUserImage(user);
     File QRCodeFile = getQRCode(user, ticket);
@@ -64,9 +75,8 @@ public class WxFotoMixUtils {
       g2d.drawString(nickName, textX, 1075);
       g2d.dispose();
 
-      MessageDigest md = MessageDigest.getInstance("MD5");
-      md.update(user.getOpenid().getBytes());
-      String imageName = new BigInteger(1, md.digest()).toString(16) + "wx.jpg";
+
+
       String imageSaveUrl = localImagePath + imageName;
       FileOutputStream out = new FileOutputStream(imageSaveUrl);
       ImageIO.write(tag, "jpg", out);
@@ -81,7 +91,7 @@ public class WxFotoMixUtils {
 
   private static File getQRCode(WxUser user, String ticket) {
     String qrCodeDownloadUrl = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + ticket;
-    String imageName = encodingFileName(user.getOpenid());
+    String imageName = encodingFileName(ticket);
     return getImage(imageName, qrCodeDownloadUrl);
   }
 

@@ -242,7 +242,10 @@ public class WxService {
       return "";
     }
     openId = "inv_" + openId;
-    return openId.substring(0, 64);
+    if (openId.length() > 64) {
+      openId = openId.substring(0, 64);
+    }
+    return openId;
   }
 
   private boolean saveWxUserInvitationCode(String openId, String code, String ticket) {

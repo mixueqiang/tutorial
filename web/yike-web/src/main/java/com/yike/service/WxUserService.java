@@ -22,5 +22,7 @@ public interface WxUserService {
 
   WxUser findByOpenId(String openId);
 
+  WxUser getUser(String openId);
+
   WxUser sync(String openId);
 }

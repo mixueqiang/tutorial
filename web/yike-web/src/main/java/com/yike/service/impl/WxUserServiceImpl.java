@@ -54,17 +54,28 @@ public class WxUserServiceImpl extends BaseService implements WxUserService {
     return entityDao.findOne("wx_user", wxUserFindCondition, WxUserRowMapper.getInstance());
   }
 
-  public WxUser sync(String openId) {
+  public WxUser getUser(String openId) {
     WxUser user = findByOpenId(openId);
     if (user == null) {
-      user = WxApiUtils.requestWxUser(openId);
-      if (user == null) {
-        return null;
-      }
+      user = sync(openId);
+    }
+    return user;
+  }
+
+  public WxUser sync(String openId) {
+    WxUser user = WxApiUtils.requestWxUser(openId);
+    if (userExist(openId)) {
+      long id = update(user, openId);
+      user.setId(id);
+    } else {
       long id = save(user, openId);
       user.setId(id);
     }
     return user;
+  }
+
+  private boolean userExist(String openId) {
+    return entityDao.exists("wx_user", "openId", openId);
   }
 
   private boolean updateByOpenId(String opeId, String columnName, Object columnValue) {

@@ -32,7 +32,7 @@ public class WxService {
   private static String TASK_COMPLETION_NOTICE_TEMPLATE_ID = "G66-ZH08CQdAZVKWZH3do_pqwqaTDk8AKx_9QNzm1hg";
 
   @Resource
-  protected WxUserService wxUserService;
+  private WxUserService wxUserService;
 
   private static Map<String, String> createdInvitationImageUsers = new HashMap<String, String>();
 
@@ -78,7 +78,6 @@ public class WxService {
       return handleInvitationEvent(message);
     }
 
-
     return true;
   }
 
@@ -105,6 +104,13 @@ public class WxService {
     return true;
   }
 
+
+  private boolean handleTextMsg(WxMessage wxMessage) {
+    WxApiUtils.sendTextMessage("消息已收到，暂无关于" + wxMessage.getContent() + "的回复", wxMessage.getFromUserName());
+    return true;
+  }
+
+
   private boolean isInvitationEvent(WxMessage message) {
     String qrTicket = message.getTicket();
     return wxUserService.hasTicket(qrTicket);
@@ -112,19 +118,24 @@ public class WxService {
 
   private boolean handleInvitationEvent(WxMessage message) {
 
-    WxUser sourceUser;
+    WxUser invter;
+    String scannedOpenId = message.getFromUserName();
+    String invterOpenId = null;
     String ticket = message.getTicket();
-    sourceUser = wxUserService.findByTicket(ticket);
-    if (sourceUser == null) {
+    invter = wxUserService.findByTicket(ticket);
+
+    if (invter == null) {
       LOG.error("Not found source WxUser with qeTicket : " + ticket);
       return false;
     }
 
-    if (StringUtils.equals(sourceUser.getOpenid(), message.getFromUserName())) {
+    invterOpenId = invter.getOpenid();
+
+    if (StringUtils.equals(invterOpenId, scannedOpenId)) {
       // 自己不能邀请自己
       return false;
     }
-    WxUser scannedUser = wxUserService.sync(message.getFromUserName());
+    WxUser scannedUser = wxUserService.getUser(scannedOpenId);
     if (scannedUser == null) {
       return false;
     }
@@ -132,20 +143,20 @@ public class WxService {
       LOG.error("Not found scannedUser in database or save failure.");
       return false;
     }
-    if (!wxUserService.saveInvitation(message.getFromUserName(), sourceUser.getOpenid())) {
+    if (!wxUserService.saveInvitation(scannedOpenId, invterOpenId)) {
       return false;
     }
-    if (sourceUser.getIsStudent() == 1) {
+    if (invter.getIsStudent() == 1) {
       return true;
     }
-    int count = wxUserService.countInvitation(sourceUser.getOpenid());
+    int count = wxUserService.countInvitation(invterOpenId);
 
     if (count == 1) {
-      return sendInvitingTemplateMessage(scannedUser, sourceUser);
+      return sendInvitingTemplateMessage(scannedUser, invter);
     }
     if (count == 2) {
-      if (wxUserService.makeStudent(sourceUser.getOpenid())) {
-        return sendFreeAdmissionTemplateMessage(sourceUser);
+      if (wxUserService.makeStudent(invterOpenId)) {
+        return sendFreeAdmissionTemplateMessage(invter);
       }
     }
 
@@ -153,8 +164,9 @@ public class WxService {
   }
 
   private boolean handleFreeClickEvent(final WxMessage message) {
+    final String openId = message.getFromUserName();
 
-    String lastTimeMillisStr = createdInvitationImageUsers.get(message.getFromUserName());
+    String lastTimeMillisStr = createdInvitationImageUsers.get(openId);
     long currentTimeMillis = System.currentTimeMillis();
     if (StringUtils.isNotEmpty(lastTimeMillisStr)) {
       long lastTimeMillis = Long.parseLong(lastTimeMillisStr);
@@ -163,19 +175,19 @@ public class WxService {
         return WxApiUtils.sendTextMessage(String.valueOf(difference) + "秒之后再来吧！", message.getFromUserName());
       }
     }
-    createdInvitationImageUsers.put(message.getFromUserName(), String.valueOf(currentTimeMillis));
+    createdInvitationImageUsers.put(openId, String.valueOf(currentTimeMillis));
 
     WxApiUtils.sendTextMessage("滴~  学生卡 (*￣▽￣*) \n\n"
             + "限时名额有限，请在1小时内将下方专属邀请卡发送朋友圈或群哦~ \n\n"
             + "Ps:（完成 2 个朋友扫码支持，系统会自动给您发送入学通知）\n\n"
-            + "↓↓邀请卡正在生成中↓↓", message.getFromUserName());
+            + "↓↓邀请卡正在生成中↓↓", openId);
     executor.execute(new Runnable() {
       public void run() {
-        WxUser user = wxUserService.sync(message.getFromUserName());
+        WxUser user = wxUserService.getUser(openId);
         if (user != null) {
           sendInvitationImage(user);
         } else {
-          WxApiUtils.sendTextMessage("图片生成失败，请稍后再试。", message.getFromUserName());
+          WxApiUtils.sendTextMessage("图片生成失败，请稍后再试。", openId);
         }
       }
     });
@@ -212,12 +224,6 @@ public class WxService {
 
     return WxApiUtils.sendImageMessage(mediaId, openId);
   }
-
-  private boolean handleTextMsg(WxMessage wxMessage) {
-    WxApiUtils.sendTextMessage("消息已收到，暂无关于" + wxMessage.getContent() + "的回复", wxMessage.getFromUserName());
-    return true;
-  }
-
 
   private boolean sendInvitingTemplateMessage(WxUser scanner, WxUser inviter) {
     Map<String, Object> data = WxTemplateMessageFormatter.formateNewMemberNotice(scanner.getNickname());

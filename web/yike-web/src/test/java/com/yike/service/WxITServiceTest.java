@@ -9,8 +9,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
-import static org.junit.Assert.*;
-
 /**
  * @author ilakeyc
  * @since 2017/2/14
@@ -18,10 +16,10 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:ApplicationContext.xml")
-public class WxServiceTest {
+public class WxITServiceTest {
 
   @Resource
-  WxService wxService;
+  WxITService wxITService;
 
   @Test
   public void mainTest() {
@@ -34,7 +32,7 @@ public class WxServiceTest {
     message.setEvent("subscribe");
     message.setTicket("gQHq8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAySUt4TVoySFpmdDAxMDAwMDAwN0IAAgRYk6FYAwQAAAAA");
 
-    wxService.handleMessage(message);
+    wxITService.handleMessage(message);
 
   }
 

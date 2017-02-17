@@ -1,7 +1,7 @@
 package com.yike.web.api.v1;
 
 import com.yike.model.WxMessage;
-import com.yike.service.WxService;
+import com.yike.service.WxITService;
 import com.yike.util.XmlUtil;
 import com.yike.web.BaseResource;
 import org.apache.commons.lang.StringUtils;
@@ -39,7 +39,7 @@ public class ApiWxResource extends BaseResource {
   private static final Log LOG = LogFactory.getLog(ApiWxResource.class);
 
   @Resource
-  protected WxService wxService;
+  protected WxITService wxITService;
 
   @GET
   @Produces(MediaType.TEXT_PLAIN)
@@ -61,7 +61,7 @@ public class ApiWxResource extends BaseResource {
 
     WxMessage message = formatMessage(xml);
 
-    wxService.handleMessage(message);
+    wxITService.handleMessage(message);
 
     return null;
   }

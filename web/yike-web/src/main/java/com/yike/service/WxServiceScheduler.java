@@ -23,7 +23,7 @@ public class WxServiceScheduler implements Runnable {
   private static final Log LOG = LogFactory.getLog(WxServiceScheduler.class);
 
   @Resource
-  protected WxService wxService;
+  protected WxITService wxITService;
 
   public WxServiceScheduler() {
     TaskScheduler.register(getClass().getSimpleName(),

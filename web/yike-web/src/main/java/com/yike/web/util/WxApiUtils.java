@@ -93,7 +93,10 @@ public class WxApiUtils {
     }.getType());
     String token = (String) response.get("access_token");
     WX_ACCESS_TOKEN = token;
-    return !(StringUtils.isEmpty(token) || "40013".equals(response.get("errcode")));
+    if (StringUtils.isEmpty(token)) {
+      LOG.error("Request access token failure : " + result);
+    }
+    return StringUtils.isNotEmpty(token);
   }
 
   /**
@@ -247,7 +250,7 @@ public class WxApiUtils {
     if ("0".equals(errorCode)) {
       return false;
     }
-    return "40013".equals(errorCode);
+    return "40013".equals(errorCode) || "40001".equals(errorCode);
   }
 
   private static Map<String, String> formateResponseError(String response) {

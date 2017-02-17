@@ -23,8 +23,8 @@ import java.util.concurrent.Executors;
  * @since 10/02/2017
  */
 @Service
-public class WxService {
-  private static final Log LOG = LogFactory.getLog(WxService.class);
+public class WxITService {
+  private static final Log LOG = LogFactory.getLog(WxITService.class);
 
   private static ExecutorService executor = Executors.newFixedThreadPool(10);
 
@@ -33,6 +33,7 @@ public class WxService {
 
   @Resource
   private WxUserService wxUserService;
+
 
   private static Map<String, String> createdInvitationImageUsers = new HashMap<String, String>();
 

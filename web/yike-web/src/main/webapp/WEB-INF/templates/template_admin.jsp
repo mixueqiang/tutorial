@@ -5,7 +5,7 @@
 <d:head />
 </head>
 <body>
-  <%@ include file="/WEB-INF/commons/header.jsp"%>
+  <%@ include file="/WEB-INF/commons/header_admin.jsp"%>
   <%@ include file="/WEB-INF/commons/message.jsp"%>
   <c:if test="${not _blank}">
     <d:body />

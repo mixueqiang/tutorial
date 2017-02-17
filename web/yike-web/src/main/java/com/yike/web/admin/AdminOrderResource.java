@@ -64,12 +64,12 @@ public class AdminOrderResource extends BaseResource {
     String uri = request.getRequestURI() + "?";
     String queryString = request.getQueryString();
     if (StringUtils.isNotEmpty(queryString)) {
-      uri += queryString + "&p=";
+      uri += queryString + "&page=";
     } else {
-      uri += "p=";
+      uri += "page=";
     }
 
-    uri = StringUtils.replace(uri, "p=" + page + "&", "");
+    uri = StringUtils.replace(uri, "page=" + page + "&", "");
     request.setAttribute("uriPrefix", uri);
 
     Pair<List<Integer>, Integer> pages = PageNumberUtils.generate(page, result.left);

@@ -133,7 +133,7 @@ public class WxUserServiceImpl extends BaseService implements WxUserService {
     Entity entity = new Entity("wx_user");
     entity.set("createTime", createTime);
     entity.set("subscribe", user.getSubscribe());
-    entity.set("openid", user.getOpenid());
+    entity.set("openid", openId);
     entity.set("isStudent", 0);
     entity.set("nickName", user.getNickname());
     entity.set("sex", user.getSex());

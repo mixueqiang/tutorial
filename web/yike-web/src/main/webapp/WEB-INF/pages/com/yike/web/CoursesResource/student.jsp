@@ -127,7 +127,9 @@
         width:$('.courses-details').width()+15
       })
     }
-    Heightadapt();
+    window.onload=function(){
+      Heightadapt();
+    }
     window.onresize=function(){
       Heightadapt();
     }

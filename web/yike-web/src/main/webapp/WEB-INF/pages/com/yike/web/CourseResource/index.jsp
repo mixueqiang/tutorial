@@ -130,7 +130,9 @@ function Heightadapt(){
     width:$('.courses-details').width()
   })
 }
-Heightadapt();
+window.onload=function(){
+  Heightadapt();
+}
 window.onresize=function(){
   Heightadapt();
 }

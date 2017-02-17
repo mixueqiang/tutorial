@@ -231,7 +231,9 @@ function Heightadapt(){
   $('.course-imgcover .course-img').height($('.course-imgcover .course-img').width()*0.60);
   $('.course-navbar').width($('.course-parent').width());
 }
-Heightadapt();
+window.onload=function(){
+  Heightadapt();
+}
 window.onresize=function(){
   Heightadapt();
 }

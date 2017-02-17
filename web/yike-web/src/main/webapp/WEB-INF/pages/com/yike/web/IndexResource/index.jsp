@@ -147,7 +147,9 @@
 function Heightadapt(){
   $('.section-cover .imgadapt').height($('.section-cover .imgadapt').width()*0.62);
 }
-Heightadapt();
+window.onload=function(){
+  Heightadapt();
+}
 window.onresize=function(){
   Heightadapt();
 }

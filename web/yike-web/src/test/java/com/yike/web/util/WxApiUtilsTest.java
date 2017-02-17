@@ -1,6 +1,7 @@
 package com.yike.web.util;
 
 import com.google.gson.reflect.TypeToken;
+import com.yike.service.WxITService;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -14,29 +15,16 @@ public class WxApiUtilsTest {
 
   @Test
   public void mainTest() throws Exception {
-    WxApiUtils.requestAccessToken();
-
-//    addTemplate("TEMP0000");
+    WxITService.apiUtils.requestAccessToken();
 
     getTemplateList();
-
 
     postTemplate();
   }
 
 
-  private void addTemplate(String id_short) {
-
-    Map<String, String> foo = new HashMap<String, String>();
-    foo.put("template_id_short", id_short);
-    Map<String, Object> result = WxApiUtils.postJsonToObject("https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token=" + WxApiUtils.WX_ACCESS_TOKEN, foo, new TypeToken<Map<String, Object>>() {
-    }.getType());
-
-    System.out.println(result);
-  }
-
   private void getTemplateList() {
-    Map<String, Object> result = WxApiUtils.getJsonToObject("https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=" + WxApiUtils.WX_ACCESS_TOKEN, new TypeToken<Map<String, Object>>() {
+    Map<String, Object> result = WxITService.apiUtils.getJsonToObject("https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=" + WxITService.apiUtils.currentAccessToken, new TypeToken<Map<String, Object>>() {
     }.getType());
 
     System.out.println(result);
@@ -57,7 +45,7 @@ public class WxApiUtilsTest {
     data.put("content", content);
     main.put("data", data);
 
-    Map<String, Object> result = WxApiUtils.postJsonToObject("https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + WxApiUtils.WX_ACCESS_TOKEN, main, new TypeToken<Map<String, Object>>() {
+    Map<String, Object> result = WxITService.apiUtils.postJsonToObject("https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + WxITService.apiUtils.currentAccessToken, main, new TypeToken<Map<String, Object>>() {
     }.getType());
     System.out.println(result);
   }

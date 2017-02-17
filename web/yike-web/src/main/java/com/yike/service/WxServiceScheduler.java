@@ -2,7 +2,6 @@ package com.yike.service;
 
 
 import com.yike.task.TaskScheduler;
-import com.yike.web.util.WxApiUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.yike.web.util.WxApiUtils.WX_ACCESS_TOKEN;
 
 /**
  * @author ilakeyc
@@ -35,7 +33,7 @@ public class WxServiceScheduler implements Runnable {
 
   @Override
   public void run() {
-    WxApiUtils.requestAccessToken();
+    WxITService.apiUtils.requestAccessToken();
     setButtons();
   }
 
@@ -84,8 +82,8 @@ public class WxServiceScheduler implements Runnable {
 
     main.put("button", buttons);
 
-    String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + WX_ACCESS_TOKEN;
-    WxApiUtils.postJsonToObject(url, main, null);
+    String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + WxITService.apiUtils.currentAccessToken;
+    WxITService.apiUtils.postJsonToObject(url, main, null);
   }
 
 }

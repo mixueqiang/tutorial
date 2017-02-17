@@ -21,17 +21,17 @@ import java.util.Map;
 public class WxApiUtils {
   private static final Log LOG = LogFactory.getLog(WxApiUtils.class);
 
-  public static String WX_TOKEN = "yikeshangshouwx";
+  private String currentAppId;
+  private String currentAppSecret;
+  public String currentAccessToken;
 
-  public static String WX_APP_ID = "wxce4aa0af6d3ec704";
-  public static String WX_APP_SECRET = "5f8238027cab1b5348df2dd86f5bd6fe";
+  public WxApiUtils(String appID, String appSecret) {
+    this.currentAppId = appID;
+    this.currentAppSecret = appSecret;
+  }
 
-  public static String WX_ACCESS_TOKEN;
-
-
-
-  public static WxUser requestWxUser(String userOpenId) {
-    String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + WX_ACCESS_TOKEN + "&openid=" + userOpenId + "&lang=zh_CN";
+  public WxUser requestWxUser(String userOpenId) {
+    String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + currentAccessToken + "&openid=" + userOpenId + "&lang=zh_CN";
     return getJsonToObject(url, WxUser.class);
   }
 
@@ -39,8 +39,8 @@ public class WxApiUtils {
    * @param sceneString 需要二维码附带的业务标识。
    * @return 微信服务器返回的二维码 ticket，用来从微信服务器下载二维码。
    */
-  public static String requestQRCode(String sceneString) {
-    String url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=" + WX_ACCESS_TOKEN;
+  public String requestQRCode(String sceneString) {
+    String url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=" + currentAccessToken;
 
     Map<String, Object> main = new HashMap<String, Object>();
     Map<String, Object> actionInfo = new HashMap<String, Object>();
@@ -57,20 +57,20 @@ public class WxApiUtils {
     return response != null ? response.get("ticket") : "";
   }
 
-  public static boolean sendTextMessage(String text, String toUserOpenId) {
+  public boolean sendTextMessage(String text, String toUserOpenId) {
     Map<String, Object> messageContent = new HashMap<String, Object>();
     messageContent.put("content", text);
     return sendMessage("text", messageContent, toUserOpenId);
   }
 
-  public static boolean sendImageMessage(String mediaId, String toUserOpenId) {
+  public boolean sendImageMessage(String mediaId, String toUserOpenId) {
     Map<String, Object> imageContent = new HashMap<String, Object>();
     imageContent.put("media_id", mediaId);
     return sendMessage("image", imageContent, toUserOpenId);
   }
 
-  private static boolean sendMessage(String type, Map<String, Object> content, String toUser) {
-    String messageSendUrl = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + WX_ACCESS_TOKEN;
+  private boolean sendMessage(String type, Map<String, Object> content, String toUser) {
+    String messageSendUrl = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + currentAccessToken;
     Map<String, Object> foo = new HashMap<String, Object>();
     foo.put("touser", toUser);
     foo.put("msgtype", type);
@@ -84,15 +84,15 @@ public class WxApiUtils {
   }
 
 
-  public static boolean requestAccessToken() {
+  public boolean requestAccessToken() {
 
-    String urlString = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + WX_APP_ID + "&secret=" + WX_APP_SECRET;
+    String urlString = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + currentAppId + "&secret=" + currentAppSecret;
     String result = SimpleNetworking.getRequest(urlString);
     Gson gson = new Gson();
     Map<String, Object> response = gson.fromJson(result, new TypeToken<Map<String, Object>>() {
     }.getType());
     String token = (String) response.get("access_token");
-    WX_ACCESS_TOKEN = token;
+    this.currentAccessToken = token;
     if (StringUtils.isEmpty(token)) {
       LOG.error("Request access token failure : " + result);
     }
@@ -103,8 +103,8 @@ public class WxApiUtils {
    * @param image 本地生成的图片文件。
    * @return 微信服务器返回的 media_id。
    */
-  public static String uploadTempImage(File image) {
-    String imageUploadURL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=" + WX_ACCESS_TOKEN + "&type=image";
+  public String uploadTempImage(File image) {
+    String imageUploadURL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=" + currentAccessToken + "&type=image";
     String responseString = SimpleNetworking.uploadImage(imageUploadURL, image);
     if (StringUtils.isEmpty(responseString)) {
       return "";
@@ -122,7 +122,7 @@ public class WxApiUtils {
     return response.get("media_id");
   }
 
-  public static boolean sendTemplateMessage(String templateId, String url, Map<String, Object> data, String toUserOpenId) {
+  public boolean sendTemplateMessage(String templateId, String url, Map<String, Object> data, String toUserOpenId) {
     if (StringUtils.isEmpty(templateId) || StringUtils.isEmpty(toUserOpenId) || data.isEmpty()) {
       LOG.error("Template message id / data / toUserOpenId could not be null");
       return false;
@@ -135,7 +135,7 @@ public class WxApiUtils {
     }
     main.put("data", data);
 
-    String toUrl = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + WX_ACCESS_TOKEN;
+    String toUrl = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + currentAccessToken;
     Map<String, String> result = postJsonToObject(toUrl, main, new TypeToken<Map<String, String>>() {
     }.getType());
     if (result != null) {
@@ -147,7 +147,7 @@ public class WxApiUtils {
     }
   }
 
-  public static <T> T postJsonToObject(String urlString, Object param, Type typeOfT) {
+  public <T> T postJsonToObject(String urlString, Object param, Type typeOfT) {
     Gson g = new Gson();
     String postJson = null;
     if (param != null) {
@@ -173,7 +173,7 @@ public class WxApiUtils {
     return null;
   }
 
-  public static <T> T getJsonToObject(String urlString, Type typeOfT) {
+  public <T> T getJsonToObject(String urlString, Type typeOfT) {
     String response = rootRequest(HttpMethod.GET, urlString, null);
     if (response == null) {
       return null;
@@ -187,7 +187,7 @@ public class WxApiUtils {
     }
   }
 
-  private static String rootRequest(String method, String urlString, String param) {
+  private String rootRequest(String method, String urlString, String param) {
     if (HttpMethod.GET.equals(method)) {
       String response = SimpleNetworking.getRequest(urlString);
       if (wxResponseError(response)) {
@@ -211,7 +211,7 @@ public class WxApiUtils {
     }
   }
 
-  private static boolean wxResponseError(String response) {
+  private boolean wxResponseError(String response) {
     Map<String, String> foo = formateResponseError(response);
     if (foo == null) {
       return false;
@@ -234,7 +234,7 @@ public class WxApiUtils {
     return true;
   }
 
-  private static boolean needRequestAccessToken(String response) {
+  private boolean needRequestAccessToken(String response) {
     Map<String, String> foo = formateResponseError(response);
     if (foo == null) {
       return false;
@@ -253,7 +253,7 @@ public class WxApiUtils {
     return "40013".equals(errorCode) || "40001".equals(errorCode);
   }
 
-  private static Map<String, String> formateResponseError(String response) {
+  private Map<String, String> formateResponseError(String response) {
     if (StringUtils.isEmpty(response)) {
       return null;
     }

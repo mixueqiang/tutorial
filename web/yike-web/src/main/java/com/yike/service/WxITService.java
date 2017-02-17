@@ -31,8 +31,14 @@ public class WxITService {
   private static String NEW_MEMBER_JOINING_NOTICE_TEMPLATE_ID = "-nKMTybLcXHNsle6Ib5mdpO4ec2xFpCW6zjMX6mPzNQ";
   private static String TASK_COMPLETION_NOTICE_TEMPLATE_ID = "G66-ZH08CQdAZVKWZH3do_pqwqaTDk8AKx_9QNzm1hg";
 
+  public static String WX_TOKEN = "yikeshangshouwx";
+  public static String APP_ID = "wxce4aa0af6d3ec704";
+  public static String APP_SECRET = "5f8238027cab1b5348df2dd86f5bd6fe";
+
   @Resource
-  private WxUserService wxUserService;
+  private WxITUserService wxITUserService;
+
+  public static WxApiUtils apiUtils = new WxApiUtils(WxITService.APP_ID, WxITService.APP_SECRET);
 
 
   private static Map<String, String> createdInvitationImageUsers = new HashMap<String, String>();
@@ -73,7 +79,7 @@ public class WxITService {
 
   private boolean handleSubscribeMsg(WxMessage message) {
 
-    wxUserService.sync(message.getFromUserName());
+    wxITUserService.sync(message.getFromUserName());
 
     if (isInvitationEvent(message)) {
       return handleInvitationEvent(message);
@@ -83,7 +89,7 @@ public class WxITService {
   }
 
   private boolean handleUnsubscribeMsg(WxMessage message) {
-    wxUserService.sync(message.getFromUserName());
+    wxITUserService.sync(message.getFromUserName());
     return true;
   }
 
@@ -107,14 +113,14 @@ public class WxITService {
 
 
   private boolean handleTextMsg(WxMessage wxMessage) {
-    WxApiUtils.sendTextMessage("消息已收到，暂无关于" + wxMessage.getContent() + "的回复", wxMessage.getFromUserName());
+    apiUtils.sendTextMessage("消息已收到，暂无关于" + wxMessage.getContent() + "的回复", wxMessage.getFromUserName());
     return true;
   }
 
 
   private boolean isInvitationEvent(WxMessage message) {
     String qrTicket = message.getTicket();
-    return wxUserService.hasTicket(qrTicket);
+    return wxITUserService.hasTicket(qrTicket);
   }
 
   private boolean handleInvitationEvent(WxMessage message) {
@@ -123,7 +129,7 @@ public class WxITService {
     String scannedOpenId = message.getFromUserName();
     String invterOpenId = null;
     String ticket = message.getTicket();
-    invter = wxUserService.findByTicket(ticket);
+    invter = wxITUserService.findByTicket(ticket);
 
     if (invter == null) {
       LOG.error("Not found source WxUser with qeTicket : " + ticket);
@@ -136,7 +142,7 @@ public class WxITService {
       // 自己不能邀请自己
       return false;
     }
-    WxUser scannedUser = wxUserService.getUser(scannedOpenId);
+    WxUser scannedUser = wxITUserService.getUser(scannedOpenId);
     if (scannedUser == null) {
       return false;
     }
@@ -144,19 +150,19 @@ public class WxITService {
       LOG.error("Not found scannedUser in database or save failure.");
       return false;
     }
-    if (!wxUserService.saveInvitation(scannedOpenId, invterOpenId)) {
+    if (!wxITUserService.saveInvitation(scannedOpenId, invterOpenId)) {
       return false;
     }
     if (invter.getIsStudent() == 1) {
       return true;
     }
-    int count = wxUserService.countInvitation(invterOpenId);
+    int count = wxITUserService.countInvitation(invterOpenId);
 
     if (count == 1) {
       return sendInvitingTemplateMessage(scannedUser, invter);
     }
     if (count == 2) {
-      if (wxUserService.makeStudent(invterOpenId)) {
+      if (wxITUserService.makeStudent(invterOpenId)) {
         return sendFreeAdmissionTemplateMessage(invter);
       }
     }
@@ -173,22 +179,22 @@ public class WxITService {
       long lastTimeMillis = Long.parseLong(lastTimeMillisStr);
       long difference = 60 - (currentTimeMillis - lastTimeMillis) / 1000;
       if (difference > 0) {
-        return WxApiUtils.sendTextMessage(String.valueOf(difference) + "秒之后再来吧！", message.getFromUserName());
+        return apiUtils.sendTextMessage(String.valueOf(difference) + "秒之后再来吧！", message.getFromUserName());
       }
     }
     createdInvitationImageUsers.put(openId, String.valueOf(currentTimeMillis));
 
-    WxApiUtils.sendTextMessage("滴~  学生卡 (*￣▽￣*) \n\n"
+    apiUtils.sendTextMessage("滴~  学生卡 (*￣▽￣*) \n\n"
             + "限时名额有限，请在1小时内将下方专属邀请卡发送朋友圈或群哦~ \n\n"
             + "Ps:（完成 2 个朋友扫码支持，系统会自动给您发送入学通知）\n\n"
             + "↓↓邀请卡正在生成中↓↓", openId);
     executor.execute(new Runnable() {
       public void run() {
-        WxUser user = wxUserService.getUser(openId);
+        WxUser user = wxITUserService.getUser(openId);
         if (user != null) {
           sendInvitationImage(user);
         } else {
-          WxApiUtils.sendTextMessage("图片生成失败，请稍后再试。", openId);
+          apiUtils.sendTextMessage("图片生成失败，请稍后再试。", openId);
         }
       }
     });
@@ -203,7 +209,7 @@ public class WxITService {
     if (StringUtils.isNotEmpty(ticket)) {
       image = WxFotoMixUtils.localInvitationImage(ticket);
     } else {
-      ticket = WxApiUtils.requestQRCode(openId);
+      ticket = apiUtils.requestQRCode(openId);
     }
 
     if (image == null) {
@@ -211,28 +217,28 @@ public class WxITService {
     }
 
     if (image == null) {
-      WxApiUtils.sendTextMessage("图片生成失败，请稍后再试。", openId);
+      apiUtils.sendTextMessage("图片生成失败，请稍后再试。", openId);
       return false;
     }
 
-    wxUserService.saveTicket(openId, ticket);
-    String mediaId = WxApiUtils.uploadTempImage(image);
+    wxITUserService.saveTicket(openId, ticket);
+    String mediaId = apiUtils.uploadTempImage(image);
 
     if (StringUtils.isEmpty(mediaId)) {
-      WxApiUtils.sendTextMessage("图片生成失败，请稍后再试。", openId);
+      apiUtils.sendTextMessage("图片生成失败，请稍后再试。", openId);
       return false;
     }
 
-    return WxApiUtils.sendImageMessage(mediaId, openId);
+    return apiUtils.sendImageMessage(mediaId, openId);
   }
 
   private boolean sendInvitingTemplateMessage(WxUser scanner, WxUser inviter) {
     Map<String, Object> data = WxTemplateMessageFormatter.formateNewMemberNotice(scanner.getNickname());
-    return WxApiUtils.sendTemplateMessage(NEW_MEMBER_JOINING_NOTICE_TEMPLATE_ID, null, data, inviter.getOpenid());
+    return apiUtils.sendTemplateMessage(NEW_MEMBER_JOINING_NOTICE_TEMPLATE_ID, null, data, inviter.getOpenid());
   }
 
   private boolean sendFreeAdmissionTemplateMessage(WxUser toUser) {
     Map<String, Object> data = WxTemplateMessageFormatter.formateTaskCompletionNotice();
-    return WxApiUtils.sendTemplateMessage(TASK_COMPLETION_NOTICE_TEMPLATE_ID, "https://www.sojump.hk/jq/12131778.aspx", data, toUser.getOpenid());
+    return apiUtils.sendTemplateMessage(TASK_COMPLETION_NOTICE_TEMPLATE_ID, "https://www.sojump.hk/jq/12131778.aspx", data, toUser.getOpenid());
   }
 }

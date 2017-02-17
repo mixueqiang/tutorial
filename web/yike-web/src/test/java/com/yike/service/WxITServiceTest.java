@@ -1,7 +1,6 @@
 package com.yike.service;
 
 import com.yike.model.WxMessage;
-import com.yike.web.util.WxApiUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,7 +22,7 @@ public class WxITServiceTest {
 
   @Test
   public void mainTest() {
-    WxApiUtils.requestAccessToken();
+    WxITService.apiUtils.requestAccessToken();
 
     WxMessage message = new WxMessage();
 

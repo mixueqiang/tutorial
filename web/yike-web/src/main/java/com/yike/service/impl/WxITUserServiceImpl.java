@@ -4,8 +4,8 @@ import com.yike.Constants;
 import com.yike.dao.mapper.WxUserRowMapper;
 import com.yike.model.Entity;
 import com.yike.model.WxUser;
-import com.yike.service.WxUserService;
-import com.yike.web.util.WxApiUtils;
+import com.yike.service.WxITService;
+import com.yike.service.WxITUserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
@@ -18,8 +18,8 @@ import java.util.Map;
  * @since 2017/2/16
  */
 @Service
-public class WxUserServiceImpl extends BaseService implements WxUserService {
-  private static final Log LOG = LogFactory.getLog(WxUserServiceImpl.class);
+public class WxITUserServiceImpl extends BaseService implements WxITUserService {
+  private static final Log LOG = LogFactory.getLog(WxITUserServiceImpl.class);
 
   public boolean makeStudent(String openId) {
     return updateByOpenId(openId, "isStudent", 1);
@@ -63,7 +63,7 @@ public class WxUserServiceImpl extends BaseService implements WxUserService {
   }
 
   public WxUser sync(String openId) {
-    WxUser user = WxApiUtils.requestWxUser(openId);
+    WxUser user = WxITService.apiUtils.requestWxUser(openId);
     if (userExist(openId)) {
       long id = update(user, openId);
       user.setId(id);

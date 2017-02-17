@@ -24,7 +24,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-import static com.yike.web.util.WxApiUtils.WX_TOKEN;
+
 
 
 /**
@@ -87,7 +87,7 @@ public class ApiWxResource extends BaseResource {
   }
 
   private boolean check_signature(String signature, String timestamp, String nonce) {
-    String[] array = new String[]{timestamp, nonce, WX_TOKEN};
+    String[] array = new String[]{timestamp, nonce, WxITService.WX_TOKEN};
     Arrays.sort(array);
     String sortedString = array[0] + array[1] + array[2];
     String hexString;

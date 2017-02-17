@@ -6,7 +6,7 @@ import com.yike.model.WxUser;
  * @author ilakeyc
  * @since 2017/2/16
  */
-public interface WxUserService {
+public interface WxITUserService {
 
   boolean makeStudent(String openId);
 

@@ -1,6 +1,7 @@
 package com.yike.web.util;
 
 import com.yike.model.WxUser;
+import com.yike.service.WxITService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,13 +17,13 @@ public class WxFotoMixUtilTest {
 
   @Test
   public void createInvitationImage() throws Exception {
-    WxApiUtils.requestAccessToken();
+    WxITService.apiUtils.requestAccessToken();
 
     WxUser user = new WxUser();
     user.setNickname("A~咸菜");
     user.setOpenid("o6_3dwOk_aYvpSE8LpGatjpYtwzE");
     user.setHeadimgurl("http://wx.qlogo.cn/mmopen/zmmyJ4q2nEZMhDd1CxtcUa8aX8g79XCTCbwribvZAYqWY5kiaPya4CdgN5Mjcs2m6gvVhjYWjHfw1Y72gn17Hiclic0eUVL0A87P/0");
-    String ticket = WxApiUtils.requestQRCode(user.getOpenid());
+    String ticket = WxITService.apiUtils.requestQRCode(user.getOpenid());
 
     WxFotoMixUtils.createInvitationImage(user, ticket);
   }

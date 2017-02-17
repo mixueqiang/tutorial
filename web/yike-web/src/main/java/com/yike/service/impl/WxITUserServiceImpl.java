@@ -114,10 +114,11 @@ public class WxITUserServiceImpl extends BaseService implements WxITUserService 
       updateValues.put("unionid", user.getUnionid());
       updateValues.put("remark", user.getRemark());
       updateValues.put("groupid", user.getGroupid());
+      updateValues.put("status", Constants.STATUS_OK);
     } else {
-      updateValues.put("subscribe", 0);
       updateValues.put("status", Constants.STATUS_NO);
     }
+    updateValues.put("subscribe", user.getSubscribe());
     try {
       entityDao.update("wx_user", updateCondition, updateValues);
       long id = entityDao.findOne("wx_user", updateCondition).getId();

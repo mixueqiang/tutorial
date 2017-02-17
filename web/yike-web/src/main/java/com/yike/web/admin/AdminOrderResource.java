@@ -40,12 +40,14 @@ public class AdminOrderResource extends BaseResource {
   @GET
   @Produces(MediaType.TEXT_HTML)
   public Response index(@QueryParam("courseId") long courseId, @QueryParam("page") int page) {
+    page = page > 0 ? page : 1;
+
     Map<String, Object> condition = new HashMap<String, Object>();
     if (courseId > 0) {
       condition.put("courseId", courseId);
     }
     condition.put("status", 1);
-    Pair<Integer, List<CourseApplication>> result = entityDao.findAndCount("course_application", condition, 1, 20, CourseApplicationRowMapper.getInstance());
+    Pair<Integer, List<CourseApplication>> result = entityDao.findAndCount("course_application", condition, page, 20, CourseApplicationRowMapper.getInstance());
 
     List<CourseApplication> orders = result.right;
     for (CourseApplication order : orders) {

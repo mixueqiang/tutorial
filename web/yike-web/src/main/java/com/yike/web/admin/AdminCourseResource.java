@@ -40,12 +40,14 @@ public class AdminCourseResource extends BaseResource {
   @GET
   @Produces(MediaType.TEXT_HTML)
   public Response index(@QueryParam("categoryId") long categoryId, @QueryParam("page") int page) {
+    page = page > 0 ? page : 1;
+
     Map<String, Object> condition = new HashMap<String, Object>();
     if (categoryId > 0) {
       condition.put("categoryId", categoryId);
     }
     condition.put("status", 1);
-    Pair<Integer, List<Course>> result = entityDao.findAndCount("course", condition, 1, 20, CourseRowMapper.getInstance());
+    Pair<Integer, List<Course>> result = entityDao.findAndCount("course", condition, page, 20, CourseRowMapper.getInstance());
 
     List<Course> courses = result.right;
     for (Course course : courses) {

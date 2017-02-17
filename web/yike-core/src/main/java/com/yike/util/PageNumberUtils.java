@@ -26,7 +26,7 @@ public final class PageNumberUtils {
    * @return page number and the last page number.
    */
   public static Pair<List<Integer>, Integer> generate(int currentPageNumber, long count) {
-    return generate(currentPageNumber, count, PAGE_SIZE_SMALL);
+    return generate(currentPageNumber, count, PAGE_SIZE_MEDIUM);
   }
 
   /**

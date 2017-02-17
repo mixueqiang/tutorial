@@ -2,6 +2,7 @@ package com.yike.web.api.v1;
 
 import com.yike.model.WxMessage;
 import com.yike.service.WxITService;
+import com.yike.service.WxYiKeService;
 import com.yike.util.XmlUtil;
 import com.yike.web.BaseResource;
 import org.apache.commons.lang.StringUtils;
@@ -40,10 +41,24 @@ public class ApiWxResource extends BaseResource {
 
   @Resource
   protected WxITService wxITService;
+  @Resource
+  protected WxYiKeService wxYiKeService;
 
   @GET
+  @Path("/it")
   @Produces(MediaType.TEXT_PLAIN)
-  public String test(
+  public String itTest(
+          @DefaultValue("") @QueryParam("signature") String signature,
+          @DefaultValue("") @QueryParam("timestamp") String timestamp,
+          @DefaultValue("") @QueryParam("nonce") String nonce,
+          @DefaultValue("") @QueryParam("echostr") String echostr) {
+    return echostr;
+  }
+
+  @GET
+  @Path("/yike")
+  @Produces(MediaType.TEXT_PLAIN)
+  public String yikeTest(
           @DefaultValue("") @QueryParam("signature") String signature,
           @DefaultValue("") @QueryParam("timestamp") String timestamp,
           @DefaultValue("") @QueryParam("nonce") String nonce,
@@ -52,9 +67,10 @@ public class ApiWxResource extends BaseResource {
   }
 
   @POST
+  @Path("/it")
   @Consumes(MediaType.TEXT_XML)
   @Produces(MediaType.TEXT_XML)
-  public String receiveMessages(String xml) {
+  public String receiveITMessages(String xml) {
     System.out.println(xml);
 
     LOG.info("wx receiveMessages : " + xml);
@@ -62,6 +78,22 @@ public class ApiWxResource extends BaseResource {
     WxMessage message = formatMessage(xml);
 
     wxITService.handleMessage(message);
+
+    return null;
+  }
+
+  @POST
+  @Path("/yike")
+  @Consumes(MediaType.TEXT_XML)
+  @Produces(MediaType.TEXT_XML)
+  public String receiveYiKeMessages(String xml) {
+    System.out.println(xml);
+
+    LOG.info("wx receiveMessages : " + xml);
+
+    WxMessage message = formatMessage(xml);
+
+    wxYiKeService.handleMessage(message);
 
     return null;
   }

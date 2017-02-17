@@ -40,7 +40,6 @@ public class WxITService {
 
   public static WxApiUtils apiUtils = new WxApiUtils(WxITService.APP_ID, WxITService.APP_SECRET);
 
-
   private static Map<String, String> createdInvitationImageUsers = new HashMap<String, String>();
 
   public boolean handleMessage(WxMessage message) {

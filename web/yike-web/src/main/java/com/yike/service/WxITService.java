@@ -36,9 +36,9 @@ public class WxITService {
   public static String APP_SECRET = "5f8238027cab1b5348df2dd86f5bd6fe";
 
   @Resource
-  private WxITUserService wxITUserService;
+  private WxITUserService wxUserService;
 
-  public static WxApiUtils apiUtils = new WxApiUtils(WxITService.APP_ID, WxITService.APP_SECRET);
+  public static WxApiUtils apiUtils = new WxApiUtils(APP_ID, APP_SECRET);
 
   private static Map<String, String> createdInvitationImageUsers = new HashMap<String, String>();
 
@@ -78,7 +78,7 @@ public class WxITService {
 
   private boolean handleSubscribeMsg(WxMessage message) {
 
-    wxITUserService.sync(message.getFromUserName());
+    wxUserService.sync(message.getFromUserName());
 
     if (isInvitationEvent(message)) {
       return handleInvitationEvent(message);
@@ -88,7 +88,7 @@ public class WxITService {
   }
 
   private boolean handleUnsubscribeMsg(WxMessage message) {
-    wxITUserService.sync(message.getFromUserName());
+    wxUserService.sync(message.getFromUserName());
     return true;
   }
 
@@ -119,7 +119,7 @@ public class WxITService {
 
   private boolean isInvitationEvent(WxMessage message) {
     String qrTicket = message.getTicket();
-    return wxITUserService.hasTicket(qrTicket);
+    return wxUserService.hasTicket(qrTicket);
   }
 
   private boolean handleInvitationEvent(WxMessage message) {
@@ -128,7 +128,7 @@ public class WxITService {
     String scannedOpenId = message.getFromUserName();
     String invterOpenId = null;
     String ticket = message.getTicket();
-    invter = wxITUserService.findByTicket(ticket);
+    invter = wxUserService.findByTicket(ticket);
 
     if (invter == null) {
       LOG.error("Not found source WxUser with qeTicket : " + ticket);
@@ -141,7 +141,7 @@ public class WxITService {
       // 自己不能邀请自己
       return false;
     }
-    WxUser scannedUser = wxITUserService.getUser(scannedOpenId);
+    WxUser scannedUser = wxUserService.getUser(scannedOpenId);
     if (scannedUser == null) {
       return false;
     }
@@ -149,19 +149,19 @@ public class WxITService {
       LOG.error("Not found scannedUser in database or save failure.");
       return false;
     }
-    if (!wxITUserService.saveInvitation(scannedOpenId, invterOpenId)) {
+    if (!wxUserService.saveInvitation(scannedOpenId, invterOpenId)) {
       return false;
     }
     if (invter.getIsStudent() == 1) {
       return true;
     }
-    int count = wxITUserService.countInvitation(invterOpenId);
+    int count = wxUserService.countInvitation(invterOpenId);
 
     if (count == 1) {
       return sendInvitingTemplateMessage(scannedUser, invter);
     }
     if (count == 2) {
-      if (wxITUserService.makeStudent(invterOpenId)) {
+      if (wxUserService.makeStudent(invterOpenId)) {
         return sendFreeAdmissionTemplateMessage(invter);
       }
     }
@@ -189,7 +189,7 @@ public class WxITService {
             + "↓↓邀请卡正在生成中↓↓", openId);
     executor.execute(new Runnable() {
       public void run() {
-        WxUser user = wxITUserService.getUser(openId);
+        WxUser user = wxUserService.getUser(openId);
         if (user != null) {
           sendInvitationImage(user);
         } else {
@@ -220,7 +220,7 @@ public class WxITService {
       return false;
     }
 
-    wxITUserService.saveTicket(openId, ticket);
+    wxUserService.saveTicket(openId, ticket);
     String mediaId = apiUtils.uploadTempImage(image);
 
     if (StringUtils.isEmpty(mediaId)) {

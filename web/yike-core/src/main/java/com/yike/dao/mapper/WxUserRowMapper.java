@@ -26,6 +26,7 @@ public class WxUserRowMapper implements RowMapper<WxUser> {
     WxUser entity = new WxUser();
 
     entity.setId(rs.getLong("id"));
+    entity.setUserId(rs.getLong("userId"));
     entity.setSubscribe(rs.getInt("subscribe"));
     entity.setOpenid(rs.getString("openId"));
     entity.setNickname(rs.getString("nickName"));

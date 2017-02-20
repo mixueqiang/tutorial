@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
@@ -24,6 +25,7 @@ public class WxFotoMixUtils {
   private static final Log LOG = LogFactory.getLog(WxFotoMixUtils.class);
 
   public static String localImagePath = Constants.IMAGE_REPO + "wx/";
+//  public static String localImagePath = "/Users/ilakeyc/Desktop/" + "wx/";
 
   public static String mainImageName = "wx-invitation-main.jpg";
 
@@ -44,7 +46,12 @@ public class WxFotoMixUtils {
     File mainImageFile = getMainImage();
     File userImageFile = getUserImage(user);
     File QRCodeFile = getQRCode(user, ticket);
-    String nickName = user.getNickname();
+    String nickName = null;
+    try {
+      nickName = new String(user.getNickname().getBytes(), "UTF-8");
+    } catch (UnsupportedEncodingException e) {
+      LOG.error("encoding String to UTF-8 failure", e);
+    }
     if (StringUtils.length(nickName) > 5) {
       nickName = StringUtils.substring(nickName, 0, 5);
     }
@@ -70,11 +77,12 @@ public class WxFotoMixUtils {
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
       }
 
-      g2d.setColor(Color.white);
-      g2d.setFont(new Font(null, Font.BOLD, 48));
-      g2d.drawString(nickName, textX, 1075);
-      g2d.dispose();
-
+      if (StringUtils.isNotEmpty(nickName)) {
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font(null, Font.BOLD, 48));
+        g2d.drawString(nickName, textX, 1075);
+        g2d.dispose();
+      }
 
 
       String imageSaveUrl = localImagePath + imageName;

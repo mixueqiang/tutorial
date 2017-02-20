@@ -55,6 +55,7 @@ public class WxFotoMixUtils {
     if (StringUtils.length(nickName) > 5) {
       nickName = StringUtils.substring(nickName, 0, 5);
     }
+    LOG.info(">>> Wx user name is : " + nickName);
     try {
       Image mainImage = ImageIO.read(mainImageFile);
       Image userImage;

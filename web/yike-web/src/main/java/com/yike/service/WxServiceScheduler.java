@@ -55,7 +55,7 @@ public class WxServiceScheduler implements Runnable {
     Map<String, Object> button_warm_up_git = new HashMap<String, Object>();
     button_warm_up_git.put("type", "view");
     button_warm_up_git.put("name", "git教程");
-    button_warm_up_git.put("url", "http://mp.weixin.qq.com/s/NlThXqnfFQ7_d8MKF6wA4w");
+    button_warm_up_git.put("url", "http://mp.weixin.qq.com/s/M4qztb2JfDwsrdjdrmgKEg");
     
     Map<String, Object> button_warm_up_source = new HashMap<String, Object>();
     button_warm_up_source.put("type", "click");

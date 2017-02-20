@@ -157,4 +157,13 @@ public class WxITUserServiceImpl extends BaseService implements WxITUserService 
       return 0;
     }
   }
+
+@Override
+public boolean isStudent(String openId) {
+	WxUser user = getUser(openId);
+	if (user != null) {
+		return user.getIsStudent() == 1;
+	}
+	return false;
+}
 }

@@ -25,4 +25,6 @@ public interface WxITUserService {
   WxUser getUser(String openId);
 
   WxUser sync(String openId);
+  
+  boolean isStudent(String openId);
 }

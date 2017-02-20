@@ -59,7 +59,7 @@ public class WxServiceScheduler implements Runnable {
     
     Map<String, Object> button_warm_up_source = new HashMap<String, Object>();
     button_warm_up_source.put("type", "click");
-    button_warm_up_source.put("name", "源码下载");
+    button_warm_up_source.put("name", "课程源码");
     button_warm_up_source.put("key", "com.yikeshangshou.wx.source");
 
     

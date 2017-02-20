@@ -2,6 +2,7 @@ package com.yike.service;
 
 import com.yike.model.WxMessage;
 import com.yike.model.WxUser;
+import com.yike.service.impl.WxITUserServiceImpl;
 import com.yike.web.util.WxApiUtils;
 import com.yike.web.util.WxFotoMixUtils;
 import com.yike.web.util.WxTemplateMessageFormatter;
@@ -93,8 +94,17 @@ public class WxITService {
   }
 
   private boolean handleClickMsg(WxMessage message) {
-    if ("com.yikeshangshou.wx.share.plan".equals(message.getEventKey())) {
-
+    if ("com.yikeshangshou.wx.share.web".equals(message.getEventKey())) {
+    	return handleWebShareClientEvent(message);
+    }
+    if ("com.yikeshangshou.wx.share.java".equals(message.getEventKey())) {
+    	return handleJavaShareClientEvent(message);
+    }   
+    if ("com.yikeshangshou.wx.share.db".equals(message.getEventKey())) {
+    	return handleDBShareClientEvent(message);
+    }
+    if ("com.yikeshangshou.wx.source".equals(message.getEventKey())) {
+    	return handleSourceClickEvent(message);
     }
     if ("com.yikeshangshou.wx.free".equals(message.getEventKey())) {
       return handleFreeClickEvent(message);
@@ -103,7 +113,35 @@ public class WxITService {
     return true;
   }
 
-  private boolean handleScanMsg(WxMessage message) {
+  private boolean handleDBShareClientEvent(WxMessage message) {
+	sendStudentMessage(message.getFromUserName(), "数据资料地址");
+	return false;
+}
+
+private boolean handleJavaShareClientEvent(WxMessage message) {
+	sendStudentMessage(message.getFromUserName(), "Java资料地址");
+	return false;
+}
+
+private boolean handleWebShareClientEvent(WxMessage message) {
+	sendStudentMessage(message.getFromUserName(), "前端资料地址");
+	return false;
+}
+
+private boolean handleSourceClickEvent(WxMessage message) {
+	sendStudentMessage(message.getFromUserName(), "github地址");
+	return false;
+}
+
+private void sendStudentMessage(String openId, String eventMsg) {
+	if(wxUserService.isStudent(openId)) {
+	   apiUtils.sendTextMessage(eventMsg, openId);
+	} else {
+	   apiUtils.sendTextMessage("你还未入学，请先点击免费入学完成入学，再进行后续操作", openId);
+	}
+};
+
+private boolean handleScanMsg(WxMessage message) {
     if (isInvitationEvent(message)) {
       return handleInvitationEvent(message);
     }

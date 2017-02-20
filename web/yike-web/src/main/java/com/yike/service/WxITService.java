@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
 /**
  * @author ilakeyc
  * @since 10/02/2017
@@ -148,12 +147,10 @@ public class WxITService {
         return true;
     }
 
-
     private boolean handleTextMsg(WxMessage wxMessage) {
         apiUtils.sendTextMessage("消息已收到，暂无关于" + wxMessage.getContent() + "的回复", wxMessage.getFromUserName());
         return true;
     }
-
 
     private boolean isInvitationEvent(WxMessage message) {
         String qrTicket = message.getTicket();

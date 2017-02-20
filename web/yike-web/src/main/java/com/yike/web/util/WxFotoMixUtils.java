@@ -80,7 +80,7 @@ public class WxFotoMixUtils {
 
       if (StringUtils.isNotEmpty(nickName)) {
         g2d.setColor(Color.white);
-        g2d.setFont(new Font(null, Font.BOLD, 48));
+        g2d.setFont(new Font("微软雅黑", Font.BOLD, 48));
         g2d.drawString(nickName, textX, 1075);
         g2d.dispose();
       }

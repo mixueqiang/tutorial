@@ -246,7 +246,7 @@ public class WxITService {
             ticket = apiUtils.requestQRCode(openId);
         }
 
-        if (image == null) {
+        if (image == null && StringUtils.isNotEmpty(ticket)) {
             image = WxFotoMixUtils.createInvitationImage(user, ticket);
         }
 

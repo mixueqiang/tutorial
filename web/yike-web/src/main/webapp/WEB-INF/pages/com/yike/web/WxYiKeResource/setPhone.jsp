@@ -40,10 +40,10 @@
         </div>
         <div class="form-group">
           <label for="securityCode" class="col-sm-3 control-label">验证码</label>
-          <div class="col-sm-3">
+          <div class="col-sm-2 col-xs-2">
             <input type="text" id="securityCode" name="securityCode" tabindex="3" class="form-control"/>
           </div>
-          <div class="col-sm-2">
+          <div class="col-sm-2 col-xs-2">
             <button class="btn btn-warning btn-send-sms">获取验证码</button>
           </div>
         </div>

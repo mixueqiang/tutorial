@@ -21,7 +21,7 @@ public class WxYiKeService {
   public static String APP_SECRET = "";
 
   @Resource
-  protected WxYiKeUserService wxUserService;
+  public WxYiKeUserService wxUserService;
 
   public static WxApiUtils apiUtils = new WxApiUtils(APP_ID, APP_SECRET);
 

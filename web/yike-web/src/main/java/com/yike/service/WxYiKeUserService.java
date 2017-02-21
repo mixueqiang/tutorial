@@ -2,17 +2,23 @@ package com.yike.service;
 
 import com.yike.model.WxUser;
 
+import java.util.Map;
+
 /**
  * @author ilakeyc
  * @since 2017/2/20
  */
 public interface WxYiKeUserService {
 
-  WxUser findByUserId(long mainUserId);
+    boolean updateByOpenId(String opeId, String columnName, Object columnValue);
 
-  WxUser findByOpenId(String openId);
+    boolean updateByOpenId(String openId, Map<String, Object> updateValues);
 
-  WxUser getUser(String openId);
+    WxUser findByUserId(long mainUserId);
 
-  WxUser sync(String openId);
+    WxUser findByOpenId(String openId);
+
+    WxUser getUser(String openId);
+
+    WxUser sync(String openId);
 }

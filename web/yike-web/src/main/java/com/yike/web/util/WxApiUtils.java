@@ -1,6 +1,7 @@
 package com.yike.web.util;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.yike.model.WxUser;
 import org.apache.commons.lang.StringUtils;
@@ -86,8 +87,8 @@ public class WxApiUtils {
 
         String urlString = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + currentAppId + "&secret=" + currentAppSecret;
         String result = SimpleNetworking.getRequest(urlString);
-        Gson gson = new Gson();
-        Map<String, Object> response = gson.fromJson(result, new TypeToken<Map<String, Object>>() {
+        Gson g = new GsonBuilder().disableHtmlEscaping().create();
+        Map<String, Object> response = g.fromJson(result, new TypeToken<Map<String, Object>>() {
         }.getType());
         String token = (String) response.get("access_token");
         this.currentAccessToken = token;
@@ -109,7 +110,7 @@ public class WxApiUtils {
         }
 
         Map<String, String> response = null;
-        Gson g = new Gson();
+        Gson g = new GsonBuilder().disableHtmlEscaping().create();
         try {
             response = g.fromJson(responseString, new TypeToken<Map<String, String>>() {
             }.getType());
@@ -146,7 +147,7 @@ public class WxApiUtils {
     }
 
     public <T> T postJsonToObject(String urlString, Object param, Type typeOfT) {
-        Gson g = new Gson();
+        Gson g = new GsonBuilder().disableHtmlEscaping().create();
         String postJson = null;
         if (param != null) {
             try {
@@ -176,7 +177,8 @@ public class WxApiUtils {
         if (response == null) {
             return null;
         }
-        Gson g = new Gson();
+        Gson g = new GsonBuilder().disableHtmlEscaping().create();
+        ;
         try {
             return g.fromJson(response, typeOfT);
         } catch (Throwable t) {
@@ -258,7 +260,7 @@ public class WxApiUtils {
         if (StringUtils.isEmpty(response)) {
             return null;
         }
-        Gson g = new Gson();
+        Gson g = new GsonBuilder().disableHtmlEscaping().create();
         try {
             return g.fromJson(
                     response,

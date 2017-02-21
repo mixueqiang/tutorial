@@ -223,6 +223,7 @@ public class WxServiceScheduler implements Runnable {
         if (StringUtils.isNotEmpty(type)) {
             button.put("type", type);
         }
+        return button;
     }
 
 }

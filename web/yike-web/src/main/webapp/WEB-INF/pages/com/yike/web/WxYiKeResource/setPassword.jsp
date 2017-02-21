@@ -8,14 +8,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>注册</title>
+  <title>绑定昵称与密码</title>
 </head>
 <body>
 <div class="container signcontainer">
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
-      <h2>注册</h2>
-      <form id="set-password" name="set-password" action="/api/v1/user" method="post" class="form-horizontal row-space-top-4">
+      <form id="set-password" name="set-password" action="/api/v1/wx/binding/pwd" method="post" class="form-horizontal row-space-top-4">
+      	<div class="form-group row-space-top-2 hide">
+          <label for="oid" class="col-sm-3 control-label"></label>
+          <div class="col-sm-4">
+            <input type="text" id="oid" name="oid" tabindex="1" class="form-control" value="${oid}"/>
+          </div>
+        </div>
         <div class="form-group">
           <label for="username" class="col-sm-3 control-label">昵称</label>
           <div class="col-sm-4">
@@ -80,19 +85,14 @@
         success : function(resp) {
           if (resp && resp.e == 0) {
             var role = $('#role').val();
-            var message = '注册成功，';
-            sessionStorage.setItem("isSignup",true);
+            var message = '绑定成功';
             Message.info(message, false, $('.form-group:last', $(form)));
-            setTimeout(function() {
-              window.history.go(-1);
-            }, 1500);
-
           } else {
-            Message.error('注册失败：' + resp.m, false, $('.form-group:last', $(form)));
+            Message.error('绑定失败：'+resp.m, false, $('.form-group:last', $(form)));
           }
         },
         error : function() {
-          Message.error('注册失败！', false, $('.form-group:last', $(form)));
+          Message.error('绑定失败！', false, $('.form-group:last', $(form)));
         }
       });
     }

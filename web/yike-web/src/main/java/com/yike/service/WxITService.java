@@ -2,7 +2,6 @@ package com.yike.service;
 
 import com.yike.model.WxMessage;
 import com.yike.model.WxUser;
-import com.yike.service.impl.WxITUserServiceImpl;
 import com.yike.web.util.WxApiUtils;
 import com.yike.web.util.WxFotoMixUtils;
 import com.yike.web.util.WxTemplateMessageFormatter;

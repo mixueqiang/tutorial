@@ -104,6 +104,7 @@ public class ApiWxResource extends BaseResource {
             if (user != null) {
                 wxYiKeService.wxUserService.updateByOpenId(oid, "userId", user.getId());
                 if (StringUtils.isNotEmpty(user.getPassword())) {
+                    wxYiKeService.sendBindingSuccessNoticeTemplateMessage(oid, user);
                     return ResponseBuilder.ok("n");
                 }
             } else {
@@ -179,6 +180,8 @@ public class ApiWxResource extends BaseResource {
             userUpdateValues.put("updateTime", System.currentTimeMillis());
 
             entityDao.update("user", "id", user.getId(), userUpdateValues);
+
+            wxYiKeService.sendBindingSuccessNoticeTemplateMessage(oid, user);
 
             // Save instructor
             Entity instructorEntity = new Entity(Instructor.SQL_TABLE_NAME);

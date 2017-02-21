@@ -1,8 +1,10 @@
 package com.yike.service.impl;
 
 import com.yike.Constants;
+import com.yike.dao.mapper.UserRowMapper;
 import com.yike.dao.mapper.WxUserRowMapper;
 import com.yike.model.Entity;
+import com.yike.model.User;
 import com.yike.model.WxUser;
 import com.yike.service.WxYiKeService;
 import com.yike.service.WxYiKeUserService;
@@ -20,6 +22,18 @@ import java.util.Map;
 @Service
 public class WxYiKeUserServiceImpl extends BaseService implements WxYiKeUserService {
     private static final Log LOG = LogFactory.getLog(WxYiKeUserServiceImpl.class);
+
+    public User getBindingUser(WxUser wxUser) {
+        if (wxUser == null || wxUser.getUserId() == 0) {
+            return null;
+        }
+        try {
+            return entityDao.get("user", wxUser.getUserId(), UserRowMapper.getInstance());
+        } catch (Throwable t) {
+            LOG.error("Get user " + String.valueOf(wxUser.getUserId()) + " failure", t);
+            return null;
+        }
+    }
 
     public WxUser findByUserId(long mainUserId) {
         return null;

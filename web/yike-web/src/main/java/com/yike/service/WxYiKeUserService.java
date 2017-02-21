@@ -1,5 +1,6 @@
 package com.yike.service;
 
+import com.yike.model.User;
 import com.yike.model.WxUser;
 
 import java.util.Map;
@@ -9,6 +10,8 @@ import java.util.Map;
  * @since 2017/2/20
  */
 public interface WxYiKeUserService {
+
+    User getBindingUser(WxUser wxUser);
 
     boolean updateByOpenId(String opeId, String columnName, Object columnValue);
 

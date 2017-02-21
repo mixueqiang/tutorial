@@ -1,6 +1,7 @@
 package com.yike.service;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yike.task.TaskScheduler;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -94,7 +95,7 @@ public class WxServiceScheduler implements Runnable {
         main.put("button", buttons);
 
         System.out.println("\n\n\n" + main + "\n\n\n");
-        Gson g = new Gson();
+        Gson g = new GsonBuilder().disableHtmlEscaping().create();
         System.out.println("\n\n\n" + g.toJson(main) + "\n\n\n");
 
         String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + WxYiKeService.apiUtils.currentAccessToken;

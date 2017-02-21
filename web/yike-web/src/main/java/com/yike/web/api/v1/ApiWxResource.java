@@ -103,6 +103,9 @@ public class ApiWxResource extends BaseResource {
             User user = entityDao.findOne("user", "phone", phone, UserRowMapper.getInstance());
             if (user != null) {
                 wxYiKeService.wxUserService.updateByOpenId(oid, "userId", user.getId());
+                if (StringUtils.isNotEmpty(user.getPassword())) {
+                    return ResponseBuilder.ok("n");
+                }
             } else {
 
                 long time = System.currentTimeMillis();
@@ -117,7 +120,7 @@ public class ApiWxResource extends BaseResource {
 
             entityDao.update("security_code", "id", securityCodeEntity.getId(), "status", 0);
 
-            return ResponseBuilder.OK;
+            return ResponseBuilder.ok("y");
 
         } catch (Throwable t) {
             LOG.error("Failed to register user.", t);

@@ -17,8 +17,8 @@ public class WxYiKeService {
   private static final Log LOG = LogFactory.getLog(WxYiKeService.class);
 
   public static String WX_TOKEN = "yikeshangshouwx";
-  public static String APP_ID = "";
-  public static String APP_SECRET = "";
+  public static String APP_ID = "wx19882be1b89e09e5";
+  public static String APP_SECRET = "1b9fc8a682a840147a777822c14471f0";
 
   @Resource
   public WxYiKeUserService wxUserService;

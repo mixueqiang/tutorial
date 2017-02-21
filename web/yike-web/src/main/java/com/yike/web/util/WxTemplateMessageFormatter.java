@@ -23,7 +23,7 @@ public class WxTemplateMessageFormatter {
         data.put("first", formateData("\n你的帐号已绑定\n", "#FF2C38"));
         data.put("keyword1", formateData("尾号" + newPhone));
         data.put("keyword2", formateData(dateString));
-        data.put("remark", formateData("若不是您本人操作↓↓请立即前往【一课上手】重置密码。"));
+        data.put("remark", formateData("\n若不是您本人操作↓↓请立即前往【一课上手】重置密码。"));
         return data;
     }
 
@@ -48,10 +48,10 @@ public class WxTemplateMessageFormatter {
         String dateString = dateFormat.format(new Date());
         String newPhone = phone.substring(6);
 
-        data.put("first", formateData("\n已经绑定尾号为" + newPhone + "的手机手机号码\n", "#FF2C38"));
+        data.put("first", formateData("\n已经绑定尾号为" + newPhone + "的手机手机号码\n改号码可以登录【一课上手】\n", "#FF2C38"));
         data.put("keyword1", formateData("【昵称】【密码】未设置"));
         data.put("keyword2", formateData(dateString));
-        data.put("remark", formateData("点击↓↓详情，立即设置密码，帐号可以登录【一课上手】"));
+        data.put("remark", formateData("\n点击↓↓详情，立即设置密码。"));
         return data;
     }
 
@@ -63,7 +63,7 @@ public class WxTemplateMessageFormatter {
         data.put("first", formateData("\n你还没有绑定【一课上手】帐号\n", "#FF2C38"));
         data.put("keyword1", formateData("未绑定"));
         data.put("keyword2", formateData(dateString));
-        data.put("remark", formateData("点击↓↓详情，开始绑定帐号，课程状态一手掌握！"));
+        data.put("remark", formateData("\n点击↓↓详情，开始绑定帐号。"));
         return data;
     }
 

@@ -1,18 +1,14 @@
 package com.yike.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import com.yike.util.StringUtil;
+import com.yike.task.TaskScheduler;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
-import com.yike.task.TaskScheduler;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author ilakeyc
@@ -129,8 +125,8 @@ public class WxServiceScheduler implements Runnable {
 
         main.put("button", buttons);
 
-        String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + WxITService.apiUtils.currentAccessToken;
-        WxITService.apiUtils.postJsonToObject(url, main, null);
+        String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + WxYiKeService.apiUtils.currentAccessToken;
+        WxYiKeService.apiUtils.postJsonToObject(url, main, null);
     }
 
     private void setITButtons() {

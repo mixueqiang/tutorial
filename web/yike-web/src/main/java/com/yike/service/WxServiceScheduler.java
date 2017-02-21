@@ -32,6 +32,7 @@ public class WxServiceScheduler implements Runnable {
     @Override
     public void run() {
         WxITService.apiUtils.requestAccessToken();
+        WxYiKeService.apiUtils.requestAccessToken();
         setITButtons();
         setYiKeButtons();
     }

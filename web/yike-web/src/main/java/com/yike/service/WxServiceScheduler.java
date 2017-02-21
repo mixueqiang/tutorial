@@ -34,52 +34,34 @@ public class WxServiceScheduler implements Runnable {
     }
 
     private void setYiKeButtons() {
-        Map<String, Object> main = new HashMap<String, Object>();
 
-        final Map<String, Object> button_warm_up = setupButton(
+        final Map<String, Object> button_mine = setupButton(
                 null,
-                "实战课程",
+                "我",
                 null,
                 null,
                 new ArrayList<Map<String, Object>>() {
                     private static final long serialVersionUID = -4362505658933988996L;
 
                     {
-
-                        add(setupButton(
-                                "view",
-                                "当前课程",
-                                null,
-                                "http://mp.weixin.qq.com/s/NlThXqnfFQ7_d8MKF6wA4w",
-                                null));
-
-                        add(setupButton(
-                                "view",
-                                "git教程",
-                                null,
-                                "http://mp.weixin.qq.com/s/M4qztb2JfDwsrdjdrmgKEg",
-                                null));
-
                         add(setupButton(
                                 "click",
-                                "当前课程源码",
-                                "com.yikeshangshou.wx.source",
+                                "帐号绑定",
+                                "com.yikeshangshou.wx.binding",
                                 null,
                                 null));
-
+                        add(setupButton(
+                                "click",
+                                "我报名的",
+                                "com.yikeshangshou.wx.application",
+                                null,
+                                null));
                     }
                 });
 
-        final Map<String, Object> button_free = setupButton(
-                "click",
-                "免费入学",
-                "com.yikeshangshou.wx.free",
+        final Map<String, Object> button_course = setupButton(
                 null,
-                null);
-
-        final Map<String, Object> button_share = setupButton(
-                null,
-                "资源共享",
+                "课程",
                 null,
                 null,
                 new ArrayList<Map<String, Object>>() {
@@ -88,46 +70,141 @@ public class WxServiceScheduler implements Runnable {
                     {
                         add(setupButton(
                                 "view",
-                                "资源共享计划",
+                                "计算机技术",
                                 null,
-                                "http://mp.weixin.qq.com/s/NlThXqnfFQ7_d8MKF6wA4w",
+                                "http://www.yikeshangshou.com/course?c=102",
                                 null));
                         add(setupButton(
-                                "click",
-                                "前端学习资源",
-                                "com.yikeshangshou.wx.share.web",
+                                "view",
+                                "语言翻译",
                                 null,
+                                "http://www.yikeshangshou.com/course?c=101",
                                 null));
                         add(setupButton(
-                                "click",
-                                "Java学习资源",
-                                "com.yikeshangshou.wx.share.java",
+                                "view",
+                                "生活技能",
                                 null,
-                                null));
-                        add(setupButton(
-                                "click",
-                                "数据学习资源",
-                                "com.yikeshangshou.wx.share.db",
-                                null,
+                                "http://www.yikeshangshou.com/course?c=103",
                                 null));
                     }
                 });
 
-        ArrayList<Map<String, Object>> buttons = new ArrayList<Map<String, Object>>() {
+        final Map<String, Object> button_about = setupButton(
+                "click",
+                "关于我们",
+                "com.yikeshangshou.wx.about",
+                null,
+                null);
+
+        Map<String, Object> main = new HashMap<String, Object>();
+        main.put("button", new ArrayList<Map<String, Object>>() {
             private static final long serialVersionUID = 3845618020539897210L;
 
             {
-                add(button_warm_up);
-                add(button_free);
-                add(button_share);
+                add(button_mine);
+                add(button_course);
+                add(button_about);
             }
-        };
-
-        main.put("button", buttons);
-
+        });
         String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + WxYiKeService.apiUtils.currentAccessToken;
         WxYiKeService.apiUtils.postJsonToObject(url, main, null);
     }
+
+//    private void setYiKeButtons() {
+//        Map<String, Object> main = new HashMap<String, Object>();
+//
+//        final Map<String, Object> button_warm_up = setupButton(
+//                null,
+//                "实战课程",
+//                null,
+//                null,
+//                new ArrayList<Map<String, Object>>() {
+//                    private static final long serialVersionUID = -4362505658933988996L;
+//
+//                    {
+//
+//                        add(setupButton(
+//                                "view",
+//                                "当前课程",
+//                                null,
+//                                "http://mp.weixin.qq.com/s/NlThXqnfFQ7_d8MKF6wA4w",
+//                                null));
+//
+//                        add(setupButton(
+//                                "view",
+//                                "git教程",
+//                                null,
+//                                "http://mp.weixin.qq.com/s/M4qztb2JfDwsrdjdrmgKEg",
+//                                null));
+//
+//                        add(setupButton(
+//                                "click",
+//                                "当前课程源码",
+//                                "com.yikeshangshou.wx.source",
+//                                null,
+//                                null));
+//
+//                    }
+//                });
+//
+//        final Map<String, Object> button_free = setupButton(
+//                "click",
+//                "免费入学",
+//                "com.yikeshangshou.wx.free",
+//                null,
+//                null);
+//
+//        final Map<String, Object> button_share = setupButton(
+//                null,
+//                "资源共享",
+//                null,
+//                null,
+//                new ArrayList<Map<String, Object>>() {
+//                    private static final long serialVersionUID = -339813270108742308L;
+//
+//                    {
+//                        add(setupButton(
+//                                "view",
+//                                "资源共享计划",
+//                                null,
+//                                "http://mp.weixin.qq.com/s/NlThXqnfFQ7_d8MKF6wA4w",
+//                                null));
+//                        add(setupButton(
+//                                "click",
+//                                "前端学习资源",
+//                                "com.yikeshangshou.wx.share.web",
+//                                null,
+//                                null));
+//                        add(setupButton(
+//                                "click",
+//                                "Java学习资源",
+//                                "com.yikeshangshou.wx.share.java",
+//                                null,
+//                                null));
+//                        add(setupButton(
+//                                "click",
+//                                "数据学习资源",
+//                                "com.yikeshangshou.wx.share.db",
+//                                null,
+//                                null));
+//                    }
+//                });
+//
+//        ArrayList<Map<String, Object>> buttons = new ArrayList<Map<String, Object>>() {
+//            private static final long serialVersionUID = 3845618020539897210L;
+//
+//            {
+//                add(button_warm_up);
+//                add(button_free);
+//                add(button_share);
+//            }
+//        };
+//
+//        main.put("button", buttons);
+//
+//        String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + WxYiKeService.apiUtils.currentAccessToken;
+//        WxYiKeService.apiUtils.postJsonToObject(url, main, null);
+//    }
 
     private void setITButtons() {
         Map<String, Object> main = new HashMap<String, Object>();

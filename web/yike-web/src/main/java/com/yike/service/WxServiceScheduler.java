@@ -179,7 +179,7 @@ public class WxServiceScheduler implements Runnable {
         Map<String, Object> main = new HashMap<String, Object>();
         main.put("button", buttons);
 
-        String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + WxYiKeService.apiUtils.currentAccessToken;
+        String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + WxITService.apiUtils.currentAccessToken;
         WxITService.apiUtils.postJsonToObject(url, main, null);
     }
 

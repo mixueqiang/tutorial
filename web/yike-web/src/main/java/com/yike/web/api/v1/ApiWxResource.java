@@ -17,6 +17,7 @@ import org.dom4j.io.SAXReader;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.WebUtils;
 import org.xml.sax.InputSource;
 
 import javax.annotation.Resource;
@@ -105,6 +106,10 @@ public class ApiWxResource extends BaseResource {
                 wxYiKeService.wxUserService.updateByOpenId(oid, "userId", user.getId());
                 if (StringUtils.isNotEmpty(user.getPassword())) {
                     wxYiKeService.sendBindingSuccessNoticeTemplateMessage(oid, user);
+                    // 更新并保存session
+                    setSessionAttribute("_user", user);
+                    sessionService.storeSession(user.getId(), WebUtils.getSessionId(request));
+                    entityDao.update("user", "id", user.getId(), "loginTime", System.currentTimeMillis());
                     return ResponseBuilder.ok("n");
                 }
             } else {
@@ -197,6 +202,11 @@ public class ApiWxResource extends BaseResource {
 
                 entityDao.save(instructorEntity);
             }
+
+            // 更新并保存session
+            setSessionAttribute("_user", user);
+            sessionService.storeSession(user.getId(), WebUtils.getSessionId(request));
+            entityDao.update("user", "id", user.getId(), "loginTime", System.currentTimeMillis());
 
             return ResponseBuilder.OK;
 

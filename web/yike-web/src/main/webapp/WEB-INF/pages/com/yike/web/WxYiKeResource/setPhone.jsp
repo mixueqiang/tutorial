@@ -146,7 +146,6 @@
       $(form).ajaxSubmit({
         success : function(resp) {
           if (resp && resp.e == 0) {
-          	alert(resp.e);
             var message = '绑定成功！';
             Message.info(message, false, $('.form-group:last', $(form)));
 

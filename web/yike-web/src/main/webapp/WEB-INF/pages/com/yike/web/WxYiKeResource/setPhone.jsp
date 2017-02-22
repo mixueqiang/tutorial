@@ -24,7 +24,7 @@
         <div class="form-group row-space-top-2">
           <label for="phone" class="col-sm-3 control-label">手机号码</label>
           <div class="col-sm-4">
-            <input type="text" id="phone" name="phone" tabindex="1" class="form-control" />
+            <input type="number" id="phone" name="phone" tabindex="1" class="form-control" />
           </div>
         </div>
         <div class="form-group">
@@ -41,7 +41,7 @@
         <div class="form-group">
           <label for="securityCode" class="col-sm-3 col-xs-12 control-label">验证码</label>
           <div class="col-sm-2 col-xs-6">
-            <input type="text" id="securityCode" name="securityCode" tabindex="3" class="form-control"/>
+            <input type="number" id="securityCode" name="securityCode" tabindex="3" class="form-control"/>
           </div>
           <div class="col-sm-2 col-xs-6">
             <button class="btn btn-warning btn-send-sms">获取验证码</button>
@@ -120,8 +120,7 @@
 	    return false;
 	});
 	
-	
-	int oidValue=$('#oid').val();
+	var oidValue = $('input[name=oid]', $('#set-phone')).val();
 	$('#set-phone').validate({
     rules : {
       phone : {
@@ -154,7 +153,7 @@
             //返回值中  r == "y" 则需要跳转到 绑定昵称与密码
             if (resp.r == "y") {
             	setTimeout(function() {
-	              window.location.href="/wx/binding/pwd?oid=oidValue";
+	              window.location.href="/wx/binding/pwd?oid="+oidValue;
 	            }, 1500);
             }
             if (resp.r == "n") {

@@ -231,45 +231,43 @@ function Heightadapt(){
   $('.course-imgcover .course-img').height($('.course-imgcover .course-img').width()*0.60);
   $('.course-navbar').width($('.course-parent').width());
 }
-window.onload=function(){
-  Heightadapt();
-}
 window.onresize=function(){
   Heightadapt();
 }
-	/* 导航栏滚动至浏览器顶部位置固定,同时添加元素 */
-	$(function() {
-		//控制滚动条滚动次数
-		var a = 0;
+window.onload=function(){
+  Heightadapt();
+  /* 导航栏滚动至浏览器顶部位置固定,同时添加元素 */
+  //控制滚动条滚动次数
+  var a = 0;
 
-		//获取要定位元素距离浏览器顶部的距离
-		var navH = $(".fix-nav").offset().top;
+  //获取要定位元素距离浏览器顶部的距离
+  var navH = $(".fix-nav").offset().top;
 
-		//滚动条事件
-		$(window).scroll(function() {
-			//获取滚动条的滑动距离
-			var scroH = $(this).scrollTop();
-			//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
-			if (scroH >= navH) {
-				if (a == 0) {
-					$(".fix-nav").css({
-						"position" : "fixed",
-						"display" : "block",
-						"background" : "#fff",
-            "top" : 0,
-						"zIndex" : 1000
-					});
-					var cloneDom = $('.actions button').clone(true);
-					$('.appendContent').append(cloneDom);
-				}
-				a++;
-			} else if (scroH < navH) {
-				$(".fix-nav").css({
-					"position" : "static",
-				});
-				$('.appendContent').empty();
-				a = 0;
-			}
-		})
-	})
+  //滚动条事件
+  $(window).scroll(function() {
+    //获取滚动条的滑动距离
+    var scroH = $(this).scrollTop();
+    //滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+    if (scroH >= navH) {
+      if (a == 0) {
+        $(".fix-nav").css({
+          "position" : "fixed",
+          "display" : "block",
+          "background" : "#fff",
+          "top" : 0,
+          "zIndex" : 1000
+        });
+        var cloneDom = $('.actions button').clone(true);
+        $('.appendContent').append(cloneDom);
+      }
+      a++;
+    } else if (scroH < navH) {
+      $(".fix-nav").css({
+        "position" : "static",
+      });
+      $('.appendContent').empty();
+      a = 0;
+    }
+  })
+}
 </script>

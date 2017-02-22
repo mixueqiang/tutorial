@@ -157,7 +157,9 @@
             }
             if (resp.r == "n") {
             	//返回值中  r == "n" 不需要跳转
+            	window.location.href="/";
             }
+            window.location.href="/";
           } else {
             Message.error('绑定失败：'+resp.m, false, $('.form-group:last', $(form)));
           }

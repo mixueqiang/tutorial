@@ -28,22 +28,22 @@
           </div>
         </div>
         <div class="form-group">
-          <div class="col-sm-3 col-sm-offset-3 col-xs-4">
+          <div class="col-sm-3 col-sm-offset-3 col-xs-6">
             <img class="captcha-code" src="/api/v1/captcha" onclick="this.src='/api/v1/captcha?v='+new Date()*1"><span class="sm text-muted">点击图片更换一个验证码</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-3 control-label" for="captchaCode">图形验证码</label>
-          <div class="col-sm-3 ">
+          <div class="col-sm-4">
             <input class="form-control" id="captchaCode" name="captchaCode" tabindex="2" type="text" />
           </div>
         </div>
         <div class="form-group">
-          <label for="securityCode" class="col-sm-3 control-label">验证码</label>
-          <div class="col-sm-2 col-xs-2">
+          <label for="securityCode" class="col-sm-3 col-xs-12 control-label">验证码</label>
+          <div class="col-sm-2 col-xs-6">
             <input type="text" id="securityCode" name="securityCode" tabindex="3" class="form-control"/>
           </div>
-          <div class="col-sm-2 col-xs-2">
+          <div class="col-sm-2 col-xs-6">
             <button class="btn btn-warning btn-send-sms">获取验证码</button>
           </div>
         </div>

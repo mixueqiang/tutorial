@@ -114,15 +114,25 @@ public class WxYiKeService {
             return sendUnboundNoticeTemplateMessage(wxUser.getOpenid());
         }
         if (StringUtils.isEmpty(user.getPassword())) {
-            //TODO 密码存储是否加密？
-            sendBindingPasswordNoticeTemplateMessage(wxUser.getOpenid(), user.getPhone());
-            return false;
+            return sendBindingPasswordNoticeTemplateMessage(wxUser.getOpenid(), user.getPhone());
         }
-        return sendHasBindingPasswordNoticeTemplateMessage(wxUser.getOpenid(), user.getUsername(), user.getPhone());
+        return sendHasBindingNoticeTemplateMessage(wxUser.getOpenid(), user.getUsername(), user.getPhone());
     }
 
     private boolean handleApplicationClickEvent(WxMessage message) {
-        return true;
+        WxUser wxUser = wxUserService.getUser(message.getFromUserName());
+        if (wxUser == null) {
+            return false;
+        }
+        User user = wxUserService.getBindingUser(wxUser);
+        if (user == null) {
+            return sendUnboundNoticeTemplateMessage(wxUser.getOpenid());
+        }
+        if (StringUtils.isEmpty(user.getPassword())) {
+            return sendBindingPasswordNoticeTemplateMessage(wxUser.getOpenid(), user.getPhone());
+        }
+
+        return apiUtils.sendTextMessage("内容建设中", wxUser.getOpenid());
     }
 
     private boolean handleAboutClickEvent(WxMessage message) {
@@ -140,7 +150,7 @@ public class WxYiKeService {
         return apiUtils.sendTemplateMessage(BINDING_STATUS_NOTICE_TEMPLATE_ID, "http://www.yikeshangshou.com/wx/binding/pwd?oid=" + toUserOpenId, data, toUserOpenId);
     }
 
-    private boolean sendHasBindingPasswordNoticeTemplateMessage(String toUserOpenId, String nickName, String phone) {
+    private boolean sendHasBindingNoticeTemplateMessage(String toUserOpenId, String nickName, String phone) {
         Map<String, Object> data = WxTemplateMessageFormatter.formateHasBindingNotice(phone, nickName);
         return apiUtils.sendTemplateMessage(BINDING_STATUS_NOTICE_TEMPLATE_ID, "http://www.yikeshangshou.com", data, toUserOpenId);
     }

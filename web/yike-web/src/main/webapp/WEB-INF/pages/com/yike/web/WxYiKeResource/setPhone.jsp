@@ -102,7 +102,7 @@
 	    $.getJSON('/api/v1/sms/send', {
 	      phone : phone,
 	      captchaCode : captchaCode,
-	      type : 'register'
+	      type : 'security'
 	    }, function(resp) {
 	      if (resp && resp.e == 0) {
 	        $btn.text('验证码已发送，请在手机上查收。');

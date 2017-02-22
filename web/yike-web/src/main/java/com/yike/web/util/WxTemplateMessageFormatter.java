@@ -23,7 +23,7 @@ public class WxTemplateMessageFormatter {
         data.put("first", formateData("\n你的帐号已绑定\n", "#FF2C38"));
         data.put("keyword1", formateData("尾号" + newPhone));
         data.put("keyword2", formateData(dateString));
-        data.put("remark", formateData("\n若不是您本人操作↓↓请立即前往【一课上手】重置密码。"));
+        data.put("remark", formateData("\n若不是您本人操作，请立即重置密码。↓↓"));
         return data;
     }
 
@@ -48,7 +48,7 @@ public class WxTemplateMessageFormatter {
         String dateString = dateFormat.format(new Date());
         String newPhone = phone.substring(7);
 
-        data.put("first", formateData("\n已经绑定尾号为" + newPhone + "的手机号码\n改号码可以登录【一课上手】\n", "#FF2C38"));
+        data.put("first", formateData("\n已经绑定尾号为" + newPhone + "的手机号码\n", "#FF2C38"));
         data.put("keyword1", formateData("【昵称】【密码】未设置"));
         data.put("keyword2", formateData(dateString));
         data.put("remark", formateData("\n点击↓↓详情，立即设置密码。"));

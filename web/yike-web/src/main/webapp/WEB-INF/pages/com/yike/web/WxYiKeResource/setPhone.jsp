@@ -11,7 +11,6 @@
   <title>绑定手机号</title>
 </head>
 <body>
-<button class="dianji">dianji</button>
 <div class="container signcontainer">
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
@@ -61,9 +60,6 @@
 
 <script src="/libs/jquery/jquery.md5.js"></script>
 <script>
-$('.dianji').click(function(){
-	window.location.href="/wx/binding/pwd?oid=${oid}";
-})
 	var wait = 60;
 	function countdown(target) {
 	  if (wait == 0) {

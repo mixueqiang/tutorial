@@ -185,16 +185,18 @@ public class ApiWxResource extends BaseResource {
 
             wxYiKeService.sendBindingSuccessNoticeTemplateMessage(oid, user);
 
-            // Save instructor
-            Entity instructorEntity = new Entity(Instructor.SQL_TABLE_NAME);
-            instructorEntity
-                    .set(Instructor.SQL_USER_ID, user.getId())
-                    .set(Instructor.SQL_NAME, userName)
-                    .set(Instructor.SQL_CONTACTS, user.getPhone())
-                    .set(Instructor.SQL_CREATE_TIME, System.currentTimeMillis())
-                    .set(Instructor.SQL_STATUS, Constants.STATUS_OK);
+            if (!entityDao.exists("instructor", "userId", user.getId())) {
+                // Save instructor
+                Entity instructorEntity = new Entity(Instructor.SQL_TABLE_NAME);
+                instructorEntity
+                        .set(Instructor.SQL_USER_ID, user.getId())
+                        .set(Instructor.SQL_NAME, userName)
+                        .set(Instructor.SQL_CONTACTS, user.getPhone())
+                        .set(Instructor.SQL_CREATE_TIME, System.currentTimeMillis())
+                        .set(Instructor.SQL_STATUS, Constants.STATUS_OK);
 
-            entityDao.save(instructorEntity);
+                entityDao.save(instructorEntity);
+            }
 
             return ResponseBuilder.OK;
 

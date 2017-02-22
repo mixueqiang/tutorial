@@ -26,7 +26,7 @@ public class WxFotoMixUtils {
 //  public static final String localImagePath = "/Users/ilakeyc/Desktop/" + "wx/";
 
     public static final String mainImageName = "wx-invitation-main.jpg";
-    public static final String editorQrImageName = "wx_editor_qr";
+    public static final String editorQrImageName = "wx_editor_qr.jpeg";
 
     public static final String upyunMainImageURL = "http://yikeyun.b0.upaiyun.com/static/" + mainImageName;
     public static final String upyunEditorQrImageURL = "http://yikeyun.b0.upaiyun.com/static/" + editorQrImageName;

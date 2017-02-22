@@ -22,12 +22,14 @@ import java.security.MessageDigest;
 public class WxFotoMixUtils {
     private static final Log LOG = LogFactory.getLog(WxFotoMixUtils.class);
 
-    public static String localImagePath = Constants.IMAGE_REPO + "wx/";
-//  public static String localImagePath = "/Users/ilakeyc/Desktop/" + "wx/";
+    public static final String localImagePath = Constants.IMAGE_REPO + "wx/";
+//  public static final String localImagePath = "/Users/ilakeyc/Desktop/" + "wx/";
 
-    public static String mainImageName = "wx-invitation-main.jpg";
+    public static final String mainImageName = "wx-invitation-main.jpg";
+    public static final String editorQrImageName = "wx_editor_qr";
 
-    public static String upyunMainImageURL = "http://yikeyun.b0.upaiyun.com/static/" + mainImageName;
+    public static final String upyunMainImageURL = "http://yikeyun.b0.upaiyun.com/static/" + mainImageName;
+    public static final String upyunEditorQrImageURL = "http://yikeyun.b0.upaiyun.com/static/" + editorQrImageName;
 
     public static File localInvitationImage(String ticket) {
         File file = new File(localImagePath + ticket + ".jpg");
@@ -87,6 +89,10 @@ public class WxFotoMixUtils {
             t.printStackTrace();
         }
         return null;
+    }
+
+    public static File getEditorQrCode() {
+        return getImage(editorQrImageName, upyunEditorQrImageURL);
     }
 
     private static File getQRCode(WxUser user, String ticket) {

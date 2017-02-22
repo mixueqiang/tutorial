@@ -6,6 +6,7 @@ import com.yike.model.User;
 import com.yike.model.WxMessage;
 import com.yike.model.WxUser;
 import com.yike.web.util.WxApiUtils;
+import com.yike.web.util.WxFotoMixUtils;
 import com.yike.web.util.WxTemplateMessageFormatter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -106,7 +107,6 @@ public class WxYiKeService {
         return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复", message.getFromUserName());
     }
 
-
     private boolean handleBindingClickEvent(WxMessage message) {
         WxUser wxUser = wxUserService.getUser(message.getFromUserName());
         if (wxUser == null) {
@@ -146,13 +146,23 @@ public class WxYiKeService {
             courseNameStr = courseNameStr.replace("[", " ");
             courseNameStr = courseNameStr.replace("]", " ");
             if (apiUtils.sendTextMessage("你现在报名了" + courseNameStr + "课程，请添加小编，将此页截图发给小编，等待课程分班，拉你入群。", wxUser.getOpenid())) {
-                return apiUtils.sendTextMessage("小编二维码在此", wxUser.getOpenid());
+
+                String mediaId = apiUtils.uploadTempImage(WxFotoMixUtils.getEditorQrCode());
+                if (org.apache.commons.lang.StringUtils.isEmpty(mediaId)) {
+                    return apiUtils.sendTextMessage("哎呀！发送二维码失败啦~~再试一次吧~~", wxUser.getOpenid());
+                }
+                return apiUtils.sendImageMessage(mediaId, wxUser.getOpenid());
+
             }
 
         } else {
 
             if (apiUtils.sendTextMessage("你现在尚未报名课程，如有疑问，请添加小编进行咨询！！！", wxUser.getOpenid())) {
-                return apiUtils.sendTextMessage("小编二维码在此", wxUser.getOpenid());
+                String mediaId = apiUtils.uploadTempImage(WxFotoMixUtils.getEditorQrCode());
+                if (org.apache.commons.lang.StringUtils.isEmpty(mediaId)) {
+                    return apiUtils.sendTextMessage("哎呀！发送二维码失败啦~~再试一次吧~~", wxUser.getOpenid());
+                }
+                return apiUtils.sendImageMessage(mediaId, wxUser.getOpenid());
             }
         }
         return false;

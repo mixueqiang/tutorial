@@ -103,6 +103,9 @@ public class WxApiUtils {
      * @return 微信服务器返回的 media_id。
      */
     public String uploadTempImage(File image) {
+        if (image == null) {
+            return null;
+        }
         String imageUploadURL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=" + currentAccessToken + "&type=image";
         String responseString = SimpleNetworking.uploadImage(imageUploadURL, image);
         if (StringUtils.isEmpty(responseString)) {

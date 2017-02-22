@@ -14,7 +14,7 @@
 <div class="container signcontainer">
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
-      <form id="set-phone" name="set-phone" action="/api/v1/user" method="post" class="form-horizontal row-space-top-4">
+      <form id="set-phone" name="set-phone" action="/api/v1/wx/binding/phone" method="post" class="form-horizontal row-space-top-4">
       	<div class="form-group row-space-top-2 hide">
           <label for="oid" class="col-sm-3 control-label"></label>
           <div class="col-sm-4">

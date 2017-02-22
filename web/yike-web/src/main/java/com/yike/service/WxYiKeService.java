@@ -1,5 +1,7 @@
 package com.yike.service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yike.model.User;
 import com.yike.model.WxMessage;
 import com.yike.model.WxUser;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -132,7 +135,25 @@ public class WxYiKeService {
             return sendBindingPasswordNoticeTemplateMessage(wxUser.getOpenid(), user.getPhone());
         }
 
-        return apiUtils.sendTextMessage("内容建设中", wxUser.getOpenid());
+        List<String> courseNames = wxUserService.getApplicationCourseNames(wxUser);
+
+        boolean hasApplication = courseNames != null && !courseNames.isEmpty();
+
+        if (hasApplication) {
+
+            Gson g = new GsonBuilder().disableHtmlEscaping().create();
+            String courseNameStr = g.toJson(courseNames);
+            if (apiUtils.sendTextMessage("你现在报名了" + courseNameStr + "课程，请添加小编，将此页截图发给小编，等待课程分班，拉你入群。", wxUser.getOpenid())) {
+                return apiUtils.sendTextMessage("小编二维码在此", wxUser.getOpenid());
+            }
+
+        } else {
+
+            if (apiUtils.sendTextMessage("你现在尚未报名课程，如有疑问，请添加小编进行咨询！！！", wxUser.getOpenid())) {
+                return apiUtils.sendTextMessage("小编二维码在此", wxUser.getOpenid());
+            }
+        }
+        return false;
     }
 
     private boolean handleAboutClickEvent(WxMessage message) {

@@ -1,18 +1,20 @@
 package com.yike.service.impl;
 
 import com.yike.Constants;
+import com.yike.dao.mapper.CourseApplicationRowMapper;
+import com.yike.dao.mapper.CourseRowMapper;
 import com.yike.dao.mapper.UserRowMapper;
 import com.yike.dao.mapper.WxUserRowMapper;
-import com.yike.model.Entity;
-import com.yike.model.User;
-import com.yike.model.WxUser;
+import com.yike.model.*;
 import com.yike.service.WxYiKeService;
 import com.yike.service.WxYiKeUserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +24,45 @@ import java.util.Map;
 @Service
 public class WxYiKeUserServiceImpl extends BaseService implements WxYiKeUserService {
     private static final Log LOG = LogFactory.getLog(WxYiKeUserServiceImpl.class);
+
+    public List<String> getApplicationCourseNames(WxUser wxUser) {
+        long userId = wxUser.getUserId();
+        Map<String, Object> courseApplicationFindCondition = new HashMap<String, Object>();
+        courseApplicationFindCondition.put("userId", userId);
+        courseApplicationFindCondition.put("status", Constants.STATUS_OK);
+        courseApplicationFindCondition.put("progress", CourseApplication.PROGRESS_PAID);
+
+        try {
+            List<CourseApplication> courseApplications = entityDao.find("course_application", courseApplicationFindCondition, CourseApplicationRowMapper.getInstance());
+            if (courseApplications.isEmpty()) {
+                return null;
+            }
+            List<String> courseNames = new ArrayList<String>();
+            for (CourseApplication courseApplication : courseApplications) {
+                long courseId = courseApplication.getCourseId();
+                Course course = entityDao.get("course", courseId, CourseRowMapper.getInstance());
+                courseNames.add(course.getName());
+            }
+            return courseNames;
+        } catch (Throwable t) {
+            LOG.error("Find course application failure", t);
+            return null;
+        }
+    }
+
+    public boolean hasApplication(WxUser wxUser) {
+        long userId = wxUser.getUserId();
+        Map<String, Object> courseApplicationFindCondition = new HashMap<String, Object>();
+        courseApplicationFindCondition.put("userId", userId);
+        courseApplicationFindCondition.put("status", Constants.STATUS_OK);
+        courseApplicationFindCondition.put("progress", CourseApplication.PROGRESS_PAID);
+        try {
+            return entityDao.exists("course_application", courseApplicationFindCondition);
+        } catch (Throwable t) {
+            LOG.error("Find course application exist failure", t);
+            return false;
+        }
+    }
 
     public User getBindingUser(WxUser wxUser) {
         if (wxUser == null || wxUser.getUserId() == 0) {

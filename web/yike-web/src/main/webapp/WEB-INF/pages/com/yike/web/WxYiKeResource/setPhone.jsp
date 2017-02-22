@@ -14,7 +14,7 @@
 <div class="container signcontainer">
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
-      <form id="set-phone" name="set-phone" action="/api/v1/user" method="post" class="form-horizontal row-space-top-4">
+      <form id="set-phone" name="set-phone" action="/api/v1/wx/binding/phone" method="post" class="form-horizontal row-space-top-4">
       	<div class="form-group row-space-top-2 hide">
           <label for="oid" class="col-sm-3 control-label"></label>
           <div class="col-sm-4">
@@ -40,10 +40,10 @@
         </div>
         <div class="form-group">
           <label for="securityCode" class="col-sm-3 control-label">验证码</label>
-          <div class="col-sm-3">
+          <div class="col-sm-2 col-xs-2">
             <input type="text" id="securityCode" name="securityCode" tabindex="3" class="form-control"/>
           </div>
-          <div class="col-sm-2">
+          <div class="col-sm-2 col-xs-2">
             <button class="btn btn-warning btn-send-sms">获取验证码</button>
           </div>
         </div>

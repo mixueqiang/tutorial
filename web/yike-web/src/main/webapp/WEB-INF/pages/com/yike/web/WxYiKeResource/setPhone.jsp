@@ -152,7 +152,7 @@
             //返回值中  r == "y" 则需要跳转到 绑定昵称与密码
             if (resp.r == "y") {
             	setTimeout(function() {
-	              window.location.href="/wx/binding/pwd";
+	              window.location.href="/wx/binding/pwd?oid=${oid}";
 	            }, 1500);
             }
             if (resp.r == "n") {

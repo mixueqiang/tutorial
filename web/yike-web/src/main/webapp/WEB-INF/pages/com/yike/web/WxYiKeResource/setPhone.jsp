@@ -146,7 +146,7 @@
         success : function(resp) {
           if (resp && resp.e == 0) {
           	alert(resp.e);
-            var message = '绑定成功，';
+            var message = '绑定成功！';
             Message.info(message, false, $('.form-group:last', $(form)));
 
             //返回值中  r == "y" 则需要跳转到 绑定昵称与密码
@@ -159,7 +159,7 @@
             	//返回值中  r == "n" 不需要跳转
             }
           } else {
-            Message.error('绑定失败：', false, $('.form-group:last', $(form)));
+            Message.error('绑定失败：'+resp.m, false, $('.form-group:last', $(form)));
           }
         },
         error : function() {

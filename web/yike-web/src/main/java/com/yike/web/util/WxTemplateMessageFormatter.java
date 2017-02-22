@@ -18,7 +18,7 @@ public class WxTemplateMessageFormatter {
         Map<String, Object> data = new HashMap<String, Object>();
         Format dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
         String dateString = dateFormat.format(new Date());
-        String newPhone = phone.substring(6);
+        String newPhone = phone.substring(7);
 
         data.put("first", formateData("\n你的帐号已绑定\n", "#FF2C38"));
         data.put("keyword1", formateData("尾号" + newPhone));
@@ -31,7 +31,7 @@ public class WxTemplateMessageFormatter {
         Map<String, Object> data = new HashMap<String, Object>();
         Format dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
         String dateString = dateFormat.format(new Date());
-        String newPhone = phone.substring(6);
+        String newPhone = phone.substring(7);
 
         data.put("first", formateData("\n你的帐号已绑定\n", "#FF2C38"));
         data.put("keyword1", formateData("尾号" + newPhone));

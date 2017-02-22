@@ -73,7 +73,7 @@ public class ApiWxResource extends BaseResource {
         try {
 
             Map<String, Object> condition = new HashMap<String, Object>();
-            condition.put("type", 1);
+            condition.put("type", 4);
             condition.put("phone", phone);
             condition.put("status", 1);
             Entity securityCodeEntity = entityDao.findOne("security_code", condition);
@@ -113,6 +113,7 @@ public class ApiWxResource extends BaseResource {
                 // Save user.
                 Entity userEntity = new Entity("user");
                 userEntity.set("phone", phone);
+                userEntity.set("username", "wx_" + phone.substring(7));
                 userEntity.set("locale", "cn").set("roles", "user");
                 userEntity.set("status", Constants.STATUS_ENABLED).set("createTime", time);
                 userEntity = entityDao.saveAndReturn(userEntity);
@@ -124,6 +125,7 @@ public class ApiWxResource extends BaseResource {
             return ResponseBuilder.ok("y");
 
         } catch (Throwable t) {
+            t.printStackTrace();
             LOG.error("Failed to register user.", t);
             return ResponseBuilder.error(50000, "绑定失败，请稍后再试。");
         }
@@ -135,7 +137,7 @@ public class ApiWxResource extends BaseResource {
     @Produces(APPLICATION_JSON)
     public Map<String, Object> bindingPwd(
             @FormParam("oid") String oid,
-            @FormParam("userName") String userName,
+            @FormParam("username") String userName,
             @FormParam("password") String password
     ) {
         if (StringUtils.isEmpty(oid)) {
@@ -163,7 +165,7 @@ public class ApiWxResource extends BaseResource {
             return ResponseBuilder.error(70404, "你需要先绑定手机号码。");
         }
         try {
-            User user = entityDao.get("user", wxUser.getId(), UserRowMapper.getInstance());
+            User user = entityDao.get("user", wxUser.getUserId(), UserRowMapper.getInstance());
             if (user == null) {
                 return ResponseBuilder.error(70404, "你需要先绑定手机号码。");
             }

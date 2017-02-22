@@ -119,6 +119,9 @@
 
 	    return false;
 	});
+	
+	
+	int oidValue=$('#oid').val();
 	$('#set-phone').validate({
     rules : {
       phone : {
@@ -141,7 +144,6 @@
         $('.error').eq(0).focus();
         return false;
       }
-
       $(form).ajaxSubmit({
         success : function(resp) {
           if (resp && resp.e == 0) {
@@ -152,11 +154,11 @@
             //返回值中  r == "y" 则需要跳转到 绑定昵称与密码
             if (resp.r == "y") {
             	setTimeout(function() {
-	              window.location.href="/wx/binding/pwd?oid=${oid}";
+	              window.location.href="/wx/binding/pwd?oid=oidValue";
 	            }, 1500);
             }
             if (resp.r == "n") {
-            	//返回值中  r == "n" 不需要跳转
+            	//返回值中  r == "n" 跳到首页
             	window.location.href="/";
             }
             window.location.href="/";

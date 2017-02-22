@@ -41,7 +41,9 @@ public class WxYiKeUserServiceImpl extends BaseService implements WxYiKeUserServ
             for (CourseApplication courseApplication : courseApplications) {
                 long courseId = courseApplication.getCourseId();
                 Course course = entityDao.get("course", courseId, CourseRowMapper.getInstance());
-                courseNames.add(course.getName());
+                if (course != null) {
+                    courseNames.add(course.getName());
+                }
             }
             return courseNames;
         } catch (Throwable t) {

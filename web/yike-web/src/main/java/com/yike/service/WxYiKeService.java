@@ -122,7 +122,7 @@ public class WxYiKeService {
         return sendHasBindingNoticeTemplateMessage(wxUser.getOpenid(), user.getUsername(), user.getPhone());
     }
 
-    private boolean handleApplicationClickEvent(WxMessage message) {
+    public boolean handleApplicationClickEvent(WxMessage message) {
         WxUser wxUser = wxUserService.getUser(message.getFromUserName());
         if (wxUser == null) {
             return false;
@@ -143,6 +143,8 @@ public class WxYiKeService {
 
             Gson g = new GsonBuilder().disableHtmlEscaping().create();
             String courseNameStr = g.toJson(courseNames);
+            courseNameStr = courseNameStr.replace("[", " ");
+            courseNameStr = courseNameStr.replace("]", " ");
             if (apiUtils.sendTextMessage("你现在报名了" + courseNameStr + "课程，请添加小编，将此页截图发给小编，等待课程分班，拉你入群。", wxUser.getOpenid())) {
                 return apiUtils.sendTextMessage("小编二维码在此", wxUser.getOpenid());
             }

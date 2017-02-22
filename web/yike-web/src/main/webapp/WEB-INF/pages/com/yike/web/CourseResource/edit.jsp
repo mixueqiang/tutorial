@@ -1,11 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>编辑实践&nbsp;|&nbsp;一课上手</title>
+<title>编辑实战&nbsp;|&nbsp;一课上手</title>
 <style>
 </style>
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-      <h2>编辑实践</h2>
+      <h2>编辑实战</h2>
       <form id="courseForm" name="course-form" action="/api/v1/course/update" method="post" class="form-horizontal row-space-top-4" role="form">
         <div class="form-group">
           <label for="title" class="col-md-2 col-sm-2 control-label">课程名称</label>

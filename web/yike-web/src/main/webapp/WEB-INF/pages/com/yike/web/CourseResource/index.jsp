@@ -36,7 +36,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12" id="courses">
 
       <div class="section">
-        <div class="title lg">实践课列表</div>
+        <div class="title lg">实战课列表</div>
         <c:forEach var="item" items="${courses}">
           <div class="panel panel-default section-course" data-id="${item.id}">
             <div class="panel-body">

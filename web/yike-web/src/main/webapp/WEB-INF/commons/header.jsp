@@ -4,7 +4,7 @@
     <div class="container">
       <a class="navbar-brand xl" href="/">一课上手</a>
       <ul class="nav pull-right">
-        <!--<li class="pull-left"><a class="btn btn-success" href="/course/create">发布一门实践课程</a></li>-->
+        <!--<li class="pull-left"><a class="btn btn-success" href="/course/create">发布一门实战课程</a></li>-->
         <c:choose>
           <c:when test="${not empty _user}">
             <div class="dropdown headerDropdown">

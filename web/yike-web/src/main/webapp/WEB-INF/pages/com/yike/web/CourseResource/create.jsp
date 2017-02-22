@@ -1,9 +1,9 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>发布实践课程&nbsp;|&nbsp;一课上手</title>
+<title>发布实战课程&nbsp;|&nbsp;一课上手</title>
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-      <h2>发布实践课程</h2>
+      <h2>发布实战课程</h2>
       <form id="courseForm" name="course-form" action="/api/v1/course" method="post" class="form-horizontal row-space-top-4" role="form">
         <div class="form-group">
           <label for="title" class="col-md-2 col-sm-2 control-label">课程名称</label>

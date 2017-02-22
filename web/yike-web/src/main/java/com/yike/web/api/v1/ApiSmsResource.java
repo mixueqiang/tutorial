@@ -1,13 +1,11 @@
 package com.yike.web.api.v1;
 
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-
+import com.octo.captcha.service.multitype.GenericManageableCaptchaService;
+import com.yike.model.Entity;
+import com.yike.util.RandomUtil;
+import com.yike.util.ResponseBuilder;
+import com.yike.util.SmsUtilsYunpian;
+import com.yike.web.BaseResource;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,12 +14,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
-import com.octo.captcha.service.multitype.GenericManageableCaptchaService;
-import com.yike.model.Entity;
-import com.yike.util.RandomUtil;
-import com.yike.util.ResponseBuilder;
-import com.yike.util.SmsUtilsYunpian;
-import com.yike.web.BaseResource;
+import javax.annotation.Resource;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import java.util.Map;
 
 /**
  * @author mixueqiang
@@ -64,8 +62,8 @@ public class ApiSmsResource extends BaseResource {
     } else if (StringUtils.equals(type, "reset_password") && !entityDao.exists("user", "phone", phone)) {
       return ResponseBuilder.error(10603, "手机号码尚未注册。");
 
-    } else if (StringUtils.equals(type, "security") && !entityDao.exists("user", "phone", phone)) {
-      return ResponseBuilder.error(10604, "手机号码尚未注册。");
+    } else if (!StringUtils.equals(type, "security")) {
+      return ResponseBuilder.error(10604, "该场景无权限请求验证码。");
     }
 
     long time = System.currentTimeMillis();

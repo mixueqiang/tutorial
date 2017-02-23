@@ -122,7 +122,7 @@ public class WxYiKeService {
         return sendHasBindingNoticeTemplateMessage(wxUser.getOpenid(), user.getUsername(), user.getPhone());
     }
 
-    public boolean handleApplicationClickEvent(WxMessage message) {
+    private boolean handleApplicationClickEvent(WxMessage message) {
         WxUser wxUser = wxUserService.getUser(message.getFromUserName());
         if (wxUser == null) {
             return false;

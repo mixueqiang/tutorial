@@ -79,7 +79,15 @@ public class WxYiKeUserServiceImpl extends BaseService implements WxYiKeUserServ
     }
 
     public WxUser findByUserId(long mainUserId) {
-        return null;
+        if (mainUserId == 0) {
+            return null;
+        }
+        try {
+            return entityDao.findOne("wx_yike_user", "userId", mainUserId, WxUserRowMapper.getInstance());
+        } catch (Throwable t) {
+            LOG.error("Get WxUser by userID failure", t);
+            return null;
+        }
     }
 
     public WxUser findByOpenId(String openId) {

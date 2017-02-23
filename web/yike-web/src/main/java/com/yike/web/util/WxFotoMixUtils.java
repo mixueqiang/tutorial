@@ -45,7 +45,7 @@ public class WxFotoMixUtils {
 
         File mainImageFile = getMainImage();
         File userImageFile = getUserImage(user);
-        File QRCodeFile = getQRCode(user, ticket);
+        File QRCodeFile = getQRCode(ticket);
         String nickName = user.getNickname();
         if (StringUtils.length(nickName) > 5) {
             nickName = StringUtils.substring(nickName, 0, 5);
@@ -95,7 +95,7 @@ public class WxFotoMixUtils {
         return getImage(editorQrImageName, upyunEditorQrImageURL);
     }
 
-    private static File getQRCode(WxUser user, String ticket) {
+    private static File getQRCode(String ticket) {
         String qrCodeDownloadUrl = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + ticket;
         String imageName = encodingFileName(ticket);
         return getImage(imageName, qrCodeDownloadUrl);

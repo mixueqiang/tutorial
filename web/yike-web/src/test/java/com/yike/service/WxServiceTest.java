@@ -25,10 +25,6 @@ public class WxServiceTest {
     @Test
     public void testYiKeApplicationButton() {
         WxYiKeService.apiUtils.requestAccessToken();
-
-        WxMessage message = new WxMessage();
-        message.setFromUserName("oCooQw1i05m1hcThyqCcoIpVGzaU");
-        wxYiKeService.handleApplicationClickEvent(message);
     }
 
 

@@ -25,12 +25,12 @@ import java.util.Map;
 public class WxYiKeService {
     private static final Log LOG = LogFactory.getLog(WxYiKeService.class);
 
-    private static final String BINDING_STATUS_NOTICE_TEMPLATE_ID = "j1q7yof6ufY7pYgAw-4WCDGmAywH57L9x7A6Utpo90s";
-    private static final String BINDING_SUCCESS_NOTICE_TEMPLATE_ID = "VTfeSYBcKCQ02vaTgkQL4pdN2ld04C2VXbcUvgRVTI8";
+    private static final String BINDING_STATUS_NOTICE_TEMPLATE_ID = "801LSYIv8DB_bN8d8bHg7zY-3kXRV7Tq8yH615Wse3Y";
+    private static final String BINDING_SUCCESS_NOTICE_TEMPLATE_ID = "5DjnVwY1FomxQhvd7kiIn0DmMOX6LmaBrdgW1mcAGGE";
 
     public static String WX_TOKEN = "yikeshangshouwx";
-    public static String APP_ID = "wx19882be1b89e09e5";
-    public static String APP_SECRET = "1b9fc8a682a840147a777822c14471f0";
+    public static String APP_ID = "wxf67017b21672abff";
+    public static String APP_SECRET = "64510b96c537ac4563d2619919540df4";
 
     @Resource
     public WxYiKeUserService wxUserService;

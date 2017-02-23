@@ -191,7 +191,7 @@ public class WxYiKeService {
     public boolean sendBindingSuccessNoticeTemplateMessage(String toUserOpenId, User user) {
         if (user == null || StringUtils.isEmpty(user.getPhone())) {
             LOG.error("Unable to send BindingSuccessNoticeTemplateMessage. Because the user or user's phone number dose not exist. User : "
-                    + user == null ? "null" : user.toString());
+                    + (user == null ? "null" : user.toString()));
             return false;
         }
         Map<String, Object> data = WxTemplateMessageFormatter.formateBindingSuccessNotice(user.getPhone());

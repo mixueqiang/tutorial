@@ -165,7 +165,7 @@
           </div>
         </div>
       </div>
-      <div class="application-form hide">
+      <div class="application-form" style="display: none;">
         <form id="application-form" name="application-form" action="/api/v1/course/application" method="post" class="form-horizontal" role="form">
           <div class="modal-body">
             <div class="form-group">

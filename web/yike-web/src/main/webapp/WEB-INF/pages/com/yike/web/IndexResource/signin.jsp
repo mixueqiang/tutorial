@@ -20,7 +20,8 @@
           <div class="col-sm-offset-3 col-sm-9">
             <input type="hidden" id="to" name="to" value="${param.to}" />
             <button type="submit" tabindex="3" class="btn btn-danger">登录</button>
-            <a class="col-space-2" href="/password/remind">忘记密码？</a><a class="col-space-2" href="/signup">注册</a>
+            <a class="col-space-2" href="/password/remind">忘记密码？</a>
+            <a class="col-space-2 back-signup" href="javascript:;">注册</a>
           </div>
         </div>
       </form>
@@ -30,3 +31,11 @@
 
 <script src="/libs/jquery/jquery.md5.js"></script>
 <script src="/js/user.js?v=20170104001"></script>
+<script>
+  //登陆页 跳转到 注册页 时，
+  //本地存储一个变量-用来标记-由 登陆页 跳转到注册页
+  $(".back-signup").click(function(){
+    sessionStorage.setItem("isSignin",true);
+    window.location.href="/signup";
+  });
+</script>

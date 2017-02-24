@@ -11,6 +11,7 @@ import com.yike.service.WxYiKeUserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -105,7 +106,7 @@ public class WxYiKeUserServiceImpl extends BaseService implements WxYiKeUserServ
 
     public WxUser getUser(String openId) {
         WxUser user = findByOpenId(openId);
-        if (user == null) {
+        if (user == null || StringUtils.isEmpty(user.getNickname()) || user.getSubscribe() == 0) {
             user = sync(openId);
         }
         return user;

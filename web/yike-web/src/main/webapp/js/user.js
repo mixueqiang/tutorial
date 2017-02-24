@@ -153,13 +153,17 @@ $(function() {
         success : function(resp) {
           if (resp && resp.e == 0) {
             var role = $('#role').val();
-            var message = '注册成功，';
-            sessionStorage.setItem("isSignup",true);
+            var message = '注册成功';
             Message.info(message, false, $('.form-group:last', $(form)));
-            setTimeout(function() {
-              window.history.go(-1);
-            }, 1500);
-
+            var isSignin=sessionStorage.getItem("isSignin");
+            if (isSignin) {
+              sessionStorage.removeItem("isSignin");
+              sessionStorage.removeItem("isSignup");
+              sessionStorage.removeItem("isResetPassword");
+              window.location.href="/";
+            }else{
+              location.replace(document.referrer);
+            }
           } else {
             $('input[name=password]', $('#signup-form')).val('');
             Message.error('注册失败：' + resp.m, false, $('.form-group:last', $(form)));
@@ -211,6 +215,7 @@ $(function() {
             if (isSignup||isResetPassword) {
               sessionStorage.removeItem("isSignup");
               sessionStorage.removeItem("isResetPassword");
+              sessionStorage.removeItem("isSignin");
               window.location.href="/";
             }else{
               location.replace(document.referrer);

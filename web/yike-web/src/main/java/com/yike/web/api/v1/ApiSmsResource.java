@@ -62,8 +62,6 @@ public class ApiSmsResource extends BaseResource {
     } else if (StringUtils.equals(type, "reset_password") && !entityDao.exists("user", "phone", phone)) {
       return ResponseBuilder.error(10603, "手机号码尚未注册。");
 
-    } else if (!StringUtils.equals(type, "security")) {
-      return ResponseBuilder.error(10604, "该场景无权限请求验证码。");
     }
 
     long time = System.currentTimeMillis();

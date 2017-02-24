@@ -25,6 +25,12 @@ public class AdminIndexResource extends BaseResource {
   @GET
   @Produces(MediaType.TEXT_HTML)
   public Response index() {
+    long userCount = entityDao.count("user");
+    long itUserCount = entityDao.count("wx_user");
+    long yikeUserCount = entityDao.count("wx_yike_user");
+    request.setAttribute("userCount", userCount);
+    request.setAttribute("itUserCount", itUserCount);
+    request.setAttribute("yikeUserCount", yikeUserCount);
     return Response.ok(new Viewable("index")).build();
   }
 

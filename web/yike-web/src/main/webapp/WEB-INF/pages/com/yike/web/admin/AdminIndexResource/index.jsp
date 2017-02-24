@@ -10,6 +10,9 @@
             <li><a href="/admin/course" target="_blank">课程列表</a></li>
             <li><a href="/admin/order" target="_blank">课程订单</a></li>
             <li><a href="/admin/shorthand/new_instructor" target="_blank">快速注册老师</a></li>
+            <li><a href="/admin/user" target="_blank">网站用户 (${userCount}人)</a></li>
+            <li><a href="/admin/wxuser/it" target="_blank">IT技能成长联盟公众号-用户 (${itUserCount}人)</a></li>
+            <li><a href="/admin/wxuser/yike" target="_blank">一课上手公众号-用户 (${yikeUserCount}人)</a></li>
           </ul>
         </div>
       </div>

@@ -77,7 +77,26 @@ public class WxITService {
 
     private boolean handleSubscribeMsg(WxMessage message) {
 
-        wxUserService.sync(message.getFromUserName());
+        WxUser user = wxUserService.sync(message.getFromUserName());
+        String nickName = user.getNickname();
+
+        apiUtils.sendTextMessage("欢迎" + nickName + "同学，加入「IT技能成长联盟」 \n" +
+                "「系统学习」IT领域课程，搭建知识体系 \n" +
+                "【1】社群实时提问：解决工作遇到的问题。 \n" +
+                "【2】同城/地区分班，组织学习交流活动，课程、笔记分享。 \n" +
+                "【3】图书推荐，图书共同阅读，大牛带着阅读学习。 \n" +
+                "【4】优秀学员兼职推荐，开源项目参与推荐，知名企业实习机会推荐。 \n" +
+                "【5】1000GB社员专属学习资料，视频资料。\n" +
+                "\n" +
+                nickName + " 同学，请选择入学方式：\n" +
+                "①回复：购买\n" +
+                "直接付费365元购买入学资格 \n" +
+                "\n" +
+                "②回复：学习\n" +
+                "或点击：下方【免费入学】按钮\n" +
+                "获得免费入学名额\n" +
+                "_________\n" +
+                "如有疑问，欢迎留言", user.getOpenid());
 
         if (isInvitationEvent(message)) {
             return handleInvitationEvent(message);

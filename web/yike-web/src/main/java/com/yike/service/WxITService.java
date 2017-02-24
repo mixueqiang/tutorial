@@ -131,17 +131,18 @@ public class WxITService {
     }
 
     private boolean handleDBShareClientEvent(WxMessage message) {
-        sendStudentMessage(message.getFromUserName(), "数据资料地址");
+        sendStudentMessage(message.getFromUserName(), "Mongo学习资源 链接: https://pan.baidu.com/s/1i4LH0Q5 密码: vxsc\n" +
+                "Redis学习资源 链接: https://pan.baidu.com/s/1gfMbMUZ 密码: 5qxx");
         return false;
     }
 
     private boolean handleJavaShareClientEvent(WxMessage message) {
-        sendStudentMessage(message.getFromUserName(), "Java资料地址");
+        sendStudentMessage(message.getFromUserName(), "Spring学习资源 链接: https://pan.baidu.com/s/1sl74mEL 密码: 6s58\nNetty学习资源 链接: https://pan.baidu.com/s/1pLTmX6r 密码: uw43");
         return false;
     }
 
     private boolean handleWebShareClientEvent(WxMessage message) {
-        sendStudentMessage(message.getFromUserName(), "前端资料地址");
+        sendStudentMessage(message.getFromUserName(), "Bootstrap学习资源 链接: https://pan.baidu.com/s/1hsl1XgK 密码: h7c6");
         return false;
     }
 

@@ -257,6 +257,7 @@ public class WxITService {
                 if (user != null) {
                     sendInvitationImage(user);
                 } else {
+                    LOG.error("Find a null WxUser with OpenID : " + message.getFromUserName());
                     apiUtils.sendTextMessage("图片生成失败，请稍后再试。", openId);
                 }
             }
@@ -275,11 +276,15 @@ public class WxITService {
             ticket = apiUtils.requestQRCode(openId);
         }
 
+        if (image == null) {
+            LOG.info("Didn't find local invitation image");
+        }
         if (image == null && StringUtils.isNotEmpty(ticket)) {
             image = WxFotoMixUtils.createInvitationImage(user, ticket);
         }
 
         if (image == null) {
+            LOG.error("Create invitation image failure -> WxUser : " + user.toString());
             apiUtils.sendTextMessage("图片生成失败，请稍后再试。", openId);
             return false;
         }
@@ -288,6 +293,7 @@ public class WxITService {
         String mediaId = apiUtils.uploadTempImage(image);
 
         if (StringUtils.isEmpty(mediaId)) {
+            LOG.error("Invitation image upload to wx failure with ticket : " + ticket);
             apiUtils.sendTextMessage("图片生成失败，请稍后再试。", openId);
             return false;
         }

@@ -25,7 +25,7 @@ public class WxFotoMixUtils {
     public static final String localImagePath = Constants.IMAGE_REPO + "wx/";
 //  public static final String localImagePath = "/Users/ilakeyc/Desktop/" + "wx/";
 
-    public static final String mainImageName = "wx-invitation-main.jpg";
+    public static final String mainImageName = "wx-invitation-main-1.jpg";
     public static final String editorQrImageName = "wx_editor_qr.jpeg";
 
     public static final String upyunMainImageURL = "http://yikeyun.b0.upaiyun.com/static/" + mainImageName;
@@ -68,7 +68,7 @@ public class WxFotoMixUtils {
             }
             if (QRCodeFile != null) {
                 QRCode = ImageIO.read(QRCodeFile);
-                g2d.drawImage(QRCode, 474, 1002, 210, 210, null);
+                g2d.drawImage(QRCode, 472, 1002, 210, 210, null);
                 g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
             }
 

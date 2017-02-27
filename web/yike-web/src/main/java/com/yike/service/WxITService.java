@@ -166,9 +166,18 @@ public class WxITService {
         return true;
     }
 
-    private boolean handleTextMsg(WxMessage wxMessage) {
-        apiUtils.sendTextMessage("消息已收到，暂无关于" + wxMessage.getContent() + "的回复", wxMessage.getFromUserName());
-        return true;
+    private boolean handleTextMsg(WxMessage message) {
+        if ("学习".equals(message.getContent())) {
+            return handleFreeClickEvent(message);
+        } else if ("购买".equals(message.getContent())) {
+            return apiUtils.sendTextMessage("好奇宝宝(✿◡‿◡)\n" +
+                    "不体验套路，怎么学习经验呢？/偷笑\n" +
+                    " \n" +
+                    "回复：学习 \n" +
+                    "扬帆起航<(*￣▽￣*)/", message.getFromUserName());
+        } else {
+            return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复", message.getFromUserName());
+        }
     }
 
     private boolean isInvitationEvent(WxMessage message) {

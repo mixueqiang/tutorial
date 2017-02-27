@@ -191,6 +191,10 @@ public class WxApiUtils {
     }
 
     private String rootRequest(String method, String urlString, String param) {
+        LOG.info("HTTP request to WX : " +
+                "method: " + method + "\n" +
+                "urlString: " + urlString + "\n" +
+                "parameter: " + param);
         if (HttpMethod.GET.equals(method)) {
             String response = SimpleNetworking.getRequest(urlString);
             if (wxResponseError(response)) {
@@ -270,7 +274,7 @@ public class WxApiUtils {
                     new TypeToken<Map<String, String>>() {
                     }.getType());
         } catch (Throwable t) {
-            LOG.error("formate response error failure", t);
+            LOG.error("wx response : " + response + " is not a struct like : {\"errcode\":foo,\"errmsg\":\"bar\"}");
         }
         return null;
     }

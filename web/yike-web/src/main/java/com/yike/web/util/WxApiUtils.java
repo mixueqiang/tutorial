@@ -191,7 +191,7 @@ public class WxApiUtils {
     }
 
     private String rootRequest(String method, String urlString, String param) {
-        LOG.info("HTTP request to WX : " +
+        LOG.info("HTTP request to WX : \n" +
                 "method: " + method + "\n" +
                 "urlString: " + urlString + "\n" +
                 "parameter: " + param);

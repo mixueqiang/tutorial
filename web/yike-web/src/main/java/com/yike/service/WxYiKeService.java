@@ -143,9 +143,9 @@ public class WxYiKeService {
 
             Gson g = new GsonBuilder().disableHtmlEscaping().create();
             String courseNameStr = g.toJson(courseNames);
-            courseNameStr = courseNameStr.replace("[", " ");
-            courseNameStr = courseNameStr.replace("]", " ");
-            if (apiUtils.sendTextMessage("你现在报名了" + courseNameStr + "课程，请添加小编，将此页截图发给小编，等待课程分班，拉你入群。", wxUser.getOpenid())) {
+            courseNameStr = courseNameStr.replace("[", "\n");
+            courseNameStr = courseNameStr.replace("]", "\n");
+            if (apiUtils.sendTextMessage("你现在报名了：" + courseNameStr + "请添加小编，将此页截图发给小编，等待课程分班，拉你入群。", wxUser.getOpenid())) {
 
                 String mediaId = apiUtils.uploadTempImage(WxFotoMixUtils.getEditorQrCode());
                 if (org.apache.commons.lang.StringUtils.isEmpty(mediaId)) {

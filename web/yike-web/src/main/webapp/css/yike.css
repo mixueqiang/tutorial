@@ -673,7 +673,7 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .courses-footer {
-  bottom: 0px; font-size: 14px; padding-left: 15px;padding-right: 0px;
+  bottom: 0px; font-size: 14px; padding-left: 15px; padding-right: 0px;
 }
 
 .courses-subscript {
@@ -683,6 +683,7 @@ input, select, textarea, .btn, .form-control, .panel {
 .courses-price {
   
 }
+
 .course-nav-row {
   padding: 16px 0 5px; border-bottom: 1px solid #edf1f2;
 }
@@ -856,6 +857,10 @@ input, select, textarea, .btn, .form-control, .panel {
   position: absolute; bottom: 0px; width: 100%;
 }
 
+.card-footer .card-action {
+  text-align: center;
+}
+
 @media ( min-width : 768px) {
   .cards {
     margin-right: 0; margin-left: 0;
@@ -924,7 +929,7 @@ input, select, textarea, .btn, .form-control, .panel {
 
 .skill-section .title {
   display: -webkit-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; -webkit-justify-content: c; justify-content: center; enter;
-  -webkit-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; padding: 10px 10px 0; height: 60px; overflow: hidden; white-space: pre-wrap;
+  -webkit-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; padding: 10px 10px 0; height: 96px; overflow: hidden; white-space: pre-wrap;
   text-overflow: ellipsis; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
 }
 

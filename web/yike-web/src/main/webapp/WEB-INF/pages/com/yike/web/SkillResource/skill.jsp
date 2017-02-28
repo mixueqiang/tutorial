@@ -3,7 +3,10 @@
 
 <div class="container row-space-top-2">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 card">
+    <div class="col-md-3 col-sm-3 col-xs-2">
+      <a class="btn btn-default" href="/skill">所有技能</a>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-8 card">
       <div class="card-cover">
         <c:if test="${not empty skill.image}">
           <img alt="技能图标" src="http://yikeyun.b0.upaiyun.com${skill.image}!M">
@@ -27,28 +30,28 @@
 
   <div class="row row-space-top-1 section skill-section">
     <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2">
-      <a class="green op-publish" data-toggle="modal" data-target="#PublishModal" href="#" title="发布一张福">
+      <a class="green op-publish" data-toggle="modal" data-target="#PublishModal" href="#" title="共享学习资料">
         <div class="card last">
-          <div class="title xl">我有福</div>
+          <div class="title xl">共享学习资料</div>
           <div class="sm"></div>
           <div class="card-footer">
-            <div class="card-action xxl">
+            <div class="card-action xl">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </div>
           </div>
         </div>
       </a>
     </div>
-    <c:if test="${not empty entities}">
-      <c:forEach var="item" items="${entities}">
-        <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2" data-id="${item.id}" data-source="${item.source}" data-target="${item.target}">
-          <a class="green op-exchange" href="#" title="换福">
+    <c:if test="${not empty resources}">
+      <c:forEach var="item" items="${resources}">
+        <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2" data-id="${item.id}" data-url="${item.url}">
+          <a class="green" href="/resource/${item.id}" target="_blank">
             <div class="card item">
-              <div class="title xl">${item.contact}</div>
-              <div class="sm">需要${item.targetFu}交换</div>
+              <div class="title md">${item.content}</div>
+              <div class="sm">${item.contact}</div>
               <div class="card-footer">
-                <div class="card-action xxl">
-                  <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
+                <div class="card-action xl">
+                  <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
                 </div>
               </div>
             </div>
@@ -57,13 +60,6 @@
       </c:forEach>
     </c:if>
   </div>
-
-  <div class="row row-space-top-6 row-space-6">
-    <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
-      <a class="btn btn-default btn-block" href="/fu">返回首页</a>
-    </div>
-  </div>
-
 </div>
 
 <div class="modal fade" id="ExchangeModal" tabindex="-1" role="dialog">
@@ -73,7 +69,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">换福</h4>
+        <h4 class="modal-title">共享资料</h4>
       </div>
       <div class="exchange-check">
         <div class="modal-body">
@@ -121,42 +117,29 @@
 </div>
 
 <div class="modal fade" id="PublishModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">换福</h4>
+        <h4 class="modal-title">共享学习资料</h4>
       </div>
-      <form action="/fu/publish" id="publish-form" method="post">
+      <form action="/resource" id="publish-form" method="post">
         <div class="modal-body">
           <div class="form-group">
-            <label for="source">我有</label><select class="form-control" id="source" name="source">
-              <option value="1001" <c:if test="${skill.id eq 1001}">selected="selected"</c:if>>爱国福</option>
-              <option value="1002" <c:if test="${skill.id eq 1002}">selected="selected"</c:if>>富强福</option>
-              <option value="1003" <c:if test="${skill.id eq 1003}">selected="selected"</c:if>>和谐福</option>
-              <option value="1004" <c:if test="${skill.id eq 1004}">selected="selected"</c:if>>友善福</option>
-              <option value="1005" <c:if test="${skill.id eq 1005}">selected="selected"</c:if>>敬业福</option>
-            </select>
+            <label for="content">资料内容介绍</label>
+            <textarea class="form-control" id="content" name="content"></textarea>
           </div>
           <div class="form-group">
-            <label for="target">我需要</label><select class="form-control" id="target" name="target">
-              <option value="1001">爱国福</option>
-              <option value="1002">富强福</option>
-              <option value="1003">和谐福</option>
-              <option value="1004">友善福</option>
-              <option value="1005">敬业福</option>
-            </select>
+            <label for="url">百度网盘或URL地址</label> <input class="form-control" id="url" name="url">
           </div>
           <div class="form-group">
-            <label for="alipay">留下支付宝，方便交换福</label><input type="text" class="form-control" id="alipay" name="alipay">
-          </div>
-          <div class="form-group">
-            <label>或关注公众号：一课上手，参与集福。</label><img alt="一课上手二维码" class="qr-code" src="http://yikeyun.b0.upaiyun.com/static/20170122001.jpg!M">
+            <label for="contact">联系方式（建议留QQ群或微信群）</label><input type="text" class="form-control" id="contact" name="contact">
           </div>
         </div>
         <div class="modal-footer">
+          <input type="hidden" name="skillId" value="${skill.id}">
           <button type="submit" class="btn btn-success">提交</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         </div>
@@ -165,4 +148,4 @@
   </div>
 </div>
 
-<script src="/js/fu.js?v=20170120008"></script>
+<script src="/js/skill.js?v=20170228001"></script>

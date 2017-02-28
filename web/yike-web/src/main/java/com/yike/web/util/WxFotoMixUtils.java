@@ -1,6 +1,5 @@
 package com.yike.web.util;
 
-import com.yike.Constants;
 import com.yike.model.WxUser;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -22,8 +21,8 @@ import java.security.MessageDigest;
 public class WxFotoMixUtils {
     private static final Log LOG = LogFactory.getLog(WxFotoMixUtils.class);
 
-    public static final String localImagePath = Constants.IMAGE_REPO + "wx/";
-//  public static final String localImagePath = "/Users/ilakeyc/Desktop/" + "wx/";
+    //    public static final String localImagePath = Constants.IMAGE_REPO + "wx/";
+    public static final String localImagePath = "/Users/ilakeyc/Desktop/" + "wx/";
 
     public static final String mainImageName = "wx-invitation-main-1.jpg";
     public static final String editorQrImageName = "wx_editor_qr.jpeg";
@@ -32,6 +31,7 @@ public class WxFotoMixUtils {
     public static final String upyunEditorQrImageURL = "http://yikeyun.b0.upaiyun.com/static/" + editorQrImageName;
 
     public static File localInvitationImage(String ticket) {
+        ticket = ticket.replace("/", "_");
         File file = new File(localImagePath + ticket + ".jpg");
         if (file.exists()) {
             return file;
@@ -41,12 +41,13 @@ public class WxFotoMixUtils {
 
     public static File createInvitationImage(WxUser user, String ticket) {
 
-        String imageName = ticket + ".jpg";
 
         File mainImageFile = getMainImage();
         File userImageFile = getUserImage(user);
         File QRCodeFile = getQRCode(ticket);
         String nickName = user.getNickname();
+        ticket = ticket.replace("/", "_");
+        String imageName = ticket + ".jpg";
         if (StringUtils.length(nickName) > 5) {
             nickName = StringUtils.substring(nickName, 0, 5);
         }

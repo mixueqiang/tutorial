@@ -226,7 +226,15 @@ public class WxITService {
         }
         if (count == 2) {
             if (wxUserService.makeStudent(invterOpenId)) {
-                return sendFreeAdmissionTemplateMessage(invter);
+                sendFreeAdmissionTemplateMessage(invter);
+                apiUtils.sendTextMessage("[机智]请先填写入学资料，然后添加小编微信等待拉你入群哦~\n微信号：lenkasummer\n", invterOpenId);
+                File zhoumoQr = WxFotoMixUtils.getZhoumoQrCode();
+                if (zhoumoQr != null) {
+                    String mediaId = apiUtils.uploadTempImage(zhoumoQr);
+                    apiUtils.sendImageMessage(mediaId, invterOpenId);
+                } else {
+                    LOG.error("ZhoumoQr is null");
+                }
             }
         }
 

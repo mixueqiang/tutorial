@@ -96,7 +96,7 @@ public class WxTemplateMessageFormatter {
         data.put("keyword2", formateData("入学仪式"));
         data.put("keyword3", formateData(dateString));
 
-        String remarkString = "\n请先填写入学资料，然后添加小编微信等待拉你入群哦~\n微信号：lenkasummer\n\n点击↓↓详情，填写入学资料。么么哒~";
+        String remarkString = "\n点击↓↓详情，填写入学资料。么么哒~";
         data.put("remark", formateData(remarkString));
         return data;
     }

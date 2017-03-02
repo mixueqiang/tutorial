@@ -27,6 +27,7 @@ public class WxYiKeService {
 
     private static final String BINDING_STATUS_NOTICE_TEMPLATE_ID = "801LSYIv8DB_bN8d8bHg7zY-3kXRV7Tq8yH615Wse3Y";
     private static final String BINDING_SUCCESS_NOTICE_TEMPLATE_ID = "5DjnVwY1FomxQhvd7kiIn0DmMOX6LmaBrdgW1mcAGGE";
+    private static final String COURSE_ON_LAUNCH_NOTICE_TEMPLATE_ID = "UER4FNumEnvJlvRU7fjnF77N6_dnWJmvhkhhi0mXP_c";
 
     public static String WX_TOKEN = "yikeshangshouwx";
     public static String APP_ID = "wxf67017b21672abff";
@@ -196,5 +197,13 @@ public class WxYiKeService {
         }
         Map<String, Object> data = WxTemplateMessageFormatter.formateBindingSuccessNotice(user.getPhone());
         return apiUtils.sendTemplateMessage(BINDING_SUCCESS_NOTICE_TEMPLATE_ID, "http://www.yikeshangshou.com", data, toUserOpenId);
+    }
+
+    public boolean sendCourseOnLaunchNoticeTemplateMessage(long courseId, String toUserOpenId, String userName, String courseName, String beginDate) {
+        if (StringUtils.isEmpty(toUserOpenId) || StringUtils.isEmpty(userName) || StringUtils.isEmpty(courseName) || StringUtils.isEmpty(beginDate)) {
+            return false;
+        }
+        Map<String, Object> data = WxTemplateMessageFormatter.formateCourseOnLaunchNotice(userName, courseName, beginDate);
+        return apiUtils.sendTemplateMessage(COURSE_ON_LAUNCH_NOTICE_TEMPLATE_ID, "http://www.yikeshangshou.com/course/" + String.valueOf(courseId), data, toUserOpenId);
     }
 }

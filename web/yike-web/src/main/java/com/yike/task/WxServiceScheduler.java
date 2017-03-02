@@ -1,7 +1,8 @@
-package com.yike.service;
+package com.yike.task;
 
 import com.yike.model.WxButton;
-import com.yike.task.TaskScheduler;
+import com.yike.service.WxITService;
+import com.yike.service.WxYiKeService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;

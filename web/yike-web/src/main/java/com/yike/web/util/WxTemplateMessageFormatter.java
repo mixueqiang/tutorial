@@ -14,6 +14,16 @@ import java.util.Map;
  */
 public class WxTemplateMessageFormatter {
 
+    public static Map<String, Object> formateCourseOnLaunchNotice(String userName, String courseName, String beginDate) {
+        Map<String, Object> data = new HashMap<String, Object>();
+
+        data.put("first", formateData("\n" + userName + "同学，你预约的课程要开始啦！\n", "#FF2C38"));
+        data.put("keyword1", formateData(courseName));
+        data.put("keyword2", formateData(beginDate));
+        data.put("remark", formateData("\n点击↓↓详情可以查看课程。"));
+        return data;
+    }
+
     public static Map<String, Object> formateBindingSuccessNotice(String phone) {
         Map<String, Object> data = new HashMap<String, Object>();
         Format dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");

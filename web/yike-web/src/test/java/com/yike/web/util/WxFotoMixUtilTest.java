@@ -1,19 +1,12 @@
 package com.yike.web.util;
 
-import com.yike.model.WxUser;
-import com.yike.service.WxITService;
 import com.yike.service.WxITUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-
-import java.io.File;
-
-import static com.yike.service.WxITService.apiUtils;
 
 /**
  * @author ilakeyc
@@ -29,12 +22,12 @@ public class WxFotoMixUtilTest {
     @Test
     public void createInvitationImage() throws Exception {
 
-        apiUtils.requestAccessToken();
-
-        apiUtils.sendTextMessage("[机智]请先填写入学资料，然后添加小编微信等待拉你入群哦~\n微信号：lenkasummer\n", "o6_3dwGJWBSj0eK6LJdBQRnYSCIY");
-        File image = WxFotoMixUtils.getZhoumoQrCode();
-        String mediaId = apiUtils.uploadTempImage(image);
-        apiUtils.sendImageMessage(mediaId, "o6_3dwGJWBSj0eK6LJdBQRnYSCIY");
+//        apiUtils.requestAccessToken();
+//
+//        apiUtils.sendTextMessage("[机智]请先填写入学资料，然后添加小编微信等待拉你入群哦~\n微信号：lenkasummer\n", "o6_3dwGJWBSj0eK6LJdBQRnYSCIY");
+//        File image = WxFotoMixUtils.getZhoumoQrCode();
+//        String mediaId = apiUtils.uploadTempImage(image);
+//        apiUtils.sendImageMessage(mediaId, "o6_3dwGJWBSj0eK6LJdBQRnYSCIY");
 
 //        WxUser user = wxITUserService.getUser("o6_3dwBs0gJzZdOh8XhPASLPBk-s");
 //

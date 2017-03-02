@@ -14,6 +14,7 @@
               <tr>
                 <th style="width: 30%;">课程</th>
                 <th>用户</th>
+                <th>报名信息</th>
                 <th>报名时间</th>
                 <th>进度</th>
                 <th>操作</th>
@@ -24,6 +25,7 @@
                 <tr data-id="${item.id}">
                   <td><a href="/course/${item.courseId}" target="_blank">${item.properties.course.name}</a></td>
                   <td><a href="/user/${item.userId}" target="_blank">${item.properties.user.username}</a></td>
+                  <td>${item.phone}／${item.name}</td>
                   <td><jsp:useBean id="createDate" class="java.util.Date" /> <jsp:setProperty name="createDate" property="time" value="${item.createTime}" /> <fmt:formatDate
                       value="${createDate}" pattern="yyyy-MM-dd HH:mm" /></td>
                   <td>${item.progress}</td>

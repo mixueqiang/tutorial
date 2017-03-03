@@ -192,7 +192,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" id="delete" class="btn btn-default">删除</button>
-            <button type="sbumit" class="btn btn-primary">提交</button>
+            <button type="submit" class="btn btn-primary">提交</button>
           </div>
         </form>
       </div>
@@ -238,6 +238,39 @@
     </div>
   </div>
 </div>
+
+<!-- deleteSuccsee -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        确定要删除吗
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary deleteSuccseebtn">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- deleteFail -->
+<div class="modal fade" id="deleteFail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        删除失败！
+      </div>
+      
+    </div>
+  </div>
+</div>
 <script>
 $(function(){
 
@@ -268,11 +301,14 @@ $('#editbtn').click(function() {
     $.post('/admin/schedule/delete',{'scheduleId':schedulesId},function(resp){
         if (resp && resp.e == 0) {
           var id = resp.r;
-          Message.info('删除成功。', false, $('.form-group:last', $(form)));
-          $('#newModal').modal('hide');
-          window.location.reload();
+          $('#deleteModal').modal('show');
+          $('.deleteSuccseebtn').click(function(){
+            $('#deleteModal').modal('hide');
+            $('#newModal').modal('hide');
+            window.location.reload();
+          })
         } else {
-          Message.error('删除失败：' + resp.m, false, $('.form-group:last', $(form)));
+          $('#deleteModal').modal('hide');
         }
     },'json');
   })

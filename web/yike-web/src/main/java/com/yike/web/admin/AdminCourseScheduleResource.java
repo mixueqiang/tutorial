@@ -1,10 +1,9 @@
 package com.yike.web.admin;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.sun.jersey.api.view.Viewable;
 import com.yike.Constants;
 import com.yike.dao.CourseDao;
+import com.yike.dao.EntityDao;
 import com.yike.dao.mapper.CourseRowMapper;
 import com.yike.dao.mapper.CourseScheduleRowMapper;
 import com.yike.model.Course;
@@ -25,6 +24,7 @@ import javax.annotation.Resource;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,12 +61,14 @@ public class AdminCourseScheduleResource extends BaseResource {
             request.setAttribute("oneCourse", true);
         }
         condition.put("status", 1);
+
         Pair<Integer, List<CourseSchedule>> result = entityDao.findAndCount(
                 "course_schedule",
                 condition,
                 page,
                 20,
-                CourseScheduleRowMapper.getInstance());
+                CourseScheduleRowMapper.getInstance(), "launchDate",
+                EntityDao.ORDER_OPTION_ASC);
 
         List<CourseSchedule> schedules = result.right;
         if (courseId == 0) {
@@ -123,14 +125,7 @@ public class AdminCourseScheduleResource extends BaseResource {
             return ResponseBuilder.error(90003, "总课时不能0。");
         }
 
-        Gson gson = new Gson();
-        List<String> days = null;
-        try {
-            days = gson.fromJson(daysOfWeek, new TypeToken<List<String>>() {
-            }.getType());
-        } catch (Throwable t) {
-            LOG.error("foo", t);
-        }
+        List<String> days = Arrays.asList(StringUtils.split(daysOfWeek, ","));
 
         boolean flag = courseDao.setCourseSchedules(courseId, date, time, days, totalCount);
 

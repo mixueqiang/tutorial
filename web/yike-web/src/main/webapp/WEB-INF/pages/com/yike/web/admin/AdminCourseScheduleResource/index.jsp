@@ -22,14 +22,14 @@
         <div class="row">
           <div class="col-md-12">
             <strong>当前课程：${course.name}</strong>
-            <a href="#" class="pull-right" style="color: red;">生成新的课程表</a><!--红底白字-->
+            <a href="javasctipt:;" class="btn btn-danger pull-right" role="button" data-toggle="modal" data-target="#newModal">生成新的课程表</a>
           </div>
         </div>
       </div>
     </c:if>
     <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-body">
+      <div class="panel">
+        <div class="panel-body panel-default">
           <table class="table table-condensed table-hover" id="orders">
             <thead>
             <tr>
@@ -50,16 +50,17 @@
                   </td>
                 </c:if>
                 <td>${item.launchDate} ${item.launchTime}</td>
-                <td><a href="#">编辑</a></td>
+                <td><a href="javascript:;" data-toggle="modal" data-target="#editModal">编辑</a></td>
               </tr>
             </c:forEach>
             </tbody>
           </table>
         </div>
+        <c:if test="${oneCourse eq true}">
+          <div style="text-align:center"><a href="javasctipt:;" class="btn btn-danger" role="button" data-toggle="modal" data-target="#addModal">添加新日程</a></div>
+        </c:if>
       </div>
-      <c:if test="${oneCourse eq true}">
-        <a href="#" style="color: red; text-align: center;">添加新日程</a>
-      </c:if>
+      
 
       <ul class="pagination">
         <c:if test="${currentPage ne 1}">
@@ -82,3 +83,213 @@
     </div>
   </div>
 </div>
+
+
+<!-- newModal -->
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">生成课程表</h4>
+      </div>
+      <div class="modal-body">
+        <h4>${course.name}</h4>
+        <form id="new" class="form-horizontal row-space-top-2" action="/admin/schedule" method="post">
+        <div class="form-group hide">
+            <label for="courseId" class="col-sm-3 control-label">课程ID：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="courseId" name="courseId" value="${course.id}" placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="date" class="col-sm-3 control-label">开始日期：</label>
+            <div class="col-sm-9">
+              <input type="date" class="form-control" id="date" name="date" placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="time" class="col-sm-3 control-label">开始时间：</label>
+            <div class="col-sm-9">
+              <input type="time" class="form-control" id="time" name="time" placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="daysOfWeek" class="col-sm-3 control-label">每周几开课：</label>
+            <div class="col-sm-9">
+              <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox1" name="daysOfWeek" value="2">周一
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox2" name="daysOfWeek" value="3">周二
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox3" name="daysOfWeek" value="4">周三
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox1" name="daysOfWeek" value="5">周四
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox2" name="daysOfWeek" value="6">周五
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox3" name="daysOfWeek" value="7">周六
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox3" name="daysOfWeek" value="1">周日
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="totalCount" class="col-sm-3 control-label">总课时：</label>
+            <div class="col-sm-9">
+              <input type="number" class="form-control" id="totalCount" name="totalCount" placeholder="">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="submitt">提交</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!-- editModal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">编辑课程</h4>
+      </div>
+      <div class="modal-body">
+        <h4>${course.name}</h4>
+        <form id="new" class="form-horizontal row-space-top-2" action="/admin/schedule" method="post">
+          <div class="form-group">
+            <label for="date" class="col-sm-3 control-label">开始日期：</label>
+            <div class="col-sm-9">
+              <input type="date" class="form-control" id="date" name="date" value="" placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="time" class="col-sm-3 control-label">开始日期：</label>
+            <div class="col-sm-9">
+              <input type="time" class="form-control" id="time" name="time" placeholder="">
+            </div>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default">删除</button>
+        <button type="button" class="btn btn-primary">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- addModal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加课程</h4>
+      </div>
+      <div class="modal-body">
+        <h4>${course.name}</h4>
+        <form id="new" class="form-horizontal row-space-top-2" action="/admin/schedule" method="post">
+          <div class="form-group">
+            <label for="date" class="col-sm-3 control-label">开始日期：</label>
+            <div class="col-sm-9">
+              <input type="date" class="form-control" id="date" name="date" placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="time" class="col-sm-3 control-label">开始日期：</label>
+            <div class="col-sm-9">
+              <input type="time" class="form-control" id="time" name="time" placeholder="">
+            </div>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+/*$('#submitt').click(function(){
+
+})
+$('#new').validate({
+  rules : {
+    date : {
+      required : true
+    },
+    time : {
+      required : true
+    },
+    daysOfWeek : {
+      required : true
+    },
+    totalCount : {
+      required : true,
+      maxlength : 100,
+      digits : true
+    }
+  },
+  messages : {
+    date : {
+      required : '请输入开始日期。',
+      maxlength : $.format("课程名称不能超过 {0} 个字。")
+    },
+    time : {
+      required : '请输入开始时间。',
+      maxlength : $.format("课程亮点不能超过 {0} 个字。")
+    },
+    daysOfWeek : {
+      required : '请输入每周几开课。',
+      maxlength : $.format("课程价格最多可以输入 {0} 个字符。"),
+      number : "请输入有效的数字。",
+    },
+    totalCount : {
+      required : '请输入总课时。',
+      maxlength : $.format("招生人数不能超过 {0} 个字。"),
+      digits : "只能输入数字",
+    }
+  },
+  submitHandler : function(form) {
+    var $btn = $('button[type=submit]', $(form));
+    $btn.attr('disabled', 'disabled').addClass('disabled');
+    if (!$(form).valid()) {
+      $('.error').eq(0).focus();
+      $btn.removeAttr('disabled').removeClass('disabled');
+      return false;
+    }
+    $(form).ajaxSubmit({
+      success : function(resp) {
+        if (resp && resp.e == 0) {
+          $('input', $(form)).val('');
+          $btn.removeAttr('disabled').removeClass('disabled');
+          var id = resp.r;
+          Message.info('生成课程表成功。', false, $('.form-group:last', $(form)));
+
+        } else {
+          $btn.removeAttr('disabled').removeClass('disabled');
+          Message.error('生成课程表失败：' + resp.m, false, $('.form-group:last', $(form)));
+        }
+      },
+      error : function() {
+        $btn.removeAttr('disabled').removeClass('disabled');
+        Message.error('生成课程表失败！', false, $('.form-group:last', $(form)));
+      }
+    });
+  }
+});*/
+
+</script>

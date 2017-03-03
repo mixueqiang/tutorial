@@ -1,22 +1,25 @@
 package com.yike.web.admin;
 
 import com.sun.jersey.api.view.Viewable;
+import com.yike.Constants;
+import com.yike.dao.CourseDao;
 import com.yike.dao.mapper.CourseRowMapper;
 import com.yike.dao.mapper.CourseScheduleRowMapper;
 import com.yike.model.Course;
 import com.yike.model.CourseSchedule;
 import com.yike.util.PageNumberUtils;
 import com.yike.util.Pair;
+import com.yike.util.ResponseBuilder;
 import com.yike.web.BaseResource;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.annotation.Resource;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
@@ -32,6 +35,11 @@ import java.util.Map;
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class AdminCourseScheduleResource extends BaseResource {
+
+    private static final Log LOG = LogFactory.getLog(AdminCourseScheduleResource.class);
+
+    @Resource
+    protected CourseDao courseDao;
 
     @GET
     @Produces(MediaType.TEXT_HTML)
@@ -88,5 +96,92 @@ public class AdminCourseScheduleResource extends BaseResource {
         request.setAttribute("lastPage", pages.right);
 
         return Response.ok(new Viewable("index")).build();
+    }
+
+    @POST
+    @Produces(APPLICATION_JSON)
+    public Map<String, Object> add(
+            @FormParam("courseId") long courseId,
+            @FormParam("date") String date,
+            @FormParam("time") String time,
+            @FormParam("daysOfWeek") List<String> daysOfWeek,
+            @FormParam("totalCount") int totalCount) {
+
+        if (courseId <= 0) {
+            return ResponseBuilder.error(90000, "课程id不合法。");
+        }
+        if (StringUtils.isEmpty(date)) {
+            return ResponseBuilder.error(90001, "开始日期不能为空。");
+        }
+        if (StringUtils.isEmpty(time)) {
+            return ResponseBuilder.error(90002, "开始时间不能为空。");
+        }
+        if (totalCount <= 0) {
+            return ResponseBuilder.error(90003, "总课时不能0。");
+        }
+
+        boolean flag = courseDao.setCourseSchedules(courseId, date, time, daysOfWeek, totalCount);
+
+        if (flag) {
+            return ResponseBuilder.OK;
+        } else {
+            return ResponseBuilder.error(50000, "失败，请查看错误日志。");
+        }
+    }
+
+    @POST
+    @Path("{id}")
+    @Produces(APPLICATION_JSON)
+    public Map<String, Object> edit(
+            @PathParam("id") long scheduleId,
+            @FormParam("date") String date,
+            @FormParam("time") String time) {
+
+        if (scheduleId <= 0) {
+            return ResponseBuilder.error(90000, "课程表id不合法。");
+        }
+        if (StringUtils.isEmpty(date)) {
+            return ResponseBuilder.error(90001, "开始日期不能为空。");
+        }
+        if (StringUtils.isEmpty(time)) {
+            return ResponseBuilder.error(90002, "开始时间不能为空。");
+        }
+
+        try {
+            Map<String, Object> condition = new HashMap<String, Object>();
+            condition.put("id", scheduleId);
+            Map<String, Object> updateValues = new HashMap<String, Object>();
+            updateValues.put("launchDate", date);
+            updateValues.put("launchTime", time);
+            updateValues.put("status", Constants.STATUS_OK);
+            entityDao.update("course_schedule", condition, updateValues);
+            return ResponseBuilder.OK;
+        } catch (Throwable t) {
+            LOG.error("Update course_schedule failure", t);
+            return ResponseBuilder.error(t);
+        }
+    }
+
+    @POST
+    @Path("delete/{id}")
+    @Produces(APPLICATION_JSON)
+    public Map<String, Object> edit(
+            @PathParam("id") long scheduleId) {
+
+        if (scheduleId <= 0) {
+            return ResponseBuilder.error(90000, "课程表id不合法。");
+        }
+
+        try {
+            Map<String, Object> condition = new HashMap<String, Object>();
+            condition.put("id", scheduleId);
+            Map<String, Object> updateValues = new HashMap<String, Object>();
+            updateValues.put("status", Constants.STATUS_NO);
+            entityDao.update("course_schedule", condition, updateValues);
+            return ResponseBuilder.OK;
+        } catch (Throwable t) {
+            LOG.error("Delete course_schedule failure", t);
+            return ResponseBuilder.error(t);
+        }
     }
 }

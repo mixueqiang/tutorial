@@ -197,6 +197,7 @@ public class AdminCourseScheduleResource extends BaseResource {
             entity.set("courseId", courseId)
                     .set("launchDate", date)
                     .set("launchTime", time)
+                    .set("createTime", System.currentTimeMillis())
                     .set("status", Constants.STATUS_OK);
             entityDao.save(entity);
             return ResponseBuilder.OK;

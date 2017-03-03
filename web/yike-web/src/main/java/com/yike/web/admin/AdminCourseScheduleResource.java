@@ -189,7 +189,7 @@ public class AdminCourseScheduleResource extends BaseResource {
             @FormParam("time") String time) {
 
         if (courseId <= 0) {
-            return ResponseBuilder.error(90000, "课程表id不合法。");
+            return ResponseBuilder.error(90000, "课程id不合法。");
         }
         if (StringUtils.isEmpty(date)) {
             return ResponseBuilder.error(90001, "开始日期不能为空。");

@@ -27,7 +27,8 @@
                   <td><jsp:useBean id="createDate" class="java.util.Date" /> <jsp:setProperty name="createDate" property="time" value="${item.createTime}" /> <fmt:formatDate
                       value="${createDate}" pattern="yyyy-MM-dd HH:mm" /></td>
                   <td>${item.countThis}/${item.countOther}</td>
-                  <td><a href="/admin/order?courseId=${item.id}" target="_blank">报名详情</a></td>
+                  <td><a href="/admin/order?courseId=${item.id}" target="_blank">报名详情</a><a
+                      href="/admin/schedule?courseId=${item.id}" style="padding-left: 20px" target="_blank">课程表</a></td>
                 </tr>
               </c:forEach>
             </tbody>

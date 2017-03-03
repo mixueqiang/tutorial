@@ -8,6 +8,7 @@
           <ul>
             <li><strong>课程</strong></li>
             <li><a href="/admin/course" target="_blank">课程列表</a></li>
+            <li><a href="/admin/schedule" target="_blank">课程表</a></li>
             <li><a href="/admin/order" target="_blank">课程订单</a></li>
             <li><a href="/admin/shorthand/new_instructor" target="_blank">快速注册老师</a></li>
             <li><a href="/admin/user" target="_blank">网站用户 (${userCount}人)</a></li>

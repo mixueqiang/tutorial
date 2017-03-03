@@ -9,6 +9,7 @@ import com.yike.dao.mapper.CourseScheduleRowMapper;
 import com.yike.model.Course;
 import com.yike.model.CourseSchedule;
 import com.yike.model.Entity;
+import com.yike.model.User;
 import com.yike.util.PageNumberUtils;
 import com.yike.util.Pair;
 import com.yike.util.ResponseBuilder;
@@ -48,6 +49,10 @@ public class AdminCourseScheduleResource extends BaseResource {
     @Produces(MediaType.TEXT_HTML)
     public Response index(@QueryParam("courseId") long courseId, @QueryParam("page") int page) {
 
+        User user = getSessionUser();
+        if (user == null || !user.isAdmin()) {
+            return null;
+        }
         page = page > 0 ? page : 1;
         Map<String, Object> condition = new HashMap<String, Object>();
         if (courseId > 0) {
@@ -112,7 +117,10 @@ public class AdminCourseScheduleResource extends BaseResource {
             @FormParam("time") String time,
             @FormParam("daysOfWeek") String daysOfWeek,
             @FormParam("totalCount") int totalCount) {
-
+        User user = getSessionUser();
+        if (user == null || !user.isAdmin()) {
+            return ResponseBuilder.error(50000, "你没有权限进行该操作");
+        }
         if (courseId <= 0) {
             return ResponseBuilder.error(90000, "课程id不合法。");
         }
@@ -144,7 +152,10 @@ public class AdminCourseScheduleResource extends BaseResource {
             @FormParam("scheduleId") long scheduleId,
             @FormParam("date") String date,
             @FormParam("time") String time) {
-
+        User user = getSessionUser();
+        if (user == null || !user.isAdmin()) {
+            return ResponseBuilder.error(50000, "你没有权限进行该操作");
+        }
         if (scheduleId <= 0) {
             return ResponseBuilder.error(90000, "课程表id不合法。");
         }
@@ -187,7 +198,10 @@ public class AdminCourseScheduleResource extends BaseResource {
             @FormParam("courseId") long courseId,
             @FormParam("date") String date,
             @FormParam("time") String time) {
-
+        User user = getSessionUser();
+        if (user == null || !user.isAdmin()) {
+            return ResponseBuilder.error(50000, "你没有权限进行该操作");
+        }
         if (courseId <= 0) {
             return ResponseBuilder.error(90000, "课程id不合法。");
         }
@@ -201,7 +215,7 @@ public class AdminCourseScheduleResource extends BaseResource {
         try {
             Map<String, Object> condition = new HashMap<String, Object>();
             condition.put("courseId", courseId);
-            condition.put("launchData", date);
+            condition.put("launchDate", date);
             condition.put("launchTime", time);
             condition.put("status", Constants.STATUS_OK);
             if (entityDao.exists("course_schedule", condition)) {
@@ -226,7 +240,10 @@ public class AdminCourseScheduleResource extends BaseResource {
     @Produces(APPLICATION_JSON)
     public Map<String, Object> delete(
             @FormParam("scheduleId") long scheduleId) {
-
+        User user = getSessionUser();
+        if (user == null || !user.isAdmin()) {
+            return ResponseBuilder.error(50000, "你没有权限进行该操作");
+        }
         if (scheduleId <= 0) {
             return ResponseBuilder.error(90000, "课程表id不合法。");
         }

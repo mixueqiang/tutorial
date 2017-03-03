@@ -47,6 +47,7 @@ public class AdminCourseScheduleResource extends BaseResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public Response index(@QueryParam("courseId") long courseId, @QueryParam("page") int page) {
+
         page = page > 0 ? page : 1;
         Map<String, Object> condition = new HashMap<String, Object>();
         if (courseId > 0) {
@@ -196,7 +197,6 @@ public class AdminCourseScheduleResource extends BaseResource {
         if (StringUtils.isEmpty(time)) {
             return ResponseBuilder.error(90002, "开始时间不能为空。");
         }
-
 
         try {
             Map<String, Object> condition = new HashMap<String, Object>();

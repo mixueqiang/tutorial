@@ -22,6 +22,7 @@
         <div class="row">
           <div class="col-md-12">
             <strong>当前课程：${course.name}</strong>
+            <a href="#" class="pull-right" style="color: red;">生成新的课程表</a><!--红底白字-->
           </div>
         </div>
       </div>
@@ -45,15 +46,20 @@
               <tr data-id="${item.id}">
                 <td>${item.id}</td>
                 <c:if test="${oneCourse ne true}">
-                  <td>${item.properties.course.name}</td>
+                  <td><a href="/admin/schedule?courseId=${item.properties.course.id}">${item.properties.course.name}</a>
+                  </td>
                 </c:if>
                 <td>${item.launchDate} ${item.launchTime}</td>
+                <td><a href="#">编辑</a></td>
               </tr>
             </c:forEach>
             </tbody>
           </table>
         </div>
       </div>
+      <c:if test="${oneCourse eq true}">
+        <a href="#" style="color: red; text-align: center;">添加新日程</a>
+      </c:if>
 
       <ul class="pagination">
         <c:if test="${currentPage ne 1}">

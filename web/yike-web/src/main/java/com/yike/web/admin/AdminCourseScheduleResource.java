@@ -1,5 +1,7 @@
 package com.yike.web.admin;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.sun.jersey.api.view.Viewable;
 import com.yike.Constants;
 import com.yike.dao.CourseDao;
@@ -7,6 +9,7 @@ import com.yike.dao.mapper.CourseRowMapper;
 import com.yike.dao.mapper.CourseScheduleRowMapper;
 import com.yike.model.Course;
 import com.yike.model.CourseSchedule;
+import com.yike.model.Entity;
 import com.yike.util.PageNumberUtils;
 import com.yike.util.Pair;
 import com.yike.util.ResponseBuilder;
@@ -100,11 +103,11 @@ public class AdminCourseScheduleResource extends BaseResource {
 
     @POST
     @Produces(APPLICATION_JSON)
-    public Map<String, Object> add(
+    public Map<String, Object> reset(
             @FormParam("courseId") long courseId,
             @FormParam("date") String date,
             @FormParam("time") String time,
-            @FormParam("daysOfWeek") List<String> daysOfWeek,
+            @FormParam("daysOfWeek") String daysOfWeek,
             @FormParam("totalCount") int totalCount) {
 
         if (courseId <= 0) {
@@ -120,7 +123,16 @@ public class AdminCourseScheduleResource extends BaseResource {
             return ResponseBuilder.error(90003, "总课时不能0。");
         }
 
-        boolean flag = courseDao.setCourseSchedules(courseId, date, time, daysOfWeek, totalCount);
+        Gson gson = new Gson();
+        List<String> days = null;
+        try {
+            days = gson.fromJson(daysOfWeek, new TypeToken<List<String>>() {
+            }.getType());
+        } catch (Throwable t) {
+            LOG.error("foo", t);
+        }
+
+        boolean flag = courseDao.setCourseSchedules(courseId, date, time, days, totalCount);
 
         if (flag) {
             return ResponseBuilder.OK;
@@ -130,10 +142,10 @@ public class AdminCourseScheduleResource extends BaseResource {
     }
 
     @POST
-    @Path("{id}")
+    @Path("edit")
     @Produces(APPLICATION_JSON)
     public Map<String, Object> edit(
-            @PathParam("id") long scheduleId,
+            @FormParam("scheduleId") long scheduleId,
             @FormParam("date") String date,
             @FormParam("time") String time) {
 
@@ -163,10 +175,42 @@ public class AdminCourseScheduleResource extends BaseResource {
     }
 
     @POST
-    @Path("delete/{id}")
+    @Path("add")
     @Produces(APPLICATION_JSON)
-    public Map<String, Object> edit(
-            @PathParam("id") long scheduleId) {
+    public Map<String, Object> add(
+            @FormParam("courseId") long courseId,
+            @FormParam("date") String date,
+            @FormParam("time") String time) {
+
+        if (courseId <= 0) {
+            return ResponseBuilder.error(90000, "课程表id不合法。");
+        }
+        if (StringUtils.isEmpty(date)) {
+            return ResponseBuilder.error(90001, "开始日期不能为空。");
+        }
+        if (StringUtils.isEmpty(time)) {
+            return ResponseBuilder.error(90002, "开始时间不能为空。");
+        }
+
+        try {
+            Entity entity = new Entity("course_schedule");
+            entity.set("courseId", courseId)
+                    .set("launchDate", date)
+                    .set("launchTime", time)
+                    .set("status", Constants.STATUS_OK);
+            entityDao.save(entity);
+            return ResponseBuilder.OK;
+        } catch (Throwable t) {
+            LOG.error("Update course_schedule failure", t);
+            return ResponseBuilder.error(t);
+        }
+    }
+
+    @POST
+    @Path("delete")
+    @Produces(APPLICATION_JSON)
+    public Map<String, Object> delete(
+            @FormParam("scheduleId") long scheduleId) {
 
         if (scheduleId <= 0) {
             return ResponseBuilder.error(90000, "课程表id不合法。");

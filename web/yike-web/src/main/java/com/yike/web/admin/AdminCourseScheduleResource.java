@@ -160,6 +160,16 @@ public class AdminCourseScheduleResource extends BaseResource {
         }
 
         try {
+
+            Map<String, Object> existCondition = new HashMap<String, Object>();
+            existCondition.put("id", scheduleId);
+            existCondition.put("launchData", date);
+            existCondition.put("launchTime", time);
+            existCondition.put("status", Constants.STATUS_OK);
+            if (entityDao.exists("course_schedule", existCondition)) {
+                return ResponseBuilder.error(90003, "该日程已存在。");
+            }
+
             Map<String, Object> condition = new HashMap<String, Object>();
             condition.put("id", scheduleId);
             Map<String, Object> updateValues = new HashMap<String, Object>();

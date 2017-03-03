@@ -96,7 +96,7 @@
       <div class="modal-body">
         <h4>${course.name}</h4>
         <form id="new" class="form-horizontal row-space-top-2" action="/admin/schedule" method="post">
-        <div class="form-group hide">
+          <div class="form-group hide">
             <label for="courseId" class="col-sm-3 control-label">课程ID：</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="courseId" name="courseId" value="${course.id}" placeholder="">
@@ -127,16 +127,16 @@
                 <input type="checkbox" id="inlineCheckbox3" name="daysOfWeek" value="4">周三
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox1" name="daysOfWeek" value="5">周四
+                <input type="checkbox" id="inlineCheckbox4" name="daysOfWeek" value="5">周四
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox2" name="daysOfWeek" value="6">周五
+                <input type="checkbox" id="inlineCheckbox5" name="daysOfWeek" value="6">周五
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox3" name="daysOfWeek" value="7">周六
+                <input type="checkbox" id="inlineCheckbox6" name="daysOfWeek" value="7">周六
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox3" name="daysOfWeek" value="1">周日
+                <input type="checkbox" id="inlineCheckbox7" name="daysOfWeek" value="1">周日
               </label>
             </div>
           </div>
@@ -151,7 +151,6 @@
           </div>
         </form>
       </div>
-      
     </div>
   </div>
 </div>
@@ -167,6 +166,11 @@
       <div class="modal-body">
         <h4>${course.name}</h4>
         <form id="new" class="form-horizontal row-space-top-2" action="/admin/schedule" method="post">
+          <div class="form-group hide">
+            <label for="courseId" class="col-sm-3 control-label">课程ID：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="courseId" name="courseId" value="${course.id}" placeholder="">
+          </div>
           <div class="form-group">
             <label for="date" class="col-sm-3 control-label">开始日期：</label>
             <div class="col-sm-9">
@@ -179,12 +183,11 @@
               <input type="time" class="form-control" id="time" name="time" placeholder="">
             </div>
           </div>
-          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default">删除</button>
+            <button type="button" class="btn btn-primary">提交</button>
+          </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default">删除</button>
-        <button type="button" class="btn btn-primary">提交</button>
       </div>
     </div>
   </div>
@@ -201,6 +204,11 @@
       <div class="modal-body">
         <h4>${course.name}</h4>
         <form id="new" class="form-horizontal row-space-top-2" action="/admin/schedule" method="post">
+          <div class="form-group hide">
+            <label for="courseId" class="col-sm-3 control-label">课程ID：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="courseId" name="courseId" value="${course.id}" placeholder="">
+            </div>
           <div class="form-group">
             <label for="date" class="col-sm-3 control-label">开始日期：</label>
             <div class="col-sm-9">
@@ -213,17 +221,17 @@
               <input type="time" class="form-control" id="time" name="time" placeholder="">
             </div>
           </div>
-          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      
     </div>
   </div>
 </div>
 <script>
-/*$('#submitt').click(function(){
+$('#submitt').click(function(){
 
 })
 $('#new').validate({
@@ -290,6 +298,6 @@ $('#new').validate({
       }
     });
   }
-});*/
+});
 
 </script>

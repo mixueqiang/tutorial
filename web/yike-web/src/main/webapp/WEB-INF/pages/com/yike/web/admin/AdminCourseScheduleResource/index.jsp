@@ -171,7 +171,7 @@
       </div>
       <div class="modal-body">
         <h4>${course.name}</h4>
-        <form id="edit" class="form-horizontal row-space-top-2" action="/admin/schedule" method="post">
+        <form id="edit" class="form-horizontal row-space-top-2" action="/admin/schedule/edit" method="post">
           <div class="form-group hide">
             <label for="courseId" class="col-sm-3 control-label">课程ID：</label>
             <div class="col-sm-9">
@@ -181,7 +181,7 @@
           <div class="form-group">
             <label for="date" class="col-sm-3 control-label">开始日期：</label>
             <div class="col-sm-9">
-              <input type="date" class="form-control" id="editdate" name="date" value="" placeholder="">
+              <input type="data" class="form-control" id="editdate" name="date" value="" placeholder="">
             </div>
           </div>
           <div class="form-group">
@@ -293,9 +293,10 @@ $('#newSubmit').click(function(){
 $('#editbtn').click(function() {
   var scheduleDate = $(this).parent().attr('data-date');
   var schedulesTime = $(this).parent().attr('data-time');
+  $('#editdate').val(scheduleDate);
+  $('#edittime').val(schedulesTime);
   var schedulesId = $(this).parent().parent().attr('data-id');
-  document.getElementById("editdate").value="11";
-  document.getElementById("edittime").value="12";
+  
   //删除事件
   $('#delete').click(function(){
     $.post('/admin/schedule/delete',{'scheduleId':schedulesId},function(resp){
@@ -312,8 +313,7 @@ $('#editbtn').click(function() {
         }
     },'json');
   })
-  $('#editdate').val(11);
-  $('#edittime').val(22);
+ 
 });
 
 

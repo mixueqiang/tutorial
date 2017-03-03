@@ -115,29 +115,35 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="daysOfWeek" class="col-sm-3 control-label">每周几开课：</label>
+            <label class="col-sm-3 control-label">每周几开课：</label>
             <div class="col-sm-9">
               <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox1" name="daysOfWeek" value="2">周一
+                <input type="checkbox" id="inlineCheckbox1" value="2">周一
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox2" name="daysOfWeek" value="3">周二
+                <input type="checkbox" id="inlineCheckbox2" value="3">周二
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox3" name="daysOfWeek" value="4">周三
+                <input type="checkbox" id="inlineCheckbox3" value="4">周三
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox4" name="daysOfWeek" value="5">周四
+                <input type="checkbox" id="inlineCheckbox4" value="5">周四
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox5" name="daysOfWeek" value="6">周五
+                <input type="checkbox" id="inlineCheckbox5" value="6">周五
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox6" name="daysOfWeek" value="7">周六
+                <input type="checkbox" id="inlineCheckbox6" value="7">周六
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox7" name="daysOfWeek" value="1">周日
+                <input type="checkbox" id="inlineCheckbox7" value="1">周日
               </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="daysOfWeek" class="col-sm-3 control-label">每周开课：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="daysOfWeek" name="daysOfWeek" value="" placeholder="">
             </div>
           </div>
           <div class="form-group">
@@ -231,9 +237,21 @@
   </div>
 </div>
 <script>
-$('#submitt').click(function(){
+function weeksArry(){
+  var checkboxs=$("[type='checkbox']");
+  var weeks = [];
+  for(var i=0;i<checkboxs.length;i++){ 
+    if(checkboxs[i].checked){
+      weeks.push(checkboxs[i].value);
+    }
+  } 
+  return weeks;
+}
 
-})
+$('#submitt').click(function(){
+  console.log(weeksArry());
+    $('#daysOfWeek').val(weeksArry());
+});
 $('#new').validate({
   rules : {
     date : {

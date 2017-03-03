@@ -191,7 +191,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default">删除</button>
+            <button type="button" id="delete" class="btn btn-default">删除</button>
             <button type="sbumit" class="btn btn-primary">提交</button>
           </div>
         </form>
@@ -260,12 +260,26 @@ $('#newSubmit').click(function(){
 $('#editbtn').click(function() {
   var scheduleDate = $(this).parent().attr('data-date');
   var schedulesTime = $(this).parent().attr('data-time');
-
+  var schedulesId = $(this).parent().parent().attr('data-id');
   document.getElementById("editdate").value="11";
   document.getElementById("edittime").value="12";
+  //删除事件
+  $('#delete').click(function(){
+    $.post('/admin/schedule/delete',{'scheduleId':schedulesId},function(resp){
+        if (resp && resp.e == 0) {
+          var id = resp.r;
+          Message.info('删除成功。', false, $('.form-group:last', $(form)));
+          $('#newModal').modal('hide');
+          window.location.reload();
+        } else {
+          Message.error('删除失败：' + resp.m, false, $('.form-group:last', $(form)));
+        }
+    },'json');
+  })
   $('#editdate').val(11);
   $('#edittime').val(22);
 });
+
 
 
 $('#new').validate({

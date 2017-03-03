@@ -192,7 +192,16 @@ public class AdminCourseScheduleResource extends BaseResource {
             return ResponseBuilder.error(90002, "开始时间不能为空。");
         }
 
+
         try {
+            Map<String, Object> condition = new HashMap<String, Object>();
+            condition.put("courseId", courseId);
+            condition.put("launchData", date);
+            condition.put("launchTime", time);
+            condition.put("status", Constants.STATUS_OK);
+            if (entityDao.exists("course_schedule", condition)) {
+                return ResponseBuilder.error(90003, "该日程已存在。");
+            }
             Entity entity = new Entity("course_schedule");
             entity.set("courseId", courseId)
                     .set("launchDate", date)

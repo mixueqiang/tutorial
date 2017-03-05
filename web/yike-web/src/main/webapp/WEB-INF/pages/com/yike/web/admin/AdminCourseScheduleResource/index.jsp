@@ -167,14 +167,18 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">编辑课程</h4>
+        <h4 class="modal-title" id="myModalLabel">编辑课程表</h4>
       </div>
       <div class="modal-body">
+        <%--课程名始终为空，删除下面这一条内容--%>
         <h4>${course.name}</h4>
         <form id="edit" class="form-horizontal row-space-top-2" action="/admin/schedule/edit" method="post">
           <div class="form-group hide">
-            <label for="courseId" class="col-sm-3 control-label">课程ID：</label>
+            <%--编辑的是课程表--%>
+            <%--需要的id是课程表的id--%>
+            <label for="courseId" class="col-sm-3 control-label">课程表ID：</label>
             <div class="col-sm-9">
+              <%--这里应该是该条课程表的id--%>
               <input type="text" class="form-control" id="editcourseId" name="courseId" value="${course.id}" placeholder="">
             </div>
           </div>

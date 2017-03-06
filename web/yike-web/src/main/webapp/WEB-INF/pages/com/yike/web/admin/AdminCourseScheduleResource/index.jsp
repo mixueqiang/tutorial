@@ -50,7 +50,7 @@
                   </td>
                 </c:if>
                 <td>${item.launchDate} ${item.launchTime}</td>
-                <td data-date="${item.launchDate}" data-time="${item.launchTime}"><a href="javascript:;" id="editbtn" data-toggle="modal" data-target="#editModal">编辑</a></td>
+                <td data-id="${item.id}" data-date="${item.launchDate}" data-time="${item.launchTime}"><a href="javascript:;" class="editbtn" data-toggle="modal" data-target="#editModal">编辑</a></td>
               </tr>
             </c:forEach>
             </tbody>
@@ -171,7 +171,7 @@
       </div>
       <div class="modal-body">
         <form id="edit" class="form-horizontal row-space-top-2" action="/admin/schedule/edit" method="post">
-          <div class="form-group ">
+          <div class="form-group hide">
             <label for="courseId" class="col-sm-3 control-label">课程表ID：</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="scheduleId" name="scheduleId" value="" placeholder="">
@@ -239,8 +239,8 @@
 </div>
 
 <!-- deleteSuccsee -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
+<div class="modal fade bs-example-modal-sm" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -288,13 +288,14 @@ function weeksArry(){
 $('#newSubmit').click(function(){
   $('#daysOfWeek').val(weeksArry());
 });
+
 //编辑时，给模态框赋值
-$('#editbtn').click(function() {
+$('.editbtn').click(function() {
   var scheduleDate = $(this).parent().attr('data-date');
   var schedulesTime = $(this).parent().attr('data-time');
+  var schedulesId = $(this).parent().attr('data-id');
   $('#editdate').val(scheduleDate);
   $('#edittime').val(schedulesTime);
-  var schedulesId = $(this).parent().parent().attr('data-id');
   $('#scheduleId').val(schedulesId);
   
   //删除事件
@@ -369,21 +370,24 @@ $('#new').validate({
           $('input', $(form)).val('');
           $btn.removeAttr('disabled').removeClass('disabled');
           var id = resp.r;
-          Message.info('生成课程表成功。', false, $('.form-group:last', $(form)));
-          $('#newModal').modal('hide');
-          window.location.reload();
+          Message.info('生成新课程表成功。', false, $('.form-group:last', $(form)));
+          setTimeout(function(){
+            $('#newModal').modal('hide');
+            window.location.reload();
+          },1000)
         } else {
           $btn.removeAttr('disabled').removeClass('disabled');
-          Message.error('生成课程表失败：' + resp.m, false, $('.form-group:last', $(form)));
+          Message.error('生成新课程表失败：' + resp.m, false, $('.form-group:last', $(form)));
         }
       },
       error : function() {
         $btn.removeAttr('disabled').removeClass('disabled');
-        Message.error('生成课程表失败！', false, $('.form-group:last', $(form)));
+        Message.error('生成新课程表失败！', false, $('.form-group:last', $(form)));
       }
     });
   }
 });
+
 
 $('#edit').validate({
   rules : {
@@ -418,9 +422,11 @@ $('#edit').validate({
           $('input', $(form)).val('');
           $btn.removeAttr('disabled').removeClass('disabled');
           var id = resp.r;
-          Message.info('编辑课程成功。', false, $('.form-group:last', $(form)));
-          $('#newModal').modal('hide');
-          window.location.reload();
+          Message.info('编辑课程表成功。', false, $('.form-group:last', $(form)));
+          setTimeout(function(){
+            $('#editModal').modal('hide');
+            window.location.reload();
+          },1000)
         } else {
           $btn.removeAttr('disabled').removeClass('disabled');
           Message.error('编辑课程表失败：' + resp.m, false, $('.form-group:last', $(form)));
@@ -467,17 +473,19 @@ $('#add').validate({
           $('input', $(form)).val('');
           $btn.removeAttr('disabled').removeClass('disabled');
           var id = resp.r;
-          Message.info('编辑课程成功。', false, $('.form-group:last', $(form)));
-          $('#newModal').modal('hide');
-          window.location.reload();
+          Message.info('添加新日程成功。', false, $('.form-group:last', $(form)));
+          setTimeout(function(){
+            $('#addModal').modal('hide');
+            window.location.reload();
+          },1000)
         } else {
           $btn.removeAttr('disabled').removeClass('disabled');
-          Message.error('编辑课程表失败：' + resp.m, false, $('.form-group:last', $(form)));
+          Message.error('添加新日程失败：' + resp.m, false, $('.form-group:last', $(form)));
         }
       },
       error : function() {
         $btn.removeAttr('disabled').removeClass('disabled');
-        Message.error('编辑课程表失败！', false, $('.form-group:last', $(form)));
+        Message.error('添加新日程失败！', false, $('.form-group:last', $(form)));
       }
     });
   }

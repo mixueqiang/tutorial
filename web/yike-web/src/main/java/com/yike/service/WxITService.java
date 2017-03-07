@@ -176,6 +176,22 @@ public class WxITService {
                     " \n" +
                     "回复：学习 \n" +
                     "扬帆起航<(*￣▽￣*)/", message.getFromUserName());
+        } else if ("小编".equals(message.getContent())) {
+            WxUser user = wxUserService.getUser(message.getFromUserName());
+
+            if (user.getIsStudent() == 1) {
+                apiUtils.sendTextMessage("[机智]\n小编微信号：qdtk2405", user.getOpenid());
+                File editorQrCode = WxFotoMixUtils.getEditorQrCode();
+                if (editorQrCode != null) {
+                    String mediaId = apiUtils.uploadTempImage(editorQrCode);
+                    apiUtils.sendImageMessage(mediaId, user.getOpenid());
+                } else {
+                    LOG.error("EditorQr is null");
+                }
+            } else {
+                apiUtils.sendImageMessage("QAQ 同学你还没有入学哎\n回复\"学习\"或点击\"免费入学\"速速入学吧！", user.getOpenid());
+            }
+
         } else {
             return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复", message.getFromUserName());
         }
@@ -228,12 +244,12 @@ public class WxITService {
             if (wxUserService.makeStudent(invterOpenId)) {
                 sendFreeAdmissionTemplateMessage(invter);
                 apiUtils.sendTextMessage("[机智]请先填写入学资料，然后添加小编微信等待拉你入群哦~\n微信号：qdtk2405\n", invterOpenId);
-                File zhoumoQr = WxFotoMixUtils.getEditorQrCode();
-                if (zhoumoQr != null) {
-                    String mediaId = apiUtils.uploadTempImage(zhoumoQr);
+                File editorQrCode = WxFotoMixUtils.getEditorQrCode();
+                if (editorQrCode != null) {
+                    String mediaId = apiUtils.uploadTempImage(editorQrCode);
                     apiUtils.sendImageMessage(mediaId, invterOpenId);
                 } else {
-                    LOG.error("ZhoumoQr is null");
+                    LOG.error("EditorQr is null");
                 }
             }
         }

@@ -190,7 +190,7 @@ public class WxITService {
                     return false;
                 }
             } else {
-                return apiUtils.sendImageMessage("QAQ 同学你还没有入学哎\n回复\"学习\"或点击\"免费入学\"速速入学吧！", user.getOpenid());
+                return apiUtils.sendTextMessage("QAQ 同学你还没有入学哎\n回复\"学习\"或点击\"免费入学\"速速入学吧！", user.getOpenid());
             }
         } else if ("?".equals(message.getContent()) || "？".equals(message.getContent())) {
 

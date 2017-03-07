@@ -27,11 +27,11 @@ public class WxFotoMixUtils {
 
     public static final String mainImageName = "wx-invitation-main-1.jpg";
     public static final String editorQrImageName = "wx_editor_qr.jpeg";
-    public static final String zhoumoQrImageName = "wx_zhoumo_qr.jpeg";
+//    public static final String zhoumoQrImageName = "wx_zhoumo_qr.jpeg";
 
     public static final String upyunMainImageURL = "http://yikeyun.b0.upaiyun.com/static/" + mainImageName;
     public static final String upyunEditorQrImageURL = "http://yikeyun.b0.upaiyun.com/static/" + editorQrImageName;
-    public static final String upyunZhoumoQrImageURL = "http://yikeyun.b0.upaiyun.com/static/" + zhoumoQrImageName;
+//    public static final String upyunZhoumoQrImageURL = "http://yikeyun.b0.upaiyun.com/static/" + zhoumoQrImageName;
 
     public static File localInvitationImage(String ticket) {
         ticket = ticket.replace("/", "_");
@@ -98,9 +98,9 @@ public class WxFotoMixUtils {
         return getImage(editorQrImageName, upyunEditorQrImageURL);
     }
 
-    public static File getZhoumoQrCode() {
-        return getImage(zhoumoQrImageName, upyunZhoumoQrImageURL);
-    }
+//    public static File getZhoumoQrCode() {
+//        return getImage(zhoumoQrImageName, upyunZhoumoQrImageURL);
+//    }
 
     private static File getQRCode(String ticket) {
         String qrCodeDownloadUrl = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + ticket;

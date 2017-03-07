@@ -184,16 +184,20 @@ public class WxITService {
                 File editorQrCode = WxFotoMixUtils.getEditorQrCode();
                 if (editorQrCode != null) {
                     String mediaId = apiUtils.uploadTempImage(editorQrCode);
-                    apiUtils.sendImageMessage(mediaId, user.getOpenid());
+                    return apiUtils.sendImageMessage(mediaId, user.getOpenid());
                 } else {
                     LOG.error("EditorQr is null");
+                    return false;
                 }
             } else {
-                apiUtils.sendImageMessage("QAQ 同学你还没有入学哎\n回复\"学习\"或点击\"免费入学\"速速入学吧！", user.getOpenid());
+                return apiUtils.sendImageMessage("QAQ 同学你还没有入学哎\n回复\"学习\"或点击\"免费入学\"速速入学吧！", user.getOpenid());
             }
+        } else if ("?".equals(message.getContent()) || "？".equals(message.getContent())) {
+
+            return apiUtils.sendTextMessage("【学习】：获取免费入学邀请卡\n【小编】：获取小编微信号，添加小编可以更快进入分班哦~", message.getFromUserName());
 
         } else {
-            return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复", message.getFromUserName());
+            return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复，发送\"？\"查看帮助哦~", message.getFromUserName());
         }
     }
 

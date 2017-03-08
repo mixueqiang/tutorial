@@ -10,6 +10,38 @@
 <ol class="breadcrumb">
   <li><a href="/admin">Home</a></li>
   <li class="active">IT技能成长联盟公众号-用户</li>
+
+  <li><a href="/admin/wxuser/it?type=2">
+    <c:choose>
+      <c:when test="${type eq 2}">
+        <strong style="color: red;">全部</strong>
+      </c:when>
+      <c:otherwise>
+        全部
+      </c:otherwise>
+    </c:choose>:${allCount}
+  </a></li>
+  <li><a href="/admin/wxuser/it?type=0">
+    <c:choose>
+      <c:when test="${type eq 0}">
+        <strong style="color: red;">关注的</strong>
+      </c:when>
+      <c:otherwise>
+        关注的
+      </c:otherwise>
+    </c:choose>:${subscribeCount}
+  </a></li>
+  <li><a href="/admin/wxuser/it?type=1">
+    <c:choose>
+      <c:when test="${type eq 1}">
+        <strong style="color: red;">已入学</strong>
+      </c:when>
+      <c:otherwise>
+        已入学
+      </c:otherwise>
+    </c:choose>:${studentCount}
+  </a></li>
+
 </ol>
 
 <div class="container">

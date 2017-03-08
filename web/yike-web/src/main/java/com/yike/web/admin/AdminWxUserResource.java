@@ -31,14 +31,30 @@ public class AdminWxUserResource extends BaseResource {
     @Path("it")
     @Produces(MediaType.TEXT_HTML)
     public Response it(@QueryParam("p") int page, @DefaultValue("20") @QueryParam("s") int size,
-                       @QueryParam("o") String orderBy) {
+                       @QueryParam("o") String orderBy, @QueryParam("type") int type) {
 
         page = page > 0 ? page : 1;
         orderBy = StringUtils.isEmpty(orderBy) ? BaseDao.ORDER_BY_ID : orderBy;
 
-        int count = entityDao.count("wx_user");
-        List<WxUser> users = entityDao.get("wx_user", page, size, WxUserRowMapper.getInstance(), orderBy,
-                BaseDao.ORDER_OPTION_DESC);
+        int allCount = entityDao.count("wx_user");
+        int studentCount = entityDao.count("wx_user", "isStudent", 1);
+        int subscribeCount = entityDao.count("wx_user", "subscribe", 1);
+
+        List<WxUser> users = null;
+        if (type == 0) {
+
+            users = entityDao.find("wx_user", "subscribe", "1", WxUserRowMapper.getInstance(), page, size, orderBy, BaseDao.ORDER_OPTION_DESC);
+
+        } else if (type == 1) {
+
+            users = entityDao.find("wx_user", "isStudent", "1", WxUserRowMapper.getInstance(), page, size, orderBy, BaseDao.ORDER_OPTION_DESC);
+
+        } else if (type == 2) {
+
+            users = entityDao.get("wx_user", page, size, WxUserRowMapper.getInstance(), orderBy,
+                    BaseDao.ORDER_OPTION_DESC);
+
+        }
         request.setAttribute("users", users);
 
         // pagination.
@@ -53,10 +69,21 @@ public class AdminWxUserResource extends BaseResource {
         uri = StringUtils.replace(uri, "p=" + page + "&", "");
         request.setAttribute("uriPrefix", uri);
 
-        Pair<List<Integer>, Integer> pages = PageNumberUtils.generate(page, count);
+        Pair<List<Integer>, Integer> pages;
+        if (type == 0) {
+            pages = PageNumberUtils.generate(page, subscribeCount);
+        } else if (type == 1) {
+            pages = PageNumberUtils.generate(page, studentCount);
+        } else {
+            pages = PageNumberUtils.generate(page, allCount);
+        }
+        request.setAttribute("allCount", allCount);
+        request.setAttribute("studentCount", studentCount);
+        request.setAttribute("subscribeCount", subscribeCount);
         request.setAttribute("currentPage", page);
         request.setAttribute("pages", pages.left);
         request.setAttribute("lastPage", pages.right);
+        request.setAttribute("type", type);
 
         return Response.ok(new Viewable("it")).build();
 

@@ -10,8 +10,8 @@ public class Resource extends BaseModel {
 
   private long skillId;
   private long userId;
+  private String title;
   private String content;
-  private String url;
   private String contact;
   private String wechat;
   private String qqGroup;
@@ -32,8 +32,8 @@ public class Resource extends BaseModel {
     return skillId;
   }
 
-  public String getUrl() {
-    return url;
+  public String getTitle() {
+    return title;
   }
 
   public long getUserId() {
@@ -60,8 +60,8 @@ public class Resource extends BaseModel {
     this.skillId = skillId;
   }
 
-  public void setUrl(String url) {
-    this.url = url;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public void setUserId(long userId) {

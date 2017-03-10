@@ -13,6 +13,7 @@ public class Skill extends BaseModel {
   private String image;
   private String description;
   private long skillCount;
+  private long resourceCount;
   private long articleCount;
   private long userCount;
   private long companyCount;
@@ -31,6 +32,10 @@ public class Skill extends BaseModel {
 
   public String getImage() {
     return image;
+  }
+
+  public long getResourceCount() {
+    return resourceCount;
   }
 
   public long getSkillCount() {
@@ -63,6 +68,10 @@ public class Skill extends BaseModel {
 
   public void setImage(String image) {
     this.image = image;
+  }
+
+  public void setResourceCount(long resourceCount) {
+    this.resourceCount = resourceCount;
   }
 
   public void setSkillCount(long skillCount) {

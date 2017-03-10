@@ -1,18 +1,18 @@
 $(function() {
   $('#publish-form').validate({
     rules : {
-      content : {
+      title : {
         required : true
       },
-      url : {
+      content : {
         required : true
       }
     },
     messages : {
-      content : {
-        required : '请选择资料内容介绍。'
+      title : {
+        required : '请选择内容简介。'
       },
-      url : {
+      content : {
         required : '请选择百度网盘或URL地址。'
       }
     },

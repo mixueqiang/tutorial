@@ -1,22 +1,22 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>技术图谱&nbsp;|&nbsp;一课上手</title>
+<title>技术图谱</title>
 
-<div class="container row-space-top-4">
-  <div class="cards">
-    <ul class="card-list">
-      <c:forEach var="item" items="${skills}">
-        <li class="card">
-          <div class="card-title">
-            <a href="/skill/${item.slug}">${item.name}</a>
-          </div>
-          <div class="card-footer">
-            <div class="card-action">
-              <a class="green xl" href="#"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a>
+<div class="container row-space-top-2">
+  <div class="row section skill-section">
+    <c:forEach var="item" items="${skills}">
+      <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2" data-id="${item.id}">
+        <a class="green" href="/skill/${item.slug}" target="_blank">
+          <div class="card item">
+            <div class="title md">${item.name}</div>
+            <div class="card-footer">
+              <div class="card-action sm">
+                <span>已有 ${item.resourceCount} 份资料</span>
+              </div>
             </div>
           </div>
-        </li>
-      </c:forEach>
-    </ul>
+        </a>
+      </div>
+    </c:forEach>
   </div>
 </div>
 

@@ -30,8 +30,8 @@ public class ResourceRowMapper implements RowMapper<Resource> {
     entity.setId(rs.getLong("id"));
     entity.setSkillId(rs.getLong("skillId"));
     entity.setUserId(rs.getLong("userId"));
+    entity.setTitle(rs.getString("title"));
     entity.setContent(rs.getString("content"));
-    entity.setUrl(rs.getString("url"));
     entity.setContact(rs.getString("contact"));
     entity.setQqGroup(rs.getString("qqGroup"));
     entity.setWechat(rs.getString("wechat"));

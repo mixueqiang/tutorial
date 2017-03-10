@@ -1,7 +1,5 @@
 package com.yike.web;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.FormParam;
@@ -19,8 +17,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.sun.jersey.api.view.Viewable;
-import com.yike.dao.BaseDao;
-import com.yike.dao.mapper.EntityRowMapper;
 import com.yike.dao.mapper.ResourceRowMapper;
 import com.yike.dao.mapper.SkillRowMapper;
 import com.yike.model.Entity;
@@ -60,14 +56,14 @@ public class ResourceResource extends BaseResource {
 
   @POST
   @Produces(APPLICATION_JSON)
-  public Map<String, Object> publish(@FormParam("skillId") long skillId, @FormParam("content") String content, @FormParam("url") String url, @FormParam("contact") String contact) {
+  public Map<String, Object> publish(@FormParam("skillId") long skillId, @FormParam("title") String title, @FormParam("content") String content, @FormParam("contact") String contact) {
     if (skillId <= 0) {
       return ResponseBuilder.error(50000, "技能不存在。");
     }
-    if (StringUtils.isEmpty(content)) {
-      return ResponseBuilder.error(50000, "请选择资料内容介绍。");
+    if (StringUtils.isEmpty(title)) {
+      return ResponseBuilder.error(50000, "请选择内容简介。");
     }
-    if (StringUtils.isEmpty(url)) {
+    if (StringUtils.isEmpty(content)) {
       return ResponseBuilder.error(50000, "请选择百度网盘或URL地址。");
     }
 
@@ -79,7 +75,7 @@ public class ResourceResource extends BaseResource {
       entity.set("userId", user.getId());
     }
     entity.set("skillId", skillId);
-    entity.set("content", content).set("url", url).set("contact", contact);
+    entity.set("title", title).set("content", content).set("contact", contact);
     entity.set("status", 1).set("createTime", time);
     entityDao.save(entity);
 

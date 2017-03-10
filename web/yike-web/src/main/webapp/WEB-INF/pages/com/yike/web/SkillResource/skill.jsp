@@ -3,10 +3,7 @@
 
 <div class="container row-space-top-2">
   <div class="row">
-    <div class="col-md-3 col-sm-3 col-xs-2">
-      <a class="btn btn-default" href="/skill">所有技能</a>
-    </div>
-    <div class="col-md-6 col-sm-6 col-xs-8 card">
+    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 card">
       <div class="card-cover">
         <c:if test="${not empty skill.image}">
           <img alt="技能图标" src="http://yikeyun.b0.upaiyun.com${skill.image}!M">
@@ -31,8 +28,8 @@
   <div class="row row-space-top-1 section skill-section">
     <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2">
       <a class="green op-publish" data-toggle="modal" data-target="#PublishModal" href="#" title="共享学习资料">
-        <div class="card last">
-          <div class="title xl">共享学习资料</div>
+        <div class="card item item-lg">
+          <div class="title md">共享学习资料</div>
           <div class="sm"></div>
           <div class="card-footer">
             <div class="card-action xl">
@@ -44,10 +41,10 @@
     </div>
     <c:if test="${not empty resources}">
       <c:forEach var="item" items="${resources}">
-        <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2" data-id="${item.id}" data-url="${item.url}">
+        <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2" data-id="${item.id}">
           <a class="green" href="/resource/${item.id}" target="_blank">
-            <div class="card item">
-              <div class="title md">${item.content}</div>
+            <div class="card item item-lg item-green">
+              <div class="title md">${item.title}</div>
               <div class="sm">${item.contact}</div>
               <div class="card-footer">
                 <div class="card-action xl">
@@ -128,11 +125,11 @@
       <form action="/resource" id="publish-form" method="post">
         <div class="modal-body">
           <div class="form-group">
-            <label for="content">资料内容介绍</label>
-            <textarea class="form-control" id="content" name="content"></textarea>
+            <label for="title">内容简介</label><input class="form-control" id="title" name="title">
           </div>
           <div class="form-group">
-            <label for="url">百度网盘或URL地址</label> <input class="form-control" id="url" name="url">
+            <label for="content">百度网盘或URL地址</label>
+            <textarea class="form-control" id="content" name="content"></textarea>
           </div>
           <div class="form-group">
             <label for="contact">联系方式（建议留QQ群或微信群）</label><input type="text" class="form-control" id="contact" name="contact">
@@ -148,4 +145,4 @@
   </div>
 </div>
 
-<script src="/js/skill.js?v=20170228001"></script>
+<script src="/js/skill.js?v=20170310001"></script>

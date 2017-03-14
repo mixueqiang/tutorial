@@ -32,7 +32,7 @@
         <c:if test="${not empty resource.content}">
           <div class="content md">${resource.content}</div>
         </c:if>
-        <div class="lg row-space-top-2">
+        <div class="row-space-top-2 md">
           <ul>
             <li><label>链接：</label><a href="${resource.url}" target="_blank">${resource.url}</a></li>
             <c:if test="${not empty resource.password}">

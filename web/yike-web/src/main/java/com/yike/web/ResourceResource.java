@@ -56,7 +56,7 @@ public class ResourceResource extends BaseResource {
 
   @POST
   @Produces(APPLICATION_JSON)
-  public Map<String, Object> publish(@FormParam("skillId") long skillId, @FormParam("title") String title, @FormParam("content") String content, @FormParam("contact") String contact) {
+  public Map<String, Object> save(@FormParam("skillId") long skillId, @FormParam("title") String title, @FormParam("content") String content, @FormParam("contact") String contact) {
     if (skillId <= 0) {
       return ResponseBuilder.error(50000, "技能不存在。");
     }
@@ -76,7 +76,7 @@ public class ResourceResource extends BaseResource {
     }
     entity.set("skillId", skillId);
     entity.set("title", title).set("content", content).set("contact", contact);
-    entity.set("status", 1).set("createTime", time);
+    entity.set("status", 0).set("createTime", time);
     entityDao.save(entity);
 
     if (user != null) {

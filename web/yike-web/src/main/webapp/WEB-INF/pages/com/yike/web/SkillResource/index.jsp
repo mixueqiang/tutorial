@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>技术图谱</title>
+<title>技能</title>
 
 <div class="container row-space-top-2">
   <div class="row section skill-section">

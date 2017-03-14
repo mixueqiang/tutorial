@@ -59,60 +59,6 @@
   </div>
 </div>
 
-<div class="modal fade" id="ExchangeModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title">共享资料</h4>
-      </div>
-      <div class="exchange-check">
-        <div class="modal-body">
-          <div class="row loading">
-            <div class="col-md-3 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
-              <img src="/images/loading.gif">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="exchange-signup" style="display: none;">
-        <form id="signup-form" name="signup-form" action="/fu/user" method="post" class="form-horizontal" role="form">
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="phone" class="col-sm-3 control-label">手机号</label>
-              <div class="col-sm-5">
-                <input type="text" id="phone" name="phone" tabindex="1" class="form-control">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="securityCode" class="col-sm-3 control-label">验证码</label>
-              <div class="col-sm-2">
-                <input type="text" id="securityCode" name="securityCode" tabindex="2" class="form-control">
-              </div>
-              <div class="col-sm-3">
-                <button class="btn btn-warning btn-block btn-send-sms">获取验证码</button>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-4 col-sm-offset-3">
-                <input type="hidden" id="exchangeId" name="exchangeId">
-                <button type="submit" class="btn btn-success">提交，获取换福信息</button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="exchange-info">
-        <div class="modal-body">
-          <div class="alipay-info"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="modal fade" id="PublishModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
@@ -125,14 +71,17 @@
       <form action="/resource" id="publish-form" method="post">
         <div class="modal-body">
           <div class="form-group">
-            <label for="title">内容简介</label><input class="form-control" id="title" name="title">
+            <label for="title">名称</label><input class="form-control" id="title" name="title">
           </div>
           <div class="form-group">
-            <label for="content">百度网盘或URL地址</label>
-            <textarea class="form-control" id="content" name="content"></textarea>
+            <label for="content">资料介绍</label>
+            <textarea class="form-control" id="content" name="content" placeholder="可选" rows="2"></textarea>
           </div>
           <div class="form-group">
-            <label for="contact">联系方式（建议留QQ群或微信群）</label><input type="text" class="form-control" id="contact" name="contact">
+            <label for="url">百度网盘或网址</label><input class="form-control" id="url" name="url">
+          </div>
+          <div class="form-group">
+            <label for="password">访问密码</label><input class="form-control" id="password" name="password" placeholder="可选">
           </div>
         </div>
         <div class="modal-footer">
@@ -145,4 +94,4 @@
   </div>
 </div>
 
-<script src="/js/skill.js?v=20170310001"></script>
+<script src="/js/resource.js?v=20170314001"></script>

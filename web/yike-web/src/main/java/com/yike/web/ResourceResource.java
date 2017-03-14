@@ -56,15 +56,19 @@ public class ResourceResource extends BaseResource {
 
   @POST
   @Produces(APPLICATION_JSON)
-  public Map<String, Object> save(@FormParam("skillId") long skillId, @FormParam("title") String title, @FormParam("content") String content, @FormParam("contact") String contact) {
+  public Map<String, Object> save(@FormParam("skillId") long skillId, @FormParam("title") String title, @FormParam("content") String content, @FormParam("url") String url,
+      @FormParam("password") String password) {
     if (skillId <= 0) {
       return ResponseBuilder.error(50000, "技能不存在。");
     }
     if (StringUtils.isEmpty(title)) {
-      return ResponseBuilder.error(50000, "请选择内容简介。");
+      return ResponseBuilder.error(50000, "请输入资料名称。");
     }
-    if (StringUtils.isEmpty(content)) {
-      return ResponseBuilder.error(50000, "请选择百度网盘或URL地址。");
+    if (StringUtils.length(content) > 200) {
+      return ResponseBuilder.error(50000, "资源介绍不能超过200个字。");
+    }
+    if (StringUtils.isEmpty(url)) {
+      return ResponseBuilder.error(50000, "请选择网盘链接或网址。");
     }
 
     long time = System.currentTimeMillis();
@@ -75,14 +79,13 @@ public class ResourceResource extends BaseResource {
       entity.set("userId", user.getId());
     }
     entity.set("skillId", skillId);
-    entity.set("title", title).set("content", content).set("contact", contact);
+    entity.set("title", title).set("content", content).set("url", url).set("password", password);
     entity.set("status", 0).set("createTime", time);
     entityDao.save(entity);
 
     if (user != null) {
       entity = new Entity("skill_user");
-      entity.set("userId", user.getId());
-      entity.set("skillId", skillId).set("contact", contact);
+      entity.set("userId", user.getId()).set("skillId", skillId);
       entity.set("status", 1).set("createTime", time);
       entityDao.save(entity);
     }

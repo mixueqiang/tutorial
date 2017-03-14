@@ -12,6 +12,8 @@ public class Resource extends BaseModel {
   private long userId;
   private String title;
   private String content;
+  private String url;
+  private String password;
   private String contact;
   private String wechat;
   private String qqGroup;
@@ -24,6 +26,10 @@ public class Resource extends BaseModel {
     return content;
   }
 
+  public String getPassword() {
+    return password;
+  }
+
   public String getQqGroup() {
     return qqGroup;
   }
@@ -34,6 +40,10 @@ public class Resource extends BaseModel {
 
   public String getTitle() {
     return title;
+  }
+
+  public String getUrl() {
+    return url;
   }
 
   public long getUserId() {
@@ -52,6 +62,10 @@ public class Resource extends BaseModel {
     this.content = content;
   }
 
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
   public void setQqGroup(String qqGroup) {
     this.qqGroup = qqGroup;
   }
@@ -62,6 +76,10 @@ public class Resource extends BaseModel {
 
   public void setTitle(String title) {
     this.title = title;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
   }
 
   public void setUserId(long userId) {

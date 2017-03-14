@@ -26,18 +26,23 @@
   </div>
 
   <div class="row row-space-top-1 section skill-section">
-    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 row-space-top-2">
-      <div class="card item item-lg">
+    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+      <div class="card item">
         <div class="title lg">${resource.title}</div>
-        <div class="row-space-top-2">
-          <c:choose>
-            <c:when test="${not empty _user}">
-              <span>${resource.content}</span>
-            </c:when>
-            <c:otherwise>
-              <span>您需要先登录，才能查看下载地址！<a class="btn-link" href="/signin?to=/resource/${resource.id}">登录</a></span>
-            </c:otherwise>
-          </c:choose>
+        <div class="lg row-space-top-2">
+          <ul>
+            <li><label>链接：</label><a href="${resource.url}" target="_blank">${resource.url}</a></li>
+            <c:if test="${not empty resource.password}">
+              <li><label>密码：</label> <c:choose>
+                  <c:when test="${not empty _user}">
+                    <span>${resource.password}</span>
+                  </c:when>
+                  <c:otherwise>
+                    <a href="/signin?to=/resource/${resource.id}">密码已隐藏，请登录查看</a>
+                  </c:otherwise>
+                </c:choose></li>
+            </c:if>
+          </ul>
         </div>
       </div>
     </div>

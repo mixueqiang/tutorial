@@ -5,15 +5,21 @@ $(function() {
         required : true
       },
       content : {
+        maxlength : 200
+      },
+      url : {
         required : true
       }
     },
     messages : {
       title : {
-        required : '请选择内容简介。'
+        required : '请输入资料名称。'
       },
       content : {
-        required : '请选择百度网盘或URL地址。'
+        maxlength : $.format('资料介绍不能超过{0}个字。')
+      },
+      url : {
+        required : '请输入网盘链接或网址。'
       }
     },
     submitHandler : function(form) {

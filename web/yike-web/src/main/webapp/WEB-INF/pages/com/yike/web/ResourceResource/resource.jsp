@@ -29,6 +29,9 @@
     <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
       <div class="card item">
         <div class="title lg">${resource.title}</div>
+        <c:if test="${not empty resource.content}">
+          <div class="content md">${resource.content}</div>
+        </c:if>
         <div class="lg row-space-top-2">
           <ul>
             <li><label>链接：</label><a href="${resource.url}" target="_blank">${resource.url}</a></li>

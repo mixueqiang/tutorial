@@ -25,11 +25,20 @@
     </div>
   </div>
 
-  <div class="row row-space-top-1 section">
+  <div class="row row-space-top-1 section skill-section">
     <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 row-space-top-2">
-      <div class="panel panel-default" data-id="${resource.id}">
-        <div class="panel-heading">${resource.title}</div>
-        <div class="panel-body">${resource.content}</div>
+      <div class="card item item-lg">
+        <div class="title lg">${resource.title}</div>
+        <div class="row-space-top-2">
+          <c:choose>
+            <c:when test="${not empty _user}">
+              <span>${resource.content}</span>
+            </c:when>
+            <c:otherwise>
+              <span>您需要先登录，才能查看下载地址！<a class="btn-link" href="/signin?to=/resource/${resource.id}">登录</a></span>
+            </c:otherwise>
+          </c:choose>
+        </div>
       </div>
     </div>
   </div>

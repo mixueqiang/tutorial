@@ -928,7 +928,11 @@ input, select, textarea, .btn, .form-control, .panel {
 }
 
 .skill-section .item-green {
-  background-color: #39b574; border: none; color: #fff;
+  background-color: #39b574; border: none;
+}
+
+.skill-section .item-green, .skill-section .item-green a, .skill-section .item-green a:hover {
+  color: #fff;
 }
 
 .skill-section .body {
@@ -943,10 +947,6 @@ input, select, textarea, .btn, .form-control, .panel {
 
 .skill-section .item-lg .title {
   height: 100px;
-}
-
-.skill-section .header a, .skill-section .header a:hover, .skill-section .item a, .skill-section .item a:hover {
-  color: #fff;
 }
 
 .qr-code {

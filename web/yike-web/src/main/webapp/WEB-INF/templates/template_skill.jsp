@@ -8,7 +8,7 @@
   <header class="navbar" id="header" role="banner">
     <div class="navbar-header">
       <div class="container">
-        <a class="navbar-brand xxl" href="/skill">技能图谱</a>
+        <a class="navbar-brand xxl" href="/skill">技能</a>
         <ul class="nav pull-right">
           <c:choose>
             <c:when test="${not empty _user}">

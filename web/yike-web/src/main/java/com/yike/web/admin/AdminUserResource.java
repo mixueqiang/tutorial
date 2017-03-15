@@ -1,5 +1,20 @@
 package com.yike.web.admin;
 
+import java.util.List;
+
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.sun.jersey.api.view.Viewable;
 import com.yike.dao.BaseDao;
 import com.yike.dao.mapper.UserRowMapper;
@@ -7,15 +22,6 @@ import com.yike.model.User;
 import com.yike.util.PageNumberUtils;
 import com.yike.util.Pair;
 import com.yike.web.BaseResource;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
  * @author mixueqiang

@@ -2,6 +2,8 @@ package com.yike.task;
 
 import com.yike.dao.CourseDao;
 import com.yike.model.CourseSchedule;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,6 +20,8 @@ import java.util.Map;
 
 @Service
 public class CourseSchedulerObserver implements Runnable {
+
+    private static final Log LOG = LogFactory.getLog(CourseSchedulerObserver.class);
 
     public CourseSchedulerObserver() {
         TaskScheduler.register(getClass().getSimpleName(), this, 30, 3600 * 12);
@@ -37,8 +41,12 @@ public class CourseSchedulerObserver implements Runnable {
 
     @Override
     public void run() {
+        LOG.info("Course Scheduler Begin Rescan");
+        System.out.println("Course Scheduler Begin Rescan");
+
         List<CourseSchedule> scheduleList = courseDao.getTodaySchedules();
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        getSchedules().clear();
         for (CourseSchedule courseSchedule : scheduleList) {
             String date = courseSchedule.getLaunchDate() + " " + courseSchedule.getLaunchTime();
             try {

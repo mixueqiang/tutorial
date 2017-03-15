@@ -16,6 +16,7 @@
                 <th>作者</th>
                 <th>链接</th>
                 <th>密码</th>
+                <th>状态</th>
                 <th>操作</th>
               </tr>
             </thead>
@@ -26,6 +27,7 @@
                   <td><a href="/user/${item.userId}" target="_blank">${item.properties.user.name}</a></td>
                   <td><a href="${item.url}" target="_blank">${item.url}</a></td>
                   <td>${item.password}</td>
+                  <td>${item.status}</td>
                   <td><a href="#">更新</a></td>
                 </tr>
               </c:forEach>

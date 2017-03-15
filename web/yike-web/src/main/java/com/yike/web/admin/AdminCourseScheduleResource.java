@@ -10,6 +10,7 @@ import com.yike.model.Course;
 import com.yike.model.CourseSchedule;
 import com.yike.model.Entity;
 import com.yike.model.User;
+import com.yike.task.CourseSchedulerObserver;
 import com.yike.util.PageNumberUtils;
 import com.yike.util.Pair;
 import com.yike.util.ResponseBuilder;
@@ -44,6 +45,9 @@ public class AdminCourseScheduleResource extends BaseResource {
 
     @Resource
     protected CourseDao courseDao;
+
+    @Resource
+    protected CourseSchedulerObserver courseSchedulerObserver;
 
     @GET
     @Produces(MediaType.TEXT_HTML)
@@ -139,6 +143,7 @@ public class AdminCourseScheduleResource extends BaseResource {
         boolean flag = courseDao.setCourseSchedules(courseId, date, time, days, totalCount);
 
         if (flag) {
+            courseSchedulerObserver.run();
             return ResponseBuilder.OK;
         } else {
             return ResponseBuilder.error(50000, "失败，请查看错误日志。");
@@ -184,6 +189,7 @@ public class AdminCourseScheduleResource extends BaseResource {
             updateValues.put("launchTime", time);
             updateValues.put("status", Constants.STATUS_OK);
             entityDao.update("course_schedule", condition, updateValues);
+            courseSchedulerObserver.run();
             return ResponseBuilder.OK;
         } catch (Throwable t) {
             LOG.error("Update course_schedule failure", t);
@@ -228,6 +234,7 @@ public class AdminCourseScheduleResource extends BaseResource {
                     .set("createTime", System.currentTimeMillis())
                     .set("status", Constants.STATUS_OK);
             entityDao.save(entity);
+            courseSchedulerObserver.run();
             return ResponseBuilder.OK;
         } catch (Throwable t) {
             LOG.error("Update course_schedule failure", t);
@@ -254,6 +261,7 @@ public class AdminCourseScheduleResource extends BaseResource {
             Map<String, Object> updateValues = new HashMap<String, Object>();
             updateValues.put("status", Constants.STATUS_NO);
             entityDao.update("course_schedule", condition, updateValues);
+            courseSchedulerObserver.run();
             return ResponseBuilder.OK;
         } catch (Throwable t) {
             LOG.error("Delete course_schedule failure", t);

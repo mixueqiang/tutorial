@@ -67,9 +67,9 @@ public class WxServiceScheduler implements Runnable {
                 "http://www.yikeshangshou.com/course?c=103"));
 
         WxButton about = new WxButton(
-                "关于我们",
+                "资源下载",
                 WxButton.typeClick,
-                "com.yikeshangshou.wx.about",
+                "com.yikeshangshou.wx.download",
                 null);
 
         List<WxButton> buttons = new ArrayList<WxButton>();

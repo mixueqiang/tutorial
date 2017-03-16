@@ -93,7 +93,7 @@ public class WxYiKeService {
             return handleApplicationClickEvent(message);
         }
 
-        if ("com.yikeshangshou.wx.about".equals(message.getEventKey())) {
+        if ("com.yikeshangshou.wx.download".equals(message.getEventKey())) {
             return handleAboutClickEvent(message);
         }
 
@@ -171,7 +171,13 @@ public class WxYiKeService {
 
     private boolean handleAboutClickEvent(WxMessage message) {
         return apiUtils.sendTextMessage(
-                "「一课上手」 专注于实践课程的在线平台。一课上手致力于把行业专家的一线实战带给学员，让学员在实战中把学到的东西快速上手。术业专攻，「一课上手」。\n\n 课程和更多信息请访问：http://www.yikeshangshou.com/", message.getFromUserName());
+                "法律翻译资料  https://pan.baidu.com/s/1pK8FgYR 9eef \n" +
+                        "SpringBoot中文参考指南  https://pan.baidu.com/s/1c2kVnm4 8mkn \n" +
+                        "Spring、SpringMVC、MyBatis实战课程视频  https://pan.baidu.com/s/1bpAFImr zh3v \n" +
+                        "Bootstrap 用户界面架构  https://pan.baidu.com/s/1eRFIZmU kyww \n" +
+                        "专八核心词汇精讲  https://pan.baidu.com/s/1jHPelka bbfg \n" +
+                        "老友记德语版（第1-10季）  https://pan.baidu.com/s/1jHZnxPk wgg3 \n" +
+                        "响应式网页设计课程视频  https://pan.baidu.com/s/1kVlwaZd ythb ", message.getFromUserName());
     }
 
     private boolean sendUnboundNoticeTemplateMessage(String toUserOpenId) {

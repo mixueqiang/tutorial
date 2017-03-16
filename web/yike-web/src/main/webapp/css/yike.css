@@ -531,12 +531,8 @@ input, select, textarea, .btn, .form-control, .panel {
   padding-top: 60px; font-size: 24px; font-weight: 600; text-transform: uppercase; color: #b7c2c9; margin: 0 0 35px 0; letter-spacing: 1px; line-height: 16px; text-align: left;
 }
 
-#aboutUs .about p {
+#aboutUs div p {
   font-weight: 300; font-size: 18px; line-height: 28px; color: #16364f; line-height: 1.6; text-align: left; margin: 0 0 20px 0;
-}
-
-#aboutUs .contact p {
-  font-weight: 300; font-size: 18px; line-height: 38px; color: #16364f; line-height: 1.2; margin: 0; letter-spacing: .5px; text-align: left;
 }
 
 #contact_form {

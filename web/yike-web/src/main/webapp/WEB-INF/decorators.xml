@@ -12,8 +12,11 @@
     <pattern>/*</pattern>
   </decorator>
 
-  <decorator name="template_simple" page="template_simple.jsp">
+  <decorator name="template_index" page="template_index.jsp">
     <pattern>/</pattern>
+  </decorator>
+
+  <decorator name="template_simple" page="template_simple.jsp">
     <pattern>/skill*</pattern>
     <pattern>/resource*</pattern>
     <pattern>/wx*</pattern>

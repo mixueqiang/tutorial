@@ -105,7 +105,19 @@ public class WxYiKeService {
     }
 
     private boolean handleTextMsg(WxMessage message) {
-        return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复", message.getFromUserName());
+        String text = message.getContent();
+        if (StringUtils.isEmpty(text)) {
+            return false;
+        }
+        if (text.contains("西政")) {
+            return apiUtils.sendTextMessage("西政公开课上课方式：加qq群：62696852 在群内视频直播。 加群申请请填：一课上手，参加法律公开课。\n" +
+                    "\n" +
+                    "资料下载地址：\n" +
+                    "- 链接：https://pan.baidu.com/s/1pK8FgYR\n" +
+                    "- 密码：9eef", message.getFromUserName());
+        } else {
+            return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复", message.getFromUserName());
+        }
     }
 
     private boolean handleBindingClickEvent(WxMessage message) {

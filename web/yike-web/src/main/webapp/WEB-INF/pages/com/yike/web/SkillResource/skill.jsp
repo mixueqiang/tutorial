@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
 <title>${skill.name}&nbsp;|&nbsp;技能</title>
 
-<div class="container row-space-top-2">
+<div class="container row-space-top-2 row-space-4">
   <div class="row">
     <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 card">
       <div class="card-cover">

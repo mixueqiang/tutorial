@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
 <title>技能</title>
 
-<div class="container row-space-top-2">
+<div class="container row-space-top-2 row-space-4">
   <div class="row section skill-section">
     <c:forEach var="item" items="${skills}">
       <div class="col-md-2 col-sm-3 col-xs-6 row-space-top-2" data-id="${item.id}">

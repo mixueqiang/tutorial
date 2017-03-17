@@ -37,7 +37,6 @@ public class SkillResource extends BaseResource {
   @Produces(MediaType.TEXT_HTML)
   public Response index() {
     Map<String, Object> condition = new HashMap<String, Object>();
-    condition.put("categoryId", 102);
     condition.put("status", 1);
     List<Skill> skills = entityDao.find("skill", condition, 1, 100, SkillRowMapper.getInstance());
     request.setAttribute("skills", skills);

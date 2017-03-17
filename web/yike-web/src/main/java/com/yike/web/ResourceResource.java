@@ -93,7 +93,6 @@ public class ResourceResource extends BaseResource {
 
     Map<String, Object> condition = new HashMap<String, Object>();
     condition.put("skillId", skillId);
-    condition.put("status", 1);
     int resourceCount = entityDao.count("resource", condition);
     entityDao.update("skill", "id", skillId, "resourceCount", resourceCount);
 

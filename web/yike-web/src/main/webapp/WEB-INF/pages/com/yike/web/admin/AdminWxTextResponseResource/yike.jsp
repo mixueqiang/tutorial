@@ -50,7 +50,7 @@
                                                                                                       title="编辑"
                                                                                                       role="button"
                                                                                                       data-toggle="modal"
-                                                                                                      data-target="#editModal"></a>
+                                                                                                      data-target="#edit-modal"></a>
                 </td>
               </tr>
             </c:forEach>
@@ -58,7 +58,7 @@
           </table>
         </div>
         <div style="text-align:center"><a href="javascript:;" class="btn btn-danger" role="button" data-toggle="modal"
-                                          data-target="#addModal">添加</a></div>
+                                          data-target="#add-modal">添加</a></div>
       </div>
 
       <ul class="pagination">
@@ -84,36 +84,36 @@
 </div>
 
 <!-- editModal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="edit-foo-label">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="editEntityLabel">编辑内容</h4>
+        <h4 class="modal-title" id="edit-foo-label">编辑内容</h4>
       </div>
       <div class="modal-body">
         <form id="edit" class="form-horizontal row-space-top-2" action="/admin/wxtextresponse/yike/edit" method="post">
           <div class="form-group hide">
-            <label for="editId" class="col-sm-3 control-label">ID：</label>
+            <label for="edit-id" class="col-sm-3 control-label">ID：</label>
             <div class="col-sm-9">
-              <input type="number" class="form-control" id="editId" name="id" value="" placeholder="">
+              <input type="number" class="form-control" id="edit-id" name="id" value="" placeholder="">
             </div>
           </div>
           <div class="form-group">
-            <label for="editTarget" class="col-sm-3 control-label">根据内容：</label>
+            <label for="edit-target" class="col-sm-3 control-label">根据内容：</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="editTarget" name="target" value="" placeholder="">
+              <input type="text" class="form-control" id="edit-target" name="target" value="" placeholder="">
             </div>
           </div>
           <div class="form-group">
-            <label for="editResult" class="col-sm-3 control-label">回复内容：</label>
+            <label for="edit-result" class="col-sm-3 control-label">回复内容：</label>
             <div class="col-sm-9">
-              <textarea class="form-control" id="editResult" name="result" value="" placeholder=""></textarea>
+              <textarea class="form-control" id="edit-result" name="result" value="" placeholder=""></textarea>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default itdelete">删除</button>
+            <button type="button" class="btn btn-default delete-button">删除</button>
             <button type="submit" class="btn btn-primary">提交</button>
           </div>
         </form>
@@ -123,26 +123,26 @@
 </div>
 
 <!-- addModal -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="foo-label">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addEntityLabel">添加内容</h4>
+        <h4 class="modal-title" id="foo-label">添加内容</h4>
       </div>
       <div class="modal-body">
         <form id="add" class="form-horizontal row-space-top-2" action="/admin/wxtextresponse/yike" method="post">
           <div class="form-group">
-            <label for="addTarget" class="col-sm-3 control-label">根据内容：</label>
+            <label for="add-target" class="col-sm-3 control-label">根据内容：</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="addTarget" name="target" placeholder="">
+              <input type="text" class="form-control" id="add-target" name="target" placeholder="">
             </div>
           </div>
           <div class="form-group">
-            <label for="addResult" class="col-sm-3 control-label">回复内容：</label>
+            <label for="add-result" class="col-sm-3 control-label">回复内容：</label>
             <div class="col-sm-9">
-              <textarea class="form-control" id="addResult" name="result" placeholder=""></textarea>
+              <textarea class="form-control" id="add-result" name="result" placeholder=""></textarea>
             </div>
           </div>
           <div class="modal-footer">
@@ -150,13 +150,12 @@
           </div>
         </form>
       </div>
-
     </div>
   </div>
 </div>
 
 <!-- deleteSuccsee -->
-<div class="modal fade bs-example-modal-sm" id="deleteModal" tabindex="-1" role="dialog"
+<div class="modal fade bs-example-modal-sm" id="delete-modal" tabindex="-1" role="dialog"
      aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
@@ -169,7 +168,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary deleteSuccseebtn" id="deleteSuccseebtn">确定</button>
+        <button type="button" class="btn btn-primary delete-success-button" id="delete-success-button">确定</button>
       </div>
     </div>
   </div>
@@ -209,7 +208,7 @@
                             $btn.removeAttr('disabled').removeClass('disabled');
                             Message.info('编辑内容成功。', false, $('.form-group:last', $(form)));
                             setTimeout(function () {
-                                $('#editModal').modal('hide');
+                                $('#edit-modal').modal('hide');
                                 window.location.reload();
                             }, 1000)
                         } else {
@@ -227,24 +226,24 @@
 
         //编辑时，给模态框赋值
         $('.edit-button').click(function () {
-            var editTarget = $(this).parent().attr('data-target');
-            var editResult = $(this).parent().attr('data-result');
-            var editId = $(this).parent().attr('data-id');
-            $('#editTarget').val(editTarget);
-            $('#editResult').val(editResult);
-            $('#editId').val(editId);
+            var target = $(this).parent().attr('data-target');
+            var result = $(this).parent().attr('data-result');
+            var id = $(this).parent().attr('data-id');
+            $('#edit-target').val(target);
+            $('#edit-result').val(result);
+            $('#edit-id').val(id);
 
-            $('.itdelete').click(function () {
-                $('#deleteModal').modal('show');
-                $('.deleteSuccseebtn').click(function () {
-                    $.post('/admin/wxtextresponse/yike/delete', {'id': editId}, function (resp) {
+            $('.delete-button').click(function () {
+                $('#delete-modal').modal('show');
+                $('.delete-success-button').click(function () {
+                    $.post('/admin/wxtextresponse/yike/delete', {'id': id}, function (resp) {
                         if (resp && resp.e == 0) {
-                            $('#deleteModal').modal('hide');
-                            $('#editModal').modal('hide');
+                            $('#delete-modal').modal('hide');
+                            $('#edit-modal').modal('hide');
                             window.location.reload();
                         } else {
                             alert("删除失败" + resp.m);
-                            $('#deleteModal').modal('hide');
+                            $('#delete-modal').modal('hide');
                         }
                     }, 'json');
                 })
@@ -285,7 +284,7 @@
                             var id = resp.r;
                             Message.info('添加内容成功。', false, $('.form-group:last', $(form)));
                             setTimeout(function () {
-                                $('#addModal').modal('hide');
+                                $('#add-modal').modal('hide');
                                 window.location.reload();
                             }, 1000)
                         } else {

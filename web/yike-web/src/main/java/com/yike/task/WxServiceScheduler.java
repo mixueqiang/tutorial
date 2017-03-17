@@ -1,12 +1,18 @@
 package com.yike.task;
 
+import com.yike.Constants;
+import com.yike.dao.EntityDao;
+import com.yike.dao.mapper.WxTextResponseRowMapper;
 import com.yike.model.WxButton;
+import com.yike.model.WxTextResponse;
 import com.yike.service.WxITService;
 import com.yike.service.WxYiKeService;
+import com.yike.web.util.WxTextResponseUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +25,9 @@ import java.util.Map;
 @Service
 public class WxServiceScheduler implements Runnable {
     private static final Log LOG = LogFactory.getLog(WxServiceScheduler.class);
+
+    @Resource
+    protected EntityDao entityDao;
 
     public WxServiceScheduler() {
         TaskScheduler.register(getClass().getSimpleName(),
@@ -33,6 +42,33 @@ public class WxServiceScheduler implements Runnable {
         WxYiKeService.apiUtils.requestAccessToken();
         setITButtons();
         setYiKeButtons();
+        setupWxResponses();
+    }
+
+    public void setupWxResponses() {
+
+        List<WxTextResponse> yike = entityDao
+                .find("wx_yike_text_response",
+                        "status",
+                        Constants.STATUS_OK,
+                        WxTextResponseRowMapper.getInstance());
+        List<WxTextResponse> it = entityDao
+                .find("wx_text_response",
+                        "status",
+                        Constants.STATUS_OK,
+                        WxTextResponseRowMapper.getInstance());
+
+        WxTextResponseUtils.getYikeResponses().clear();
+        for (WxTextResponse response : yike) {
+            WxTextResponseUtils.getYikeResponses()
+                    .put(response.getTarget(), response.getResult());
+        }
+
+        WxTextResponseUtils.getItResponses().clear();
+        for (WxTextResponse response : it) {
+            WxTextResponseUtils.getItResponses()
+                    .put(response.getTarget(), response.getResult());
+        }
     }
 
     private void setYiKeButtons() {

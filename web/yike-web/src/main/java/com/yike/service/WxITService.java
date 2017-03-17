@@ -5,6 +5,7 @@ import com.yike.model.WxUser;
 import com.yike.web.util.WxApiUtils;
 import com.yike.web.util.WxFotoMixUtils;
 import com.yike.web.util.WxTemplateMessageFormatter;
+import com.yike.web.util.WxTextResponseUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -167,18 +168,18 @@ public class WxITService {
         return true;
     }
 
-    private boolean handleTextMsg(WxMessage message) {
-        if ("学习".equals(message.getContent())) {
-            return handleFreeClickEvent(message);
-        } else if ("购买".equals(message.getContent())) {
-            return apiUtils.sendTextMessage("好奇宝宝(✿◡‿◡)\n" +
-                    "不体验套路，怎么学习经验呢？/偷笑\n" +
-                    " \n" +
-                    "回复：学习 \n" +
-                    "扬帆起航<(*￣▽￣*)/", message.getFromUserName());
-        } else if ("小编".equals(message.getContent())) {
-            WxUser user = wxUserService.getUser(message.getFromUserName());
+    public boolean handleTextMsg(WxMessage message) {
+        if (StringUtils.isEmpty(message.getContent())) {
+            return false;
+        }
 
+        if ("学习".equals(message.getContent())) {
+
+            return handleFreeClickEvent(message);
+
+        } else if ("小编".equals(message.getContent())) {
+
+            WxUser user = wxUserService.getUser(message.getFromUserName());
             if (user.getIsStudent() == 1) {
                 apiUtils.sendTextMessage("[机智]\n小编微信号：qdtk2405", user.getOpenid());
                 File editorQrCode = WxFotoMixUtils.getEditorQrCode();
@@ -192,12 +193,14 @@ public class WxITService {
             } else {
                 return apiUtils.sendTextMessage("QAQ 同学你还没有入学哎\n回复\"学习\"或点击\"免费入学\"速速入学吧！", user.getOpenid());
             }
-        } else if ("?".equals(message.getContent()) || "？".equals(message.getContent())) {
-
-            return apiUtils.sendTextMessage("【学习】：获取免费入学邀请卡\n【小编】：获取小编微信号，添加小编可以更快进入分班哦~", message.getFromUserName());
 
         } else {
-            return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复，发送\"？\"查看帮助哦~", message.getFromUserName());
+            String res = WxTextResponseUtils.getItResponse(message.getContent());
+            if (StringUtils.isNotEmpty(res)) {
+                return apiUtils.sendTextMessage(res, message.getFromUserName());
+            } else {
+                return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复，发送\"？\"查看帮助哦~", message.getFromUserName());
+            }
         }
     }
 

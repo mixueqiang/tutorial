@@ -1,5 +1,7 @@
 package com.yike.service;
 
+import com.yike.model.WxMessage;
+import com.yike.task.WxServiceScheduler;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -20,9 +22,17 @@ public class WxServiceTest {
     WxITService wxITService;
     @Resource
     WxYiKeService wxYiKeService;
+    @Resource
+    WxServiceScheduler wxServiceScheduler;
 
     @Test
     public void testYiKeApplicationButton() {
+        wxServiceScheduler.setupWxResponses();
+
+        WxMessage message = new WxMessage();
+        message.setContent("?");
+
+        wxITService.handleTextMsg(message);
 
     }
 

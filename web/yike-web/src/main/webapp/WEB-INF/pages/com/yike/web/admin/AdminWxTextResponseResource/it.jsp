@@ -94,13 +94,13 @@
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="target" class="col-sm-3 control-label">根据内容：</label>
+      <label for="editTarget" class="col-sm-3 control-label">根据内容：</label>
 	    <div class="col-sm-9">
 	      <input type="text" class="form-control" id="editTarget" name="target" value="" placeholder="">
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="result" class="col-sm-3 control-label">回复内容：</label>
+      <label for="editResult" class="col-sm-3 control-label">回复内容：</label>
 	    <div class="col-sm-9">
 	      <textarea class="form-control" id="editResult" name="result" value="" placeholder=""></textarea>
 	    </div>
@@ -127,13 +127,13 @@
       <div class="modal-body">
 	<form id="add" class="form-horizontal row-space-top-2" action="/admin/wxtextresponse/it" method="post">
 	  <div class="form-group">
-	    <label for="target" class="col-sm-3 control-label">根据内容：</label>
+      <label for="addTarget" class="col-sm-3 control-label">根据内容：</label>
 	    <div class="col-sm-9">
 	      <input type="text" class="form-control" id="addTarget" name="target" placeholder="">
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="result" class="col-sm-3 control-label">回复内容：</label>
+      <label for="addResult" class="col-sm-3 control-label">回复内容：</label>
 	    <div class="col-sm-9">
 	      <textarea class="form-control" id="addResult" name="result" placeholder=""></textarea>
 	    </div>
@@ -227,30 +227,11 @@ $(function(){
 	    $('#editResult').val(editResult);
 	    $('#editId').val(editId);
 
-	    //删除事件
-	    /*$('#delete').click(function () {
-
-				$.post('/admin/wxtextresponse/it/delete', {'editId': editId}, function (resp) {
-				    if (resp && resp.e == 0) {
-					var id = resp.r;
-					$('#deleteModal').modal('show');
-					$('.deleteSuccseebtn').click(function () {
-					    $('#deleteModal').modal('hide');
-					    $('#newModal').modal('hide');
-					    window.location.reload();
-					})
-				    } else {
-					$('#deleteModal').modal('hide');
-				    }
-				}, 'json');
-	    })*/
-
 	    $('.itdelete').click(function(){
 	    	$('#deleteModal').modal('show');
 	    	$('.deleteSuccseebtn').click(function(){
 	    		$.post('/admin/wxtextresponse/it/delete', {'id': editId}, function (resp) {
 				    if (resp && resp.e == 0) {
-				    	alert("删除成功");
 					    $('#deleteModal').modal('hide');
 					    $('#editModal').modal('hide');
 					    window.location.reload();
@@ -294,7 +275,6 @@ $(function(){
 					if (resp && resp.e == 0) {
 					    $('input', $(form)).val('');
 					    $btn.removeAttr('disabled').removeClass('disabled');
-					    var id = resp.r;
 					    Message.info('添加内容成功。', false, $('.form-group:last', $(form)));
 					    setTimeout(function () {
 						$('#addModal').modal('hide');

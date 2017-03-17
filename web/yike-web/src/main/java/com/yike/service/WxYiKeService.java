@@ -113,8 +113,8 @@ public class WxYiKeService {
             return apiUtils.sendTextMessage("西政公开课上课方式：加qq群：62696852 在群内视频直播。 加群申请请填：一课上手，参加法律公开课。\n" +
                     "\n" +
                     "资料下载地址：\n" +
-                    "- 链接：https://pan.baidu.com/s/1hrO25Ti\n" +
-                    "- 密码：yxqd", message.getFromUserName());
+                    "- 链接：https://pan.baidu.com/s/1c16tMpi\n" +
+                    "- 密码：a5dt", message.getFromUserName());
         } else {
             return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复", message.getFromUserName());
         }
@@ -183,7 +183,7 @@ public class WxYiKeService {
 
     private boolean handleAboutClickEvent(WxMessage message) {
         return apiUtils.sendTextMessage(
-                "法律翻译资料  https://pan.baidu.com/s/1hrO25Ti yxqd \n" +
+                "法律翻译资料  https://pan.baidu.com/s/1c16tMpi a5dt \n" +
                         "SpringBoot中文参考指南  https://pan.baidu.com/s/1c2kVnm4 8mkn \n" +
                         "Spring、SpringMVC、MyBatis实战课程视频  https://pan.baidu.com/s/1bpAFImr zh3v \n" +
                         "Bootstrap 用户界面架构  https://pan.baidu.com/s/1eRFIZmU kyww \n" +

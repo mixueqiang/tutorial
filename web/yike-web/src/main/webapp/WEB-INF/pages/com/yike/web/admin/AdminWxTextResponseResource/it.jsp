@@ -198,6 +198,7 @@ $(function(){
 				    success: function (resp) {
 					if (resp && resp.e == 0) {
 					    $('input', $(form)).val('');
+					    $('textarea', $(form)).val('');
 					    $btn.removeAttr('disabled').removeClass('disabled');
 					    Message.info('编辑内容成功。', false, $('.form-group:last', $(form)));
 					    setTimeout(function () {
@@ -247,7 +248,7 @@ $(function(){
 	    $('.itdelete').click(function(){
 	    	$('#deleteModal').modal('show');
 	    	$('.deleteSuccseebtn').click(function(){
-	    		$.post('/admin/wxtextresponse/it/delete', {'editId': editId}, function (resp) {
+	    		$.post('/admin/wxtextresponse/it/delete', {'id': editId}, function (resp) {
 				    if (resp && resp.e == 0) {
 				    	alert("删除成功");
 					    $('#deleteModal').modal('hide');
@@ -255,7 +256,6 @@ $(function(){
 					    window.location.reload();
 					  } else {
 					  	alert("删除失败"+resp.m);
-					  	alert(editId);
 						$('#deleteModal').modal('hide');
 					    }
 					}, 'json');

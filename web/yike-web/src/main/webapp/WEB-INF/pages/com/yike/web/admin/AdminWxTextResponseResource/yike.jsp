@@ -45,7 +45,7 @@
                   <fmt:formatDate
                       value="${updateDate}" pattern="MM-dd HH:mm" timeZone="GMT+0800"/></td>
                 <td data-id="${item.id}" data-target="${item.target}" data-result="${item.result}"><a id="editButton"
-                                                                                                      class="glyphicon glyphicon-pencil editbtn"
+                                                                                                      class="glyphicon glyphicon-pencil edit-button"
                                                                                                       href="javascript:;"
                                                                                                       title="编辑"
                                                                                                       role="button"
@@ -226,7 +226,7 @@
         });
 
         //编辑时，给模态框赋值
-        $('.editbtn').click(function () {
+        $('.edit-button').click(function () {
             var editTarget = $(this).parent().attr('data-target');
             var editResult = $(this).parent().attr('data-result');
             var editId = $(this).parent().attr('data-id');

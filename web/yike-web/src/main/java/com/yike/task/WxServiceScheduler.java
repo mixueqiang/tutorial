@@ -124,6 +124,11 @@ public class WxServiceScheduler implements Runnable {
 
         WxButton warmUp = new WxButton("实战课程");
         warmUp.addSubButton(new WxButton(
+                "周六公开课",
+                WxButton.typeView,
+                null,
+                "http://mp.weixin.qq.com/s/a1UkpFAb2z7Lz5LAOwy5rg"));
+        warmUp.addSubButton(new WxButton(
                 "当前课程",
                 WxButton.typeView,
                 null,

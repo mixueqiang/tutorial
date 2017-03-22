@@ -42,8 +42,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="countThis" class="col-md-2 col-sm-2 control-label">招生人数</label>
-          <div class="col-md-3 col-sm-3">
+          <label for="countThis" class="col-md-2 col-sm-2 col-xs-3 control-label">招生人数</label>
+          <div class="col-md-3 col-sm-3 col-xs-4">
             <input id="countThis" name="countThis" class="form-control">
           </div>
         </div>

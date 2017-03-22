@@ -82,8 +82,6 @@
                 <c:if test="${course.countMax gt 0}">
                   <h4 class="row-space-top-2 row-space-2">招收学员数量：${course.countMax} 人</h4>
                 </c:if>
-                <h4 class="row-space-top-2 row-space-2">购买支持</h4>
-                <p>「一课上手」对课程的报名及购买提供支持。如对课程或者课程的购买有疑问，请发送邮件到：service@yikeshangshou.com 进行咨询。</p>
               </div>
               <div class="col-md-4"></div>
             </div>
@@ -108,6 +106,14 @@
               </div>
             </div>
           </c:if>
+          <div>
+            <div class="row-space-top-3" id="course-support">
+              <h2>购买支持</h2>
+            </div>
+            <div class="row row-space-top-2 section">
+              <p>「一课上手」对课程的报名及购买提供支持。如对课程或者课程的购买有疑问，请发送邮件到：service@yikeshangshou.com 进行咨询。</p>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -138,8 +144,6 @@
     </div>
   </div>
 </div>
-
-
 
 
 <div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel" aria-hidden="true">
@@ -226,48 +230,48 @@
 
 <script src="/js/course.js?v=20161220008"></script>
 <script>
-/*图片高度适配*/
-function Heightadapt(){
-  $('.course-imgcover .course-img').height($('.course-imgcover .course-img').width()*0.60);
-  $('.course-navbar').width($('.course-parent').width());
-}
-window.onresize=function(){
-  Heightadapt();
-}
-window.onload=function(){
-  Heightadapt();
-  /* 导航栏滚动至浏览器顶部位置固定,同时添加元素 */
-  //控制滚动条滚动次数
-  var a = 0;
+  /*图片高度适配*/
+  function Heightadapt() {
+    $('.course-imgcover .course-img').height($('.course-imgcover .course-img').width() * 0.60);
+    $('.course-navbar').width($('.course-parent').width());
+  }
+  window.onresize = function() {
+    Heightadapt();
+  }
+  window.onload = function() {
+    Heightadapt();
+    /* 导航栏滚动至浏览器顶部位置固定,同时添加元素 */
+    //控制滚动条滚动次数
+    var a = 0;
 
-  //获取要定位元素距离浏览器顶部的距离
-  var navH = $(".fix-nav").offset().top;
+    //获取要定位元素距离浏览器顶部的距离
+    var navH = $(".fix-nav").offset().top;
 
-  //滚动条事件
-  $(window).scroll(function() {
-    //获取滚动条的滑动距离
-    var scroH = $(this).scrollTop();
-    //滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
-    if (scroH >= navH) {
-      if (a == 0) {
+    //滚动条事件
+    $(window).scroll(function() {
+      //获取滚动条的滑动距离
+      var scroH = $(this).scrollTop();
+      //滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+      if (scroH >= navH) {
+        if (a == 0) {
+          $(".fix-nav").css({
+            "position" : "fixed",
+            "display" : "block",
+            "background" : "#fff",
+            "top" : 0,
+            "zIndex" : 1000
+          });
+          var cloneDom = $('.actions button').clone(true);
+          $('.appendContent').append(cloneDom);
+        }
+        a++;
+      } else if (scroH < navH) {
         $(".fix-nav").css({
-          "position" : "fixed",
-          "display" : "block",
-          "background" : "#fff",
-          "top" : 0,
-          "zIndex" : 1000
+          "position" : "static",
         });
-        var cloneDom = $('.actions button').clone(true);
-        $('.appendContent').append(cloneDom);
+        $('.appendContent').empty();
+        a = 0;
       }
-      a++;
-    } else if (scroH < navH) {
-      $(".fix-nav").css({
-        "position" : "static",
-      });
-      $('.appendContent').empty();
-      a = 0;
-    }
-  })
-}
+    })
+  }
 </script>

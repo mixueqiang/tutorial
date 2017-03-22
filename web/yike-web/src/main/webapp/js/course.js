@@ -18,14 +18,14 @@ $('#courseForm').validate({
       maxlength : 4,
       digits : true
     },
-    teachingType : {
-      required : true,
-      maxlength : 2000
-    },
     description : {
       required : true,
       maxlength : 3000
     },
+    teachingType : {
+      required : true,
+      maxlength : 2000
+    }
   },
   messages : {
     title : {
@@ -46,13 +46,13 @@ $('#courseForm').validate({
       maxlength : $.format("招生人数不能超过 {0} 个字。"),
       digits : "只能输入数字",
     },
-    teachingType : {
-      required : '请输入上课时间及方式。',
-      maxlength : $.format("上课时间及方式不能超过 {0} 个字。")
-    },
     description : {
       required : '请输入详细介绍。',
       maxlength : $.format("详细介绍不能超过 {0} 个字。")
+    },
+    teachingType : {
+      required : '请输入课程安排。',
+      maxlength : $.format("课程安排不能超过 {0} 个字。")
     }
   },
   submitHandler : function(form) {

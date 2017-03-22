@@ -30,18 +30,18 @@
                       </c:choose></span>
                     <c:choose>
                       <c:when test="${hasApplied}">
-                        <button class="btn btn-success large" disabled="disabled">已报名</button>
+                        <button class="btn btn-success btn-lg" disabled="disabled">已报名</button>
                       </c:when>
                       <c:otherwise>
                         <c:choose>
                           <c:when test="${course.status eq 0}">
-                            <button class="btn btn-danger large" disabled="disabled">审核中</button>
+                            <button class="btn btn-danger btn-lg" disabled="disabled">审核中</button>
                           </c:when>
                           <c:when test="${course.status eq 1 and course.appliable lt 1}">
-                            <button class="btn btn-danger large" disabled="disabled">已结束招生</button>
+                            <button class="btn btn-danger btn-lg" disabled="disabled">已结束招生</button>
                           </c:when>
                           <c:when test="${course.status eq 1 and course.appliable eq 1}">
-                            <button class="btn btn-success large" data-toggle="modal" data-target="#applicationModal" href="#">报名</button>
+                            <a class="btn btn-success btn-lg" data-toggle="modal" data-target="#applicationModal" href="#">报名</a>
                           </c:when>
                         </c:choose>
                       </c:otherwise>
@@ -189,6 +189,24 @@
                 <input type="text" class="form-control" name="phone" value="${sessionScope._user.phone}">
               </div>
             </div>
+            <c:choose>
+              <c:when test="${course.onlineContactMethod eq 1}">
+                <div class="form-group">
+                  <label for="qq" class="col-md-2 col-sm-3 control-label">QQ</label>
+                  <div class="col-md-4 col-sm-6">
+                    <input type="text" class="form-control" name="qq">
+                  </div>
+                </div>
+              </c:when>
+              <c:when test="${course.onlineContactMethod eq 2}">
+                <div class="form-group">
+                  <label for="wechat" class="col-md-2 col-sm-3 control-label">微信</label>
+                  <div class="col-md-4 col-sm-6">
+                    <input type="text" class="form-control" name="wechat">
+                  </div>
+                </div>
+              </c:when>
+            </c:choose>
           </div>
           <div class="modal-footer">
             <input type="hidden" name="courseId" value="${course.id}">

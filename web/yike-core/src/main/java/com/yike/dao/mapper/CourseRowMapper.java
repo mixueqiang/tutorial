@@ -34,22 +34,22 @@ public class CourseRowMapper implements RowMapper<Course> {
     entity.setCategoryId(rs.getLong(Course.SQL_CATEGORY_ID));
 
     entity.setName(rs.getString(Course.SQL_TITLE));
-    entity.setDescription(rs.getString(Course.SQL_DESCRIPTION));
+    entity.setFree(rs.getInt(Course.SQL_FREE));
+    entity.setPrice(rs.getFloat(Course.SQL_PRICE));
     entity.setContent(rs.getString(Course.SQL_CONTENT));
+    entity.setDescription(rs.getString(Course.SQL_DESCRIPTION));
+    entity.setTeachingType(rs.getString(Course.SQL_TEACHING_TYPE));
+    entity.setOnlineContactMethod(rs.getInt(Course.SQL_ONLINE_CONTACT_METHOD));
+    entity.setAppliable(rs.getInt(Course.SQL_APPLIABLE));
     entity.setStatus(rs.getInt(Course.SQL_STATUS));
     entity.setCreateTime(rs.getLong(Course.SQL_CREATE_TIME));
     entity.setUpdateTime(rs.getLong(Course.SQL_UPDATE_TIME));
-    entity.setPrice(rs.getFloat(Course.SQL_PRICE));
-    entity.setTeachingType(rs.getString(Course.SQL_TEACHING_TYPE));
 
     entity.setCountMax(rs.getInt(Course.SQL_COUNT_MAX));
     entity.setCountThis(rs.getInt(Course.SQL_COUNT_THIS));
     entity.setCountOther(rs.getInt(Course.SQL_COUNT_OTHER));
     entity.setCountShow(rs.getBoolean(Course.SQL_COUNT_SHOW));
 
-
-    entity.setAppliable(rs.getInt(Course.SQL_APPLIABLE));
-    entity.setFree(rs.getInt(Course.SQL_FREE));
     entity.setSuperscript(rs.getString(Course.SQL_SUPERSCRIPT));
     entity.setSubscript(rs.getString(Course.SQL_SUBSCRIPT));
     String image = rs.getString(Course.SQL_IMAGE);
@@ -58,7 +58,6 @@ public class CourseRowMapper implements RowMapper<Course> {
       entity.setImage(image);
       entity.getProperties().put("imageUrl", ImageUtils.getImageUrl(image));
     }
-
 
     return entity;
   }

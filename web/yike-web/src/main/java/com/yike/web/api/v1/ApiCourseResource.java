@@ -62,7 +62,8 @@ public class ApiCourseResource extends BaseResource {
           @FormParam("description") String description,
           @FormParam("maximumLearnerCount") int maximumLearnerCount,
           @FormParam("free") int free,
-          @FormParam("image") String image) {
+          @FormParam("image") String image,
+          @FormParam("onlineContactMethod") int onlineContactMethod) {
 
     User user = getSessionUser();
     if (null == user) {
@@ -103,14 +104,15 @@ public class ApiCourseResource extends BaseResource {
               .set(Course.SQL_CATEGORY_ID, categoryId)
               .set(Course.SQL_TITLE, title)
               .set(Course.SQL_PRICE, price)
-              .set(Course.SQL_TEACHING_TYPE, teachingType)
               .set(Course.SQL_COUNT_MAX, maximumLearnerCount)
               .set(Course.SQL_CONTENT, content)
               .set(Course.SQL_DESCRIPTION, description)
-              .set(Course.SQL_CREATE_TIME, createTime)
+              .set(Course.SQL_TEACHING_TYPE, teachingType)
               .set(Course.SQL_FREE, free)
+              .set(Course.SQL_ONLINE_CONTACT_METHOD, onlineContactMethod)
               .set(Course.SQL_APPLIABLE, Course.APPLIABLE_TRUE)
-              .set(Course.SQL_STATUS, Constants.STATUS_NOT_READY);
+              .set(Course.SQL_STATUS, Constants.STATUS_NOT_READY)
+              .set(Course.SQL_CREATE_TIME, createTime);
 
       if (StringUtils.isNotEmpty(image)) {
         course.set(Course.SQL_IMAGE, image);

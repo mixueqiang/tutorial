@@ -20,26 +20,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="price" class="col-md-2 col-sm-2 col-xs-3 control-label">课程价格</label>
-          <div class="col-md-2 col-sm-2 col-xs-4">
-            <select id="free" name="free" class="form-control">
-              <option value="1">免费</option>
-              <option value="0">收费</option>
-            </select>
-          </div>
-          <div id="charge" class="col-md-2 col-sm-2 col-xs-4">
-            <span class="rmb">元</span> <input id="price" name="price" class="form-control">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="countThis" class="col-md-2 col-sm-2 control-label">招生人数</label>
-          <div class="col-md-2 col-sm-2">
-            <input id="countThis" name="countThis" class="form-control">
-          </div>
-        </div>
-        <div class="form-group">
           <label for="categoryId" class="col-md-2 col-sm-2 col-xs-3 control-label">课程类别</label>
-          <div class="col-md-2 col-sm-2 col-xs-4">
+          <div class="col-md-3 col-sm-3 col-xs-4">
             <select id="categoryId" name="categoryId" class="form-control">
               <c:forEach var="item" items="${categories}">
                 <option value="${item.id}">${item.name}</option>
@@ -48,17 +30,45 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="teachingType" class="col-md-2 col-sm-2 control-label">上课时间及方式</label>
-          <div id="teachingTypeContainer" class="col-md-8 col-sm-8">
-            <p id="teachingTypeNum"></p>
-            <textarea id="teachingType" name="teachingType" rows="4" class="form-control" placeholder="描述什么时间上课，及如何上课 "></textarea>
+          <label for="price" class="col-md-2 col-sm-2 col-xs-3 control-label">课程价格</label>
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <select id="free" name="free" class="form-control">
+              <option value="1">免费</option>
+              <option value="0">收费</option>
+            </select>
+          </div>
+          <div id="charge" class="col-md-3 col-sm-3 col-xs-4">
+            <span class="rmb">元</span> <input id="price" name="price" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="countThis" class="col-md-2 col-sm-2 control-label">招生人数</label>
+          <div class="col-md-3 col-sm-3">
+            <input id="countThis" name="countThis" class="form-control">
           </div>
         </div>
         <div class="form-group">
           <label for="description" class="col-md-2 col-sm-2 control-label">详细介绍</label>
           <div id="descriptionContainer" class="col-md-8 col-sm-8">
             <p id="descriptionNum"></p>
-            <textarea id="description" name="description" class="form-control" rows="6" placeholder="可以描述适合人群，课程目标，课程详细信息等"></textarea>
+            <textarea id="description" name="description" class="form-control" rows="6" placeholder="描述讲师介绍，课程适合人群，课程目标，课程内容等"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="teachingType" class="col-md-2 col-sm-2 control-label">课程安排</label>
+          <div id="teachingTypeContainer" class="col-md-8 col-sm-8">
+            <p id="teachingTypeNum"></p>
+            <textarea id="teachingType" name="teachingType" rows="4" class="form-control" placeholder="描述什么时间上课，怎样上课等"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="onlineContactMethod" class="col-md-2 col-sm-2 col-xs-3 control-label">与学员线上联系方式</label>
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <select id="onlineContactMethod" name="onlineContactMethod" class="form-control">
+              <option value="0">不需要线上联系</option>
+              <option value="1" selected="selected">QQ</option>
+              <option value="2">微信</option>
+            </select>
           </div>
         </div>
         <div class="form-group">

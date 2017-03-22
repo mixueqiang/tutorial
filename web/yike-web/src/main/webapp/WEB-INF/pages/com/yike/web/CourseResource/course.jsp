@@ -69,50 +69,29 @@
         </div>
 
         <div class="course-details">
-          <div>
-            <div class="row-space-top-3" id="about-the-course">
-              <h2>关于此课程</h2>
-            </div>
-            <div class=" row-space-top-2 section">
-              <div>
-                <h4 class="row-space-2">课程介绍</h4>
-                <p>${course.description}</p>
-                <h4 class="row-space-top-2 row-space-2">课程亮点</h4>
-                <p>${course.content}</p>
-                <c:if test="${course.countMax gt 0}">
-                  <h4 class="row-space-top-2 row-space-2">招收学员数量：${course.countMax} 人</h4>
-                </c:if>
-              </div>
-              <div class="col-md-4"></div>
-            </div>
+          <div class="row-space-top-3" id="about-the-course">
+            <h2>关于此课程</h2>
           </div>
-          <div>
-            <div class="row-space-top-3" id="course-list">
-              <h2>课程安排</h2>
-            </div>
-            <div class="row row-space-top-2 section">
-              <div class="col-md-8">${course.teachingType}</div>
-              <div class="col-md-4"></div>
-            </div>
+          <div class="row-space-top-2 section">
+            <h4 class="row-space-2">课程介绍</h4>
+            <p>${course.description}</p>
+            <h4 class="row-space-top-2 row-space-2">课程亮点</h4>
+            <p>${course.content}</p>
+            <c:if test="${course.countMax gt 0}">
+              <h4 class="row-space-top-2 row-space-2">招收学员数量：${course.countMax} 人</h4>
+            </c:if>
           </div>
-          <c:if test="${not empty achievements}">
-            <div class="container">
-              <div class="row-space-top-3" id="course-achievements">
-                <h2>课程成果</h2>
-              </div>
-              <div class="row row-space-top-2 section">
-                <div class="col-md-8"></div>
-                <div class="col-md-4"></div>
-              </div>
-            </div>
-          </c:if>
-          <div>
-            <div class="row-space-top-3" id="course-support">
-              <h2>购买支持</h2>
-            </div>
-            <div class="row row-space-top-2 section">
-              <p>「一课上手」对课程的报名及购买提供支持。如对课程或者课程的购买有疑问，请发送邮件到：service@yikeshangshou.com 进行咨询。</p>
-            </div>
+          <div class="row-space-top-3" id="course-list">
+            <h2>课程安排</h2>
+          </div>
+          <div class="row-space-top-2 section">
+            <p>${course.teachingType}</p>
+          </div>
+          <div class="row-space-top-3" id="course-support">
+            <h2>购买支持</h2>
+          </div>
+          <div class="row-space-top-2 section">
+            <p>「一课上手」对课程的报名及购买提供支持。如对课程或者课程的购买有疑问，请发送邮件到：service@yikeshangshou.com 进行咨询。</p>
           </div>
         </div>
 

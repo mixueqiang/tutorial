@@ -168,7 +168,7 @@ public class WxITService {
         return true;
     }
 
-    public boolean handleTextMsg(WxMessage message) {
+    private boolean handleTextMsg(WxMessage message) {
         if (StringUtils.isEmpty(message.getContent())) {
             return false;
         }
@@ -199,7 +199,7 @@ public class WxITService {
             if (StringUtils.isNotEmpty(res)) {
                 return apiUtils.sendTextMessage(res, message.getFromUserName());
             } else {
-                return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复，发送\"？\"查看帮助哦~", message.getFromUserName());
+                return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复。\n客服稍后将处理你的消息。", message.getFromUserName());
             }
         }
     }

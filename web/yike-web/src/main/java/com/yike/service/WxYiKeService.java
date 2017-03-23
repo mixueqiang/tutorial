@@ -114,7 +114,7 @@ public class WxYiKeService {
         if (StringUtils.isNotEmpty(res)) {
             return apiUtils.sendTextMessage(res, message.getFromUserName());
         } else {
-            return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复", message.getFromUserName());
+            return apiUtils.sendTextMessage("消息已收到，暂无关于" + message.getContent() + "的回复。\n客服稍后将处理你的消息。", message.getFromUserName());
         }
 
     }

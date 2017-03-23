@@ -32,8 +32,6 @@ public class WxServiceTest {
         WxMessage message = new WxMessage();
         message.setContent("?");
 
-        wxITService.handleTextMsg(message);
-
     }
 
 

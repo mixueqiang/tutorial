@@ -60,6 +60,7 @@ public class IndexResource extends BaseResource {
       Map<String, Object> courseFindCondition = new HashMap<String, Object>();
       courseFindCondition.put(Course.SQL_STATUS, Constants.STATUS_ENABLED);
       courseFindCondition.put(Course.SQL_CATEGORY_ID, categoryId);
+      courseFindCondition.put(Course.SQL_APPLIABLE, Constants.STATUS_ENABLED);
 
       List<Course> courses = entityDao.find(
               Course.SQL_TABLE_NAME,

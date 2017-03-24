@@ -21,7 +21,7 @@
             <thead>
             <tr>
               <th style="width: 3%;">ID</th>
-              <th>根据</th>
+              <th style="width: 10%;">根据</th>
               <th>返回内容</th>
               <th>添加时间</th>
               <th>修改时间</th>

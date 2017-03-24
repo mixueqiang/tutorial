@@ -25,7 +25,10 @@
                 <tr data-id="${item.id}">
                   <td><a href="/course/${item.courseId}" target="_blank">${item.properties.course.name}</a></td>
                   <td><a href="/user/${item.userId}" target="_blank">${item.properties.user.username}</a></td>
-                  <td>${item.phone}／${item.name}</td>
+                  <td>${item.phone}／${item.name}／<c:choose>
+                      <c:when test="${not empty item.qq}">${item.qq}</c:when>
+                      <c:when test="${not empty item.whchat}">${item.wechat}</c:when>
+                    </c:choose></td>
                   <td><jsp:useBean id="createDate" class="java.util.Date" /> <jsp:setProperty name="createDate" property="time" value="${item.createTime}" /> <fmt:formatDate
                       value="${createDate}" pattern="yyyy-MM-dd HH:mm" /></td>
                   <td>${item.progress}</td>

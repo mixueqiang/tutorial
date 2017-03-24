@@ -36,7 +36,8 @@
           <ul>
             <li><label>链接：</label><a href="${resource.url}" target="_blank">${resource.url}</a></li>
             <c:if test="${not empty resource.password}">
-              <li><label>密码：</label> <c:choose>
+              <li><label>密码：</label>
+              <c:choose>
                   <c:when test="${not empty _user}">
                     <span>${resource.password}</span>
                   </c:when>

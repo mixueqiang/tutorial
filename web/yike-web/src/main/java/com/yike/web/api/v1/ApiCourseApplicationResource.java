@@ -102,7 +102,8 @@ public class ApiCourseApplicationResource extends BaseResource {
   @POST
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(APPLICATION_JSON)
-  public Map<String, Object> save(@FormParam("courseId") long courseId, @FormParam("name") String name, @FormParam("phone") String phone) {
+  public Map<String, Object> save(@FormParam("courseId") long courseId, @FormParam("name") String name, @FormParam("phone") String phone, @FormParam("qq") String qq,
+      @FormParam("wechat") String wechat) {
     /*********** 检查是否可以申请 *************/
     Map<String, Object> checkResult = checkAppliable(courseId);
     if ((Integer) checkResult.get("e") > 0) {
@@ -118,6 +119,7 @@ public class ApiCourseApplicationResource extends BaseResource {
       Entity entity = new Entity(CourseApplication.SQL_TABLE_NAME);
       entity.set(CourseApplication.SQL_USER_ID, getSessionUserId()).set(CourseApplication.SQL_COURSE_ID, courseId);
       entity.set(CourseApplication.SQL_NAME, name).set(CourseApplication.SQL_PHONE, phone);
+      entity.set(CourseApplication.SQL_QQ, qq).set(CourseApplication.SQL_WECHAT, wechat);
       if (course.getFree() == 1) {
         entity.set(CourseApplication.SQL_PRICE, 0.00f);
         entity.set(CourseApplication.SQL_PROGRESS, CourseApplication.PROGRESS_PAID);

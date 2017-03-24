@@ -30,6 +30,8 @@ public class CourseApplicationRowMapper implements RowMapper<CourseApplication> 
     entity.setCourseId(rs.getLong(CourseApplication.SQL_COURSE_ID));
     entity.setName(rs.getString(CourseApplication.SQL_NAME));
     entity.setPhone(rs.getString(CourseApplication.SQL_PHONE));
+    entity.setQq(rs.getString(CourseApplication.SQL_QQ));
+    entity.setWechat(rs.getString(CourseApplication.SQL_WECHAT));
     entity.setPrice(rs.getFloat(CourseApplication.SQL_PRICE));
     entity.setOrderId(rs.getString(CourseApplication.SQL_ORDER_ID));
     entity.setProgress(rs.getInt(CourseApplication.SQL_PROGRESS));

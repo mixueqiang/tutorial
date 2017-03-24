@@ -13,6 +13,8 @@ public class CourseApplication extends BaseModel {
   public static final String SQL_COURSE_ID = "courseId";
   public static final String SQL_NAME = "name";
   public static final String SQL_PHONE = "phone";
+  public static final String SQL_QQ = "qq";
+  public static final String SQL_WECHAT = "wechat";
   public static final String SQL_PRICE = "price";
   public static final String SQL_ORDER_ID = "orderId";
   public static final String SQL_PROGRESS = "progress";
@@ -25,11 +27,12 @@ public class CourseApplication extends BaseModel {
   public static final int PROGRESS_PAID = 100;
   public static final int PROGRESS_CANCELED = -100;
 
-
   private long userId;
   private long courseId;
   private String name;
   private String phone;
+  private String qq;
+  private String wechat;
   private float price;
   private String orderId; // 支付订单号，可选
   private int progress;
@@ -58,8 +61,16 @@ public class CourseApplication extends BaseModel {
     return progress;
   }
 
+  public String getQq() {
+    return qq;
+  }
+
   public long getUserId() {
     return userId;
+  }
+
+  public String getWechat() {
+    return wechat;
   }
 
   public void setCourseId(long courseId) {
@@ -86,7 +97,16 @@ public class CourseApplication extends BaseModel {
     this.progress = progress;
   }
 
+  public void setQq(String qq) {
+    this.qq = qq;
+  }
+
   public void setUserId(long userId) {
     this.userId = userId;
   }
+
+  public void setWechat(String wechat) {
+    this.wechat = wechat;
+  }
+
 }

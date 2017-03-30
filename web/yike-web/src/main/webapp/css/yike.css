@@ -52,16 +52,12 @@ input, select, textarea, .btn, .form-control, .panel {
   -webkit-box-shadow: 0 1px 2px #cbcbcb; box-shadow: 0 1px 2px #cbcbcb;
 }
 
-.headerDropdown {
-  line-height: 50px; margin-left: 20px;
+.dropdown-header {
+  line-height: 45px; margin-left: 20px;
 }
 
-.headerDropdown .dropdownMenu1 {
-  border: none; background-color: transparent; outline: 0;
-}
-
-.headerDropdown .dropdownMenu1 .caret:hover {
-  color: red;
+.dropdown-header>button {
+  background-color: transparent; border: none; outline: 0;
 }
 
 .dropdown-menu {

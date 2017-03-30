@@ -4,17 +4,18 @@
     <div class="container">
       <a class="hero-brand xl" href="/">一课上手</a>
       <ul class="nav pull-right">
-        <li class="pull-left"><a id="publishTop" class="btn btn-success" href="/course/create">发布一门实战课程</a></li>
+        <li class="pull-left"><a id="publishTop" class="btn btn-success" href="/course/create">发布课程</a></li>
         <c:choose>
           <c:when test="${not empty _user}">
-            <div class="dropdown headerDropdown pull-left">
-              <button class="btn dropdown-toggle dropdownMenu1" type="button" id="dropdownMenu1" data-toggle="dropdown">
+            <div class="dropdown dropdown-header pull-left">
+              <button class="btn dropdown-toggle" type="button" id="headerDropdownLabel" data-toggle="dropdown">
                 <a href="/dashboard">${_user.username}</a><span class="caret"></span>
               </button>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="/courses">我的课程</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="/settings/profile">个人信息</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="/signout">退出登录</a></li>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="headerDropdownLabel">
+                <li role="presentation"><a role="menuitem" href="/courses">我的课程</a></li>
+                <li role="presentation"><a role="menuitem" href="/settings/profile">个人信息</a></li>
+                <li class="divider"></li>
+                <li role="presentation"><a role="menuitem" href="/signout">退出登录</a></li>
               </ul>
             </div>
           </c:when>

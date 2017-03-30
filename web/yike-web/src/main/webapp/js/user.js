@@ -152,18 +152,13 @@ $(function() {
       $(form).ajaxSubmit({
         success : function(resp) {
           if (resp && resp.e == 0) {
-            var role = $('#role').val();
             var message = '注册成功';
             Message.info(message, false, $('.form-group:last', $(form)));
-            var isSignin=sessionStorage.getItem("isSignin");
-            if (isSignin) {
-              sessionStorage.removeItem("isSignin");
-              sessionStorage.removeItem("isSignup");
-              sessionStorage.removeItem("isResetPassword");
-              window.location.href="/";
-            }else{
-              location.replace(document.referrer);
-            }
+            var to = resp.r;
+            setTimeout(function() {
+              window.location.href = (to == '' ? '/' : to);
+            }, 1500);
+
           } else {
             $('input[name=password]', $('#signup-form')).val('');
             Message.error('注册失败：' + resp.m, false, $('.form-group:last', $(form)));
@@ -210,16 +205,11 @@ $(function() {
         success : function(resp) {
           if (resp && resp.e == 0) {
             Message.info('登录成功！', false, $('.form-group:last', $(form)));
-            var isSignup=sessionStorage.getItem("isSignup");
-            var isResetPassword=sessionStorage.getItem("isResetPassword");
-            if (isSignup||isResetPassword) {
-              sessionStorage.removeItem("isSignup");
-              sessionStorage.removeItem("isResetPassword");
-              sessionStorage.removeItem("isSignin");
-              window.location.href="/";
-            }else{
-              location.replace(document.referrer);
-            }
+            var to = resp.r;
+            setTimeout(function() {
+              window.location.href = (to == '' ? '/' : to);
+            }, 1500);
+
           } else {
             $('#password').val('');
             Message.error('登录失败：' + resp.m, false, $('.form-group:last', $(form)));

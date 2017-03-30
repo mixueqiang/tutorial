@@ -1,25 +1,42 @@
 package com.yike.web;
 
-import com.sun.jersey.api.view.Viewable;
-import com.yike.Constants;
-import com.yike.dao.BaseDao;
-import com.yike.dao.mapper.*;
-import com.yike.model.*;
-import com.yike.util.PageNumberUtils;
-import com.yike.util.Pair;
-import com.yike.util.StringUtil;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.sun.jersey.api.view.Viewable;
+import com.yike.Constants;
+import com.yike.dao.BaseDao;
+import com.yike.dao.mapper.CategoryRowMapper;
+import com.yike.dao.mapper.CourseApplicationRowMapper;
+import com.yike.dao.mapper.CourseRowMapper;
+import com.yike.dao.mapper.InstructorRowMapper;
+import com.yike.dao.mapper.UserRowMapper;
+import com.yike.model.Category;
+import com.yike.model.Course;
+import com.yike.model.CourseApplication;
+import com.yike.model.Entity;
+import com.yike.model.Instructor;
+import com.yike.model.Student;
+import com.yike.model.User;
+import com.yike.util.PageNumberUtils;
+import com.yike.util.Pair;
+import com.yike.util.StringUtil;
 
 /**
  * @author xueqiangmi
@@ -34,6 +51,11 @@ public class CourseResource extends BaseResource {
   @Path("create")
   @Produces(MediaType.TEXT_HTML)
   public Response create() {
+    User user = getSessionUser();
+    if (user == null) {
+      return signinAndGoback();
+    }
+
     List<Category> categories = entityDao.find(Category.SQL_TABLE_NAME, Category.SQL_STATUS, Constants.STATUS_OK, CategoryRowMapper.getInstance());
     request.setAttribute("categories", categories);
     return Response.ok(new Viewable("create")).build();
@@ -67,7 +89,6 @@ public class CourseResource extends BaseResource {
     request.setAttribute("categories", categories);
     return Response.ok(new Viewable("edit")).build();
   }
-
 
   @GET
   @Path("{id}")
@@ -158,9 +179,7 @@ public class CourseResource extends BaseResource {
 
   @GET
   @Produces(MediaType.TEXT_HTML)
-  public Response index(
-          @QueryParam("c") @DefaultValue("0") long categoryId,
-          @QueryParam("p") @DefaultValue("1") int page) {
+  public Response index(@QueryParam("c") @DefaultValue("0") long categoryId, @QueryParam("p") @DefaultValue("1") int page) {
 
     Map<String, Object> condition = new HashMap<String, Object>();
     condition.put("status", Constants.STATUS_ENABLED);
@@ -176,13 +195,7 @@ public class CourseResource extends BaseResource {
     List<Course> courses = result.right;
     request.setAttribute("courses", courses);
 
-    List<Category> categories = entityDao.find(
-            Category.SQL_TABLE_NAME,
-            Category.SQL_STATUS,
-            Constants.STATUS_OK,
-            CategoryRowMapper.getInstance(),
-            Category.SQL_RANK,
-            BaseDao.ORDER_OPTION_ASC);
+    List<Category> categories = entityDao.find(Category.SQL_TABLE_NAME, Category.SQL_STATUS, Constants.STATUS_OK, CategoryRowMapper.getInstance(), Category.SQL_RANK, BaseDao.ORDER_OPTION_ASC);
 
     for (Course course : courses) {
       if (course == null || course.isDisabled()) {
@@ -236,24 +249,16 @@ public class CourseResource extends BaseResource {
     condition.put(CourseApplication.SQL_COURSE_ID, courseId);
     condition.put(CourseApplication.SQL_PROGRESS, CourseApplication.PROGRESS_PAID);
 
-    CourseApplication courseApplication = entityDao.findOne(
-            CourseApplication.SQL_TABLE_NAME,
-            condition,
-            CourseApplicationRowMapper.getInstance());
+    CourseApplication courseApplication = entityDao.findOne(CourseApplication.SQL_TABLE_NAME, condition, CourseApplicationRowMapper.getInstance());
 
     boolean hasApply = courseApplication != null;
 
     return hasApply;
   }
 
-  private long getInstructorIdBy(
-          long userId) {
+  private long getInstructorIdBy(long userId) {
 
-    Instructor instructor = entityDao.findOne(
-            Instructor.SQL_TABLE_NAME,
-            Instructor.SQL_USER_ID,
-            userId,
-            InstructorRowMapper.getInstance());
+    Instructor instructor = entityDao.findOne(Instructor.SQL_TABLE_NAME, Instructor.SQL_USER_ID, userId, InstructorRowMapper.getInstance());
 
     if (null == instructor) {
       return 0;

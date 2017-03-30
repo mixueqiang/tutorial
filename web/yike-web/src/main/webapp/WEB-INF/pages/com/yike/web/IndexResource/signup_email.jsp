@@ -37,6 +37,7 @@
 
         <div class="form-group">
           <div class="col-sm-offset-3 col-sm-6">
+            <input type="hidden" id="to" name="to" value="${param.to}" />
             <button type="submit" tabindex="6" class="btn btn-danger">注册</button>
             <a class="col-space-2" href="/signin">返回登录</a>
           </div>
@@ -47,4 +48,4 @@
 </div>
 
 <script src="/libs/jquery/jquery.md5.js"></script>
-<script src="/js/user.js?v=20170104001"></script>
+<script src="/js/user.js?v=20170330001"></script>

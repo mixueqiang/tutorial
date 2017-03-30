@@ -21,4 +21,4 @@
   </div>
 </div>
 
-<script src="/js/password.js?v=20160927001"></script>
+<script src="/js/password.js?v=20170330001"></script>

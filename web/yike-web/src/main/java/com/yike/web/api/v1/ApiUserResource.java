@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class ApiUserResource extends BaseResource {
   private static final Log LOG = LogFactory.getLog(ApiUserResource.class);
-  private static final String[] PROFILE_KEYS = new String[]{"username", "avatar", "gender", "birthday", "profile"};
+  private static final String[] PROFILE_KEYS = new String[] { "username", "avatar", "gender", "birthday", "profile" };
 
   @GET
   @Path("{id}")
@@ -82,7 +82,7 @@ public class ApiUserResource extends BaseResource {
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(APPLICATION_JSON)
   public Map<String, Object> save(@FormParam("email") String email, @FormParam("phone") String phone, @FormParam("securityCode") String securityCode, @FormParam("username") String username,
-                                  @FormParam("password") String password, @FormParam("role") String role) {
+      @FormParam("password") String password, @FormParam("to") String to) {
     // Data validation.
     if (StringUtils.isEmpty(email) && StringUtils.isEmpty(phone)) {
       return ResponseBuilder.error(10100, "请输入邮箱或手机号码。");
@@ -107,7 +107,6 @@ public class ApiUserResource extends BaseResource {
     if (!pattern.matcher(username).matches()) {
       return ResponseBuilder.error(10107, "昵称不能少于2个字，支持中文、字母、数字和下划线。");
     }
-    String roles = "user";
 
     try {
       if (StringUtils.isNotEmpty(email)) {
@@ -147,23 +146,21 @@ public class ApiUserResource extends BaseResource {
       }
       userEntity.set("username", username);
       userEntity.set("password", password);
-      userEntity.set("locale", "cn").set("roles", roles);
+      userEntity.set("locale", "cn").set("roles", "user");
       userEntity.set("status", Constants.STATUS_ENABLED).set("createTime", time);
       userEntity = entityDao.saveAndReturn(userEntity);
+
       // Save instructor
       Entity instructorEntity = new Entity(Instructor.SQL_TABLE_NAME);
-      instructorEntity
-              .set(Instructor.SQL_USER_ID, userEntity.getId())
-              .set(Instructor.SQL_NAME, username);
+      instructorEntity.set(Instructor.SQL_USER_ID, userEntity.getId()).set(Instructor.SQL_NAME, username);
       if (StringUtils.isEmpty(email)) {
         instructorEntity.set(Instructor.SQL_CONTACTS, phone);
+
       } else {
         instructorEntity.set(Instructor.SQL_CONTACTS, email);
       }
 
-      instructorEntity
-              .set(Instructor.SQL_CREATE_TIME, time)
-              .set(Instructor.SQL_STATUS, Constants.STATUS_OK);
+      instructorEntity.set(Instructor.SQL_CREATE_TIME, time).set(Instructor.SQL_STATUS, Constants.STATUS_OK);
       entityDao.save(instructorEntity);
 
       entityDao.update("security_code", "id", securityCodeEntity.getId(), "status", 0);
@@ -176,7 +173,7 @@ public class ApiUserResource extends BaseResource {
       sessionService.storeSession(userId, WebUtils.getSessionId(request));
       entityDao.update("user", "id", userId, "loginTime", time);
 
-      return ResponseBuilder.OK;
+      return ResponseBuilder.ok(to);
 
     } catch (Throwable t) {
       LOG.error("Failed to register user.", t);

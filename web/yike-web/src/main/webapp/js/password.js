@@ -121,7 +121,6 @@ $(function() {
       $(form).ajaxSubmit({
         success : function(resp) {
           if (resp && resp.e == 0) {
-            sessionStorage.setItem("isResetPassword",true);
             Message.info('重置密码成功，3秒后将自动跳转到登录页面。', false, $('.form-group:last', $(form)));
             setTimeout(function() {
               window.location.href = '/signin';

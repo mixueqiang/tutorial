@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
       <h2>编辑实战</h2>
-      <form id="courseForm" name="course-form" action="/api/v1/course/update" method="post" class="form-horizontal row-space-top-4" role="form">
+      <form id="courseForm" action="/api/v1/course/update" method="post" class="form-horizontal row-space-top-4" role="form">
         <div class="form-group">
           <label for="title" class="col-md-2 col-sm-2 control-label">课程名称</label>
           <div id="titleContainer" class="col-md-8 col-sm-8">
@@ -40,15 +40,15 @@
           </div>
         </div>
         <div class="form-group">
-           <label for="categoryId" class="col-md-2 col-sm-2 col-xs-3 control-label">课程分类</label>
-           <div class="col-md-2 col-sm-2 col-xs-4">
-              <select id="categoryId" name="categoryId" class="form-control">
-                <c:forEach var="item" items="${categories}">
-                  <option value="${item.id}" <c:if test="${course.categoryId eq item.id}">selected="selected"</c:if>>${item.name}</option>
-                </c:forEach>
-              </select>
-           </div>
-         </div>
+          <label for="categoryId" class="col-md-2 col-sm-2 col-xs-3 control-label">课程分类</label>
+          <div class="col-md-2 col-sm-2 col-xs-4">
+            <select id="categoryId" name="categoryId" class="form-control">
+              <c:forEach var="item" items="${categories}">
+                <option value="${item.id}" <c:if test="${course.categoryId eq item.id}">selected="selected"</c:if>>${item.name}</option>
+              </c:forEach>
+            </select>
+          </div>
+        </div>
         <div class="form-group">
           <label for="teachingType" class="col-md-2 col-sm-2 control-label">上课时间及方式</label>
           <div id="teachingTypeContainer" class="col-md-8 col-sm-8">

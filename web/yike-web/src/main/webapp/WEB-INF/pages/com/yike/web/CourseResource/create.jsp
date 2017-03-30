@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
       <h2>发布实战课程</h2>
-      <form id="courseForm" name="course-form" action="/api/v1/course" method="post" class="form-horizontal row-space-top-4" role="form">
+      <form id="courseForm" action="/api/v1/course" method="post" class="form-horizontal row-space-top-4" role="form">
         <div class="form-group">
           <label for="title" class="col-md-2 col-sm-2 control-label">课程名称</label>
           <div id="titleContainer" class="col-md-8 col-sm-8">
@@ -82,6 +82,7 @@
         </div>
         <div class="form-group">
           <div class="col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2">
+            <input name="image" type="hidden">
             <button type="submit" class="btn btn-danger">发布</button>
           </div>
         </div>
@@ -171,8 +172,8 @@
       var resp = data.result;
       if (resp && resp.e == 0) {
         var image = resp.r;
-        $('input[name=image]', $('#course-form')).val(image.path);
-        $('.image-container', $('#course-form')).html('<img alt="课程图片" src="' + image.url + '">');
+        $('input[name=image]', $('#courseForm')).val(image.path);
+        $('.image-container', $('#courseForm')).html('<img alt="课程图片" src="' + image.url + '">');
         $('#imageModal').modal('hide');
       }
     },

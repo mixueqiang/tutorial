@@ -86,6 +86,13 @@
           </div>
           <div class="row-space-top-2 section">
             <p>${course.teachingType}</p>
+            <c:if test="${not empty course.imageQrCode}">
+              <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                  <img alt="课程二维码" src="http://yikeyun.b0.upaiyun.com/${course.imageQrCode}!M" />
+                </div>
+              </div>
+            </c:if>
           </div>
           <div class="row-space-top-3" id="course-support">
             <h2>购买支持</h2>

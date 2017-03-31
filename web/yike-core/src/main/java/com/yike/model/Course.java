@@ -21,6 +21,7 @@ public class Course extends BaseModel {
   public static final String SQL_DESCRIPTION = "description";
   public static final String SQL_TEACHING_TYPE = "teachingType";
   public static final String SQL_IMAGE = "image";
+  public static final String SQL_IMAGE_QR_CODE = "imageQrCode";
   public static final String SQL_ONLINE_CONTACT_METHOD = "onlineContactMethod";
   public static final String SQL_COUNT_MAX = "countMax";
   public static final String SQL_COUNT_THIS = "countThis";
@@ -64,6 +65,7 @@ public class Course extends BaseModel {
   // 线上联系方式
   private int onlineContactMethod;
   private String image;
+  private String imageQrCode;
   private String subscript; // 下角标
   private String superscript; // 上角标
 
@@ -110,6 +112,10 @@ public class Course extends BaseModel {
     return image;
   }
 
+  public String getImageQrCode() {
+    return imageQrCode;
+  }
+
   public String getImageUrl() {
     return ImageUtils.getImageUrl(image);
   }
@@ -147,6 +153,7 @@ public class Course extends BaseModel {
   }
 
   // - setters
+
   public void setAppliable(int appliable) {
     this.appliable = appliable;
   }
@@ -185,6 +192,10 @@ public class Course extends BaseModel {
 
   public void setImage(String image) {
     this.image = image;
+  }
+
+  public void setImageQrCode(String imageQrCode) {
+    this.imageQrCode = imageQrCode;
   }
 
   public void setInstructorId(long instructorId) {

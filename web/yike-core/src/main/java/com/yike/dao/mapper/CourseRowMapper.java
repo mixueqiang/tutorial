@@ -59,6 +59,11 @@ public class CourseRowMapper implements RowMapper<Course> {
       entity.getProperties().put("imageUrl", ImageUtils.getImageUrl(image));
     }
 
+    String imageQrCode = rs.getString(Course.SQL_IMAGE_QR_CODE);
+    if (StringUtils.isNotEmpty(imageQrCode)) {
+      entity.setImageQrCode(imageQrCode);
+    }
+
     return entity;
   }
 

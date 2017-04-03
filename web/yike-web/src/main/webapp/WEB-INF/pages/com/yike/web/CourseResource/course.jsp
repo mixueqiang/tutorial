@@ -232,7 +232,7 @@
   </div>
 </div>
 
-<script src="/js/course.js?v=20161220008"></script>
+<script src="/js/course.js?v=20170331001"></script>
 <script>
   /*图片高度适配*/
   function Heightadapt() {

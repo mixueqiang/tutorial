@@ -14,6 +14,7 @@
               <ul class="dropdown-menu" role="menu" aria-labelledby="headerDropdownLabel">
                 <li role="presentation"><a role="menuitem" href="/courses">我的课程</a></li>
                 <li role="presentation"><a role="menuitem" href="/settings/profile">个人信息</a></li>
+                <li class="divider"></li>
                 <li role="presentation"><a role="menuitem" href="/signout">退出登录</a></li>
               </ul>
             </div>

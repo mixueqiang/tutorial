@@ -136,6 +136,12 @@ $('#application-form').validate({
     phone : {
       required : true,
       maxlength : 20
+    },
+    qq : {
+      required : true
+    },
+    wechat : {
+      required : true
     }
   },
   messages : {
@@ -146,6 +152,12 @@ $('#application-form').validate({
     phone : {
       required : '请输入手机号码。',
       maxlength : $.format("手机号码不能超过 {0} 个字。")
+    },
+    qq : {
+      required : '请输入QQ号码。'
+    },
+    wechat : {
+      required : '请输入微信号。'
     }
   },
   submitHandler : function(form) {

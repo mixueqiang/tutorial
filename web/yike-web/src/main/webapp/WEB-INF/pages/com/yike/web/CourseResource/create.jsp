@@ -82,7 +82,7 @@
         </div>
         <div class="form-group">
           <div class="col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2">
-            <input name="image" type="hidden">
+            <input name="imageDescription" type="hidden">
             <button type="submit" class="btn btn-danger">发布</button>
           </div>
         </div>
@@ -172,8 +172,8 @@
       var resp = data.result;
       if (resp && resp.e == 0) {
         var image = resp.r;
-        $('input[name=image]', $('#courseForm')).val(image.path);
-        $('.image-container', $('#courseForm')).html('<img alt="课程图片" src="' + image.url + '">');
+        $('input[name=imageDescription]', $('#courseForm')).val(image.path);
+        $('.image-container', $('#courseForm')).html('<img alt="课程介绍图片" src="' + image.url + '">');
         $('#imageModal').modal('hide');
       }
     },

@@ -62,7 +62,7 @@ public class ApiCourseResource extends BaseResource {
           @FormParam("description") String description,
           @FormParam("maximumLearnerCount") int maximumLearnerCount,
           @FormParam("free") int free,
-          @FormParam("image") String image,
+          @FormParam("imageDescription") String imageDescription,
           @FormParam("onlineContactMethod") int onlineContactMethod) {
 
     User user = getSessionUser();
@@ -114,8 +114,8 @@ public class ApiCourseResource extends BaseResource {
               .set(Course.SQL_STATUS, Constants.STATUS_NOT_READY)
               .set(Course.SQL_CREATE_TIME, createTime);
 
-      if (StringUtils.isNotEmpty(image)) {
-        course.set(Course.SQL_IMAGE, image);
+      if (StringUtils.isNotEmpty(imageDescription)) {
+        course.set(Course.SQL_IMAGE_DESCRIPTION, imageDescription);
       }
 
       course = entityDao.saveAndReturn(course);

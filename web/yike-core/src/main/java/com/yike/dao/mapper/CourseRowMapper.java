@@ -52,11 +52,16 @@ public class CourseRowMapper implements RowMapper<Course> {
 
     entity.setSuperscript(rs.getString(Course.SQL_SUPERSCRIPT));
     entity.setSubscript(rs.getString(Course.SQL_SUBSCRIPT));
-    String image = rs.getString(Course.SQL_IMAGE);
 
+    String image = rs.getString(Course.SQL_IMAGE);
     if (StringUtils.isNotEmpty(image)) {
       entity.setImage(image);
       entity.getProperties().put("imageUrl", ImageUtils.getImageUrl(image));
+    }
+
+    String imageDescription = rs.getString(Course.SQL_IMAGE_DESCRIPTION);
+    if (StringUtils.isNotEmpty(imageDescription)) {
+      entity.setImageDescription(imageDescription);
     }
 
     String imageQrCode = rs.getString(Course.SQL_IMAGE_QR_CODE);

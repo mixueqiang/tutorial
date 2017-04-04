@@ -1,17 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>编辑实战&nbsp;|&nbsp;一课上手</title>
-<style>
-</style>
+<title>编辑课程&nbsp;|&nbsp;一课上手</title>
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-      <h2>编辑实战</h2>
+      <h2>编辑课程</h2>
       <form id="courseForm" action="/api/v1/course/update" method="post" class="form-horizontal row-space-top-4" role="form">
         <div class="form-group">
           <label for="title" class="col-md-2 col-sm-2 control-label">课程名称</label>
           <div id="titleContainer" class="col-md-8 col-sm-8">
             <p id="titleNum"></p>
-            <input id="title" name="title" class="form-control" maxlength="500" value="${course.name}">
+            <input id="title" name="title" class="form-control" maxlength="120" value="${course.name}">
           </div>
         </div>
         <div class="form-group">
@@ -22,26 +20,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="price" class="col-md-2 col-sm-2 col-xs-3 control-label">课程价格</label>
-          <div class="col-md-2 col-sm-2 col-xs-4">
-            <select id="free" name="free" class="form-control">
-              <option value="1" <c:if test="${course.free eq 1}">selected="selected"</c:if>>免费</option>
-              <option value="0" <c:if test="${course.free eq 0}">selected="selected"</c:if>>收费</option>
-            </select>
-          </div>
-          <div <c:if test="${course.free eq 1}">style="display:none"</c:if> id="charge" class="col-md-2 col-sm-2 col-xs-4">
-            <span class="rmb">元</span> <input id="price" name="price" class="form-control" maxlength="10" value="${course.price}">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="maximumLearnerCount" class="col-md-2 col-sm-2 control-label">招生人数</label>
-          <div class="col-md-2 col-sm-2">
-            <input id="countThis" name="countThis" class="form-control" value="${course.countThis}">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="categoryId" class="col-md-2 col-sm-2 col-xs-3 control-label">课程分类</label>
-          <div class="col-md-2 col-sm-2 col-xs-4">
+          <label for="categoryId" class="col-md-2 col-sm-2 col-xs-3 control-label">课程类别</label>
+          <div class="col-md-3 col-sm-3 col-xs-4">
             <select id="categoryId" name="categoryId" class="form-control">
               <c:forEach var="item" items="${categories}">
                 <option value="${item.id}" <c:if test="${course.categoryId eq item.id}">selected="selected"</c:if>>${item.name}</option>
@@ -50,23 +30,51 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="teachingType" class="col-md-2 col-sm-2 control-label">上课时间及方式</label>
-          <div id="teachingTypeContainer" class="col-md-8 col-sm-8">
-            <p id="teachingTypeNum"></p>
-            <textarea id="teachingType" name="teachingType" rows="4" class="form-control" placeholder="描述什么时间上课，及如何上课 ">${course.teachingType}</textarea>
+          <label for="price" class="col-md-2 col-sm-2 col-xs-3 control-label">课程价格</label>
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <select id="free" name="free" class="form-control">
+              <option value="1" <c:if test="${course.free eq 1}">selected="selected"</c:if>>免费</option>
+              <option value="0" <c:if test="${course.free eq 0}">selected="selected"</c:if>>收费</option>
+            </select>
+          </div>
+          <div <c:if test="${course.free eq 1}">style="display:none"</c:if> id="charge" class="col-md-3 col-sm-3 col-xs-4">
+            <span class="rmb">元</span> <input id="price" name="price" class="form-control" maxlength="10" value="${course.price}">
           </div>
         </div>
         <div class="form-group">
-          <label for="description" class="col-md-2 col-sm-2 control-label">详细介绍</label>
+          <label for="countMax" class="col-md-2 col-sm-2 col-xs-3 control-label">招生人数</label>
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <input id="countMax" name="countMax" class="form-control" value="${course.countMax}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description" class="col-md-2 col-sm-2 control-label">课程介绍</label>
           <div id="descriptionContainer" class="col-md-8 col-sm-8">
             <p id="descriptionNum"></p>
-            <textarea id="description" name="description" class="form-control" rows="6" placeholder="可以描述适合人群，课程目标，课程详细信息等">${course.description}</textarea>
+            <textarea id="description" name="description" class="form-control" rows="6" placeholder="描述讲师介绍，课程适合人群，课程目标，课程内容等">${course.description}</textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="teachingType" class="col-md-2 col-sm-2 control-label">课程安排</label>
+          <div id="teachingTypeContainer" class="col-md-8 col-sm-8">
+            <p id="teachingTypeNum"></p>
+            <textarea id="teachingType" name="teachingType" rows="4" class="form-control" placeholder="描述什么时间上课，怎样上课等">${course.teachingType}</textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="onlineContactMethod" class="col-md-2 col-sm-2 col-xs-3 control-label">与学员线上联系方式</label>
+          <div class="col-md-3 col-sm-3 col-xs-4">
+            <select id="onlineContactMethod" name="onlineContactMethod" class="form-control">
+              <option value="0" <c:if test="${course.onlineContactMethod eq 0}">selected="selected"</c:if>>不需要线上联系</option>
+              <option value="1" <c:if test="${course.onlineContactMethod eq 1}">selected="selected"</c:if>>QQ</option>
+              <option value="2" <c:if test="${course.onlineContactMethod eq 2}">selected="selected"</c:if>>微信</option>
+            </select>
           </div>
         </div>
         <div class="form-group">
           <div class="col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2">
-            <input type="hidden" id="id" name="id" value="${course.id}">
-            <button type="submit" class="btn btn-danger">发布课程</button>
+            <input type="hidden" id="id" name="id" value="${course.id}"><input type="hidden" name="imageDescription" value="${course.imageDescription}">
+            <button type="submit" class="btn btn-danger">更新课程</button>
           </div>
         </div>
       </form>

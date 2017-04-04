@@ -1,15 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8"%><%@ include file="/WEB-INF/commons/taglibs.jsp"%>
-<title>发布实战课程&nbsp;|&nbsp;一课上手</title>
+<title>发布课程&nbsp;|&nbsp;一课上手</title>
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-      <h2>发布实战课程</h2>
+      <h2>发布课程</h2>
       <form id="courseForm" action="/api/v1/course" method="post" class="form-horizontal row-space-top-4" role="form">
         <div class="form-group">
           <label for="title" class="col-md-2 col-sm-2 control-label">课程名称</label>
           <div id="titleContainer" class="col-md-8 col-sm-8">
             <p id="titleNum"></p>
-            <input id="title" name="title" class="form-control" maxlength="500">
+            <input id="title" name="title" class="form-control" maxlength="120">
           </div>
         </div>
         <div class="form-group">
@@ -42,9 +42,9 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="countThis" class="col-md-2 col-sm-2 col-xs-3 control-label">招生人数</label>
+          <label for="countMax" class="col-md-2 col-sm-2 col-xs-3 control-label">招生人数</label>
           <div class="col-md-3 col-sm-3 col-xs-4">
-            <input id="countThis" name="countThis" class="form-control">
+            <input id="countMax" name="countMax" class="form-control">
           </div>
         </div>
         <div class="form-group">
@@ -57,7 +57,7 @@
           <div class="col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2 col-xs-6 image-container"></div>
         </div>
         <div class="form-group">
-          <label for="description" class="col-md-2 col-sm-2 control-label">详细介绍</label>
+          <label for="description" class="col-md-2 col-sm-2 control-label">课程介绍</label>
           <div id="descriptionContainer" class="col-md-8 col-sm-8">
             <p id="descriptionNum"></p>
             <textarea id="description" name="description" class="form-control" rows="6" placeholder="描述讲师介绍，课程适合人群，课程目标，课程内容等"></textarea>

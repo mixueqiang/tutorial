@@ -13,7 +13,7 @@ $('#courseForm').validate({
       maxlength : 5,
       number : true
     },
-    countThis : {
+    countMax : {
       required : true,
       maxlength : 4,
       digits : true
@@ -39,12 +39,12 @@ $('#courseForm').validate({
     price : {
       required : '请输入课程价格。',
       maxlength : $.format("课程价格最多可以输入 {0} 个字符。"),
-      number : "请输入有效的数字。",
+      number : "请输入有效的数字。"
     },
-    countThis : {
+    countMax : {
       required : '请输入招生人数。',
       maxlength : $.format("招生人数不能超过 {0} 个字。"),
-      digits : "只能输入数字",
+      digits : "招生人数只能输入数字"
     },
     description : {
       required : '请输入详细介绍。',

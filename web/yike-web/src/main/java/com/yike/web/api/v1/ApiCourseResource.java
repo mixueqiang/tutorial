@@ -60,7 +60,7 @@ public class ApiCourseResource extends BaseResource {
           @FormParam("teachingType") String teachingType,
           @FormParam("content") String content,
           @FormParam("description") String description,
-          @FormParam("maximumLearnerCount") int maximumLearnerCount,
+          @FormParam("countMax") int countMax,
           @FormParam("free") int free,
           @FormParam("imageDescription") String imageDescription,
           @FormParam("onlineContactMethod") int onlineContactMethod) {
@@ -78,7 +78,7 @@ public class ApiCourseResource extends BaseResource {
             teachingType,
             content,
             description,
-            maximumLearnerCount);
+            countMax);
     if (null != checkResult) {
       return checkResult;
     }
@@ -102,9 +102,9 @@ public class ApiCourseResource extends BaseResource {
               .set(Course.SQL_USER_ID, userId)
               .set(Course.SQL_INSTRUCTOR_ID, instructorId)
               .set(Course.SQL_CATEGORY_ID, categoryId)
-              .set(Course.SQL_TITLE, title)
               .set(Course.SQL_PRICE, price)
-              .set(Course.SQL_COUNT_MAX, maximumLearnerCount)
+              .set(Course.SQL_COUNT_MAX, countMax)
+              .set(Course.SQL_TITLE, title)
               .set(Course.SQL_CONTENT, content)
               .set(Course.SQL_DESCRIPTION, description)
               .set(Course.SQL_TEACHING_TYPE, teachingType)

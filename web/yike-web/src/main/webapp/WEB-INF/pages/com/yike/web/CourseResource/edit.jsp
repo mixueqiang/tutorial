@@ -55,6 +55,19 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="image" class="col-md-2 col-sm-2 control-label">课程图片</label>
+          <div class="col-md-6 col-sm-6">
+            <a class="btn btn-default" data-toggle="modal" data-target="#imageModal">选择图片</a>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2 col-xs-6 image-container">
+            <c:if test="${not empty course.imageDescription}">
+              <img alt="课程介绍图片" src="http://yikeyun.b0.upaiyun.com/${course.imageDescription}!M" />
+            </c:if>
+          </div>
+        </div>
+        <div class="form-group">
           <label for="teachingType" class="col-md-2 col-sm-2 control-label">课程安排</label>
           <div id="teachingTypeContainer" class="col-md-8 col-sm-8">
             <p id="teachingTypeNum"></p>
@@ -82,7 +95,34 @@
   </div>
 </div>
 
-<script src="/js/course.js?v=20161202001"></script>
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="imageModalLabel">选择图片</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <span class="btn btn-default file-input-container"> 从电脑选择并上传图片 <input type="file" name="imageFile" class="fileupload">
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default op-cancel" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/libs/jquery/jquery.ui.widget.js"></script>
+<script src="/libs/jquery/jquery.iframe-transport.js"></script>
+<script src="/libs/jquery/jquery.fileupload.js"></script>
+<script src="/js/course.js?v=20170404001"></script>
 <script>
   /* 免费/收费-隐藏显示事件 */
   function fee() {
@@ -122,4 +162,28 @@
   numChange(content, contentNum, 150);
   numChange(teachingType, teachingTypeNum, 2000);
   numChange(description, descriptionNum, 3000);
+</script>
+<script>
+  //上传图片处理
+  $('.fileupload').fileupload({
+    url : '/api/v1/image',
+    dataType : 'json',
+    add : function(e, data) {
+      data.submit();
+    },
+    done : function(e, data) {
+      var resp = data.result;
+      if (resp && resp.e == 0) {
+        var image = resp.r;
+        $('input[name=imageDescription]', $('#courseForm')).val(image.path);
+        $('.image-container', $('#courseForm')).html('<img alt="课程介绍图片" src="' + image.url + '">');
+        $('#imageModal').modal('hide');
+      }
+    },
+    progressall : function(e, data) {
+      // update progress.
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      $('#progress .progress-bar').css('width', progress + '%');
+    }
+  }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
 </script>

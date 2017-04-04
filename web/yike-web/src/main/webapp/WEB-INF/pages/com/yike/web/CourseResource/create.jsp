@@ -48,6 +48,13 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="description" class="col-md-2 col-sm-2 control-label">课程介绍</label>
+          <div id="descriptionContainer" class="col-md-8 col-sm-8">
+            <p id="descriptionNum"></p>
+            <textarea id="description" name="description" class="form-control" rows="6" placeholder="描述讲师介绍，课程适合人群，课程目标，课程内容等"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
           <label for="image" class="col-md-2 col-sm-2 control-label">课程图片</label>
           <div class="col-md-6 col-sm-6">
             <a class="btn btn-default" data-toggle="modal" data-target="#imageModal">选择图片</a>
@@ -55,13 +62,6 @@
         </div>
         <div class="form-group">
           <div class="col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2 col-xs-6 image-container"></div>
-        </div>
-        <div class="form-group">
-          <label for="description" class="col-md-2 col-sm-2 control-label">课程介绍</label>
-          <div id="descriptionContainer" class="col-md-8 col-sm-8">
-            <p id="descriptionNum"></p>
-            <textarea id="description" name="description" class="form-control" rows="6" placeholder="描述讲师介绍，课程适合人群，课程目标，课程内容等"></textarea>
-          </div>
         </div>
         <div class="form-group">
           <label for="teachingType" class="col-md-2 col-sm-2 control-label">课程安排</label>
@@ -118,7 +118,7 @@
 <script src="/libs/jquery/jquery.ui.widget.js"></script>
 <script src="/libs/jquery/jquery.iframe-transport.js"></script>
 <script src="/libs/jquery/jquery.fileupload.js"></script>
-<script src="/js/course.js?v=20161202001"></script>
+<script src="/js/course.js?v=20170404001"></script>
 <script>
   /* 免费/收费-隐藏显示事件 */
   function fee() {

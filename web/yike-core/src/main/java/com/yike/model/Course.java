@@ -158,11 +158,11 @@ public class Course extends BaseModel {
     return countShow;
   }
 
+  // - setters
+
   public void setAppliable(int appliable) {
     this.appliable = appliable;
   }
-
-  // - setters
 
   public void setCategoryId(long categoryId) {
     this.categoryId = categoryId;

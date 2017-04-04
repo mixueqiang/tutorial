@@ -56,12 +56,12 @@ public class ApiCourseResource extends BaseResource {
           @FormParam("title") String title,
           @FormParam("instructorId") long instructorId,
           @FormParam("categoryId") long categoryId,
+          @FormParam("free") int free,
           @FormParam("price") float price,
+          @FormParam("countMax") int countMax,
+          @FormParam("description") String description,
           @FormParam("teachingType") String teachingType,
           @FormParam("content") String content,
-          @FormParam("description") String description,
-          @FormParam("countMax") int countMax,
-          @FormParam("free") int free,
           @FormParam("imageDescription") String imageDescription,
           @FormParam("onlineContactMethod") int onlineContactMethod) {
 
@@ -139,16 +139,17 @@ public class ApiCourseResource extends BaseResource {
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
   @Produces(APPLICATION_JSON)
   public Map<String, Object> update(
-          @FormParam("categoryId") long categoryId,
           @FormParam("title") String title,
+          @FormParam("categoryId") long categoryId,
+          @FormParam("free") int free,
           @FormParam("price") float price,
+          @FormParam("countMax") int countMax,
+          @FormParam("description") String description,
           @FormParam("teachingType") String teachingType,
           @FormParam("content") String content,
-          @FormParam("description") String description,
-          @FormParam("maximumLearnerCount") int maximumLearnerCount,
-          @FormParam("free") int free,
           @FormParam("id") long courseId,
-          @FormParam("image") String image) {
+          @FormParam("imageDescription") String imageDescription,
+          @FormParam("onlineContactMethod") int onlineContactMethod) {
 
     User user = getSessionUser();
     if (null == user) {
@@ -188,7 +189,7 @@ public class ApiCourseResource extends BaseResource {
             teachingType,
             content,
             description,
-            maximumLearnerCount);
+            countMax);
     if (null != checkResult) {
       return checkResult;
     }
@@ -201,19 +202,19 @@ public class ApiCourseResource extends BaseResource {
     Map<String, Object> updateValues = new HashMap<String, Object>();
     updateValues.put(Course.SQL_TITLE, title);
     updateValues.put(Course.SQL_CATEGORY_ID, categoryId);
-    updateValues.put(Course.SQL_TEACHING_TYPE, teachingType);
-    updateValues.put(Course.SQL_CONTENT, content);
-    updateValues.put(Course.SQL_DESCRIPTION, description);
-    updateValues.put(Course.SQL_COUNT_MAX, maximumLearnerCount);
     updateValues.put(Course.SQL_FREE, free);
     updateValues.put(Course.SQL_PRICE, price);
+    updateValues.put(Course.SQL_CONTENT, content);
+    updateValues.put(Course.SQL_DESCRIPTION, description);
+    updateValues.put(Course.SQL_TEACHING_TYPE, teachingType);
+    updateValues.put(Course.SQL_COUNT_MAX, countMax);
+    updateValues.put(Course.SQL_ONLINE_CONTACT_METHOD, onlineContactMethod);
+    if (StringUtils.isNotEmpty(imageDescription)) {
+      updateValues.put(Course.SQL_IMAGE_DESCRIPTION, imageDescription);
+    }
     updateValues.put(Course.SQL_STATUS, Constants.STATUS_NOT_READY);
 
-    if (StringUtils.isNotEmpty(image)) {
-      updateValues.put(Course.SQL_IMAGE, image);
-    }
     try {
-
       entityDao.update(Course.SQL_TABLE_NAME, courseUpdateCondition, updateValues);
       return ResponseBuilder.ok(courseId);
 

@@ -76,7 +76,7 @@
             <h4 class="row-space-2">课程介绍</h4>
             <p>${course.description}</p>
             <c:if test="${not empty course.imageDescription}">
-              <img alt="课程介绍图片" src="http://yikeyun.b0.upaiyun.com/${course.imageDescription}!M" />
+              <img alt="课程介绍图片" src="http://yikeyun.b0.upaiyun.com/${course.imageDescription}!L" />
             </c:if>
             <h4 class="row-space-top-2 row-space-2">课程亮点</h4>
             <p>${course.content}</p>

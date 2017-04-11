@@ -75,7 +75,10 @@
                       <!-- <div class="section-caption row-space sm">${item.properties.instructor.name}</div> -->
                       <div class="section-content index-content ln-1">${item.content}</div>
                       <div class="section-footer">
-                        <span class="section-subscript">${item.superscript}</span><span class="section-price pull-right">¥${item.price}</span>
+                        <span class="section-subscript">${item.superscript}</span><span class="section-price pull-right"><c:choose>
+                            <c:when test="${item.free eq 1}">免费</c:when>
+                            <c:otherwise>¥ ${item.price}</c:otherwise>
+                          </c:choose></span>
                       </div>
                     </div>
 

@@ -111,7 +111,7 @@ public class ApiAuthResource extends BaseResource {
         if (signinWithUserOauth(userOauth)) {
             return redirect("/");
         }
-        LOG.info("收据库中未找到授权信息，开始拉取用户信息准备保存");
+        LOG.info("未找到授权信息，开始拉取用户信息准备保存");
 
         WechatUserInfo info = WechatAuthUtils.getUserInfo(accessTokenContainer);
         if (info == null) {

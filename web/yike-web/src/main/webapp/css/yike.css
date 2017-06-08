@@ -614,7 +614,7 @@ input, select, textarea, .btn, .form-control, .panel {
   display: inline-block; margin-right: 20px;
 }
 
-.course-nav>li>a {
+.course-nav-a {
   color: #666; font-size: 16px;
 }
 

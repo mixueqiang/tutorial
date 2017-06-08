@@ -57,8 +57,8 @@
           <div class="row">
             <div class="col-md-12">
               <ul class="course-nav">
-                <li><a href="#about-the-course">关于此课程</a></li>
-                <li><a href="#course-list">课程安排</a></li>
+                <li><a class="course-nav-a" href="#about-the-course">关于此课程</a></li>
+                <li><a class="course-nav-a" href="#course-list">课程安排</a></li>
                 <c:if test="${not empty achievements}">
                   <li><a href="#course-achievements">课程成果</a></li>
                 </c:if>
@@ -268,7 +268,7 @@
             "top" : 0,
             "zIndex" : 1000
           });
-          var cloneDom = $('.actions button').clone(true);
+          var cloneDom = $('.actions .btn').clone(true);
           $('.appendContent').append(cloneDom);
         }
         a++;

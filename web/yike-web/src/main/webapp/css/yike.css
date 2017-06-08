@@ -505,6 +505,10 @@ input, select, textarea, .btn, .form-control, .panel {
 .index-panel {
   margin-bottom: 20px;
 }
+.index-panel-a{
+  display: block;
+  float: left;
+}
 
 .index-panel-body {
   /* box-shadow:0 3px 6px rgba(0,0,0,.4);  */
@@ -545,7 +549,7 @@ input, select, textarea, .btn, .form-control, .panel {
 
 #contact_form input[type=text], #contact_form textarea {
   outline: none; border: none; border-bottom: 1px solid #DBE1EC; margin: 0; padding: 12px 0; display: block; box-sizing: border-box; width: 100%; max-width: 100%; min-width: 100%; resize: none;
-  color: #16364f;
+  color: #16364f;border-radius: 0px;
 }
 
 .signcontainer {

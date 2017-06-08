@@ -618,7 +618,7 @@ input, select, textarea, .btn, .form-control, .panel {
   color: #666; font-size: 16px;
 }
 
-.course-nav>li>a:hover, .course-nav>li>a:focus {
+.course-nav-a:hover, .course-nav-a:focus {
   color: #333; background-color: #fff; text-decoration: none;
 }
 

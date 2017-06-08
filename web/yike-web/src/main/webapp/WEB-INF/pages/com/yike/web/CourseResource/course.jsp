@@ -30,18 +30,18 @@
                       </c:choose></span>
                     <c:choose>
                       <c:when test="${hasApplied}">
-                        <button class="btn btn-success btn-lg" disabled="disabled">已报名</button>
+                        <button class="btn btn-success" disabled="disabled">已报名</button>
                       </c:when>
                       <c:otherwise>
                         <c:choose>
                           <c:when test="${course.status eq 0}">
-                            <button class="btn btn-danger btn-lg" disabled="disabled">审核中</button>
+                            <button class="btn btn-danger" disabled="disabled">审核中</button>
                           </c:when>
                           <c:when test="${course.status eq 1 and course.appliable lt 1}">
-                            <button class="btn btn-danger btn-lg" disabled="disabled">已结束招生</button>
+                            <button class="btn btn-danger" disabled="disabled">已结束招生</button>
                           </c:when>
                           <c:when test="${course.status eq 1 and course.appliable eq 1}">
-                            <a class="btn btn-success btn-lg" data-toggle="modal" data-target="#applicationModal" href="#">报名</a>
+                            <a class="btn btn-success" data-toggle="modal" data-target="#applicationModal" href="#">报名</a>
                           </c:when>
                         </c:choose>
                       </c:otherwise>

@@ -1,9 +1,0 @@
-<!--logs.wxml-->
-<view class="container">
-    <text>姓名</text>
-    <input />
-    <text>电话</text>
-    <input />
-    <text>地址</text>
-    <textarea />
-</view>

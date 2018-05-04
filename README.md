@@ -13,7 +13,7 @@ Java
 
 Database
 --------------------
-1. MySQL
+1. MySQL / MariaDB
 2. Redis
 
 [详细内容](https://github.com/mixueqiang/tutorial/tree/master/database)

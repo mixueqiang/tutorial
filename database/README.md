@@ -6,6 +6,7 @@ MySQL
 --------------------
 1. [MySQL Documentation](https://dev.mysql.com/doc/)
 2. [MySQL中文教程](http://www.runoob.com/mysql/mysql-tutorial.html)
+3. [MariaDB Documentation](https://mariadb.com/kb/en/library/documentation/)
 
 
 Redis

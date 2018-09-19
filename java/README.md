@@ -25,6 +25,10 @@ Jersey
   - 1至2章
 3. [Jersey 2.x User Guide翻译](https://legacy.gitbook.com/book/waylau/jersey-2-user-guide/details)
 
+Junit
+--------------------
+1. http://junit.org/
+2. Junit in Action
 
 Java高级编程
 --------------------

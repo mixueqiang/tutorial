@@ -15,7 +15,7 @@ Spring
 --------------------
 1. [Spring User Guide](http://spring.io/guides)
 2. [Spring in Action阅读笔记](https://www.jianshu.com/p/c516b5784d6b)
-3. Srping in Actioin
+3. Srping in Action
 
 
 Jersey
